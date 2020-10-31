@@ -17,3 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/template', function () {
+    return view('template');
+});
+
+
+Route::get('/prueba', function () {
+    return view('paginaNT');
+});
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
