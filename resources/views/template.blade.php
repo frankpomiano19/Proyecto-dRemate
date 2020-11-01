@@ -16,6 +16,7 @@
 
 
 @section('contenido')
+
 @endsection
 
 @section('contenidoJSabajo')
