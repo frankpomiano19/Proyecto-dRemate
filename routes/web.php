@@ -26,5 +26,9 @@ Route::get('/prueba', function () {
     return view('paginaNT');
 });
 
+Route::get('/oferta', function () {
+    return view('puja');
+});
+
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
