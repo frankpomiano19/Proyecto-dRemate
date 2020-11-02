@@ -20,6 +20,10 @@ Route::get('/prueba', function () {
 Route::get('/template', function () {
     return view('template');
 });
+
+Route::get('/oferta', function () {
+    return view('puja');
+});
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
