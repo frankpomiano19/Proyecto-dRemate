@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Oswald&display=swap');
 :root {
   --input-padding-x: 1.5rem;
   --input-padding-y: .75rem;
@@ -12,9 +14,31 @@
     background: url("../img/background/backgroundWhiteCentro.png");
 }
 
+.main-background{
+  background: rgba(102,0,0,0.10);
+  color: white;
+}
+
+.titulo-1{
+  /*font-family: 'Oswald', sans-serif;*/
+  font-family: 'Libre Baskerville', serif;
+  font-size: 30px;
+}
+
 .cuadro-registro{
+  background-color: transparent;
     border-radius: 5px;
 }
+.style-tarjeta{
+
+  border-color: white;
+  border-width: 5px;
+  border-style: double;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.8);
+
+}
+
 
 
 .card-signin {
@@ -41,6 +65,8 @@
 .card-signin .card-body {
   padding: 2rem;
 }
+
+
 
 .form-signin {
   width: 100%;
