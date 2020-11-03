@@ -10,7 +10,7 @@ use App\Mail\MessageReceived;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("welcome");
 
 Route::get('/prueba', function () {
     return view("paginaNT");
