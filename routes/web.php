@@ -26,5 +26,13 @@ Route::get('/prueba', function () {
     return view('paginaNT');
 });
 
+Route::get('/registroProducto', function () {
+    return view('registroProducto');
+});
+
+Route::get('/registroSubasta', function () {
+    return view('registroSubasta');
+});
+
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
