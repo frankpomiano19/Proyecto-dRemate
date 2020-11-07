@@ -29,6 +29,9 @@ Route::get('/subirProducto', function () {
     return view('subirProducto');
 });
 
+//name --> form
+Route::post('/guardarDatos','PagesController@crear')->name('nuevo.Producto');
+
 
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
