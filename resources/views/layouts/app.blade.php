@@ -25,46 +25,52 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     @yield('contenidoCSS')
 
 </head>
 
 <body>
 
+    @php
+    $stringRuta = \Request::route()->getName();
+    if($stringRuta == "welcome"){
+        
+    }
+    @endphp
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
 
         <div class="container">
-            <a class="navbar-brand" href="#">dRemate</a>
+            <a class="navbar-brand" href="{{route("welcome")}}">dRemate</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
+                    <li class="nav-item @if($stringRuta == 'welcome') active  @endif ">
+                        <a class=" nav-link" href="{{ route('welcome') }}">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
+                    <li class="nav-item">
 
+                        @guest
 
-                    <!--<li class="nav-item">
-                        <a class="nav-link" href="{{ route('paginaPrueba') }}">Prueba</a>
-                    </li>-->
-                    @guest
-
-                        <li class="nav-item">
+                        <li class="nav-item @if($stringRuta == 'login') active  @endif">
                             <a class="nav-link" href="{{ route('login') }}">Ingresar</a>
                         </li>
                         @if (Route::has('register'))
-                            <li class="nav-item active">
+                            <li class="nav-item @if($stringRuta == 'register') active  @endif">
                                 <a class="nav-link" href="{{ route('register') }}">Registrarse
                                     <span class="sr-only">(current)</span>
 
                                 </a>
                             </li>
+
                         @endif
 
                     @else
@@ -75,8 +81,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
 

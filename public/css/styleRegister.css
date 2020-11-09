@@ -13,12 +13,13 @@
   
     /*background: linear-gradient(to right, #0062E6, #33AEFF);
     */  
-      background: url("../img/background/backgroundWhiteCentro.png");
+      background: url("../img/assets/antique-1125467_1920.jpg");
   }
   
 .main-background{
-    background: rgba(102,0,0,0.10);
-}
+  background: rgba(255,255,255,0.60);
+
+  }
 
 .titulo-1{
     /*font-family: 'Oswald', sans-serif;*/

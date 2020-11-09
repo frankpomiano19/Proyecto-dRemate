@@ -7,7 +7,6 @@
 
 @section('contenidoJS')
     <link rel="stylesheet" href="css/styleLogin.css">
-
 @endsection
 
 @section('contenidoCSS')
@@ -19,10 +18,17 @@
         <div class="main-background">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                        <div class="card card-signin my-5" style="background-color: transparent;border-radius:10px">
+                    <div class="col-sm-9 col-md-7 col-lg-4 mx-auto">
+                        <div class="card card-signin my-5" style="background-color: transparent;border-radius:10%">
                             <div class="style-tarjeta">
                                 <div class="card-body">
+
+                                    <div style="text-align:center;">
+                                        <img class="rounded-circle"" style=" width: 50%;" src="img/assets/subasta_1.jpg"
+                                            alt="logo-dRemate">
+
+
+                                    </div>
                                     <h5 class="text-center titulo-1">Ingresar</h5>
                                     <form class="form-signin" method="POST" action="{{ route('login') }}">
                                         @csrf
@@ -56,7 +62,6 @@
                                             @enderror
                                         </div>
 
-                                        <br>
 
                                         <div class="custom-control custom-checkbox mb-3">
                                             <input type="checkbox" class="custom-control-input" id="customCheck1"
@@ -64,15 +69,11 @@
                                             <label class="custom-control-label" for="customCheck1">Recordar
                                                 Contraseña</label>
                                         </div>
+                                        <hr class="lineas-separacion">
 
-
-
-
-
-                                        <br>
                                         <button class="btn btn-lg btn-primary btn-block text-uppercase"
                                             type="submit">Ingresar</button>
-                                        <hr class="my-4">
+                                        <hr class="my-2">
                                         @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                                 Te olvidaste la contraseña?
@@ -80,11 +81,11 @@
                                         @endif
 
                                         <!--
-                                                                                                                                                    <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
-                                                                                                                                                            class="fab fa-google mr-2"></i> Sign in with Google</button>
-                                                                                                                                                    <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
-                                                                                                                                                            class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
-                                                                                                                                                    -->
+                                                                                                                                                                                                                                            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
+                                                                                                                                                                                                                                            class="fab fa-google mr-2"></i> Sign in with Google</button>
+                                                                                                                                                                                                                                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i
+                                                                                                                                                                                                                                            class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
+                                                                                                                                                                                                                                            -->
                                     </form>
                                 </div>
                             </div>
