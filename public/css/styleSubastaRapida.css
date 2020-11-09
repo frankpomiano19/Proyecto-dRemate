@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Oswald&display=swap');
+
+
+.carousel-item {
+    height: 65vh;
+    min-height: 350px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  .boton-ver-subasta{
+      background: rgba(51, 122, 183, 1);
+      font-weight: bold;
+      height: 40px;
+    color: white;
+    }
+
+.progress, .alert {
+    margin: 15px;
+}
+    
+.alert {
+    display: none;
+}
+
+.imagen-producto-card{
+    height: 200px;
+}
+
+.sub-rapida-icono{
+    text-align: center;
+}
+
+.sub-rapida-main-content{
+    background: url("../img/background/carbon_fibre_@2X.png");
+}
+.sub-rapida-principal{
+    background-color: white;
+    border-radius: 10px;
+    border-color:black;
+    border-style: double;
+    border-width: 1px;
+}
+
+
+.titulo-card-header-1{
+    font-family: 'Libre Baskerville', serif;
+    font-size: 15px;
+
+}
+
+.card-contenido-cuerpo-1{
+    font-family: 'Oswald', serif;
+    font-size: 15px;
+}
+
+.imagen-producto-card{
+    width: 100%;
+}
