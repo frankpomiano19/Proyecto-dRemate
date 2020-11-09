@@ -29,7 +29,13 @@ Route::get('/subirProducto', function () {
     return view('subirProducto');
 });
 
+Route::get('/registroProducto', function () {
+    return view('registroProducto');
+});
 
+Route::get('/registroSubasta', function () {
+    return view('registroSubasta');
+});
 
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
