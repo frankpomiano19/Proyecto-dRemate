@@ -10,14 +10,15 @@
         
         
     </head>
-    <body class="antialiased" >
+    <body class="antialiased m-4" >
 
         <label for="formGroupExampleInput">Registra tu producto</label>
 
-        <form>
+    <form method="POST" action="{{ route('producto.registro')}}">
+            @csrf
             <div class="form-group"; margin:auto>
-                <label for="formGroupExampleInput">Título</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+                <label for="">Título</label>
+                <input type="text" class="form-control" name="titulo" id="" placeholder="">
             </div>
 
             <div class="form-group"; margin:auto>

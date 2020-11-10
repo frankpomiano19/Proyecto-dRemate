@@ -28,4 +28,8 @@ class HomeController extends Controller
     public function valores(){
         return view("paginaNT");
     }
+
+    public function registro(Request $request){
+        return $request->all();
+    }
 }
