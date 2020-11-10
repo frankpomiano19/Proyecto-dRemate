@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PruebaController;
+use App\Http\Controllers\SubastaRapController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -25,11 +26,8 @@ Route::get('/oferta', function () {
     return view('puja');
 });
 
-Route::get('/subastaRapida', function () {
-    return view('subastaRapida');
-})->name("subastaRapida");
-
-
+Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
+Route::post('/subastaRapida',[SubastaRapController::class,'filtroProc'])->name("subastaRapida_filtro_proc");
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo

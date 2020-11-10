@@ -63,7 +63,7 @@
         <div class="container sub-rapida-principal">
 
             <div class="row py-4">
-                <div class="col-lg-2 py-2 columna-barra-lateral" >
+                <div class="col-lg-2 py-2 columna-barra-lateral">
                     <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist"
                         aria-orientation="vertical">
                         <a class="nav-link mb-3 p-3 shadow active" id="v-pills-home-tab" data-toggle="pill"
@@ -100,18 +100,24 @@
 
                                         </div>
                                         <div class="col-sm-12">
-                                            <ul class="nav nav-pills mb-3 " id="pills-tab" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
-                                                        href="" role="tab" aria-controls="pills-home"
-                                                        aria-selected="true">Mayor tiempo</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href=""
-                                                        role="tab" aria-controls="pills-profile" aria-selected="false">Menor
-                                                        tiempo</a>
-                                                </li>
-                                            </ul>
+                                            <form action="{{ route('subastaRapida_filtro_proc') }}" method="POST">
+                                                <ul class="nav nav-pills mb-3 " id="pills-tab" role="tablist">
+                                                    @csrf
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
+                                                            href="" role="tab" aria-controls="pills-home"
+                                                            aria-selected="true">Mayor tiempo</a>
+                                                    </li>
+                                                    <li class="nav-item">
+
+                                                        <a type="submit" class="nav-link" id="pills-profile-tab"
+                                                            data-toggle="pill" href="" role="tab"
+                                                            aria-controls="pills-profile" aria-selected="false">Menor
+                                                            tiempo</a>
+                                                    </li>
+
+                                                </ul>
+                                            </form>
 
                                         </div>
                                     </div>
@@ -120,48 +126,66 @@
                             </section>
                             <div class="row justify-content-center">
 
-                                <div class="col-sm-4">
-                                    <div class="card">
-                                        <div class="card-body" style="margin-bottom: auto;padding-bottom:0px;">
-                                            <h5 class="card-title titulo-card-header-1">
-                                                <a href="#">Silla de madera</a>
-                                            </h5>
-                                        </div>
-                                        <img class="card-img-top img-logo-size"
-                                            src="https://na002.leafletcdns.com/pe/data/24/logo.png" alt="" srcset="">
-                                        <div class="product__item">
-                                            <div class="product__item__pic img-thumbnail set-bg card-img-top imagen-producto-card"
-                                                data-setbg="img/trending/trend-1.jpg"
-                                                style="background-image: url('img/assets/antique-1125467_1920.jpg');background-size:100% 100%;">
-                                                <div class="ep">Precio base : 20$ </div>
-                                                <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                                <div class="view"><i class="fa fa-heart"></i> 890</div>
-                                            </div>
-                                        </div>
-                                        <div class="card-contenido-cuerpo-1">
-                                            <div class="card-footer">
-                                                Puja mas alta : S/ 40.00
-                                            </div>
-                                            <div class="text-center">Tiempo restante</div>
-                                            <div class="progress">
-                                                <div class="progress-bar" role="progressbar" aria-valuenow="60"
-                                                    aria-valuemin="0" aria-valuemax="100" style="width: 80%;">10:30:00</div>
-                                            </div>
-                                            <div class="alert alert-success" role="alert">Carga completa!</div>
+
+                                @foreach ($su_curso_s as $su_curso)
 
 
-                                            <a href="#" class="btn btn-primary col-md-12 boton-ver-subasta">
-                                                <div class="row">
-                                                    <div class="col-md-12" style="text-align: center">Ver Subasta</div>
+                                    <div class="col-sm-4">
+                                        <div class="card">
+                                            <div class="card-body" style="margin-bottom: auto;padding-bottom:0px;">
+                                                <h5 class="card-title titulo-card-header-1">
+                                                    <a href="#">{{ $su_curso->nombre_producto }}</a>
+                                                </h5>
+                                            </div>
+                                            <img class="card-img-top img-logo-size"
+                                                src="https://na002.leafletcdns.com/pe/data/24/logo.png" alt="" srcset="">
+                                            <div class="product__item">
+                                                <div class="product__item__pic img-thumbnail set-bg card-img-top imagen-producto-card"
+                                                    data-setbg="img/trending/trend-1.jpg"
+                                                    style="background-image: url('{{ $su_curso->imagen }}');background-size:100% 100%;">
+                                                    <div class="ep">Precio base : ${{ $su_curso->precio_inicial }} </div>
+                                                    <div class="comment"><i class="fa fa-comments"></i> {{ rand(1, 200) }}
+                                                    </div>
+                                                    <div class="view"><i class="fa fa-heart"></i> {{ rand(1, 50) }}</div>
                                                 </div>
-                                            </a>
+                                            </div>
+                                            <div class="card-contenido-cuerpo-1">
+                                                <div class="card-footer">
+                                                    Puja mas alta : S/ {{ $su_curso->precio_inicial + rand(1, 200) }}
+                                                </div>
+                                                <div class="text-center">Tiempo restante</div>
+                                                <div class="progress">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="60"
+                                                        aria-valuemin="0" aria-valuemax="100"
+                                                        style="width: {{ rand(0, 100) }}%;">
+                                                        {{ rand(0, 10) }}: {{ rand(0, 60) }} :{{ rand(0, 60) }}
+                                                    </div>
+                                                </div>
+                                                <div class="alert alert-success" role="alert">Carga completa!</div>
+
+
+                                                <a href="#" class="btn btn-primary col-md-12 boton-ver-subasta">
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="text-align: center">Ver Subasta</div>
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+
+                                @endforeach
+                                {{ $su_curso_s->render() }}
+
+
+
+
+
+
+
                             </div>
-                            <a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                <div style="text-align: center;">Ver mas subastas</div>
-                            </a>
+                            <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
+                                                                                                                                            <div style="text-align: center;">Ver mas subastas</div>
+                                                                                                                                        </a>-->
 
                         </div>
 
@@ -174,50 +198,61 @@
 
                             <div class="container">
                                 <div class="row justify-content-center">
-                                    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                                        <div class="card h-100">
-                                            <div class="card-body">
-                                                <h4 class="card-title">
-                                                    <a href="#" class="titulo-card-header-1">Silla de madera</a>
-                                                </h4>
-                                                <h5 style="text-align: center">Logo-empresa</h5>
-                                            </div>
 
-                                            <a href="#"><img class="card-img-top imagen-producto-card"
-                                                    src="img/assets/antique-1125467_1920.jpg" alt=""></a>
-                                            <div class="card-contenido-cuerpo-1">
-                                                <div class="card-footer">
-                                                    Precio base : S/ 20.00
-                                                </div>
-                                                <div class="text-center">Inicia el</div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="60"
-                                                        aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-                                                        20/10/2020 13:45 horas</div>
-                                                </div>
-                                                <div class="alert alert-success" role="alert">Loading completed!</div>
-                                                <div class="sub-rapida-icono">
+                                    @foreach ($su_dispo_s as $su_dispo)
 
-                                                    <button type="button" class="navbar-toggler">
-                                                        <i class="fa fa-calendar fa-sm"></i>
-                                                    </button>
-                                                    <button type="button" class="navbar-toggler">
-                                                        <i class="fa fa-bell fa-sm"></i>
-                                                    </button>
-                                                    <button type="button" class="navbar-toggler">
-                                                        <i class="fa fa-heart fa-sm"></i>
-                                                    </button>
 
+                                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                            <div class="card h-100">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">
+                                                        <a href="#"
+                                                            class="titulo-card-header-1">{{ $su_dispo->nombre_producto }}</a>
+                                                    </h4>
+                                                    <h5 style="text-align: center">Logo-empresa</h5>
                                                 </div>
 
-                                                <a href="#" class="btn btn-primary col-md-12 boton-ver-subasta">
-                                                    <div class="row">
-                                                        <div class="col-md-12" style="text-align: center">Ver Subasta</div>
+                                                <a href="#"><img class="card-img-top imagen-producto-card"
+                                                        src="{{ $su_dispo->imagen }}" alt=""></a>
+                                                <div class="card-contenido-cuerpo-1">
+                                                    <div class="card-footer">
+                                                        Precio base : S/ {{ $su_dispo->precio_inicial }}
                                                     </div>
-                                                </a>
+                                                    <div class="text-center">Inicia el</div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" aria-valuenow="60"
+                                                            aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+                                                            20/10/2020 13:45 horas</div>
+                                                    </div>
+                                                    <div class="alert alert-success" role="alert">Loading completed!</div>
+                                                    <div class="sub-rapida-icono">
+
+                                                        <button type="button" class="navbar-toggler">
+                                                            <i class="fa fa-calendar fa-sm"></i>
+                                                        </button>
+                                                        <button type="button" class="navbar-toggler">
+                                                            <i class="fa fa-bell fa-sm"></i>
+                                                        </button>
+                                                        <button type="button" class="navbar-toggler">
+                                                            <i class="fa fa-heart fa-sm"></i>
+                                                        </button>
+
+                                                    </div>
+
+                                                    <a href="#" class="btn btn-primary col-md-12 boton-ver-subasta">
+                                                        <div class="row">
+                                                            <div class="col-md-12" style="text-align: center">Ver Subasta
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
+                                    {{ $su_dispo_s->render() }}
+
+
+
                                 </div>
                                 <a href="#" class="btn btn-primary col-md-12"
                                     style="background-color:rgba(129, 149, 175, 1);">
