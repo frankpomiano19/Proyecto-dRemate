@@ -42,6 +42,7 @@
     <body class="antialiased" >
         <div class="container-md border rounded-lg cuerpo">
             <form class="needs-validation"  method="POST" action="{{ route('producto.registro')}}" novalidate>
+            @csrf
             <h1 class="text-center">Registro de producto</h1><br>
             <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br></p>
             
@@ -50,15 +51,15 @@
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
                 <small  class="form-text text-muted">Escoja su categoría</small>
-                <select class="form-control">
-                    <option>Antiguedades</option>
-                    <option>Tecnología</option>
-                    <option>Fósiles</option>
-                    <option>Fisi</option>
-                    <option>Nulo</option>
+                <select class="form-control" name="categoria">
+                    <option value="Antiguedades">Antiguedades</option>
+                    <option value="Teconologia">Tecnología</option>
+                    <option value="Fosiles">Fósiles</option>
+                    <option value="Fisi">Fisi</option>
+                    <option value="Otra">Otra</option>
                 </select>
                 <div class="invalid-feedback">
-                    Seleccione una cateroría
+                    Seleccione una categoría
                 </div>
                 <br>
                 <div class="linea"></div>
@@ -67,7 +68,7 @@
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <label for="formGroupExampleInput"><h3>Título</h3></label><br>
                 <small  class="form-text text-muted">Un buen título atrae más miradas</small>
-                <input type="text" class="form-control" id="titulo" placeholder="Nombre del producto" required>
+                <input type="text" name="nombre" class="form-control" id="titulo" placeholder="Nombre del producto" required>
                 <div class="invalid-feedback">
                     Not nice >:v
                 </div>
@@ -81,7 +82,7 @@
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6 form-group">
                 <h3>Descripción</h3>
                 <small class="form-text text-muted">Brinda todos los detalles de tu producto aquí</small>
-                <textarea input type="text" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4" required></textarea>
+                <textarea input type="text" name="descripcion" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4" required></textarea>
                 <div class="invalid-feedback">
                     Es necesaria una descripción
                 </div>
@@ -94,7 +95,7 @@
                     <label class="form-check-label" for="inlineRadio1">Nuevo</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+                    <input class="form-check-input" name="estado" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
                     <label class="form-check-label" for="inlineRadio2">Usado</label>
                 </div>
                 <br><br>
@@ -119,7 +120,7 @@
                 <h3>Agregar fotos</h3>
                 <small class="form-text text-muted">Una imagen vale más que mil palabras</small>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" required>
+                    <input type="file" name="foto" class="custom-file-input" required>
                     <label class="custom-file-label" for="customFile">Selecciona tus imágenes</label>
                     </div>          
                 <br>
@@ -129,7 +130,7 @@
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Garantía</h3>
                 <small class="form-text text-muted">Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
-                <textarea input type="text" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
+                <textarea input type="text" name="garantia" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
                 <br>
             </div>
     

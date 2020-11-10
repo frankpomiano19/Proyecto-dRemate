@@ -31,14 +31,13 @@ class HomeController extends Controller
 
     public function registro(Request $request){
         $datosProducto = new App\Models\Nuevop;
-        $datosProducto->nombre_producto = $request->nombre;
-        // $datosProducto->categoria = $request->categoria;
-        $datosProducto->estado = $request->estado;
-        $datosProducto->descripcion = $request->descripcion;
-        // $datosProducto->devoluciones = $request->devoluciones;
+        $datosProducto->nombre = $request->nombre;
         $datosProducto->precio_inicial = $request->precioInicial;
-        $datosProducto->final_subasta = $request->fecha;
-        $datosProducto->imagen = $request->foto;
+        $datosProducto->fecha = $request->fecha;
+        $datosProducto->categoria = $request->categoria;
+        $datosProducto->estado = $request->estado;
+        $datosProducto->devoluciones = $request->devoluciones;
+        $datosProducto->foto = $request->foto;
 
         $datosProducto -> save();
 
@@ -47,4 +46,16 @@ class HomeController extends Controller
 
         // return $request->all();
     }
+
+    // public function registro(Request $request){
+    //     $datosProducto = new App\Models\Nuevop;
+    //     $datosProducto->nombre = $request->nombre;
+    //     $datosProducto->categoria = $request->categoria;
+    //     $datosProducto->estado = $request->estado;
+    //     $datosProducto->foto = $request->foto;
+
+    //     $datosProducto -> save();
+
+    //     return back();
+    // }
 }

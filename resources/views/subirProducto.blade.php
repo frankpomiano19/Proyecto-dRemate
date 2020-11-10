@@ -75,7 +75,7 @@
                         </div>
                         <div class="form-group col-md-4">
                           <label for="">Precio inicial</label>
-                          <input type="text" name="precioInicial" class="form-control" id="">
+                          <input type="number" name="precioInicial" class="form-control" id="">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="">Fecha Subasta</label>
