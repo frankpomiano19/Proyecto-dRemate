@@ -1,7 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Oswald&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
+.font-popin{
+    font-family: 'Poppins', sans-serif;
+}
 
+.contenido-dinamico-lateral{
+
+    border-radius:0px;border-color: black;
+    border-width : 0px 0px 0px 0px;
+    border-style:solid;    
+}
+
+.columna-barra-lateral{
+    border-radius:0px;border-color: black;
+    border-width : 0px 0px 0px 0px;
+    border-style:solid;
+    border-radius: 1px;    
+    
+}
 .carousel-item {
     height: 65vh;
     min-height: 350px;
@@ -36,14 +54,14 @@
 }
 
 .sub-rapida-main-content{
-    background: url("../img/background/carbon_fibre_@2X.png");
+    background-color: white;
 }
 .sub-rapida-principal{
     background-color: white;
     border-radius: 10px;
     border-color:black;
     border-style: double;
-    border-width: 1px;
+    border-width: 0px;
 }
 
 .titulo-card-header-2{
