@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App;
 
 class HomeController extends Controller
 {
@@ -30,6 +30,21 @@ class HomeController extends Controller
     }
 
     public function registro(Request $request){
-        return $request->all();
+        $datosProducto = new App\Models\Nuevop;
+        $datosProducto->nombre_producto = $request->nombre;
+        // $datosProducto->categoria = $request->categoria;
+        $datosProducto->estado = $request->estado;
+        $datosProducto->descripcion = $request->descripcion;
+        // $datosProducto->devoluciones = $request->devoluciones;
+        $datosProducto->precio_inicial = $request->precioInicial;
+        $datosProducto->final_subasta = $request->fecha;
+        $datosProducto->imagen = $request->foto;
+
+        $datosProducto -> save();
+
+        return back();
+
+
+        // return $request->all();
     }
 }
