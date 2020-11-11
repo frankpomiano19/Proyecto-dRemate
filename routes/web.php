@@ -28,6 +28,26 @@ Route::get('/oferta', function () {
 
 Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
 Route::post('/subastaRapida',[SubastaRapController::class,'filtroProc'])->name("subastaRapida_filtro_proc");
+
+Route::get('/producto', function () {
+    return view('producto');
+});    
+Route::get('/subirProducto', function () {
+    return view('subirProducto');
+});
+
+Route::get('/registroProducto', function () {
+    return view('registroProducto');
+});
+
+// Route::post('/','HomeController@registro')->name('producto.registro');
+
+Route::post('/', [HomeController::class,'registro'])->name('producto.registro');
+
+Route::get('/registroSubasta', function () {
+    return view('registroSubasta');
+});
+
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
