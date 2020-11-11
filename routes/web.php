@@ -24,6 +24,11 @@ Route::get('/template', function () {
 Route::get('/oferta', function () {
     return view('puja');
 });
+
+Route::get('/producto', function () {
+    return view('producto');
+});
+
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
