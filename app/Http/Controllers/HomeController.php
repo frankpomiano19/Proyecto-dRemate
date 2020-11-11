@@ -35,6 +35,7 @@ class HomeController extends Controller
         $datosProducto->descripcion = $request->descripcion;
         $datosProducto->categoria_id = $request->categoria;
         $datosProducto->estado = $request->estado;
+        $datosProducto->condicion = $request->condicion;
         $datosProducto->imagen = $request->imagen;
         $datosProducto->garantia = $request->garantia;
         $datosProducto->precio_inicial = $request->precio_inicial;

@@ -21,6 +21,7 @@ class CreateProductosTable extends Migration
             $table->text('descripcion');
             $table->unsignedBigInteger('categoria_id');
             $table->string('estado');
+            $table->string('condicion');
             $table->string('imagen');
             $table->string('garantia');
 

@@ -45,7 +45,20 @@
         <label>
             estado
         </label>
-        <input type="text" name="estado" id="">
+        <<select name="estado">
+            <option value="Disponible" selected>Disponible</option> 
+            <option value="No disponible">No disponible</option>
+            <option value="En curso">En curso</option>
+        </select>
+    </div>
+    <div>
+        <label>
+            condicion
+        </label>
+        <<select name="condicion">
+            <option value="Nuevo" selected>Nuevo</option> 
+            <option value="Usado">No Usado</option>
+        </select>
     </div>
     <div>
         <label>
