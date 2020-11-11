@@ -27,6 +27,21 @@ Route::get('/oferta', function () {
 
 Route::get('/producto', function () {
     return view('producto');
+});    
+Route::get('/subirProducto', function () {
+    return view('subirProducto');
+});
+
+Route::get('/registroProducto', function () {
+    return view('registroProducto');
+});
+
+// Route::post('/','HomeController@registro')->name('producto.registro');
+
+Route::post('/', [HomeController::class,'registro'])->name('producto.registro');
+
+Route::get('/registroSubasta', function () {
+    return view('registroSubasta');
 });
 
 Auth::routes();
