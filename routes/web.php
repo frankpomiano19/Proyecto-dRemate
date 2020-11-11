@@ -1,34 +1,49 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PruebaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MessageReceived;
+
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name("welcome");
+
+Route::get('/prueba', function () {
+    return view("paginaNT");
+})->name("paginaPrueba");
+
 
 Route::get('/template', function () {
     return view('template');
-});
-
-
-Route::get('/prueba', function () {
-    return view('paginaNT');
 });
 
 Route::get('/oferta', function () {
     return view('puja');
 });
 
+Route::get('/producto', function () {
+    return view('producto');
+});    
+Route::get('/subirProducto', function () {
+    return view('subirProducto');
+});
+
+Route::get('/registroProducto', function () {
+    return view('registroProducto');
+});
+
+// Route::post('/','HomeController@registro')->name('producto.registro');
+
+Route::post('/', [HomeController::class,'registro'])->name('producto.registro');
+
+Route::get('/registroSubasta', function () {
+    return view('registroSubasta');
+});
+
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home',  [HomeController::class,'index'])->name('home');
+Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
