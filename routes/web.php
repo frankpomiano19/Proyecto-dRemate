@@ -33,13 +33,16 @@ Route::get('/registroProducto', function () {
     return view('registroProducto');
 });
 
-// Route::post('/','HomeController@registro')->name('producto.registro');
-
-Route::post('/', [HomeController::class,'registro'])->name('producto.registro');
+Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
 
 Route::get('/registroSubasta', function () {
     return view('registroSubasta');
 });
+
+Route::get('/prueba', function () {
+    return view('prueba');
+});
+
 
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
