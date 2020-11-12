@@ -9,7 +9,6 @@
 @section('contenidoJS')
     <!-- Colocar js-->
 
-    <script src="js/jsSubastaRapida.js"></script>
 @endsection
 
 @section('contenidoCSS')
@@ -57,8 +56,6 @@
             </div>
         </div>
     </header>
-
-
     <main class="sub-rapida-main-content py-4">
         <div class="container sub-rapida-principal">
 
@@ -100,25 +97,21 @@
 
                                         </div>
                                         <div class="col-sm-12">
-                                            <form action="{{ route('subastaRapida_filtro_proc') }}" method="POST">
-                                                <ul class="nav nav-pills mb-3 " id="pills-tab" role="tablist">
-                                                    @csrf
-                                                    <li class="nav-item">
-                                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
-                                                            href="" role="tab" aria-controls="pills-home"
-                                                            aria-selected="true">Mayor tiempo</a>
-                                                    </li>
-                                                    <li class="nav-item">
-
-                                                        <a type="submit" class="nav-link" id="pills-profile-tab"
-                                                            data-toggle="pill" href="" role="tab"
-                                                            aria-controls="pills-profile" aria-selected="false">Menor
-                                                            tiempo</a>
-                                                    </li>
-
-                                                </ul>
-                                            </form>
-
+                                            <ul class="nav nav-pills mb-3 " id="" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="mayor-tiempo" data-toggle="pill" href=""
+                                                        role="tab" aria-controls="pills-home"
+                                                        onclick="event.preventDefault(); document.getElementById('sub_curso_form').submit();">Mayor
+                                                        tiempo
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" id="menor-tiempo" data-toggle="pill" href=""
+                                                        role="tab" aria-controls="pills-profile" aria-selected="false"
+                                                        onclick="event.preventDefault();document.getElementById('sub_curso_form').submit();">Menor
+                                                        tiempo</a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
 
@@ -184,14 +177,17 @@
 
                             </div>
                             <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                            <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                        </a>-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="text-align: center;">Ver mas subastas</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                    </a>-->
 
                         </div>
 
                         <div class="tab-pane fade " id="pills-sub-pro" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <section class="py-0">
                                 <div class="container">
+
+
+
                                     <h3 class="font-weight-bold font-popin">Subastas Programadas</h3>
                                 </div>
                             </section>
@@ -331,8 +327,9 @@
                     </div>
                 </div>
             </div>
-
-
+            <form id="sub_curso_form" action="{{ route('subastaRapida_filtro_proc') }}" method="POST">
+                @csrf
+            </form>
 
         </div>
 
@@ -341,8 +338,26 @@
 @endsection
 
 @section('contenidoJSabajo')
+    <script src="js/jsSubastaRapida.js"></script>
 
-    <!-- Colocar js abajo-->
+    <!--<script>
+                                $(document).ready(function() {
+                                    $('#menor-tiempo').click(function(e) {
+                                        e.preventDefault();
+
+                                        var form = $("#sub_curso_form");
+                                        var url = form.attr('action').replace(':FILTRO_ID', '1');
+                                        var data = form.serialize();
+
+                                        $.post(url, data, function(result) {
+                                            getData(page);
+                                            alert(result);
+                                        });
+                                    });
+                                });
+
+                            </script>-->
+
 @endsection
 
 

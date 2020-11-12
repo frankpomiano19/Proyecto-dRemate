@@ -20,6 +20,8 @@ class CreateProductosTable extends Migration
             $table->decimal('precio_inicial', 6, 2);
             $table->string('imagen');
             $table->string('estado');
+            $table->string('condicion')->nullable();
+            $table->dateTime('inicio_subasta')->nullable();
             $table->dateTime('final_subasta')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
