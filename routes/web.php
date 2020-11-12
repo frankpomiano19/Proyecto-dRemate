@@ -35,6 +35,12 @@ Route::get('/registroProducto', function () {
 
 Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
 
+//Edson-View
+Route::post('/registroProducto', [HomeController::class,'registroE'])->name('producto.registroe');
+
+Route::post('/registroSubasta', [HomeController::class,'registroEE'])->name('producto.registroee');
+
+
 Route::get('/registroSubasta', function () {
     return view('registroSubasta');
 });

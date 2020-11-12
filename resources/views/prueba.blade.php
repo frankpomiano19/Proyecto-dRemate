@@ -45,7 +45,7 @@
         <label>
             estado
         </label>
-        <<select name="estado">
+        <select name="estado">
             <option value="Disponible" selected>Disponible</option> 
             <option value="No disponible">No disponible</option>
             <option value="En curso">En curso</option>
@@ -55,7 +55,7 @@
         <label>
             condicion
         </label>
-        <<select name="condicion">
+        <select name="condicion">
             <option value="Nuevo" selected>Nuevo</option> 
             <option value="Usado">No Usado</option>
         </select>

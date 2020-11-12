@@ -26,9 +26,10 @@ class CreateProductosTable extends Migration
             $table->string('garantia');
 
             //Segundo Formulario
-            $table->string('precio_inicial');
-            $table->dateTime('inicio_subasta');
-            $table->dateTime('final_subasta');
+            $table->string('precio_inicial')->nullable();
+            $table->dateTime('inicio_subasta')->nullable();
+            $table->dateTime('final_subasta')->nullable();
+            
             $table->unsignedBigInteger('user_id');
     	    $table->foreign('categoria_id')->references('id')->on('categorias');	
             $table->timestamps();
