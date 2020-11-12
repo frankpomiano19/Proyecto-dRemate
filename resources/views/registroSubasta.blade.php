@@ -16,26 +16,11 @@
             @csrf
             <label for="formGroupExampleInput">Registrar subasta</label><br><br>
 
-            <p>{{$datosProducto->nombre_producto}}</p>
-            <input type="hidden" name={{$datosProducto->nombre_producto}}>
 
-            <p>{{$datosProducto->descripcion}}</p>
-            <input type="hidden" name={{$datosProducto->descripcion}}>
+            <p>_____</p>
+            <input type="hidden" name="id" value="{{$datosProducto->id}}" id="">
 
-            <p>{{$datosProducto->categoria}}</p>
-            <input type="hidden" name={{$datosProducto->categoria}}>
 
-            <p>{{$datosProducto->estado}}</p>
-            <input type="hidden" name={{$datosProducto->estado}}>
-
-            <p>{{$datosProducto->condicion}}</p>
-            <input type="hidden" name={{$datosProducto->condicion}}>
-
-            <p>{{$datosProducto->imagen}}</p>
-            <input type="hidden" name={{$datosProducto->imagen}}>
-            
-            <p>{{$datosProducto->garantia}}</p>
-            <input type="hidden" name={{$datosProducto->garantia}}>
 
             <label for="formGroupExampleInput">Precio inicial</label><br>  
             <div class="input-group mb-3">
@@ -43,7 +28,7 @@
                     <button class="btn btn-outline-secondary" type="button">S/</button>
                     <button class="btn btn-outline-secondary" type="button">$</button>
                 </div>
-                <input type="text" class="form-control" placeholder="">
+                <input type="text" name="precio_inicial" class="form-control" placeholder="">
             </div>
 
             <div>

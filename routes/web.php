@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PruebaController;
+use App\Http\Controllers\SubastaRapController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -25,6 +26,12 @@ Route::get('/oferta', function () {
     return view('puja');
 });
 
+Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
+Route::post('/subastaRapida',[SubastaRapController::class,'filtroProc'])->name("subastaRapida_filtro_proc");
+
+Route::get('/producto', function () {
+    return view('producto');
+});    
 Route::get('/subirProducto', function () {
     return view('subirProducto');
 });
@@ -38,12 +45,14 @@ Route::post('/prueba', [HomeController::class,'registro'])->name('producto.regis
 //Edson-View
 Route::post('/registroProducto', [HomeController::class,'registroE'])->name('producto.registroe');
 
-Route::post('/registroSubasta', [HomeController::class,'registroEE'])->name('producto.registroee');
+Route::post('/registrarSubasta', [HomeController::class,'registroEE'])->name('producto.registroee');
 
 
-Route::get('/registroSubasta', function () {
+Route::get('/registrarSubasta', function () {
     return view('registroSubasta');
 });
+
+Route::get('/registrarSubasta',  [HomeController::class,'registroS']);
 
 Route::get('/prueba', function () {
     return view('prueba');

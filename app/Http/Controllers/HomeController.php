@@ -52,6 +52,10 @@ class HomeController extends Controller
     //     // return $request->all();
     // }
 
+    public function registroS(){
+        return view("registroSubasta");
+    }
+
     public function registroE(Request $request){
         
         $datosProducto = new App\Models\Producto;
@@ -63,25 +67,26 @@ class HomeController extends Controller
         $datosProducto->condicion = $request->condicion;
         $datosProducto->imagen = $request->imagen;
         $datosProducto->garantia = $request->garantia;
-
+        $datosProducto->user_id = auth()->id();
+    
+        $datosProducto -> save();
         
         return view('registroSubasta')->with('datosProducto',$datosProducto);
-
-        // $datosProducto -> save();
-
+        
         // return back();
     }
 
     public function registroEE(Request $request){
 
-        $datosProducto = new App\Models\Producto;
-        
-        $datosProducto->precio_inicial = $request->precio_inicial;
-        $datosProducto->inicio_subasta = $request->inicio_subasta;
-        $datosProducto->final_subasta = $request->final_subasta;
-        $datosProducto->user_id = auth()->id();;
+        $datospro = App\Models\Producto::findOrFail($request->id);
+        // dd($datospro->id);
 
-        $datosProducto -> save();
+
+        $datospro->precio_inicial = $request->precio_inicial;
+        $datospro->inicio_subasta = $request->inicio_subasta;
+        $datospro->final_subasta = $request->final_subasta;
+
+        $datospro -> push();
 
         return back();
     } 
