@@ -12,21 +12,31 @@
     </head>
     <body class="antialiased" >
 
-        <label for="formGroupExampleInput">Registrar subasta</label><br><br>    
+        <form action="{{ route('producto.registroee')}}" method="post">
+            @csrf
+            <label for="formGroupExampleInput">Registrar subasta</label><br><br>
 
-        <label for="formGroupExampleInput">Precio inicial</label><br>  
-        <div class="input-group mb-3">
-            <div class="input-group-prepend" id="button-addon3">
-                <button class="btn btn-outline-secondary" type="button">S/</button>
-                <button class="btn btn-outline-secondary" type="button">$</button>
+
+            <p>_____</p>
+            <input type="hidden" name="id" value="{{$datosProducto->id}}" id="">
+
+
+
+            <label for="formGroupExampleInput">Precio inicial</label><br>  
+            <div class="input-group mb-3">
+                <div class="input-group-prepend" id="button-addon3">
+                    <button class="btn btn-outline-secondary" type="button">S/</button>
+                    <button class="btn btn-outline-secondary" type="button">$</button>
+                </div>
+                <input type="text" name="precio_inicial" class="form-control" placeholder="">
             </div>
-            <input type="text" class="form-control" placeholder="">
-        </div>
 
-        <div>
-            <label for="form-group">Fecha de inicio de la subasta</label><br><br>
-            <label for="form-group">Fecha de fin de la subasta</label><br><br>
-        </div>
+            <div>
+                <label for="form-group">Fecha de inicio de la subasta</label>
+                <input type="date" name="inicio_subasta" id=""><br><br>
+                <label for="form-group">Fecha de fin de la subasta</label>
+                <input type="date" name="final_subasta" id=""><br><br>
+            </div>
 
         
             <div class="form-group"; margin:auto>
@@ -65,12 +75,12 @@
                 <label for="exampleFormControlTextarea1">Notas</label>
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-
+            <button type="submit" class="btn btn-dark">Guardar</button>
+        
         </form>
-
         <div>
-            <a href="{{URL::to('registroProducto')}}"><button type="button" class="btn btn-outline-info">Regresar</button></a>
-            <button type="button" class="btn btn-dark">Guardar</button>
+            <button type="submit" class="btn btn-outline-info">Regresar</button>
+            
         </div>
 
         <script src="{{ asset(mix('js/app.js')) }}"></script>

@@ -16,8 +16,10 @@ class SubastaRapController extends Controller
     }
 
     public function filtroProc(Request $request){
+        return "gato";
         $su_curso_s = Producto::where('estado','En curso')->orderBy('id','DESC')->paginate(9);
         $su_dispo_s = Producto::where('estado','Disponible')->paginate(9);
+        return view('subastaRapida',compact('su_curso_s','su_dispo_s'))->renderSection()['partials.sub_rap_pro'];
      
         if($request->ajax()){
             return view('subastaRapida',compact('su_curso_s','su_dispo_s'))->renderSection()['partials.sub_rap_pro'];

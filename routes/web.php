@@ -40,13 +40,24 @@ Route::get('/registroProducto', function () {
     return view('registroProducto');
 });
 
-// Route::post('/','HomeController@registro')->name('producto.registro');
+Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
 
-Route::post('/', [HomeController::class,'registro'])->name('producto.registro');
+//Edson-View
+Route::post('/registroProducto', [HomeController::class,'registroE'])->name('producto.registroe');
 
-Route::get('/registroSubasta', function () {
+Route::post('/registrarSubasta', [HomeController::class,'registroEE'])->name('producto.registroee');
+
+
+Route::get('/registrarSubasta', function () {
     return view('registroSubasta');
 });
+
+Route::get('/registrarSubasta',  [HomeController::class,'registroS']);
+
+Route::get('/prueba', function () {
+    return view('prueba');
+});
+
 
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');

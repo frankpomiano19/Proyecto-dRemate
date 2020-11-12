@@ -107,8 +107,7 @@
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="menor-tiempo" data-toggle="pill" href=""
-                                                        role="tab" aria-controls="pills-profile" aria-selected="false"
-                                                        onclick="event.preventDefault();document.getElementById('sub_curso_form').submit();">Menor
+                                                        role="tab" aria-controls="pills-profile" aria-selected="false">Menor
                                                         tiempo</a>
                                                 </li>
                                             </ul>
@@ -177,8 +176,8 @@
 
                             </div>
                             <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                                                                                                                                                                                                                                                                                                                        <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                    </a>-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div style="text-align: center;">Ver mas subastas</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                </a>-->
 
                         </div>
 
@@ -327,37 +326,68 @@
                     </div>
                 </div>
             </div>
-            <form id="sub_curso_form" action="{{ route('subastaRapida_filtro_proc') }}" method="POST">
+            <form id="sub_curso_form" action="{{ route('subastaRapida_filtro_proc', ':FILTRO_ID') }}" method="POST">
                 @csrf
+
+                <input type="hidden" value="Gato" name="valor">
             </form>
 
         </div>
-
     </main>
 
 @endsection
 
 @section('contenidoJSabajo')
     <script src="js/jsSubastaRapida.js"></script>
+    <!--
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#menor-tiempo').click(function(e) {
+                                                e.preventDefault();
 
-    <!--<script>
-                                $(document).ready(function() {
-                                    $('#menor-tiempo').click(function(e) {
-                                        e.preventDefault();
+                                                var form = $("#sub_curso_form");
+                                                var url = form.attr('action').replace(':FILTRO_ID', '1');
+                                                var data = form.serialize();
 
-                                        var form = $("#sub_curso_form");
-                                        var url = form.attr('action').replace(':FILTRO_ID', '1');
-                                        var data = form.serialize();
+                                                $.post(url, data, function(result) {
 
-                                        $.post(url, data, function(result) {
-                                            getData(page);
-                                            alert(result);
+                                                    alert(result);
+                                                });
+                                            });
                                         });
-                                    });
-                                });
 
-                            </script>-->
+                                    </script>
+                                -->
 
+    <div>
+        <h1 id="modi">Vaor</h1>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#menor-tiempo').click(function(e) {
+                var form = $("#sub_curso_form");
+                var _token = form.serialize();
+                e.preventDefault();
+                $.ajax({
+                    url: "{{ route('subastaRapida_filtro_proc') }}"
+                    method: "POST",
+                    data {
+                        from_date: from_date,
+                        to_date: to_date,
+                        _token: _token
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        var output = '';
+                        alert(data);
+                        $('#modi').text(data.length);
+                    }
+                });
+
+            });
+        });
+
+    </script>
 @endsection
 
 
