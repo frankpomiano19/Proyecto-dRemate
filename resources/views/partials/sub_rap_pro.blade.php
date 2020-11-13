@@ -1,6 +1,4 @@
 @foreach ($su_curso_s as $su_curso)
-
-
     <div class="col-sm-4">
         <div class="card">
             <div class="card-body" style="margin-bottom: auto;padding-bottom:0px;">
@@ -25,10 +23,13 @@
                     Puja mas alta : S/ {{ $su_curso->precio_inicial + rand(1, 200) }}
                 </div>
                 <div class="text-center">Tiempo restante</div>
+                <div class="defaultCountdown"> </div>
+                <!--<div class="time"></div>-->
+                <br>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
                         aria-valuemax="100" style="width: {{ rand(0, 100) }}%;">
-                        {{ rand(0, 10) }}: {{ rand(0, 60) }} :{{ rand(0, 60) }}
+                        {{ $su_curso->final_subasta }}
                     </div>
                 </div>
                 <div class="alert alert-success" role="alert">Carga completa!</div>

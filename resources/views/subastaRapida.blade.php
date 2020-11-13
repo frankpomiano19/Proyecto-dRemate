@@ -3,7 +3,7 @@
 
 @section('cont_cabe')
     <title>Subasta rapida - dRemate</title>
-
+    <meta name="csrf-token" content="{{csrf_token()}}">
 @endsection
 
 @section('contenidoJS')
@@ -13,6 +13,8 @@
 
 @section('contenidoCSS')
     <link rel="stylesheet" href="css/styleSubastaRapida.css">
+    <link rel="stylesheet" href="js/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
+
 @endsection
 
 
@@ -56,6 +58,12 @@
             </div>
         </div>
     </header>
+    @php
+    $contador = 0;
+    $horasSub_A = [];
+    $minutosSub_A = [];
+    $segundosSub_A = [];
+    @endphp
     <main class="sub-rapida-main-content py-4">
         <div class="container sub-rapida-principal">
 
@@ -100,8 +108,7 @@
                                             <ul class="nav nav-pills mb-3 " id="" role="tablist">
                                                 <li class="nav-item">
                                                     <a class="nav-link active" id="mayor-tiempo" data-toggle="pill" href=""
-                                                        role="tab" aria-controls="pills-home"
-                                                        onclick="event.preventDefault(); document.getElementById('sub_curso_form').submit();">Mayor
+                                                        role="tab" aria-controls="pills-home">Mayor
                                                         tiempo
                                                     </a>
                                                 </li>
@@ -116,68 +123,21 @@
 
                                 </div>
                             </section>
-                            <div class="row justify-content-center">
+                            <div id="subasta_proc_filtro_include" class="row justify-content-center">
 
-
-                                @foreach ($su_curso_s as $su_curso)
-
-
-                                    <div class="col-sm-4">
-                                        <div class="card">
-                                            <div class="card-body" style="margin-bottom: auto;padding-bottom:0px;">
-                                                <h5 class="card-title titulo-card-header-1">
-                                                    <a href="#">{{ $su_curso->nombre_producto }}</a>
-                                                </h5>
-                                            </div>
-                                            <img class="card-img-top img-logo-size"
-                                                src="https://na002.leafletcdns.com/pe/data/24/logo.png" alt="" srcset="">
-                                            <div class="product__item">
-                                                <div class="product__item__pic img-thumbnail set-bg card-img-top imagen-producto-card"
-                                                    data-setbg="img/trending/trend-1.jpg"
-                                                    style="background-image: url('{{ $su_curso->imagen }}');background-size:100% 100%;">
-                                                    <div class="ep">Precio base : ${{ $su_curso->precio_inicial }} </div>
-                                                    <div class="comment"><i class="fa fa-comments"></i> {{ rand(1, 200) }}
-                                                    </div>
-                                                    <div class="view"><i class="fa fa-heart"></i> {{ rand(1, 50) }}</div>
-                                                </div>
-                                            </div>
-                                            <div class="card-contenido-cuerpo-1">
-                                                <div class="card-footer">
-                                                    Puja mas alta : S/ {{ $su_curso->precio_inicial + rand(1, 200) }}
-                                                </div>
-                                                <div class="text-center">Tiempo restante</div>
-                                                <div class="progress">
-                                                    <div class="progress-bar" role="progressbar" aria-valuenow="60"
-                                                        aria-valuemin="0" aria-valuemax="100"
-                                                        style="width: {{ rand(0, 100) }}%;">
-                                                        {{ rand(0, 10) }}: {{ rand(0, 60) }} :{{ rand(0, 60) }}
-                                                    </div>
-                                                </div>
-                                                <div class="alert alert-success" role="alert">Carga completa!</div>
-
-
-                                                <a href="#" class="btn btn-primary col-md-12 boton-ver-subasta">
-                                                    <div class="row">
-                                                        <div class="col-md-12" style="text-align: center">Ver Subasta</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                @endforeach
-                                {{ $su_curso_s->render() }}
-
-
-
-
-
-
+                                @include('partials.sub_rap_pro')
 
                             </div>
+                            <div class="row justify-content-center">
+                                <div class="col-md-2">
+
+                                </div>
+                            </div>
+
+
                             <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                </a>-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div style="text-align: center;">Ver mas subastas</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </a>-->
 
                         </div>
 
@@ -197,7 +157,7 @@
                                     @foreach ($su_dispo_s as $su_dispo)
 
 
-                                        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                                        <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
                                             <div class="card h-100">
                                                 <div class="card-body">
                                                     <h4 class="card-title">
@@ -213,11 +173,14 @@
                                                     <div class="card-footer">
                                                         Precio base : S/ {{ $su_dispo->precio_inicial }}
                                                     </div>
-                                                    <div class="text-center">Inicia el</div>
+                                                    <div class="text-center">Inicia en</div>
+                                                    <div class="defaultCountdownPro"> </div>  
+
                                                     <div class="progress">
                                                         <div class="progress-bar" role="progressbar" aria-valuenow="60"
                                                             aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
-                                                            20/10/2020 13:45 horas</div>
+                                                            {{ $su_dispo->inicio_subasta }}
+                                                        </div>
                                                     </div>
                                                     <div class="alert alert-success" role="alert">Loading completed!</div>
                                                     <div class="sub-rapida-icono">
@@ -249,10 +212,6 @@
 
 
                                 </div>
-                                <a href="#" class="btn btn-primary col-md-12"
-                                    style="background-color:rgba(129, 149, 175, 1);">
-                                    <div style="text-align: center;">Ver mas subastas</div>
-                                </a>
                             </div>
                         </div>
 
@@ -269,7 +228,8 @@
                                                 <table class="table table-striped">
                                                     <thead class="thead-dark">
                                                         <tr>
-                                                            <th>&nbsp;</th>
+                                                            <!--<th>&nbsp;</th>-->
+                                                            <th>Fecha de venta</th>
                                                             <th>Producto vendido</th>
                                                             <th>Precio vendido</th>
                                                             <th>Comprador</th>
@@ -277,38 +237,20 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th>Empleados</th>
-                                                            <th>Juan</th>
-                                                            <th>Juan</th>
-                                                            <th>Juan</th>
-                                                            <th>Pedro</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Empleados</th>
-                                                            <th>Juan</th>
-                                                            <th>Juan</th>
-                                                            <th>Juan</th>
-                                                            <th>Pedro</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Empleados</th>
-                                                            <th>Juan</th>
-                                                            <th>Juan</th>
-                                                            <th>Juan</th>
-                                                            <th>Pedro</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>Empleados</th>
-                                                            <th>Juan</th>
-                                                            <th>Juan</th>
-                                                            <th>Juan</th>
-                                                            <th>Pedro</th>
-                                                        </tr>
+                                                        @foreach ($su_hist_s as $su_hist)
+
+                                                            <tr>
+                                                                <th>{{ $su_hist->final_subasta }}</th>
+                                                                <th>{{ $su_hist->nombre_producto }}</th>
+                                                                <th>{{ $su_hist->precio_inicial + rand(1, 200) }}</th>
+                                                                <th>{{ $su_hist->productoUserPropietario->usuario }}</th>
+                                                                <th>{{ $su_hist->productoUserComprador->usuario }}</th>
+                                                            </tr>
+                                                        @endforeach
 
                                                     </tbody>
                                                 </table>
-
+                                                {{ $su_hist_s->render() }}
                                             </div>
                                         </div>
                                         <div class="card-footer text-center"><a class="btn btn-fill-1" href="#">Ver mas
@@ -326,72 +268,140 @@
                     </div>
                 </div>
             </div>
-            <form id="sub_curso_form" action="{{ route('subastaRapida_filtro_proc', ':FILTRO_ID') }}" method="POST">
-                @csrf
-
-                <input type="hidden" value="Gato" name="valor">
-            </form>
-
         </div>
     </main>
+    <div id="container">
+        <div id="progress_bar" class="ui-progress-bar ui-container">
+            <div class="ui-progress" style="width: 79%;">
+                <span class="ui-label" style="display:none;">Procesando <b class="value">79%</b></span>
+            </div><!-- .ui-progress -->
+        </div><!-- #progress_bar -->
+
+        <div class="content" id="main_content" style="display: none;">
+            <p>La barra de progreso ha cargado!</p>
+        </div><!-- #main_content -->
+    </div><!-- #container -->
+
+    
+@php
+  $contador2=0;
+  $contador3=0;
+  $contador4=0;
+@endphp
+
+
 
 @endsection
+
 
 @section('contenidoJSabajo')
     <script src="js/jsSubastaRapida.js"></script>
-    <!--
-                                    <script>
-                                        $(document).ready(function() {
-                                            $('#menor-tiempo').click(function(e) {
-                                                e.preventDefault();
-
-                                                var form = $("#sub_curso_form");
-                                                var url = form.attr('action').replace(':FILTRO_ID', '1');
-                                                var data = form.serialize();
-
-                                                $.post(url, data, function(result) {
-
-                                                    alert(result);
-                                                });
-                                            });
-                                        });
-
-                                    </script>
-                                -->
-
-    <div>
-        <h1 id="modi">Vaor</h1>
-    </div>
+    <script src="js/jquery.chrony.js"></script>
+    <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
+    <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script> 
     <script>
-        $(document).ready(function() {
-            $('#menor-tiempo').click(function(e) {
-                var form = $("#sub_curso_form");
-                var _token = form.serialize();
-                e.preventDefault();
-                $.ajax({
-                    url: "{{ route('subastaRapida_filtro_proc') }}"
-                    method: "POST",
-                    data {
-                        from_date: from_date,
-                        to_date: to_date,
-                        _token: _token
-                    },
-                    dataType: "json",
-                    success: function(data) {
-                        var output = '';
-                        alert(data);
-                        $('#modi').text(data.length);
-                    }
-                });
+        $(function () {
+            var tiempoRestante = document.getElementsByClassName('defaultCountdown');
+            @foreach ($su_curso_s as $su_curso)        
 
-            });
+                @php 
+
+                    $ab = date_default_timezone_get(); 
+                    date_default_timezone_set('America/Lima'); 
+                    $valorN = date('Y-m-d H:i:s');
+
+                    $tiempoini_aux = new \Carbon\Carbon($su_curso->final_subasta);
+                    $tiempofin_aux = new \Carbon\Carbon($valorN);
+                    $segundosSub_dif =$tiempoini_aux->diffInSeconds($tiempofin_aux);
+                @endphp
+
+                $(tiempoRestante[{{$contador3}}]).countdown({until:  {{$segundosSub_dif}}});
+                @php
+                    $contador3++;
+                @endphp
+            @endforeach
+            @php
+                $contador3=0;
+            @endphp
         });
+    </script> 
+    <script>
+        $(function () {
+            var tiempoRestantePro = document.getElementsByClassName('defaultCountdownPro');
+            @foreach ($su_dispo_s as $su_dispo)
+                @php 
+
+                    $ab = date_default_timezone_get(); 
+                    date_default_timezone_set('America/Lima'); 
+                    $valorNP = date('Y-m-d H:i:s');
+
+                    $tiempoini_aux2 = new \Carbon\Carbon($su_dispo->inicio_subasta);
+                    $tiempofin_aux2 = new \Carbon\Carbon($valorNP);
+                    $segundosSub_dif2 =$tiempoini_aux2->diffInSeconds($tiempofin_aux2);
+                @endphp
+
+                $(tiempoRestantePro[{{$contador4}}]).countdown({until:  {{$segundosSub_dif2}}});
+                @php
+                    $contador4++;
+                @endphp
+            @endforeach
+            @php
+                $contador4=0;
+            @endphp
+
+        });
+    </script>
+    
+    <script>
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
+    <script>
+    $('#menor-tiempo').click(function(e){
+        e.preventDefault();
+        $.ajax({
+            url : "subastaRapida",
+            type : 'POST',
+            data : {'filtro' :0},
+            success : function(response){
+                $("#subasta_proc_filtro_include").html(response);
+            },
+            statusCode:{
+                404: function(){
+                    alert("pagina no encontrada mascota");
+                }
+            },
+            error : function(jqXHR,status,error){
+                alert("Error al cargar");
+            }
+        });
+    });
+
+
+    $('#mayor-tiempo').click(function(e){
+        e.preventDefault();
+        $.ajax({
+            url : "subastaRapida",
+            type : 'POST',
+            data : {'filtro' :1},
+            success : function(response){
+                $("#subasta_proc_filtro_include").html(response);
+            },
+            statusCode:{
+                404: function(){
+                    alert("pagina no encontrada mascota");
+                }
+            },
+            error : function(jqXHR,status,error){
+                alert("Error al cargar");
+            }
+        });
+    });
 
     </script>
+
+
 @endsection
-
-
-
-
-
-<!--1era-->

@@ -32,9 +32,11 @@ class CreateProductosTable extends Migration
             $table->dateTime('final_subasta')->nullable();
             
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id_comprador')->nullable();
     	    $table->foreign('categoria_id')->references('id')->on('categorias');	
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id_comprador')->references('id')->on('users');
         });
     }
 
