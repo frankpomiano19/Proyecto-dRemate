@@ -41,7 +41,7 @@
     </head>
     <body class="antialiased" >
         <div class="container-md border rounded-lg cuerpo">
-            <form class="needs-validation"  method="POST" action="{{ route('producto.registro')}}" novalidate>
+            <form class="needs-validation"  method="POST" action="{{ route('producto.registroe')}}" novalidate>
             @csrf
             <h1 class="text-center">Registro de producto</h1><br>
             <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br></p>
@@ -52,11 +52,11 @@
                 <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
                 <small  class="form-text text-muted">Escoja su categoría</small>
                 <select class="form-control" name="categoria">
-                    <option value="Antiguedades">Antiguedades</option>
-                    <option value="Teconologia">Tecnología</option>
-                    <option value="Fosiles">Fósiles</option>
-                    <option value="Fisi">Fisi</option>
-                    <option value="Otra">Otra</option>
+                    <option value="1">Antiguedades</option>
+                    <option value="2">Tecnología</option>
+                    <option value="3">Fósiles</option>
+                    <option value="4">Fisi</option>
+                    <option value="5">Otra</option>
                 </select>
                 <div class="invalid-feedback">
                     Seleccione una categoría
@@ -90,14 +90,20 @@
             
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Estado</h3>
-                <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">Nuevo</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" name="estado" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
-                    <label class="form-check-label" for="inlineRadio2">Usado</label>
-                </div>
+                <select name="estado">
+                    <option value="Disponible" selected>Disponible</option> 
+                    <option value="No disponible">No disponible</option>
+                    <option value="En curso">En curso</option>
+                </select>
+                <br><br>
+                <div class="linea"></div>
+            </div>
+            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
+                <h3>Condicion</h3>
+                <select name="condicion">
+                    <option value="Nuevo" selected>Nuevo</option> 
+                    <option value="Usado">No Usado</option>
+                </select>
                 <br><br>
                 <div class="linea"></div>
             </div>
@@ -120,7 +126,7 @@
                 <h3>Agregar fotos</h3>
                 <small class="form-text text-muted">Una imagen vale más que mil palabras</small>
                 <div class="custom-file">
-                    <input type="file" name="foto" class="custom-file-input" required>
+                    <input type="file" name="imagen" class="custom-file-input" required>
                     <label class="custom-file-label" for="customFile">Selecciona tus imágenes</label>
                     </div>          
                 <br>
@@ -135,7 +141,7 @@
             </div>
     
             <div id="siguiente">
-                <a href="{{URL::to('registroSubasta')}}"><button type="submit" class="btn btn-primary">Siguiente</button></a>
+                <button type="submit" class="btn btn-primary">Siguiente</button>
                 <br><br>
             </div>
             </form>

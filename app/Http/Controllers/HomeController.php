@@ -29,22 +29,31 @@ class HomeController extends Controller
         return view("paginaNT");
     }
 
-    public function registro(Request $request){
-        $datosProducto = new App\Models\Nuevop;
-        $datosProducto->nombre = $request->nombre;
-        $datosProducto->precio_inicial = $request->precioInicial;
-        $datosProducto->fecha = $request->fecha;
-        $datosProducto->categoria = $request->categoria;
-        $datosProducto->estado = $request->estado;
-        $datosProducto->devoluciones = $request->devoluciones;
-        $datosProducto->foto = $request->foto;
+    // public function registro(Request $request){
+    //     $datosProducto = new App\Models\Producto;
+    //     $datosProducto->nombre_producto = $request->nombre;
+    //     $datosProducto->descripcion = $request->descripcion;
+    //     $datosProducto->categoria_id = $request->categoria;
+    //     $datosProducto->estado = $request->estado;
+    //     $datosProducto->condicion = $request->condicion;
+    //     $datosProducto->imagen = $request->imagen;
+    //     $datosProducto->garantia = $request->garantia;
 
-        $datosProducto -> save();
+    //     $datosProducto->precio_inicial = $request->precio_inicial;
+    //     $datosProducto->inicio_subasta = $request->inicio_subasta;
+    //     $datosProducto->final_subasta = $request->final_subasta;
+    //     $datosProducto->user_id = auth()->id();;
 
-        return back();
+    //     $datosProducto -> save();
+
+    //     return back();
 
 
-        // return $request->all();
+    //     // return $request->all();
+    // }
+
+    public function registroS(){
+        return view("registroSubasta");
     }
 
     public function viewproduct($id,$idpro){
@@ -72,9 +81,39 @@ class HomeController extends Controller
     //     $datosProducto->categoria = $request->categoria;
     //     $datosProducto->estado = $request->estado;
     //     $datosProducto->foto = $request->foto;
+    public function registroE(Request $request){
+        
+        $datosProducto = new App\Models\Producto;
 
-    //     $datosProducto -> save();
+        $datosProducto->nombre_producto = $request->nombre;
+        $datosProducto->descripcion = $request->descripcion;
+        $datosProducto->categoria_id = $request->categoria;
+        $datosProducto->estado = $request->estado;
+        $datosProducto->condicion = $request->condicion;
+        $datosProducto->imagen = $request->imagen;
+        $datosProducto->garantia = $request->garantia;
+        $datosProducto->user_id = auth()->id();
+    
+        $datosProducto -> save();
+        
+        return view('registroSubasta')->with('datosProducto',$datosProducto);
+        
+        // return back();
+    }
 
-    //     return back();
-    // }
+    public function registroEE(Request $request){
+
+        $datospro = App\Models\Producto::findOrFail($request->id);
+        // dd($datospro->id);
+
+
+        $datospro->precio_inicial = $request->precio_inicial;
+        $datospro->inicio_subasta = $request->inicio_subasta;
+        $datospro->final_subasta = $request->final_subasta;
+
+        $datospro -> push();
+
+        return back();
+    } 
 }
+
