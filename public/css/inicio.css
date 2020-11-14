@@ -294,6 +294,7 @@ a {
 .c-hero__feat:hover {
     border: 1px solid transparent;
     background: #1e0304;
+    text-decoration: none;
 }
 
 .c-hero__feat:focus span:after,
@@ -442,6 +443,7 @@ b, strong {
     background: rgba(255, 255, 255, .2);
     border: 1px solid #fff;
     border: 1px solid rgba(255, 255, 255, 0);
+    text-decoration: none;
 }
 
 .c-callout__btn:focus:after,
@@ -672,6 +674,7 @@ a:hover{
     border: 1px solid #7c7c7c;
     border: 1px solid rgba(124, 124, 124, 0);
     color:black;
+    text-decoration: none;
 }
 
 .c-posts__btn:hover:after {
@@ -928,4 +931,64 @@ figure.effect-zoe:hover figcaption > span:nth-child(2) {
     color: rgb(64 61 61);
 }
 
+a.red {
+    display: inline-block;
+    padding: 0 30px;
+    text-align: center;
+    width: auto;
+    position: inherit;
+    margin: 0 10px;
+    line-height: 36px;
+    height: 36px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    background: #de1f26;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+}
 
+a.register {
+    background: url(https://www.exleasingcar.it/VER3/images/home_register.png) no-repeat 30px center #c8102e;
+    height: auto;
+    line-height: 17px!important;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 17px 30px 15px 60px !important;
+}
+
+a.register:hover {
+    background:url(https://www.exleasingcar.it/VER3/images/home_register.png) no-repeat 30px center #e74d4d;
+    text-decoration: none;
+}
+
+h5 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 17px;
+    margin: 25px 0;
+    font-family: "ProximaNova",Arial,Helvetica,sans-serif;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    text-align: center;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+h5 .uppercase {
+    color: #fff;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.c-hero__center hr {
+    background: rgba(255,255,255,0.65);
+    width: 62px;
+    height: 1px;
+    margin: 0 auto;
+}

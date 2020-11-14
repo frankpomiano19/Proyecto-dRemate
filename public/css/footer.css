@@ -194,7 +194,7 @@ img {
 }}
 
 .text-left {
-  text-align: left;
+  text-align: center!important;
 }
 
 footer .sub-footer p {
@@ -203,4 +203,16 @@ footer .sub-footer p {
   color: #666;
 }
 
+.widget a{
+  color: #666;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+}
 
+
+.widget a:hover,
+.widget a:focus {
+    text-decoration: none;
+    color: black;
+}
