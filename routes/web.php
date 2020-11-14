@@ -13,15 +13,18 @@ Route::get('/', function () {
     return view('welcome');
 })->name("welcome");
 
+
+//Formulario Login
 Route::get('/prueba', function () {
     return view("paginaNT");
 })->name("paginaPrueba");
 
-
+//OK
 Route::get('/template', function () {
     return view('template');
 });
 
+//OK
 Route::get('/oferta', function () {
     return view('puja');
 });
@@ -29,34 +32,41 @@ Route::get('/oferta', function () {
 Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
 Route::post('/subastaRapida',[SubastaRapController::class,'filtroProc'])->name("subastaRapida_filtro_proc");
 
+//OK
 Route::get('/producto', function () {
     return view('producto');
-});    
-Route::get('/subirProducto', function () {
-    return view('subirProducto');
-});
+}); 
+
+
+// Route::get('/subirProducto', function () {
+//     return view('subirProducto');
+// });
 
 Route::get('/registroProducto', function () {
     return view('registroProducto');
-});
+})->middleware('auth');
 
-Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
+// Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
 
 //Edson-View
+
+
+//Guarda 1eros datos de producto
 Route::post('/registroProducto', [HomeController::class,'registroE'])->name('producto.registroe');
 
+//Guarda 2doos datos de producto
 Route::post('/registrarSubasta', [HomeController::class,'registroEE'])->name('producto.registroee');
 
 
 Route::get('/registrarSubasta', function () {
-    return view('registroSubasta');
-});
+    return view('registroProducto');
+})->middleware('auth');
 
-Route::get('/registrarSubasta',  [HomeController::class,'registroS']);
+// Route::get('/registrarSubasta',  [HomeController::class,'registroS']);
 
-Route::get('/prueba', function () {
-    return view('prueba');
-});
+// Route::get('/prueba', function () {
+//     return view('prueba');
+// });
 
 
 Auth::routes();

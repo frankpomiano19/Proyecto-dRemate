@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -52,11 +53,13 @@
                 <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
                 <small  class="form-text text-muted">Escoja su categoría</small>
                 <select class="form-control" name="categoria">
-                    <option value="1">Antiguedades</option>
-                    <option value="2">Tecnología</option>
-                    <option value="3">Fósiles</option>
-                    <option value="4">Fisi</option>
-                    <option value="5">Otra</option>
+                    <option value="1">Tecnología</option>
+                    <option value="2">Hogar</option>
+                    <option value="3">Electrodomésticos</option>
+                    <option value="4">Joyas</option>
+                    <option value="5">Instrumento musical</option>
+                    <option value="6">Juguetes</option>
+                    
                 </select>
                 <div class="invalid-feedback">
                     Seleccione una categoría
@@ -102,7 +105,7 @@
                 <h3>Condicion</h3>
                 <select name="condicion">
                     <option value="Nuevo" selected>Nuevo</option> 
-                    <option value="Usado">No Usado</option>
+                    <option value="Usado">Usado</option>
                 </select>
                 <br><br>
                 <div class="linea"></div>
@@ -136,7 +139,7 @@
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Garantía</h3>
                 <small class="form-text text-muted">Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
-                <textarea input type="text" name="garantia" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
+                <textarea input type="text" name="garantia" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2" required></textarea>
                 <br>
             </div>
     

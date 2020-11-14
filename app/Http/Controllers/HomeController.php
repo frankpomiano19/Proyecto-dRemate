@@ -29,28 +29,9 @@ class HomeController extends Controller
         return view("paginaNT");
     }
 
-    // public function registro(Request $request){
-    //     $datosProducto = new App\Models\Producto;
-    //     $datosProducto->nombre_producto = $request->nombre;
-    //     $datosProducto->descripcion = $request->descripcion;
-    //     $datosProducto->categoria_id = $request->categoria;
-    //     $datosProducto->estado = $request->estado;
-    //     $datosProducto->condicion = $request->condicion;
-    //     $datosProducto->imagen = $request->imagen;
-    //     $datosProducto->garantia = $request->garantia;
-
-    //     $datosProducto->precio_inicial = $request->precio_inicial;
-    //     $datosProducto->inicio_subasta = $request->inicio_subasta;
-    //     $datosProducto->final_subasta = $request->final_subasta;
-    //     $datosProducto->user_id = auth()->id();;
-
-    //     $datosProducto -> save();
-
-    //     return back();
-
-
-    //     // return $request->all();
-    // }
+    public function regresarP(){
+        return view("subastaRapida");
+    }
 
     public function registroS(){
         return view("registroSubasta");
@@ -80,7 +61,6 @@ class HomeController extends Controller
 
         $datospro = App\Models\Producto::findOrFail($request->id);
         // dd($datospro->id);
-
 
         $datospro->precio_inicial = $request->precio_inicial;
         $datospro->inicio_subasta = $request->inicio_subasta;

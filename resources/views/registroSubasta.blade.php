@@ -11,7 +11,7 @@
         
     </head>
     <body class="antialiased" >
-
+        
         <form action="{{ route('producto.registroee')}}" method="post">
             @csrf
             <label for="formGroupExampleInput">Registrar subasta</label><br><br>
@@ -80,6 +80,8 @@
         </form>
         <div>
             <button type="submit" class="btn btn-outline-info">Regresar</button>
+        <a href="{{url("/home")}}"></a>
+
             
         </div>
 
