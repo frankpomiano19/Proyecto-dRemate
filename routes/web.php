@@ -24,17 +24,22 @@ Route::get('/template', function () {
 Route::get('/oferta', function () {
     return view('puja');
 });
-
-Route::get('/producto', function () {
-    return view('producto');
-});    
+    
 Route::get('/subirProducto', function () {
     return view('subirProducto');
 });
 
+
+
 Route::get('/registroProducto', function () {
     return view('registroProducto');
 });
+
+
+
+//Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
+
+Route::get('/producto-{idus}-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
 
 // Route::post('/','HomeController@registro')->name('producto.registro');
 

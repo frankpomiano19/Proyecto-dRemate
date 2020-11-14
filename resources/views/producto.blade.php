@@ -75,19 +75,19 @@
   <!-- Información del producto -->
   <div class="info_product">
     <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">Electrodomésticos</a>  > <a href="#">Cafeteras</a> </h5>
-    <h3 class="product-title">MÁQUINA PARA CAPUCCINOS OSTER PRIMA LATTE ABC 123</h3>
+    <h3 class="product-title">{{$prod->nombre_producto}}</h3>
     <div class="row mb-2">
         <div class="col-md-5">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img class="d-block w-100" src="img/assets/subasta_1.jpg" alt="First slide">
+                    <img class="d-block w-100" src="img/assets/{{$prod->imagen}}" alt="First slide">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="img/assets/subasta_1.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="img/assets/{{$prod->imagen}}" alt="Second slide">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="img/assets/subasta_1.jpg" alt="Third slide">
+                    <img class="d-block w-100" src="img/assets/{{$prod->imagen}}" alt="Third slide">
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -99,7 +99,7 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-              <h6 class="code_product">Código: SBT#123456</h6>
+              <h6 class="code_product">Código: SBT#{{$prod->id}}</h6>
         </div>
         <div class="col-md-6">
           <div class="row mb-2">
@@ -107,21 +107,21 @@
               <div class="container text-center p-2 my-2 border">
                 
                 <div class="precio_inicial_producto p-2">
-                  <h5>S/ 680.00</h5>
+                  <h5>S/. {{$prod->precio_inicial}}</h5>
                 </div>
                 <div class="tiempo_producto">
                   <h5>Tiempo: 00:30</h5>
                 </div>
                 <br>
                 <div class="cant_puja">
-                  <input class="form-control" type="text" placeholder="Min:S/.1001.00">
+                  <input class="form-control" type="text" placeholder="Min:S/.{{$prod->precio_inicial +1}}.00">
                 </div>
                 <div class="boton_puja my-2">
                   <button type="button" class="btn btn-outline-primary">Realizar puja</button>
                 </div>
                 <div class="precio_directo my-2">
-                  <h5>Precio: S/.1000.00</h5>
-                  <h5>Compra rápida: S/.1000.00</h5>
+                  <h5>Precio: S/.{{$prod->precio_inicial}}</h5>
+                  <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
                 </div>
                 <div class="boton_compra my-2">
                   <button type="button" class="btn btn-outline-primary">Compra</button>
@@ -129,6 +129,8 @@
               </div>
             </div>
             <div class="col-md-6">
+
+
               <table class="table table-sm table-bordered">
                 <thead>
                   <tr>
@@ -140,30 +142,14 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($pujastotales as $puja)
+                  @if ($puja->producto_id==$prod->id)
                   <tr>
-                    <td>Pedro_P</td>
-                    <td>S/.680.00</td>
+                    <td>{{$usuarios[($puja->user_id)-1]->usuario}}</td>
+                    <td>S/.{{$puja->valor_puja}}</td>
                   </tr>
-                  <tr>
-                    <td>JuanJose</td>
-                    <td>S/.650.00</td>
-                  </tr>
-                  <tr>
-                    <td>Marcos_5</td>
-                    <td>S/.645.00</td>
-                  </tr>
-                  <tr>
-                    <td>AnaMar7</td>
-                    <td>S/.630.00</td>
-                  </tr>
-                  <tr>
-                    <td>Pedro_P</td>
-                    <td>S/.628.00</td>
-                  </tr>
-                  <tr>
-                    <td>Luis_Alb</td>
-                    <td>S/.627.00</td>
-                  </tr>
+                  @endif
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -192,8 +178,8 @@
     
     <div class="tab-content">
       <div class="tab-pane container active" id="descripcion">
-        <h5 class="tilulo_producto my-2">MÁQUINA PARA CAPUCCIONS OSTER PRIMA LATTE ABC 123</h5>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, delectus et ratione libero incidunt nemo maiores assumenda quasi facere cupiditate, qui voluptatem quidem sequi, suscipit est tempore officiis quia fuga?</p>
+        <h5 class="tilulo_producto my-2">{{$prod->nombre_producto}}</h5>
+        <p> {{$prod->descripcion}} </p>
         <h5>Caracteristicas</h5>
           <ul>
             <li>lorem</li>
