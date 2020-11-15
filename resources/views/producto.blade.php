@@ -74,20 +74,20 @@
   <br>
   <!-- Información del producto -->
   <div class="info_product">
-    <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">Electrodomésticos</a>  > <a href="#">Cafeteras</a> </h5>
+    <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">{{$cat->nombre_categoria}}</a>  </h5>
     <h3 class="product-title">{{$prod->nombre_producto}}</h3>
     <div class="row mb-2">
         <div class="col-md-5">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img class="d-block w-100" src="img/assets/{{$prod->imagen}}" alt="First slide">
+                    <img class="d-block w-100" src="img/productimages/{{$prod->imagen}}" alt="First slide">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="img/assets/{{$prod->imagen}}" alt="Second slide">
+                    <img class="d-block w-100" src="/img/productimages/{{$prod->imagen}}" alt="Second slide">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="img/assets/{{$prod->imagen}}" alt="Third slide">
+                    <img class="d-block w-100" src="img/productimages/{{$prod->imagen}}" alt="Third slide">
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -103,33 +103,51 @@
         </div>
         <div class="col-md-6">
           <div class="row mb-2">
-            <div class="col-md-6">
-              <div class="container text-center p-2 my-2 border">
-                
-                <div class="precio_inicial_producto p-2">
-                  <h5>S/. {{$prod->precio_inicial}}</h5>
-                </div>
-                <div class="tiempo_producto">
-                  <h5>Tiempo: 00:30</h5>
-                </div>
-                <br>
-                <div class="cant_puja">
-                  <input class="form-control" type="text" placeholder="Min:S/.{{$prod->precio_inicial +1}}.00">
-                </div>
-                <div class="boton_puja my-2">
-                  <button type="button" class="btn btn-outline-primary">Realizar puja</button>
-                </div>
-                <div class="precio_directo my-2">
-                  <h5>Precio: S/.{{$prod->precio_inicial}}</h5>
-                  <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
-                </div>
-                <div class="boton_compra my-2">
-                  <button type="button" class="btn btn-outline-primary">Compra</button>
+
+            <form action=" {{route('puja.crear')}} " method="POST">
+              @csrf
+              <div class="col">
+                <div class="container text-center p-2 my-2 border">
+                  
+                  <div class="precio_inicial_producto p-2">
+                    <h5>Precio inicial: S/. {{$prod->precio_inicial}}</h5>
+                  </div>
+                  <div class="tiempo_producto">
+                    <h5>Tiempo: 00:30</h5>
+                  </div>
+                  <br>
+                  <div class="cant_puja">
+                    @if ($ultimapuja->exists())
+                        <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$ultimapuja->valor_puja +1}}.00">
+                    @else
+                        <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$prod->precio_inicial +1}}.00">    
+                    @endif
+                    
+                  </div>
+                  <!-- id del producto, es invisible para que no se vea mal el cuadro y saque el id del producto para crar la puja --> 
+                  <input type="number" id="productoid" name="productoid" class="invisible" value="{{$prod->id}}" readonly>
+                  
+                  <div class="boton_puja my-2">
+                    <button  type="submit" class="btn btn-outline-primary">Realizar puja</button>
+                  </div>
+                  <div class="precio_directo my-2">
+                    
+                    @if ($ultimapuja->exists())
+                      <h5>Precio actual: S/.{{$ultimapuja->valor_puja}}</h5>
+                    @else
+                      <h5>Precio actual: S/.{{$prod->precio_inicial}}</h5>
+                    @endif
+                    <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
+                  </div>
+                  
+                  <div class="boton_compra my-2">
+                    <button type="button" class="btn btn-outline-primary">Compra</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-6">
+          </form>
 
+            <div class="col-md-6">
 
               <table class="table table-sm table-bordered">
                 <thead>

@@ -59,20 +59,25 @@ class HomeController extends Controller
     public function viewproduct($id,$idpro){
         $vendedor = App\Models\User::findOrFail($id);
         $prod = App\Models\Producto::findOrFail($idpro);
+        $cat = App\Models\Categoria::findOrFail($prod->categoria_id);
         $pujastotales = App\Models\Puja::all();
+        $ultimapuja = App\Models\Puja::all()->last();
         $usuarios = App\Models\User::all();
 
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios'));
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','ultimapuja','cat'));
     }
-    /*
-    public function viewproduct(){
-        $pujastotales = App\Models\Puja::all();
-        $usuarios = App\Models\User::all();
+    
 
-        return view('producto',compact('pujastotales','usuarios'));
+    public function hacerpuja(Request $request){
+        $datosPuja = new App\Models\Puja;
+
+        $datosPuja->valor_puja = $request->valorpuja;
+        $datosPuja->user_id = auth()->id();       
+        $datosPuja->producto_id = $request->productoid;
+
+        $datosPuja->save();
+        return back();
     }
-
-    */
 
 
     // public function registro(Request $request){
@@ -90,7 +95,10 @@ class HomeController extends Controller
         $datosProducto->categoria_id = $request->categoria;
         $datosProducto->estado = $request->estado;
         $datosProducto->condicion = $request->condicion;
-        $datosProducto->imagen = $request->imagen;
+        $file = $request->file('imagen');
+        $nameimage = $file->getClientOriginalName();
+        $file->move(public_path("img/productimages/"),$nameimage);
+        $datosProducto->imagen = $nameimage;
         $datosProducto->garantia = $request->garantia;
         $datosProducto->user_id = auth()->id();
     

@@ -69,6 +69,9 @@ Route::get('/prueba', function () {
 });
 
 
+Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
+
+
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
