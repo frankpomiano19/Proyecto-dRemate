@@ -24,6 +24,7 @@
             <input type="" name="categoria_id" value="{{$datosProducto->categoria_id}}" id="">
             <input type="" name="estado" value="{{$datosProducto->estado}}" id="">
             <input type="hidden" name="condicion" value="{{$datosProducto->condicion}}" id="">
+            <input type="" name="ubicacion" value="{{$datosProducto->ubicacion}}" id="">
             <input type="" name="imagen" value="{{$datosProducto->imagen}}" id="">
             <input type="" name="garantia" value="{{$datosProducto->garantia}}" id="">
 

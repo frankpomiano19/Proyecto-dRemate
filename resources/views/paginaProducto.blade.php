@@ -34,13 +34,29 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h5 class="font-weight-bold">Categoría:</h5>
-                        <p>{{$datospro->categoria_id}}</p>
+                        @if($datospro->categoria_id==1)
+                            <p>Tecnología</p>
+                        @elseif($datospro->categoria_id==2)
+                            <p>Hogar</p>
+                        @elseif($datospro->categoria_id==3)
+                            <p>Electrodomésticos</p>
+                        @elseif($datospro->categoria_id==4)
+                            <p>Joyas</p>
+                        @elseif($datospro->categoria_id==5)
+                            <p>Instrumento musical</p>
+                        @else
+                            <p>Juguetes</p> 
+                        @endif
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <h5 class="font-weight-bold">Estado:</h5>
                         <p>{{$datospro->estado}}</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="font-weight-bold">Ubicación:</h5>
+                        <p>{{$datospro->ubicacion}}</p>
                     </div>
                 </div>
                 

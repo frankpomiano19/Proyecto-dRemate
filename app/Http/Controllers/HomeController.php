@@ -51,22 +51,8 @@ class HomeController extends Controller
             'imagen'=>'required',
             'garantia'=>['required','min:8']
         ]);
-
-        // $datosProducto = new App\Models\Producto;
-    
-        // $datosProducto -> save();
-
-        // dd(request()->all());
-
-
-        // return $request->file('imagen')->store('public');
         
         return view('registroSubasta')->with('datosProducto',$request);
-        
-
-
-
-        // return back();
         
     }
 
@@ -86,16 +72,13 @@ class HomeController extends Controller
             'garantia'=>['required','min:8']
         ]);
 
-        // dd(request()->all());
 
         $datospro = new App\Models\Producto;
 
         // $datospro = App\Models\Producto::findOrFail($request->id);
         // dd($datospro->id);
-
         // $datospro->id = $request->id;
 
-            //okokokokook
         $datospro->precio_inicial = $request->precio_inicial;
         $datospro->inicio_subasta = $request->inicio_subasta;
         $datospro->final_subasta = $request->final_subasta;
@@ -103,11 +86,6 @@ class HomeController extends Controller
 
         // $datospro -> push();
 
-        // $imagenes = $request->file('imagen')->store('public');
-
-        // $url = Storage::url($imagenes);
-
-        //okokokokoko
         $datospro->nombre_producto = $request->nombre_producto;
         $datospro->descripcion = $request->descripcion;
         $datospro->categoria_id = $request->categoria_id;
@@ -121,7 +99,6 @@ class HomeController extends Controller
 
         $datospro -> save();
 
-        // return back();
         return view('paginaProducto')->with('datospro',$request);
     }
 }
