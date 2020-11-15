@@ -47,6 +47,7 @@ class HomeController extends Controller
             'categoria_id'=>'required',
             'estado'=>'required',
             'condicion'=>'required',
+            'ubicacion'=>'required',
             'imagen'=>'required',
             'garantia'=>['required','min:8']
         ]);
@@ -79,6 +80,7 @@ class HomeController extends Controller
             'descripcion'=>['required','min:30'],
             'categoria_id'=>'required',
             'estado'=>'required',
+            'ubicacion'=>'required',
             'condicion'=>'required',
             'imagen'=>'required',
             'garantia'=>['required','min:8']
@@ -112,6 +114,7 @@ class HomeController extends Controller
         $datospro->estado = $request->estado;
         $datospro->condicion = $request->condicion;
         $datospro->imagen = $request->imagen;
+        $datospro->ubicacion = $request->ubicacion;
         // $datospro->imagen = $url;
         $datospro->garantia = $request->garantia;
         $datospro->user_id = auth()->id();

@@ -77,8 +77,8 @@
 
             
         </div>
-            <button class="btn btn-success"><a href="{{ url('registroProducto') }}">Registrar otro producto</a></button>
-            <button class="btn btn-success">Ir al menú</button>
+            <button class="btn btn-success btn-block"><a class="btn btn-success btn-block" href="{{ url('registroProducto') }}">Registrar otro producto</a></button>
+            <button class="btn btn-success btn-block"><a class="btn btn-success btn-block" href="{{ url('/') }}">Menú principal</a></button>
         </div>
 
     </div>

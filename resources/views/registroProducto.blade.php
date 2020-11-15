@@ -135,8 +135,41 @@
             </div>
             
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
+                <h3>Departamento</h3>
+                <select class="form-control" name="ubicacion">
+                    <option value="Amazonas" >Amazonas</option> 
+                    <option value="Ancash">Ancash</option>
+                    <option value="Apurimac">Apurimac</option>
+                    <option value="Arequipa" >Arequipa</option> 
+                    <option value="Ayacucho">Ayacucho</option>
+                    <option value="Cajamarca">Cajamarca</option>
+                    <option value="Callao" >Callao</option> 
+                    <option value="Cusco">Cusco</option>
+                    <option value="Huancavelica">Huancavelica</option>
+                    <option value="Huanuco" >Huanuco</option> 
+                    <option value="Ica">Ica</option>
+                    <option value="Junín">Junín</option>
+                    <option value="La Libertad" >La Libertad</option> 
+                    <option value="Lambayeque">Lambayeque</option>
+                    <option value="Lima" selected>Lima</option>
+                    <option value="Loreto" >Loreto</option> 
+                    <option value="Madre de Dios">Madre de Dios</option>
+                    <option value="Moquegua">Moquegua</option>
+                    <option value="Pasco" >Pasco</option> 
+                    <option value="Piura">Piura</option>
+                    <option value="Puno">Puno</option>
+                    <option value="San Martin">San Martin</option> 
+                    <option value="Tacna">Tacna</option>
+                    <option value="Tumbes">Tumbes</option>
+                    <option value="Ucayali">Ucayali</option>
+                </select>
+                <br><br>
+                <div class="linea"></div>
+            </div>
+
+            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Estado</h3>
-                <select name="estado">
+                <select class="form-control" name="estado">
                     <option value="Disponible" selected>Disponible</option> 
                     <option value="No disponible">No disponible</option>
                     <option value="En curso">En curso</option>
@@ -146,7 +179,7 @@
             </div>
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Condicion</h3>
-                <select name="condicion">
+                <select class="form-control" name="condicion">
                     <option value="Nuevo" selected>Nuevo</option> 
                     <option value="Usado">Usado</option>
                 </select>
