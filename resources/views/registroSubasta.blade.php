@@ -7,18 +7,25 @@
 
         <!-- Styles -->
         <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         
         
     </head>
     <body class="antialiased" >
         
-        <form action="{{ route('producto.registroee')}}" method="post">
+        <form class="needs-validation" action="{{ route('producto.registroee')}}" method="POST" novalidate>
             @csrf
             <label for="formGroupExampleInput">Registrar subasta</label><br><br>
 
 
             <p>_____</p>
-            <input type="hidden" name="id" value="{{$datosProducto->id}}" id="">
+            <input type="" name="nombre_producto" value="{{$datosProducto->nombre_producto}}" id="">
+            <input type="" name="descripcion" value="{{$datosProducto->descripcion}}" id="">
+            <input type="" name="categoria_id" value="{{$datosProducto->categoria_id}}" id="">
+            <input type="" name="estado" value="{{$datosProducto->estado}}" id="">
+            <input type="hidden" name="condicion" value="{{$datosProducto->condicion}}" id="">
+            <input type="" name="imagen" value="{{$datosProducto->imagen}}" id="">
+            <input type="" name="garantia" value="{{$datosProducto->garantia}}" id="">
 
 
 
@@ -28,53 +35,40 @@
                     <button class="btn btn-outline-secondary" type="button">S/</button>
                     <button class="btn btn-outline-secondary" type="button">$</button>
                 </div>
-                <input type="text" name="precio_inicial" class="form-control" placeholder="">
+                @error('precio_inicial')
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Precio mínimo: S/ 1,00
+                    Precio máximo S/ 99,000
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @enderror
+                <input type="text" name="precio_inicial" value="{{ old('precio_inicial') }}" class="form-control" placeholder="">
             </div>
-
             <div>
                 <label for="form-group">Fecha de inicio de la subasta</label>
-                <input type="date" name="inicio_subasta" id=""><br><br>
+                @error('inicio_subasta')
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      La fecha de inicio está mal
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @enderror
+                <input type="date" value="{{ old('inicio_subasta') }}" name="inicio_subasta" id=""><br><br>
+                @error('final_subasta')
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    La fecha de fin está mal
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                @enderror
                 <label for="form-group">Fecha de fin de la subasta</label>
-                <input type="date" name="final_subasta" id=""><br><br>
+                <input type="date" name="final_subasta" value="{{ old('final_subasta') }}" id=""><br><br>
             </div>
 
-        
-            <div class="form-group"; margin:auto>
-                <label for="formGroupExampleInput">Título</label>
-                <input type="text" class="form-control" id="formGroupExampleInput">
-            </div>
-
-            <label for="">Método de pago</label>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-                    Contraentrega
-                </label>
-            </div>           
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">
-                    PayPal
-                </label>
-            </div>
-            
-            <div>
-                <label for="formGroupExampleInput">Estado</label>
-                <br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">Nuevo</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">Usado</label>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Notas</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
             <button type="submit" class="btn btn-dark">Guardar</button>
         
         </form>
@@ -86,5 +80,7 @@
         </div>
 
         <script src="{{ asset(mix('js/app.js')) }}"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     </body>
 </html>

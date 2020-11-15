@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -35,61 +34,30 @@
             #mapa{
                 width: 100%;
                 height: 400px;
-
             }
         </style>
         
     </head>
     <body class="antialiased" >
         <div class="container-md border rounded-lg cuerpo">
-            <form class="needs-validation" method="POST"  action="{{ route('producto.registroe')}}" novalidate>
-            @csrf
+            <form class="needs-validation" novalidate>
             <h1 class="text-center">Registro de producto</h1><br>
             <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br></p>
             
             <div class="linea"></div>
-            @error('precio_inicial')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    El precio debe estar entre 1,00 y 99,99
-                    Vuelve a ingresar una imagen
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-            @enderror
-            @error('inicio_subasta')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Debes ingresar la fecha de inicio de subasta
-                    Vuelve a ingresar una imagen
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-            @enderror
-            @error('final_subasta')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Debes ingresar la fecha de fin de subasta
-                    Vuelve a ingresar una imagen
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-            @enderror
     
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
                 <small  class="form-text text-muted">Escoja su categoría</small>
-                <select class="form-control" name="categoria_id">
-                    <option selected value="1">Tecnología</option>
-                    <option value="2">Hogar</option>
-                    <option value="3">Electrodomésticos</option>
-                    <option value="4">Joyas</option>
-                    <option value="5">Instrumento musical</option>
-                    <option value="6">Juguetes</option>
-                    
+                <select class="form-control">
+                    <option>Antiguedades</option>
+                    <option>Tecnología</option>
+                    <option>Fósiles</option>
+                    <option>Fisi</option>
+                    <option>Nulo</option>
                 </select>
                 <div class="invalid-feedback">
-                    Seleccione una categoría
+                    Seleccione una cateroría
                 </div>
                 <br>
                 <div class="linea"></div>
@@ -97,16 +65,8 @@
     
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <label for="formGroupExampleInput"><h3>Título</h3></label><br>
-                @error('nombre_producto')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Brinda un buen nombre de tu producto
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                @enderror
                 <small  class="form-text text-muted">Un buen título atrae más miradas</small>
-                <input type="text" name="nombre_producto" value="{{ old('nombre_producto') }}" class="form-control" id="titulo" placeholder="Nombre del producto">
+                <input type="text" class="form-control" id="titulo" placeholder="Nombre del producto" required>
                 <div class="invalid-feedback">
                     Not nice >:v
                 </div>
@@ -119,16 +79,8 @@
     
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6 form-group">
                 <h3>Descripción</h3>
-                @error('descripcion')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Brinda una mejor descripción de tu producto
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                @enderror
                 <small class="form-text text-muted">Brinda todos los detalles de tu producto aquí</small>
-                <input type="text" name="descripcion" value="{{ old('descripcion') }}" class="form-control" placeholder="Añade una descripción" id="" rows="4">
+                <textarea input type="text" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4" required></textarea>
                 <div class="invalid-feedback">
                     Es necesaria una descripción
                 </div>
@@ -136,60 +88,52 @@
             
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Estado</h3>
-                <select name="estado">
-                    <option value="Disponible" selected>Disponible</option> 
-                    <option value="No disponible">No disponible</option>
-                    <option value="En curso">En curso</option>
-                </select>
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Nuevo</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+                    <label class="form-check-label" for="inlineRadio2">Usado</label>
+                </div>
                 <br><br>
                 <div class="linea"></div>
             </div>
-            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                <h3>Condicion</h3>
-                <select name="condicion">
-                    <option value="Nuevo" selected>Nuevo</option> 
-                    <option value="Usado">Usado</option>
-                </select>
-                <br><br>
+    
+            <div class="col-12">
+                <h3>Ubicación</h3>
+                <small  class="form-text text-muted">¿Dónde se encuentra su producto?</small>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15607.301886182962!2d-77.08160471552735!3d-12.055526440052137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1605044901305!5m2!1ses!2spe" id="mapa" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <div class="invalid-feedback">
+                    Not nice >:v
+                </div>
+                <div class="valid-feedback">
+                    Nice!
+                </div>
+                <br>
                 <div class="linea"></div>
             </div>
     
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Agregar fotos</h3>
                 <small class="form-text text-muted">Una imagen vale más que mil palabras</small>
-                @error('imagen')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Comparte cómo se ve tu producto. Max tamaño: 2MB
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                @enderror
                 <div class="custom-file">
-                    <input type="file" name="imagen" value="{{ old('imagen') }}" class="custom-file-input">
+                    <input type="file" class="custom-file-input" required>
                     <label class="custom-file-label" for="customFile">Selecciona tus imágenes</label>
-                </div>          
+                    </div>          
                 <br>
                 <div class="linea"></div>
             </div>
     
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Garantía</h3>
-                @error('garantia')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    La garantia es requerida
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                @enderror
-                <small class="form-text text-muted">Brinda detalles de tu garantía, esto le brindará cierta confianza al comprador</small>
-                <input type="text" name="garantia" value="{{ old('garantia') }}" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2">
+                <small class="form-text text-muted">Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
+                <textarea input type="text" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
                 <br>
             </div>
     
             <div id="siguiente">
-                <button type="submit" class="btn btn-primary">Siguiente</button>
+                <a href="{{URL::to('registroSubasta')}}"><button type="submit" class="btn btn-primary">Siguiente</button></a>
                 <br><br>
             </div>
             </form>
