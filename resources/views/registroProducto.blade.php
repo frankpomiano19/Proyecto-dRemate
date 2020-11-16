@@ -7,73 +7,47 @@
 
         <!-- Styles -->
         <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/registro.css') }}" />
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <style type="text/css">
-            body{
-                background-color: #0093E9;
-                background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-            }
-            .cuerpo{
-                margin-top: 20px;
-                margin-bottom: 20px;
-                background-color: #fff;
-                width: 90%;
-            }
-            .linea{
-                border-top:solid 1px #d9e3e8;
-                width:100%;
-                height:10px;
-            }
-            #parrafo{
-                margin-left: 20px;
-            }
-            #siguiente{
-                float: none;
-                text-align: center;
-            }
-            #mapa{
-                width: 100%;
-                height: 400px;
-
-            }
-        </style>
         
     </head>
-    <body class="antialiased" >
+    <body>
         <div class="container-md border rounded-lg cuerpo">
-            <form class="needs-validation"  method="POST" action="{{ route('producto.registro')}}" novalidate>
-            @csrf
+            <form class="needs-validation" novalidate>
             <h1 class="text-center">Registro de producto</h1><br>
-            <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br></p>
+            <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br><br></p>
             
             <div class="linea"></div>
     
-            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
+            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6 form-group">
                 <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
                 <small  class="form-text text-muted">Escoja su categoría</small>
-                <select class="form-control" name="categoria">
-                    <option value="Antiguedades">Antiguedades</option>
-                    <option value="Teconologia">Tecnología</option>
-                    <option value="Fosiles">Fósiles</option>
-                    <option value="Fisi">Fisi</option>
-                    <option value="Otra">Otra</option>
+                <select class="form-control" required>
+                    <option value="">-Seleccione-</option>
+                    <option value="1">Antiguedades</option>
+                    <option value="2">Tecnología</option>
+                    <option value="3">Fósiles</option>
+                    <option value="4">Fisi</option>
+                    <option value="5">Nulo</option>
                 </select>
                 <div class="invalid-feedback">
-                    Seleccione una categoría
+                    Seleccione una cateroría
                 </div>
                 <br>
                 <div class="linea"></div>
             </div>
     
+            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6 form-group"></div>
+    
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                <label for="formGroupExampleInput"><h3>Título</h3></label><br>
+                <label for="formGroupExampleInput"><h3>Título</h3></label>
                 <small  class="form-text text-muted">Un buen título atrae más miradas</small>
-                <input type="text" name="nombre" class="form-control" id="titulo" placeholder="Nombre del producto" required>
+                <input type="text" class="form-control" id="titulo" placeholder="Nombre del producto" required>
                 <div class="invalid-feedback">
-                    Not nice >:v
+                    Por favor, ingrese un título
                 </div>
                 <div class="valid-feedback">
-                    Nice!
+                    ¡Bien!
                 </div>
                 <br>
                 <div class="linea"></div>
@@ -82,7 +56,7 @@
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6 form-group">
                 <h3>Descripción</h3>
                 <small class="form-text text-muted">Brinda todos los detalles de tu producto aquí</small>
-                <textarea input type="text" name="descripcion" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4" required></textarea>
+                <textarea input type="text" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4" required></textarea>
                 <div class="invalid-feedback">
                     Es necesaria una descripción
                 </div>
@@ -95,22 +69,8 @@
                     <label class="form-check-label" for="inlineRadio1">Nuevo</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" name="estado" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
                     <label class="form-check-label" for="inlineRadio2">Usado</label>
-                </div>
-                <br><br>
-                <div class="linea"></div>
-            </div>
-    
-            <div class="col-12">
-                <h3>Ubicación</h3>
-                <small  class="form-text text-muted">¿Dónde se encuentra su producto?</small>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15607.301886182962!2d-77.08160471552735!3d-12.055526440052137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1605044901305!5m2!1ses!2spe" id="mapa" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                <div class="invalid-feedback">
-                    Not nice >:v
-                </div>
-                <div class="valid-feedback">
-                    Nice!
                 </div>
                 <br>
                 <div class="linea"></div>
@@ -120,9 +80,9 @@
                 <h3>Agregar fotos</h3>
                 <small class="form-text text-muted">Una imagen vale más que mil palabras</small>
                 <div class="custom-file">
-                    <input type="file" name="foto" class="custom-file-input" required>
+                    <input type="file" class="custom-file-input" required>
                     <label class="custom-file-label" for="customFile">Selecciona tus imágenes</label>
-                    </div>          
+                </div>    
                 <br>
                 <div class="linea"></div>
             </div>
@@ -130,7 +90,7 @@
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Garantía</h3>
                 <small class="form-text text-muted">Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
-                <textarea input type="text" name="garantia" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
+                <textarea input type="text" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
                 <br>
             </div>
     
@@ -138,31 +98,13 @@
                 <a href="{{URL::to('registroSubasta')}}"><button type="submit" class="btn btn-primary">Siguiente</button></a>
                 <br><br>
             </div>
-            </form>
+          </form>
         </div>
         
+
         <script src="{{ asset(mix('js/app.js')) }}"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                    }, false);
-                });
-                }, false);
-            })();
-        </script>
+        <script src="{{ asset('js/producto.js') }}"></script>
     </body>
 </html>
