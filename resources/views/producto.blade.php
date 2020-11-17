@@ -8,6 +8,7 @@
 
 @section('contenidoJS')
     <!-- Colocar js-->
+    
 @endsection
 
 @section('contenidoCSS')
@@ -18,7 +19,7 @@
 @section('contenido')
 
     <br><br>
-  <div class="card-deck border">
+  
     <div class ="container">
         <div class="row">
             <div class="col-md">
@@ -68,12 +69,12 @@
                 </div>
             </div>
 
+      </div>
     </div>
-    </div>
-  </div>
+  
   <br>
   <!-- Información del producto -->
-  <div class="info_product">
+  <div class="container">
     <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">{{$cat->nombre_categoria}}</a>  </h5>
     <h3 class="product-title">{{$prod->nombre_producto}}</h3>
     <div class="row mb-2">
@@ -99,22 +100,23 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-              <h6 class="code_product">Código: SBT#{{$prod->id}}</h6>
+              
         </div>
         <div class="col-md-6">
           <div class="row mb-2">
 
             <form action=" {{route('puja.crear')}} " method="POST">
               @csrf
-              <div class="col">
+              
                 <div class="container text-center p-2 my-2 border">
                   
                   <div class="precio_inicial_producto p-2">
                     <h5>Precio inicial: S/. {{$prod->precio_inicial}}</h5>
                   </div>
                   <div class="tiempo_producto">
-                    <h5>Tiempo: 00:30</h5>
+                    <h5>Tiempo:<div id="tiempopuja"></div></h5>
                   </div>
+                  
                   <br>
                   <div class="cant_puja">
                     @if ($ultimapuja->exists())
@@ -137,14 +139,14 @@
                     @else
                       <h5>Precio actual: S/.{{$prod->precio_inicial}}</h5>
                     @endif
-                    <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
                   </div>
                   
-                  <div class="boton_compra my-2">
+                  <div class="boton_compra my-2" style="display: none">
+                    <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
                     <button type="button" class="btn btn-outline-primary">Compra</button>
                   </div>
                 </div>
-              </div>
+              
           </form>
 
             <div class="col-md-6">
@@ -177,7 +179,7 @@
   </div>
   <br>
 
-  <div class="col-md-8 my-2">
+  <div class="container">
     <ul class="nav nav-tabs">
       <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#descripcion">Descripción</a>
@@ -221,6 +223,7 @@
 @endsection
 
 @section('contenidoJSabajo')
-
+  <script src="js/simplyCountdown.min.js"></script>
+  <script src="js/countdown.js"></script>
     <!-- Colocar js abajo-->
 @endsection
