@@ -29,6 +29,13 @@ Route::get('/oferta', function () {
 Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
 Route::post('/subastaRapida',[SubastaRapController::class,'filtroProc'])->name("subastaRapida_filtro_proc");
 
+
+Route::get('/subastaRapida/fetch_data',[SubastaRapController::class,'fetch_data']);
+Route::get('/subastaRapida/fetch_data1',[SubastaRapController::class,'fetch_data1']);
+Route::get('/subastaRapida/fetch_data2',[SubastaRapController::class,'fetch_data2']);
+
+
+
 Route::get('/producto', function () {
     return view('producto');
 });    

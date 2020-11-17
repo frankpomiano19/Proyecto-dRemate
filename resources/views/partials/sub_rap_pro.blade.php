@@ -45,4 +45,12 @@
     </div>
 
 @endforeach
-{{ $su_curso_s->render() }}
+<br>
+<br>
+<br>
+<br>
+<div class="row">
+    <div class="col-md-12 text-center">
+        {{ $su_curso_s->onEachSide(5)->links() }}
+    </div>
+</div>
