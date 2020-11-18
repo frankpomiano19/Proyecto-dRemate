@@ -1,4 +1,21 @@
 @foreach ($su_curso_s as $su_curso)
+
+    @php
+    $abc = date_default_timezone_get();
+    date_default_timezone_set('America/Lima');
+    $valorNP1 = date('Y-m-d H:i:s');
+    $tiempoini_aux = new \Carbon\Carbon($su_curso->final_subasta);
+    $tiempofin_aux = new \Carbon\Carbon($valorNP1);
+    $segundosSub_dif =$tiempoini_aux->diffInSeconds($tiempofin_aux);
+    @endphp
+    <script>
+        programada_fecha_inicial[programada_cantidad] = "{{ $su_curso->inicio_subasta }}";
+        programada_fecha_final[programada_cantidad] = "{{ $su_curso->final_subasta }}";
+        programada_fecha_diff[programada_cantidad] = "{{ $segundosSub_dif }}";
+
+    </script>
+
+
     <div class="col-sm-4">
         <div class="card">
             <div class="card-body" style="margin-bottom: auto;padding-bottom:0px;">
@@ -43,14 +60,14 @@
             </div>
         </div>
     </div>
+    <script>
+        programada_cantidad++;
 
+    </script>
 @endforeach
-<br>
-<br>
-<br>
-<br>
+
 <div class="row">
     <div class="col-md-12 text-center">
-        {{ $su_curso_s->onEachSide(5)->links() }}
+        {{ $su_curso_s->links() }}
     </div>
 </div>

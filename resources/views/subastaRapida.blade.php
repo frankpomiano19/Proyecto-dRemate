@@ -3,11 +3,14 @@
 
 @section('cont_cabe')
     <title>Subasta rapida - dRemate</title>
-    <meta name="csrf-token" content="{{csrf_token()}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
 @section('contenidoJS')
     <!-- Colocar js-->
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
+    <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
 
 @endsection
 
@@ -20,11 +23,22 @@
 
 @section('contenido')
 
-    <script> 
+    <script>
+        var programada_cantidad = 0;
+        var programada_fecha_inicial = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var programada_fecha_final = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var programada_fecha_diff = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-        var tablaOpcVal = [0,0,0];
-var tablasOpc = -1;
+
+        var programada_cantidad2 = 0;
+        var programada_fecha_inicial2 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var programada_fecha_final2 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var programada_fecha_diff2 = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var filtroOpc = 0;
+        var tablasOpc = -1;
+
     </script>
+
     <header class="jumbotron font-popin"
         style="margin-bottom:0px;background-image:linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('img/assets/subasta4.jpg');background-size:100% 100%;">
         <div class="text-center text-white">
@@ -116,13 +130,14 @@ var tablasOpc = -1;
                                             <ul class="nav nav-pills mb-3 " id="" role="tablist">
                                                 <li class="nav-item">
                                                     <a class="nav-link active" id="mayor-tiempo" data-toggle="pill" href=""
-                                                        role="tab" aria-controls="pills-home">Mayor 
+                                                        role="tab" aria-controls="pills-home" onclick="filtroOpc = 0;">Mayor
                                                         tiempo
                                                     </a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" id="menor-tiempo" data-toggle="pill" href=""
-                                                        role="tab" aria-controls="pills-profile" aria-selected="false">Menor
+                                                        role="tab" aria-controls="pills-profile" aria-selected="false"
+                                                        onclick="filtroOpc = 1;">Menor
                                                         tiempo</a>
                                                 </li>
                                             </ul>
@@ -145,8 +160,8 @@ var tablasOpc = -1;
 
 
                             <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </a>-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div style="text-align: center;">Ver mas subastas</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </a>-->
 
                         </div>
 
@@ -194,286 +209,220 @@ var tablasOpc = -1;
         </div>
     </main>
 
-    
-@php
-  $contador2=0;
-  $contador3=0;
-  $contador4=0;
-@endphp
 
-
-
+    @php
+    $contador2=0;
+    $contador3=0;
+    $contador4=0;
+    @endphp
 @endsection
-
-
 @section('contenidoJSabajo')
     <script src="js/jsSubastaRapida.js"></script>
     <script src="js/jquery.chrony.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
-    <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script> 
+    <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
+    <script src="js/moment-2.29.1.js"></script>
     <script>
         $.ajaxSetup({
-            headers:{
+            headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
     </script>
 
     <script>
-        /*
-        $('#v-pills-subasta-cur').click(function (){
-        });
-
-
-
-        $('#v-pills-subasta-pro').click(function (){
-        });
-        
-        $('#v-pills-subasta-his').click(function (){
-        });
-        */
-        $(document).ready(function(){
-
-
-                $(document).on('click','#subasta_proc_filtro_include .pagination a',function(event){
-                    event.preventDefault();
-                    var page0 = $(this).attr('href').split('page=')[1];
-                    fetch_data(page0);
-
-                });
-
-                function fetch_data(page0){
-                    $.ajax({
-                        url : "/subastaRapida/fetch_data?page="+page0,
-                        success : function(data){
-                            $("#subasta_proc_filtro_include").html(data);
-                        },
-                        statusCode:{
-                            404: function(){
-                                alert("pagina no encontrada mascota");
-                            }
-                        },
-                        error : function(jqXHR,status,error){
-                            alert("Error al cargar tabla 0");
-                        }                
-                    })
-                }
-            
-  
-                $(document).on('click','#id_subasta_programada .pagination a',function(event){
-                    event.preventDefault();
-                    var page = $(this).attr('href').split('page=')[1];
-                    fetch_data1(page);
-
-                });
-
-                function fetch_data1(page){
-                    $.ajax({
-                        url : "/subastaRapida/fetch_data1?page="+page,
-                        success : function(data){
-                            $("#id_subasta_programada").html(data);
-                        },
-                        statusCode:{
-                            404: function(){
-                                alert("pagina no encontrada mascota");
-                            }
-                        },
-                        error : function(jqXHR,status,error){
-                            alert("Error de carga tabla 1");
-                        }                
-                    })
-                }
-            
-
-  
-                $(document).on('click','#historial_sub .pagination a',function(event){
-                    event.preventDefault();
-                    var page = $(this).attr('href').split('page=')[1];
-                    fetch_data2(page);
-
-                });
-
-                function fetch_data2(page){
-                    $.ajax({
-                        url : "/subastaRapida/fetch_data2?page="+page,
-                        success : function(data){
-                            $("#historial_sub").html(data);
-                        },
-                        statusCode:{
-                            404: function(){
-                                alert("pagina no encontrada mascota");
-                            }
-                        },
-                        error : function(jqXHR,status,error){
-                            alert("Error al cargar tabla 2");
-                        }                
-                    })
-                }
-        });
-
-
-
-
-
-
-
-
-
-
- 
-    </script>
-
-    <script>
-        $(function () {
-            var tiempoRestante = document.getElementsByClassName('defaultCountdown');
-            @foreach ($su_curso_s as $su_curso)        
-
-                @php 
-
-                    $ab = date_default_timezone_get(); 
-                    date_default_timezone_set('America/Lima'); 
-                    $valorN = date('Y-m-d H:i:s');
-
-                    $tiempoini_aux = new \Carbon\Carbon($su_curso->final_subasta);
-                    $tiempofin_aux = new \Carbon\Carbon($valorN);
-                    $segundosSub_dif =$tiempoini_aux->diffInSeconds($tiempofin_aux);
-                @endphp
-
-                $(tiempoRestante[{{$contador3}}]).countdown({until:  {{$segundosSub_dif}}});
-                @php
-                    $contador3++;
-                @endphp
-            @endforeach
-            @php
-                $contador3=0;
-            @endphp
-        });
-
-        function crearCrono(){
-            var tiempoRestante = document.getElementsByClassName('defaultCountdown');
-            @foreach ($su_curso_s as $su_curso)        
-
-                @php 
-
-                    $ab = date_default_timezone_get(); 
-                    date_default_timezone_set('America/Lima'); 
-                    $valorN = date('Y-m-d H:i:s');
-
-                    $tiempoini_aux = new \Carbon\Carbon($su_curso->final_subasta);
-                    $tiempofin_aux = new \Carbon\Carbon($valorN);
-                    $segundosSub_dif =$tiempoini_aux->diffInSeconds($tiempofin_aux);
-                @endphp
-
-                $(tiempoRestante[{{$contador3}}]).countdown({until:  {{$segundosSub_dif}}});
-                @php
-                    $contador3++;
-                @endphp
-            @endforeach
-            @php
-                $contador3=0;
-            @endphp
-
-        }
-
-
-    </script> 
-    <script>
-        $(function () {
-            var tiempoRestantePro = document.getElementsByClassName('defaultCountdownPro');
-            @foreach ($su_dispo_s as $su_dispo)
-                @php 
-
-                    $ab = date_default_timezone_get(); 
-                    date_default_timezone_set('America/Lima'); 
-                    $valorNP = date('Y-m-d H:i:s');
-
-                    $tiempoini_aux2 = new \Carbon\Carbon($su_dispo->inicio_subasta);
-                    $tiempofin_aux2 = new \Carbon\Carbon($valorNP);
-                    $segundosSub_dif2 =$tiempoini_aux2->diffInSeconds($tiempofin_aux2);
-                @endphp
-
-                $(tiempoRestantePro[{{$contador4}}]).countdown({until:  {{$segundosSub_dif2}}});
-                @php
-                    $contador4++;
-                @endphp
-            @endforeach
-            @php
-                $contador4=0;
-            @endphp
-
-        });
-
-
-        function crearCrono2(){
-            var tiempoRestantePro = document.getElementsByClassName('defaultCountdownPro');
-            @foreach ($su_dispo_s as $su_dispo)
-                @php 
-
-                    $ab = date_default_timezone_get(); 
-                    date_default_timezone_set('America/Lima'); 
-                    $valorNP = date('Y-m-d H:i:s');
-
-                    $tiempoini_aux2 = new \Carbon\Carbon($su_dispo->inicio_subasta);
-                    $tiempofin_aux2 = new \Carbon\Carbon($valorNP);
-                    $segundosSub_dif2 =$tiempoini_aux2->diffInSeconds($tiempofin_aux2);
-                @endphp
-
-                $(tiempoRestantePro[{{$contador4}}]).countdown({until:  {{$segundosSub_dif2}}});
-                @php
-                    $contador4++;
-                @endphp
-            @endforeach
-            @php
-                $contador4=0;
-            @endphp
-
-        }
-    </script>
-    
-    <script>
-    $('#menor-tiempo').click(function(e){
-        e.preventDefault();
-        $.ajax({
-            url : "subastaRapida",
-            type : 'POST',
-            data : {'filtro' :0},
-            success : function(response){
-                $("#subasta_proc_filtro_include").html(response);
+        $(document).ready(function() {
+            crearCrono();
+            crearCrono2();
+            /*
+            $(document).on('click', '#v-pills-subasta-cur', function(event) {
                 crearCrono();
-            },
-            statusCode:{
-                404: function(){
-                    alert("pagina no encontrada mascota");
-                }
-            },
-            error : function(jqXHR,status,error){
-                alert("Error al cargar");
-            }
-        });
-    });
-
-
-    $('#mayor-tiempo').click(function(e){
-        e.preventDefault();
-        $.ajax({
-            url : "subastaRapida",
-            type : 'POST',
-            data : {'filtro' :1},
-            success : function(response){
-                $("#subasta_proc_filtro_include").html(response);
+            })
+            */
+            $(document).on('click', '#v-pills-subasta-pro', function(event) {
                 crearCrono2();
+            })
 
-            },
-            statusCode:{
-                404: function(){
-                    alert("pagina no encontrada mascota");
-                }
-            },
-            error : function(jqXHR,status,error){
-                alert("Error al cargar");
+            $(document).on('click', '#subasta_proc_filtro_include .pagination a', function(event) {
+                event.preventDefault();
+                var page0 = $(this).attr('href').split('page=')[1];
+                fetch_data(page0);
+            });
+
+            function fetch_data(page0) {
+                $.ajax({
+                    type: 'GET',
+                    data: {
+                        'filtro': filtroOpc
+                    },
+                    url: "/subastaRapida/fetch_data?page=" + page0,
+                    success: function(data) {
+                        var tiempoRestantecarDestroy = document.getElementsByClassName(
+                            'defaultCountdown');
+                        for (var m = 0; m < tiempoRestantecarDestroy.length; m++) {
+                            $(tiempoRestantecarDestroy[m]).countdown('destroy');
+
+                        }
+                        $("#subasta_proc_filtro_include").html(data);
+                        crearCrono();
+                    },
+                    statusCode: {
+                        404: function() {
+                            alert("pagina no encontrada mascota");
+                        }
+                    },
+                    error: function(jqXHR, status, error) {
+                        alert("Error al cargar tabla 0");
+                    }
+                })
+            }
+
+
+            $(document).on('click', '#id_subasta_programada .pagination a', function(event) {
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                fetch_data1(page);
+
+            });
+
+            function fetch_data1(page) {
+                $.ajax({
+                    url: "/subastaRapida/fetch_data1?page=" + page,
+                    success: function(data) {
+                        var tiempoRestantecarDestroy = document.getElementsByClassName(
+                            'defaultCountdownPro');
+                        for (var m = 0; m < tiempoRestantecarDestroy.length; m++) {
+                            $(tiempoRestantecarDestroy[m]).countdown('destroy');
+
+                        }
+
+                        $("#id_subasta_programada").html(data);
+                        crearCrono2();
+                    },
+                    statusCode: {
+                        404: function() {
+                            alert("pagina no encontrada mascota");
+                        }
+                    },
+                    error: function(jqXHR, status, error) {
+                        alert("Error de carga tabla 1");
+                    }
+                })
+            }
+
+
+
+            $(document).on('click', '#historial_sub .pagination a', function(event) {
+                event.preventDefault();
+                var page = $(this).attr('href').split('page=')[1];
+                fetch_data2(page);
+
+            });
+
+            function fetch_data2(page) {
+                $.ajax({
+                    url: "/subastaRapida/fetch_data2?page=" + page,
+                    success: function(data) {
+                        $("#historial_sub").html(data);
+                    },
+                    statusCode: {
+                        404: function() {
+                            alert("pagina no encontrada mascota");
+                        }
+                    },
+                    error: function(jqXHR, status, error) {
+                        alert("Error al cargar tabla 2");
+                    }
+                })
             }
         });
-    });
+
+    </script>
+    <script>
+        function crearCrono() {
+            var tiempoRestante = document.getElementsByClassName('defaultCountdown');
+            for (var i = 0; i < tiempoRestante.length; i++) {
+                $(tiempoRestante[i]).countdown({
+                    until: programada_fecha_diff[i]
+                });
+            }
+            programada_cantidad = 0;
+        }
+
+        function crearCrono2() {
+            var tiempoRestantePro = document.getElementsByClassName('defaultCountdownPro');
+            for (var i = 0; i < tiempoRestantePro.length; i++) {
+                $(tiempoRestantePro[i]).countdown({
+                    until: programada_fecha_diff2[i]
+                });
+            }
+            programada_cantidad2 = 0;
+        }
+
+    </script>
+
+    <script>
+        $('#menor-tiempo').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "subastaRapida",
+                type: 'POST',
+                data: {
+                    'filtro': 0
+                },
+                success: function(response) {
+                    var tiempoRestantecarDestroy = document.getElementsByClassName(
+                        'defaultCountdown');
+                    for (var m = 0; m < tiempoRestantecarDestroy.length; m++) {
+                        $(tiempoRestantecarDestroy[m]).countdown('destroy');
+
+                    }
+                    $("#subasta_proc_filtro_include").html(response);
+                    crearCrono();
+                },
+                statusCode: {
+                    404: function() {
+                        alert("pagina no encontrada mascota");
+                    }
+                },
+                error: function(jqXHR, status, error) {
+                    alert("Error al cargar");
+                }
+            });
+        });
+
+
+        $('#mayor-tiempo').click(function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: "subastaRapida",
+                type: 'POST',
+                data: {
+                    'filtro': 1
+                },
+                success: function(response) {
+                    var tiempoRestantecarDestroy = document.getElementsByClassName(
+                        'defaultCountdown');
+                    for (var m = 0; m < tiempoRestantecarDestroy.length; m++) {
+                        $(tiempoRestantecarDestroy[m]).countdown('destroy');
+
+                    }
+
+                    $("#subasta_proc_filtro_include").html(response);
+                    crearCrono();
+
+                },
+                statusCode: {
+                    404: function() {
+                        alert("pagina no encontrada mascota");
+                    }
+                },
+                error: function(jqXHR, status, error) {
+                    alert("Error al cargar");
+                }
+            });
+        });
 
     </script>
 

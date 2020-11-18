@@ -1,4 +1,24 @@
 @foreach ($su_dispo_s as $su_dispo)
+
+    @php
+
+    $abcd = date_default_timezone_get();
+    date_default_timezone_set('America/Lima');
+    $valorNP2 = date('Y-m-d H:i:s');
+    $tiempoini_aux2 = new \Carbon\Carbon($su_dispo->inicio_subasta);
+    $tiempofin_aux2 = new \Carbon\Carbon($valorNP2);
+    $segundosSub_dif2 =$tiempoini_aux2->diffInSeconds($tiempofin_aux2);
+    @endphp
+    <script>
+        programada_fecha_inicial2[programada_cantidad2] = "{{ $su_dispo->inicio_subasta }}";
+        programada_fecha_final2[programada_cantidad2] = "{{ $su_dispo->final_subasta }}";
+        programada_fecha_diff2[programada_cantidad2] = "{{ $segundosSub_dif2 }}";
+        programada_cantidad2++;
+
+    </script>
+
+
+
     <div class="col-lg-4 col-md-4 col-sm-6 mb-4">
         <div class="card h-100">
             <div class="card-body">
@@ -15,8 +35,8 @@
                     Precio base : S/ {{ $su_dispo->precio_inicial }}
                 </div>
                 <div class="text-center">Inicia en</div>
-                <div class="defaultCountdownPro"> </div>
                 <div class="text-center">{{ $su_dispo->inicio_subasta }}</div>
+                <div class="defaultCountdownPro" id="cronoContador-program"> </div>
 
                 <!--<div class="alert alert-success" role="alert">Carga Completa</div>-->
                 <div class="sub-rapida-icono">
@@ -43,4 +63,4 @@
         </div>
     </div>
 @endforeach
-{{ $su_dispo_s->render() }}
+{{ $su_dispo_s->links() }}
