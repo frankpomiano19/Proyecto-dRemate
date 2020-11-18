@@ -2,7 +2,7 @@
 
 
 @section('cont_cabe')
-    <title>Subtitulo - dRemate</title>
+    <title>Home - dRemate</title>
 
 @endsection
 
@@ -14,6 +14,7 @@
     <!-- Colocar css-->
     <link rel="stylesheet" href="css/inicio.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     
    
@@ -23,55 +24,7 @@
 
 @section('contenido')
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">D'REMATE</a>
-    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="navbarCollapse" style="">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            CATEGORIAS
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Articulos de moda</a>
-                <a class="dropdown-item" href="#">Productos tecnologicos</a>
-                <a class="dropdown-item" href="#">Articulos para el hogar</a>
-                <a class="dropdown-item" href="#">Deportes y ocio</a>
-                <a class="dropdown-item" href="#">Antigüedades</a>
-                <a class="dropdown-item" href="#">Articulos de jardineria</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Ver todas</a>
-            </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">SUBASTAS EN VIVO</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">NOVEDADES</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">ABOUT</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">REGISTRATE</a>
-        </li>
-      </ul>
-      <ul>
-          <li>
-            <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </li>
-      </ul>
-      
-    </div>
-  </nav>
+
 
 
 
@@ -83,22 +36,22 @@
         </h2>
         <hr style="margin-top: 25px;">
         <h5><span class="uppercase">Registrate ahora y empieza</span></h5>
-        <a class="red button register" href="https://www.exleasingcar.si/es/registrarse">REGISTRARSE</a> 
+        <a class="red button register" href="/register">REGISTRARSE</a> 
         
         <div class="c-hero__feats">
-            <a href="#" class="c-hero__feat">
+            <a href="/subastaRapida" class="c-hero__feat">
                 <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/feat1.png">
                     <h2>Subastas<br>
                         En vivo</h2>
                         <span>Conoce más</span>
             </a>
-            <a href="#" class="c-hero__feat">
+            <a href="/subastaRapida" class="c-hero__feat">
                 <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/results-2.png">
                     <h2>Resultados<br>
                         anteriores</h2>
                     <span>Conoce más</span>
             </a>
-            <a href="#" class="c-hero__feat">
+            <a href="/category" class="c-hero__feat">
                 <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/valuation-2.png">
                     <h2>Categorias<br>
                         Variadas</h2>
@@ -111,9 +64,6 @@
                     <span>Conoce más</span>
             </a>-->
         </div>
-
-        
-
     </div>
 </div>
 
@@ -132,90 +82,86 @@
     </div>
 </section>
 
-<!--<section class="c-posts">
-    <h2 class="c-posts__title">From the blog</h2>
-    <h3 class="c-posts__subtitle">Industry & Property News</h3>
-    <div class="c-posts__wrap">
-        <a href="#" class="c-posts__item" style="background-image: url(https://auctionhouselondon.co.uk/wp-content/uploads/2020/01/bigstock-Double-Exposure-Investment-B-306019798.jpg);">
-            <div class="c-posts__item__overlay">
-                 <div class="c-posts__item__content">
-                    <h2 class="c-posts__item__title">Why 2020 is hailedas a good time to invest in property</h2>
-                    <h3 class="c-posts__item__excerpt">
-                        <p>
-                            Halifax's latest house price index shows that UK house prices were 2.1% higher in November 2019 compared to a year ago.
-                        </p>
-                    </h3>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="c-posts__item" style="background-image: url(https://auctionhouselondon.co.uk/wp-content/uploads/2020/01/bigstock-London-House-Traditional-Brick-239461486.jpg);">
-            <div class="c-posts__item__overlay">
-                <div class="c-posts__item__content">
-                    <h2 class="c-posts__item__title">House prices rise 3.6% in UK’s regeneration zones</h2>
-                    <h3 class="c-posts__item__excerpt">
-                        <p>
-                            Data compiled by CBRE shows that property located close to regeneration regions in the UK witnessed a price increase of an average 3.6% in 2019.
-                        </p>
-                    </h3>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="c-posts__item" style="background-image: url(https://auctionhouselondon.co.uk/wp-content/uploads/2020/01/ahl-2.jpg);">
-            <div class="c-posts__item__overlay">
-                <div class="c-posts__item__content">
-                    <h2 class="c-posts__item__title">Britain’s BTL market rebounds, figures show</h2>
-                    <h3 class="c-posts__item__excerpt">
-                        <p>
-                            The buy-to-let market in Britain in 2019 has picked up and gained momentum. 
-                        </p>
-                    </h3>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="c-posts__item" style="background-image: url(https://auctionhouselondon.co.uk/wp-content/uploads/2020/01/ahl-1.jpg);">
-            <div class="c-posts__item__overlay">
-                <div class="c-posts__item__content">
-                    <h2 class="c-posts__item__title">Experts urging people to invest in buy to let amid booming tourist market</h2>
-                    <h3 class="c-posts__item__excerpt">
-                        <p>
-                            Tourism is booming in Britain. According to Visit Britain’s forecast for 2019, inbound visits to the UK are up 3% to 38.9 million.
-                        </p>
-                    </h3>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="c-posts__item" style="background-image: url(https://auctionhouselondon.co.uk/wp-content/uploads/2019/11/Why-young-professionals.jpg);">
-            <div class="c-posts__item__overlay">
-                <div class="c-posts__item__content">
-                    <h2 class="c-posts__item__title">Why young professionals are opting to rent HMOs</h2>
-                    <h3 class="c-posts__item__excerpt">
-                        <p>
-                            Savvy investors recognise that HMOs (Houses of Multiple Occupancy) make excellent investments, often providing higher monthly yields that standard buy-to-let properties. 
-                        </p>
-                    </h3>
-                </div>
-            </div>
-        </a>
-        <a href="#" class="c-posts__item" style="background-image: url(https://auctionhouselondon.co.uk/wp-content/uploads/2019/11/study-shows-rents-in-britain.jpg);">
-            <div class="c-posts__item__overlay">
-                <div class="c-posts__item__content">
-                    <h2 class="c-posts__item__title">Study shows rents in Britain unaffected by tenant fees ban</h2>
-                        <h3 class="c-posts__item__excerpt">
-                            <p>
-                                Despite warnings being made that rents were set to rise when the government’s ban on tenancy fees came into force, there is little evidence to show the cost of rent has increased.
-                             </p>
-                        </h3>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="c-posts__btns">
-        <a href="#" class="c-posts__btn">
-            Read More Articles
-        </a>
-    </div>
-</section> -->
 
+<section class="section section-lg text-center" style="position: relative;">
+        <div class="shell-wide">
+          <h3>Cómo funciona</h3>
+          <div class="divider divider-default"></div>
+          <div class="range range-xs-center range-50">
+            <div class="cell-sm-9 cell-md-6 cell-lg-3">
+              <div class="thumbnail-classic unit unit-sm-horizontal unit-md-vertical unit-md-horizontal unit-lg-vertical">
+                <div class="thumbnail-classic-icon unit-left"><span class="icon">01</span></div>
+                <div class="thumbnail-classic-caption unit-body">
+                  <h6 class="thumbnail-classic-title">REGISTRATE</h6>
+                  <hr class="divider divider-default divider-sm">
+                  <p class="thumbnail-classic-text">Para comenzar a utilizar nuestra página, deberá registrarse. ¡Es completamente gratis!</p>
+                </div>
+              </div>
+            </div>
+            <div class="cell-sm-9 cell-md-6 cell-lg-3">
+              <div class="thumbnail-classic unit unit-sm-horizontal unit-md-vertical unit-md-horizontal unit-lg-vertical">
+                <div class="thumbnail-classic-icon unit-left"><span class="icon">02</span></div>
+                <div class="thumbnail-classic-caption unit-body">
+                  <h6 class="thumbnail-classic-title">Compra o haz una oferta</h6>
+                  <hr class="divider divider-default divider-sm">
+                  <p class="thumbnail-classic-text">Puede comprar instantáneamente o hacer una oferta por el producto deseado inmediatamente después del registro.</p>
+                </div>
+              </div>
+            </div>
+            <div class="cell-sm-9 cell-md-6 cell-lg-3">
+              <div class="thumbnail-classic unit unit-sm-horizontal unit-md-vertical unit-md-horizontal unit-lg-vertical">
+                <div class="thumbnail-classic-icon unit-left"><span class="icon">03</span></div>
+                <div class="thumbnail-classic-caption unit-body">
+                  <h6 class="thumbnail-classic-title">Realiza una puja</h6>
+                  <hr class="divider divider-default divider-sm">
+                  <p class="thumbnail-classic-text">Ofrece una cantidad de dinero para adquirir cualquier subasta, si tu puja resulta ser la más alta, ¡la subasta es tuya!</p>
+                </div>
+              </div>
+            </div>
+            <div class="cell-sm-9 cell-md-6 cell-lg-3">
+              <div class="thumbnail-classic unit unit-sm-horizontal unit-md-vertical unit-md-horizontal unit-lg-vertical">
+                <div class="thumbnail-classic-icon unit-left"><span class="icon">04</span></div>
+                <div class="thumbnail-classic-caption unit-body">
+                  <h6 class="thumbnail-classic-title">Gana</h6>
+                  <hr class="divider divider-default divider-sm">
+                  <p class="thumbnail-classic-text">Gana fácilmente en nuestra subasta y disfruta del producto que tanto deseas.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+<section id="about" class="about">
+    <div class="container aos-init aos-animate" data-aos="fade-up">
+        <div class="section-title" style="padding-bottom: 30px;">
+            <h2>¿Quiénes somos?</h2>
+            <p>Somos una empresa dedicada a las subastas de productos en linea, que permite a los miembros participar en emocionantes subastas en vivo - en cualquier momento y desde cualquier lugar.</p>
+        </div>
+        <div class="row content">
+            <div class="col-lg-6">
+            <p style="color: #5d5a5a;;margin-top: 0px;margin-bottom: 1rem;font-size:16px">
+                Disfruta de las distintas ventajas que te ofrecemos para hacer de esta experiencia la mejor de todas.
+            </p>
+            <ul>
+                <li style="color: #444444; "><i class="fa fa-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+                <li style="color: #444444;"><i class="fa fa-check"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
+                <li style="color: #444444;"><i class="fa fa-check"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
+            </ul>
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0">
+            <p style="color: #444444;">
+            ¿Qué es una subasta en vivo?<br>Las subastas en vivo son eventos de transmisión simultánea que permiten a las personas ofertar por artículos en línea. Con las ofertas en vivo, puede acceder a las subastas de todo el mundo directamente desde su propia computadora. ¡Simplemente conviértase en miembro y estará listo para ofertar!
+            </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- CATEGORIAS
 
 <section class="c-posts">
         <h2 class="c-posts__title">Explora las diversas categorias</h2>
@@ -233,7 +179,7 @@
                     <span>Moda</span>
                 </h2>
                 <p class="description">  
-                    <!--asd-->
+                    asd
                 </p>
             </figcaption> 
         </figure>
@@ -245,7 +191,7 @@
                     <span>Tecnologicos</span>
                 </h2>
                 <p class="description">  
-                    <!--asd-->
+                    asd
                 </p>
             </figcaption> 
         </figure>
@@ -257,7 +203,7 @@
                     <span>HOGAR</span>
                 </h2>
                 <p class="description">  
-                   <!--asd-->
+                   asd
                 </p>
             </figcaption> 
         </figure>
@@ -271,7 +217,7 @@
                     <span>Ocio</span>
                 </h2>
                 <p class="description">  
-                    <!--asd-->
+                    asd
                 </p>
             </figcaption> 
         </figure>
@@ -283,7 +229,7 @@
                     <span>Antigüedades</span>
                 </h2>
                 <p class="description">  
-                    <!--asd-->
+                    asd
                 </p>
             </figcaption> 
         </figure>
@@ -295,7 +241,7 @@
                     <span>Jardineria</span>
                 </h2>
                 <p class="description">  
-                    <!--asd-->
+                    asd
                 </p>
             </figcaption> 
         </figure>
@@ -303,41 +249,207 @@
 </div>
 <br>
 <div class="c-posts__btns">
-    <a href="/our-blog/" class="c-posts__btn">Explora más</a>
+    <a href="/category" class="c-posts__btn">Explora más</a>
 </div>
-</section>
+</section>-->
 
-<!--
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Username</th>
-        <th>Password</th>
-    </tr>
-    <?php
-    $conn = mysqli_connect("localhost","root", "","db_dremate");
-    if($conn->connect_error){
-        die("Connection failed:". $conn->connect_error);
-    }
+<div class="deals_featured">
+    <div class="container">
+        <div class="row"><h2>Productos destacados</h2>
+            <div class="col d-flex flex-lg-row flex-column align-items-center justify-content-start">
+                <!-- Deals -->
+                
+                <div class="deals">
+                    <div class="deals_title">Destacado</div>
+                    <div class="deals_slider_container">
+                    <!-- Deals Slider -->
+                    <div class="owl-carousel owl-theme deals_slider owl-loaded owl-drag">
 
-    $sql = "SELECT id,username,password from inicio";
-    $result = $conn->query($sql);
+                    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s"  style="width: auto"><div class="owl-item active" style="margin-right: 30px;"><div class="owl-item deals_item">
+                    <div class="deals_image"><img src="https://preview.colorlib.com/theme/onetech/images/deals.png" alt="" data-pagespeed-url-hash="4210287633" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></div>
+                    <div class="deals_content" style="margin-bottom:15px">
+                    <div class="deals_info_line d-flex flex-row justify-content-start">
+                    <div class="deals_item_category"><a href="#">Headphones</a></div>
+                    <div class="deals_item_price_a ml-auto">$300</div>
+                    </div>
+                    <div class="deals_info_line d-flex flex-row justify-content-start">
+                    <div class="deals_item_name">Beoplay H7</div>
+                    <div class="deals_item_price ml-auto">$225</div>
+                    </div>
 
-    if($result->num_rows>0){
-        while($row=$result->fetch_assoc()){
-            echo "<tr><td>".$row["id"]."</td><td>".$row["username"]."</td><td>".$row["password"]."</td></tr>";
-        }
-        echo"</table>";
-    }
-    else{
-        echo"0 result";
-    }
+                    <div class="deals_timer d-flex flex-row align-items-center justify-content-start">
+                    <div class="deals_timer_title_container">
+                    <div class="deals_timer_title">Hurry Up</div>
+                    <div class="deals_timer_subtitle">Offer ends in:</div>
+                    </div>
+                    <div class="deals_timer_content ml-auto">
+                    <div class="deals_timer_box clearfix" data-target-time="">
+                    <div class="deals_timer_unit">
+                    <div id="deals_timer1_hr" class="deals_timer_hr">47</div>
+                    <span>hours</span>
+                    </div>
+                    <div class="deals_timer_unit">
+                    <div id="deals_timer1_min" class="deals_timer_min">23</div>
+                    <span>mins</span>
+                    </div>
+                    <div class="deals_timer_unit">
+                    <div id="deals_timer1_sec" class="deals_timer_sec">05</div>
+                    <span>secs</span>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div></div></div></div></div>
+                    </div>
+                </div>
+                <!-- Featured -->
+                <div class="featured">
+                <div class="tabbed_container">
+                <div class="tabs">
+                <ul class="clearfix">
+                <li class="active">Ofertas de la semana</li>
 
-    $conn->close();
-    ?>
 
-</table>
--->
+                </ul>
+                <div class="tabs_line"><span style="left: 0px; width: 175px;"></span></div>
+                </div>
+                <!-- Product Panel -->
+                <div class="product_panel panel active">
+                <div class="featured_slider slider slick-initialized slick-slider slick-dotted"><div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 612px; transform: translate3d(0px, 0px, 0px);"><div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 153px;" tabindex="0" role="tabpanel" id="slick-slide00" aria-describedby="slick-slide-control00"><div><div class="featured_slider_item" style="width: 100%; display: inline-block;">
+                <div class="border_active active"></div>
+                <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_1.png" alt="" data-pagespeed-url-hash="2018603916" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></div>
+                <div class="product_content">
+                <div class="product_price discount">$225<span>$300</span></div>
+                <div class="product_name"><div><a href="product.html" tabindex="0">Huawei MediaPad...</a></div></div>
+                <div class="product_extras">
+
+                <button class="product_cart_button" tabindex="0">Add to Cart</button>
+                </div>
+                </div>
+                <div class="product_fav"><i class="fa fa-heart"></i></div>
+
+                </div>
+                </div></div><div><div class="featured_slider_item" style="width: 100%; display: inline-block;">
+                <div class="border_active active"></div>
+                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_2.png" alt="" data-pagespeed-url-hash="2313103837" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></div>
+                <div class="product_content">
+                <div class="product_price">$379</div>
+                <div class="product_name"><div><a href="product.html" tabindex="0">Apple iPod shuffle</a></div></div>
+                <div class="product_extras">
+
+                <button class="product_cart_button active" tabindex="0">Add to Cart</button>
+                </div>
+                </div>
+                <div class="product_fav"><i class="fa fa-heart"></i></div>
+
+                </div>
+                </div></div></div><div class="slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 153px;" tabindex="0" role="tabpanel" id="slick-slide01"><div><div class="featured_slider_item" style="width: 100%; display: inline-block;">
+                <div class="border_active active"></div>
+                <div class="product_item d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_3.png" alt="" data-pagespeed-url-hash="2607603758" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></div>
+                <div class="product_content">
+                <div class="product_price">$379</div>
+                <div class="product_name"><div><a href="product.html" tabindex="0">Sony MDRZX310W</a></div></div>
+                <div class="product_extras">
+
+                <button class="product_cart_button" tabindex="0">Add to Cart</button>
+                </div>
+                </div>
+                <div class="product_fav"><i class="fa fa-heart"></i></div>
+
+                </div>
+                </div></div><div><div class="featured_slider_item" style="width: 100%; display: inline-block;">
+                <div class="border_active active"></div>
+                <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_4.png" alt="" data-pagespeed-url-hash="2902103679" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></div>
+                <div class="product_content">
+                <div class="product_price discount">$225<span>$300</span></div>
+                <div class="product_name"><div><a href="product.html" tabindex="0">LUNA Smartphone</a></div></div>
+                <div class="product_extras">
+
+                <button class="product_cart_button" tabindex="0">Add to Cart</button>
+                </div>
+                </div>
+                <div class="product_fav"><i class="fa fa-heart"></i></div>
+
+                </div>
+                </div></div></div><div class="slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 153px;" tabindex="0" role="tabpanel" id="slick-slide02"><div><div class="featured_slider_item" style="width: 100%; display: inline-block;">
+                <div class="border_active active"></div>
+                <div class="product_item d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_5.png" alt="" data-pagespeed-url-hash="3196603600" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></div>
+                <div class="product_content">
+                <div class="product_price">$225</div>
+                <div class="product_name"><div><a href="product.html" tabindex="0">Canon STM Kit...</a></div></div>
+                <div class="product_extras">
+
+                <button class="product_cart_button" tabindex="0">Add to Cart</button>
+                </div>
+                </div>
+                <div class="product_fav"><i class="fa fa-heart"></i></div>
+
+                </div>
+                </div></div><div><div class="featured_slider_item" style="width: 100%; display: inline-block;">
+                <div class="border_active active"></div>
+                <div class="product_item d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_6.png" alt="" data-pagespeed-url-hash="3491103521" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></div>
+                <div class="product_content">
+                <div class="product_price">$379</div>
+                <div class="product_name"><div><a href="product.html" tabindex="0">Samsung J330F...</a></div></div>
+                <div class="product_extras">
+
+                <button class="product_cart_button" tabindex="0">Add to Cart</button>
+                </div>
+                </div>
+                <div class="product_fav"><i class="fa fa-heart"></i></div>
+
+                </div>
+                </div></div></div><div class="slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 153px;" tabindex="0" role="tabpanel" id="slick-slide03"><div><div class="featured_slider_item" style="width: 100%; display: inline-block;">
+                <div class="border_active"></div>
+                <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_7.png" alt="" data-pagespeed-url-hash="3785603442" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></div>
+                <div class="product_content">
+                <div class="product_price">$379</div>
+                <div class="product_name"><div><a href="product.html" tabindex="0">Lenovo IdeaPad</a></div></div>
+                <div class="product_extras">
+
+                <button class="product_cart_button" tabindex="0">Add to Cart</button>
+                </div>
+                </div>
+                <div class="product_fav"><i class="fa fa-heart"></i></div>
+
+                </div>
+                </div></div><div><div class="featured_slider_item" style="width: 100%; display: inline-block;">
+                <div class="border_active"></div>
+                <div class="product_item d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_8.png" alt="" data-pagespeed-url-hash="4080103363" onload="pagespeed.CriticalImages.checkImageForCriticality(this);"></div>
+                <div class="product_content">
+                <div class="product_price">$225</div>
+                <div class="product_name"><div><a href="product.html" tabindex="0">Digitus EDNET...</a></div></div>
+                <div class="product_extras">
+
+                <button class="product_cart_button" tabindex="0">Add to Cart</button>
+                </div>
+                </div>
+                <div class="product_fav"><i class="fa fa-heart"></i></div>
+
+                </div>
+                </div></div></div></div></div></div>
+                <div class="featured_slider_dots_cover"></div>
+                </div>
+                <!-- Product Panel -->
+
+                <!-- Product Panel -->
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <section class="c-callout" style="background-color: #000000;;">
     <div class="c-callout__wrap">
@@ -345,107 +457,40 @@
         </span>
         <div class="c-callout__message">
             <p>
-                <strong>¿Quieres comprar ahora? Mira la sección de Subastas rápidas</strong>
+                <strong>¿Quieres comprar ahora?</strong>
             </p>
         </div>
-        <a href="#" class="c-callout__btn">
-                Subastas
+        <a href="/subastaRapida" class="c-callout__btn">
+                Subastas rápidas
         </a>
     </div>
 </section>
 
 
-<!--<footer class="o-footer">
-    <section class="c-footer">
-        <div class="o-wrapper">
-            <div class="c-footer__widgets">
-                <section class="c-footer__col nav_menu-2 widget_nav_menu"> 
-                    <h3 class="c-footer__title">CONTENIDO</h3>
-                    <div class="menu-footer-column-1-container">
-                        <ul id="menu-footer-column-1" class="menu">
-                            <li id="menu-item-2080" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2080"><a href="#">¿Quiénes somos?</a></li>
-                            <li id="menu-item-2543" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2543"><a href="#">Politicas y privacidad</a></li>
-                            <li id="menu-item-1829" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1829"><a href="#">Atención al cliente</a></li>
-                        </ul>
-                    </div>
-                </section>
-            </div>
-            <div class="c-footer__bottom"></div>
-        </div>
-    </section>
-</footer>
--->
-
-<footer>
-<div class="container">
-    <div class="row">
-
-        <div class="col-sm-6 col-md-4">
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-                <div class="widget">
-                <img src="https://i.pinimg.com/originals/76/29/09/76290974c6af0f8a9c77a629f11d27b5.png" class="img-responsive center" alt="" width="200" height="75" style="height: 150px;width: 150px;">
-                </div>
-            </div>
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-                <div class="widget">
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-                <div class="widget">
-                    <h4>CONTENIDO</h4>
-                    <ul>
-                        <li><a href="#" data-toggle="modal" data-target="#ventanaModalQuienes">¿Quiénes somos?</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#ventanaModalPolitica">Política y privacidad</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#ventanaModalAtencion">Atención al cliente</a></li>
 
 
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-4">
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-                <div class="widget">
-                    <h4>CONTACTENOS</h4>
-                    <ul>
-                        <li>
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-                            </span> 994212883
-                        </li>
-                        <li>
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-                            </span> losveintisiete@gmail.com
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="sub-footer">
+<!--Footer-->
+
+<footer id="footer">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-6 col-md-6 col-lg-6">
-                <div class="wow fadeInLeft" data-wow-delay="0.1s">
-                    <div class="text-left">
-                        <p>&copy;Copyright - Grupo LosVeintisiete. All rights reserved.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <h3>dRemate</h3>
+      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <div class="social-links">
+        <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
+        <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>
+        <a class="btn btn-social-icon btn-instagram"><span class="fa fa-instagram"></span></a>
+      </div>
+      <div class="copyright">
+        © Copyright <strong><span>dRemate</span></strong> 2020 - 3030. All Rights Reserved
+      </div>
     </div>
-</div>
-</footer>
+  </footer>
 
+<!--Footer-->
 @endsection
 
 @section('contenidoJSabajo')
 <script src="https://use.fontawesome.com/c9d7a705d9.js"></script>
+<script src="plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
     <!-- Colocar js abajo-->
 @endsection
