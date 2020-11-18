@@ -16,7 +16,7 @@
     </script>
 
 
-    <div class="col-sm-4">
+    <div class="col-sm-4 py-1">
         <div class="card">
             <div class="card-body" style="margin-bottom: auto;padding-bottom:0px;">
                 <h5 class="card-title titulo-card-header-1">
@@ -43,15 +43,15 @@
                 <div class="defaultCountdown"> </div>
                 <!--<div class="time"></div>-->
                 <br>
+                <!--
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0"
                         aria-valuemax="100" style="width: {{ rand(0, 100) }}%;">
                         {{ $su_curso->final_subasta }}
                     </div>
                 </div>
-                <div class="alert alert-success" role="alert">Carga completa!</div>
-
-
+                <div class="alert alert-success alerta-terminado" role="alert">Carga completa!</div>
+                -->
                 <a href="#" class="btn btn-primary col-md-12 boton-ver-subasta">
                     <div class="row">
                         <div class="col-md-12" style="text-align: center">Ver Subasta</div>
@@ -62,6 +62,7 @@
     </div>
     <script>
         programada_cantidad++;
+        progresoIndex++;
 
     </script>
 @endforeach

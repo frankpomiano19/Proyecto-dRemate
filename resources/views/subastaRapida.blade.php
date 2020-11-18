@@ -37,6 +37,9 @@
         var filtroOpc = 0;
         var tablasOpc = -1;
 
+
+        var progresoIndex = 0;
+
     </script>
 
     <header class="jumbotron font-popin"
@@ -160,8 +163,8 @@
 
 
                             <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </a>-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div style="text-align: center;">Ver mas subastas</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </a>-->
 
                         </div>
 
@@ -195,10 +198,12 @@
                                                 @include('partials/sub_rap_his')
                                             </div>
                                         </div>
-                                        <div class="card-footer text-center"><a class="btn btn-fill-1" href="#">Ver mas
-                                                en el
-                                                historial</a>
-                                        </div>
+                                        <!--
+                                            <div class="card-footer text-center"><a class="btn btn-fill-1" href="#">Ver mas
+                                                    en el
+                                                    historial</a>
+                                            </div>
+                                        -->
                                     </div>
                                 </div>
                             </div>
@@ -232,9 +237,33 @@
     </script>
 
     <script>
+        function progresoRun() {
+            var $progress = document.getElementsByClassName('progess');
+            var $progressBar = document.getElementsByClassName('progress-bar');
+            var $alert = document.getElementsByClassName('alerta-terminado');
+            //var $progress = $('.progress');
+            //var $progressBar = $('.progress-bar');
+            //var $alert = $('.alert');
+            for (var l = 0; l < $progress.length; l++) {
+                $progressBar[l].animate({
+                    width: "100%"
+                }, 50000);
+                $progress[l].delay(100000).fadeOut(50000);
+
+                setTimeout(function() {
+                    $progress[l].css('display', 'none');
+                    $alert[l].css('display', 'block');
+                }, 50000);
+            }
+        }
+
+    </script>
+
+    <script>
         $(document).ready(function() {
             crearCrono();
             crearCrono2();
+            progresoRun();
             /*
             $(document).on('click', '#v-pills-subasta-cur', function(event) {
                 crearCrono();
@@ -266,7 +295,12 @@
                         }
                         $("#subasta_proc_filtro_include").html(data);
                         crearCrono();
+                        $("#subasta_proc_filtro_include").removeClass('div-disabled');
                     },
+                    beforeSend: function(thisXHR) {
+                        $("#subasta_proc_filtro_include").addClass('div-disabled');
+                    },
+
                     statusCode: {
                         404: function() {
                             alert("pagina no encontrada mascota");
@@ -299,6 +333,10 @@
 
                         $("#id_subasta_programada").html(data);
                         crearCrono2();
+                        $("#id_subasta_programada").removeClass('div-disabled');
+                    },
+                    beforeSend: function(thisXHR) {
+                        $("#id_subasta_programada").addClass('div-disabled');
                     },
                     statusCode: {
                         404: function() {
@@ -325,6 +363,10 @@
                     url: "/subastaRapida/fetch_data2?page=" + page,
                     success: function(data) {
                         $("#historial_sub").html(data);
+                        $("#historial_sub").removeClass('div-disabled');
+                    },
+                    beforeSend: function(thisXHR) {
+                        $("#historial_sub").addClass('div-disabled');
                     },
                     statusCode: {
                         404: function() {
@@ -380,6 +422,11 @@
                     }
                     $("#subasta_proc_filtro_include").html(response);
                     crearCrono();
+                    $("#subasta_proc_filtro_include").removeClass('div-disabled');
+
+                },
+                beforeSend: function(thisXHR) {
+                    $("#subasta_proc_filtro_include").addClass('div-disabled');
                 },
                 statusCode: {
                     404: function() {
@@ -411,7 +458,11 @@
 
                     $("#subasta_proc_filtro_include").html(response);
                     crearCrono();
+                    $("#subasta_proc_filtro_include").removeClass('div-disabled');
 
+                },
+                beforeSend: function(thisXHR) {
+                    $("#subasta_proc_filtro_include").addClass('div-disabled');
                 },
                 statusCode: {
                     404: function() {

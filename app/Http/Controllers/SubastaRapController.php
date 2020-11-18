@@ -9,9 +9,9 @@ use App\Models\Producto;
 class SubastaRapController extends Controller
 {
     public function index(){
-        $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','ASC')->paginate(1);
-        $su_dispo_s = Producto::where('estado','Disponible')->orderBy('final_subasta','ASC')->paginate(1);
-        $su_hist_s = Producto::where('estado','Comprado')->orderBy('final_subasta','ASC')->paginate(1);
+        $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','ASC')->paginate(6);
+        $su_dispo_s = Producto::where('estado','Disponible')->orderBy('final_subasta','ASC')->paginate(6);
+        $su_hist_s = Producto::where('estado','Comprado')->orderBy('final_subasta','ASC')->paginate(10);
 
         return view('subastaRapida',compact('su_curso_s','su_dispo_s','su_hist_s'));
     }
@@ -21,10 +21,10 @@ class SubastaRapController extends Controller
 
         if($request -> ajax()){
             if($request->filtro == 0){
-                $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','DESC')->paginate(1);
+                $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','DESC')->paginate(6);
                 return view('partials.sub_rap_pro',compact('su_curso_s'));    
             }else if($request->filtro == 1){
-                $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','ASC')->paginate(1);
+                $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','ASC')->paginate(6);
                 return view('partials.sub_rap_pro',compact('su_curso_s'));    
 
             }else{
@@ -57,11 +57,11 @@ class SubastaRapController extends Controller
 
         if($request->ajax()){
             if($request->filtro == 0){
-                $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','ASC')->paginate(1);
+                $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','ASC')->paginate(6);
                 return view('partials.sub_rap_pro',compact('su_curso_s'));    
     
             }else if($request->filtro==1){
-                $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','DESC')->paginate(1);
+                $su_curso_s = Producto::where('estado','En curso')->orderBy('final_subasta','DESC')->paginate(6);
                 return view('partials.sub_rap_pro',compact('su_curso_s'));    
         
             }
@@ -71,11 +71,11 @@ class SubastaRapController extends Controller
     }
 
     public function fetch_data1(Request $request){
-        $su_dispo_s = Producto::where('estado','Disponible')->orderBy('final_subasta','ASC')->paginate(1);
+        $su_dispo_s = Producto::where('estado','Disponible')->orderBy('final_subasta','ASC')->paginate(6);
         return view('partials/sub_rap_progra',compact('su_dispo_s'));    
     }
     public function fetch_data2(Request $request){
-        $su_hist_s = Producto::where('estado','Comprado')->orderBy('final_subasta','ASC')->paginate(1);    
+        $su_hist_s = Producto::where('estado','Comprado')->orderBy('final_subasta','ASC')->paginate(10);    
         return view('partials.sub_rap_his',compact('su_hist_s'));    
     }
 

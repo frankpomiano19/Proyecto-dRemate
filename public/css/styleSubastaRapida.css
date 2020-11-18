@@ -232,6 +232,7 @@
     white-space: nowrap;
 }
 
+/*
 @-webkit-keyframes animate-stripes {
     from {
         background-position: 0 0;
@@ -240,6 +241,7 @@
         background-position: 44px 0;
     }
 }
+*/
 
 .ui-progress-bar {
     position: relative;
@@ -256,6 +258,7 @@
     box-shadow: inset 0px 1px 2px 0px rgba(0, 0, 0, 0.5), 0px 1px 0px 0px #FFF;
 }
 
+/*
 .ui-progress {
     position: relative;
     display: block;
@@ -274,6 +277,7 @@
     border: 1px solid #4c8932;
     -webkit-animation: animate-stripes 2s linear infinite;
 }
+*/
 
 .time {
     text-align: center;
@@ -283,4 +287,26 @@
 
 .nav-pills .nav-link.active, .show>.nav-pills .nav-link {
     background: rgba(23, 162, 184, 1) !important
+}
+
+/*Barra carga*/
+
+.loading-circulo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: 1s all;
+    opacity: 0;
+}
+
+.div-disabled {
+    pointer-events: none;
+    opacity: 0.4;
 }
