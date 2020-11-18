@@ -41,7 +41,7 @@
     </head>
     <body class="antialiased" >
         <div class="container-md border rounded-lg cuerpo">
-            <form class="needs-validation"  method="POST" action="{{ route('producto.registroe')}}" novalidate>
+            <form class="needs-validation"  method="POST" action="{{ route('producto.registroe')}}" enctype="multipart/form-data" novalidate>
             @csrf
             <h1 class="text-center">Registro de producto</h1><br>
             <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br></p>

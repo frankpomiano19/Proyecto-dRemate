@@ -140,12 +140,12 @@
     </footer>
 
 
-    @yield('contenidoJSabajo')
 
     <script src="js/jquery-3.5.1.js"></script>
     <!--<script src="js/poper-1.16.1.js"></script>-->
     <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
     <script src="bootstrap-4.5.3-dist/js/bootstrap.bundle.js"></script>
+    @yield('contenidoJSabajo')
 
 </body>
 
