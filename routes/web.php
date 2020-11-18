@@ -26,6 +26,10 @@ Route::get('/oferta', function () {
     return view('puja');
 });
 
+Route::get('/category', function () {
+    return view('categorias');
+});
+
 Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
 Route::post('/subastaRapida',[SubastaRapController::class,'filtroProc'])->name("subastaRapida_filtro_proc");
 
