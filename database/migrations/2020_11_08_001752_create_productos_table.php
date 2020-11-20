@@ -14,18 +14,29 @@ class CreateProductosTable extends Migration
     public function up()
     {
         Schema::create('productos', function (Blueprint $table) {
+
             $table->id();
+            //Primer Formulario
             $table->string('nombre_producto');
             $table->text('descripcion');
-            $table->decimal('precio_inicial', 6, 2);
-            $table->string('imagen');
-            $table->string('estado');
-            $table->dateTime('final_subasta');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('categoria_id');
+            $table->string('estado');
+            $table->string('condicion')->nullable();
+            $table->string('imagen');
+            $table->string('garantia')->nullable();
+
+            //Segundo Formulario
+            $table->string('precio_inicial')->nullable();
+
+            $table->dateTime('inicio_subasta')->nullable();
+            $table->dateTime('final_subasta')->nullable();
+            
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id_comprador')->nullable();
     	    $table->foreign('categoria_id')->references('id')->on('categorias');	
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id_comprador')->references('id')->on('users');
         });
     }
 

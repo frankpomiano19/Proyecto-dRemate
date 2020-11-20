@@ -16,8 +16,6 @@
 
     @yield('cont_cabe')
     <!-- Scripts -->
-    <script src="js/jquery-3.5.1.js"></script>
-    <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
     @yield('contenidoJS')
 
     <!-- Fonts -->
@@ -26,9 +24,11 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    @yield('contenidoCSS')
+
+    <link rel="stylesheet" href="css/bootstrap-social.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+
+        @yield('contenidoCSS')
 
 </head>
 
@@ -50,15 +50,33 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
+
+                <!--Barra de busqueda-->
+                  <form class="form-inline">
+                    <div class="input-group">
+                      <input type="search" class="form-control" placeholder="Nombre de producto" aria-label="Username" aria-describedby="basic-addon1">
+                      <div class="input-group-prepend">
+                            <button type="submit"><i class="fa fa-search fa-lg fa-fw"></i></button> 
+                      </div>
+                    </div>
+                  </form>                  
+                <!-- Fin de Barra de busqueda-->                
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item @if($stringRuta == 'welcome') active  @endif ">
                         <a class=" nav-link" href="{{ route('welcome') }}">Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
+
+                    <li class="nav-item @if($stringRuta == 'subastaRapida') active  @endif ">
+                        <a class=" nav-link" href="{{ route('subastaRapida') }}">Subasta rapida
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
 
-                        @guest
+                    @guest
 
                         <li class="nav-item @if($stringRuta == 'login') active  @endif">
                             <a class="nav-link" href="{{ route('login') }}">Ingresar</a>
@@ -122,7 +140,13 @@
     </footer>
 
 
+
+    <script src="js/jquery-3.5.1.js"></script>
+    <!--<script src="js/poper-1.16.1.js"></script>-->
+    <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
+    <script src="bootstrap-4.5.3-dist/js/bootstrap.bundle.js"></script>
     @yield('contenidoJSabajo')
+
 </body>
 
 </html>

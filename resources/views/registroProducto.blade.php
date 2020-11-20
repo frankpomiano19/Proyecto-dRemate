@@ -25,7 +25,8 @@
 @endsection
     <body>
         <div class="container-md border rounded-lg cuerpo">
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation"  method="POST" action="{{ route('producto.registroe')}}" enctype="multipart/form-data" novalidate>
+            @csrf
             <h1 class="text-center">Registro de producto</h1><br>
             <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br><br></p>
             
@@ -34,13 +35,12 @@
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6 form-group">
                 <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
                 <small  class="form-text text-muted">Escoja su categoría</small>
-                <select class="form-control" required>
-                    <option value="">-Seleccione-</option>
+                <select class="form-control" name="categoria">
                     <option value="1">Antiguedades</option>
                     <option value="2">Tecnología</option>
                     <option value="3">Fósiles</option>
                     <option value="4">Fisi</option>
-                    <option value="5">Nulo</option>
+                    <option value="5">Otra</option>
                 </select>
                 <div class="invalid-feedback">
                     Seleccione una cateroría
@@ -107,7 +107,7 @@
             </div>
     
             <div id="siguiente">
-                <a href="{{URL::to('registroSubasta')}}"><button type="submit" class="btn btn-primary">Siguiente</button></a>
+                <button type="submit" class="btn btn-primary">Siguiente</button>
                 <br><br>
             </div>
           </form>
