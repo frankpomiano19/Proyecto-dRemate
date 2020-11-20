@@ -8,6 +8,9 @@
         <!-- Styles -->
         <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/registro.css') }}" />
+
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="parsley.min.js"></script>
         
         
     </head>
@@ -110,12 +113,12 @@
                 <!-- Esta es la información de la subasta -->
                 <div class="col-sm-12 col-md-6 col-lg-5">
                     <h2>Información de la subasta</h2><br>
-                    <form class="needs-validation" novalidate>
+                    <form novalidate data-parsley-validate>
                         
                         <div>
                             <label for="formGroupExampleInput"><h3>Precio inicial</h3></label>
                             <small class="form-text text-muted">Ingrese la cantidad en Soles (S/)</small>
-                            <input type="text" class="form-control" id="precioInicial" placeholder="Precio inicial" required>
+                            <input data-parsley-type="email" class="form-control" id="precioInicial" placeholder="Precio inicial" data-parsley-required="true">
                             <div class="invalid-feedback">
                                 Not nice >:v
                             </div>
