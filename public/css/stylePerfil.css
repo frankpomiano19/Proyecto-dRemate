@@ -84,4 +84,7 @@
     padding: 4px;
 }
 
-.input-cuadro {}
+.div-disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}

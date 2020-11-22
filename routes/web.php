@@ -80,6 +80,8 @@ Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear'
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');
 Route::post('/home/perfil/edit-per',[userController::class,'editarDatosPerso'] )->name('edit-datos-per');
+Route::post('/home/perfil/edit-publi',[userController::class,'editarDatosPubli'] )->name('edit-datos-publi');
+Route::post('/home/perfil/edit-pago',[userController::class,'pagoUser'] );
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
