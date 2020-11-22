@@ -23,10 +23,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="bootstrap-4.5.3-dist/css/bootstrap.min.css">
-
-    <link rel="stylesheet" href="css/bootstrap-social.css">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="{{asset('bootstrap-4.5.3-dist/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-social.css')}}">
+    <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.css')}}">
 
         @yield('contenidoCSS')
 
@@ -92,6 +91,9 @@
                         @endif
 
                     @else
+
+
+                        <a href="" class="nav-link dropdwn-toggle">ada</a>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -99,6 +101,9 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('perfil_us') }}">
+                                    Mi perfil
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -108,6 +113,7 @@
                                     @csrf
                                 </form>
                             </div>
+
                         </li>
                     @endguest
 
@@ -141,10 +147,10 @@
 
 
 
-    <script src="js/jquery-3.5.1.js"></script>
+    <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <!--<script src="js/poper-1.16.1.js"></script>-->
-    <script src="bootstrap-4.5.3-dist/js/bootstrap.js"></script>
-    <script src="bootstrap-4.5.3-dist/js/bootstrap.bundle.js"></script>
+    <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
+    <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
     @yield('contenidoJSabajo')
 
 </body>
