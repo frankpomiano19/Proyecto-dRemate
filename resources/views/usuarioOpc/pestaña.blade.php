@@ -22,38 +22,11 @@
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <label class="pest-perfil-cate h5"> Datos personales </label>
-                <form action="">
-                    @csrf
-                    <div class="row py-2">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <label class="label-input" for="">Usuario</label> <input class="input-cuadro" type="text"
-                                name="" id="" placeholder="nombre de usuario">
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <label class="label-input" for="">Celular</label> <input type="text" name="" id=""
-                                placeholder="Celular">
-                        </div>
-                    </div>
-                    <div class="row py-2">
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <label class="label-input" for="">Correo</label> <input type="text" name="" id=""
-                                placeholder="Correo">
-                        </div>
-                        <div class="col-sm-6 col-md-6 col-lg-6">
-                            <label class="label-input" for="">Sexo</label>
-                            <select name="sexo" id="">
-                                <option value="Femenino">Femenino</option>
-                                <option value="Masculino">Masculino</option>
-                            </select>
-                        </div>
-                    </div>
+                <div id="usuario-perso-id">
+                    @include('usuarioOpc.partialsUser.datosPerso')
 
-                    <div class="row text-center py-2">
-                        <div class="col-sm-12 col-md-12 col-lg-12  ">
-                            <button type="submit" class="btn boton-actualizar">Actualizar</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
+
                 <label class="pest-perfil-cate h5"> Información adicional </label>
                 <br>
                 <label class="texto-advertencia" for="">* Toda la información colocada en esta seccion sera pública y
@@ -65,14 +38,14 @@
                             <label class="btn btn-social-icon btn-youtube">
                                 <span class="fa fa-youtube"></span>
                             </label>
-                            <input type="url" name="youtube" id="" placeholder="youtube url">
+                            <input type="url" name="youtube" placeholder="youtube url">
                         </div>
 
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <label class="btn btn-social-icon btn-facebook">
                                 <span class="fa fa-facebook"></span>
                             </label>
-                            <input type="url" name="twitter" id="" placeholder="facebook-url">
+                            <input type="url" name="twitter" placeholder="facebook-url">
 
                         </div>
                     </div>
@@ -82,14 +55,14 @@
                             <label class="btn btn-social-icon btn-twitter">
                                 <span class="fa fa-twitter"></span>
                             </label>
-                            <input type="url" name="twitter" id="" placeholder="twitter url">
+                            <input type="url" name="twitter" placeholder="twitter url">
                         </div>
 
                         <div class="col-sm-6 col-md-6 col-lg-6">
                             <label class="btn btn-social-icon btn-twitch">
                                 <span class="fa fa-twitch"></span>
                             </label>
-                            <input type="url" name="twitch" id="" placeholder="twitch-url">
+                            <input type="url" name="twitch" placeholder="twitch-url">
 
                         </div>
 
@@ -160,6 +133,38 @@
 @endsection
 
 @section('contenidoJSabajo')
+    <!--
+                        <script>
+                            $.ajaxSetup({
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //Obtiene el token 										csrf
+                                }
+                            });
 
-    <!-- Colocar js abajo-->
+                        </script>
+                        -->
+    <script>
+        $('#enviar-datos-perso').click(function() {
+            console.log($('#usuario-perso-form-id').val());
+
+            $.ajax({
+                url: "/home/perfil/edit-per", //URL DE LA RUTA
+                type: 'POST',
+                data: {},
+                success: function(response) {
+                    $('#usuario-perso-id').html(response);
+                },
+                statusCode: {
+                    404: function() {
+                        alert("pagina no encontrada mascota");
+                    }
+                },
+                error: function(jqXHR, status, error) {
+                    alert("Error al cargar");
+                }
+            });
+        });
+
+    </script>
+
 @endsection
