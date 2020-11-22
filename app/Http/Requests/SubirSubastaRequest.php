@@ -24,7 +24,9 @@ class SubirSubastaRequest extends FormRequest
     public function rules()
     {
         return [
-            'precio_inicial'=>'required','inicio_subasta'=>'required','final_subasta'=>'required'
+            'precio_inicial'=>'required|numeric|regex:/^[\d]{0,3}(\.[\d]{1,2})?$/',
+            'inicio_subasta'=>'required',
+            'final_subasta'=>'required'
         ];
     }
 }

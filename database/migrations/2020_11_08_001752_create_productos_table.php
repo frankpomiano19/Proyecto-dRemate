@@ -25,6 +25,7 @@ class CreateProductosTable extends Migration
             $table->string('imagen');
             $table->string('garantia')->nullable();
             $table->string('ubicacion');
+            $table->string('distrito');
 
             //Segundo Formulario
             $table->string('precio_inicial')->nullable();

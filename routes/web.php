@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\SubastaRapController;
+use App\Http\Controllers\registroProductoController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -12,6 +13,7 @@ use App\Mail\MessageReceived;
 Route::get('/', function () {
     return view('welcome');
 })->name("welcome");
+
 
 Route::get('/prueba', function () {
     return view("paginaNT");
@@ -40,19 +42,16 @@ Route::get('/registroProducto', function () {
 })->middleware('auth');
 
 
-Route::post('/registroProducto', [HomeController::class,'registroE'])->name('producto.registroe');
+Route::get('/registroSubasta', function () {
+    return view('registroSubasta');
+});
+
+
+Route::post('/registroProducto', [registroProductoController::class,'formularioProducto'])->name('producto.registroe');
+
 
 //Guarda 2doos datos de producto
-Route::post('/registrarSubasta', [HomeController::class,'registroEE'])->name('producto.registroee');
-
-
-Route::get('/registroProducto', function () {
-    return view('registroProducto');
-})->middleware('auth');
-
-// Route::get('/registroSubasta', function () {
-//     return view('registroProducto');
-// })->middleware('auth');
+Route::post('/registroSubasta', [registroProductoController::class,'formularioProDos'])->name('producto.registroee');
 
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');

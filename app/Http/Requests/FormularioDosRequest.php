@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SubirProductoRequest extends FormRequest
+class FormularioDosRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,9 @@ class SubirProductoRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre_producto'=>['required','min:8'],
-            'descripcion'=>['required','min:30'],
-            'categoria_id'=>'required',
-            'estado'=>'required',
-            'condicion'=>'required',
-            'ubicacion'=>'required',
-            'imagen'=>'required',
-            'garantia'=>['required','min:8']
+            'precio_inicial'=>'required|numeric|regex:/^[\d]{0,3}(\.[\d]{1,2})?$/',
+            'inicio_subasta'=>'required',
+            'final_subasta'=>'required'
         ];
     }
-
 }

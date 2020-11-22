@@ -16,7 +16,7 @@
         </div>
 
         <h1 class="text-center">
-            {{$datospro->nombre_producto}}
+            {{$datosproducto->nombre_producto}}
         </h1>
 
         <div class="row">
@@ -29,22 +29,22 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h5 class="font-weight-bold">Descripción:</h5>
-                        <p>{{$datospro->descripcion}}</p>
+                        <p>{{$datosproducto->descripcion}}</p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-4">
                         <h5 class="font-weight-bold">Categoría:</h5>
-                        @if($datospro->categoria_id==1)
+                        @if($datosproducto->categoria_id==1)
                             <p>Tecnología</p>
-                        @elseif($datospro->categoria_id==2)
+                        @elseif($datosproducto->categoria_id==2)
                             <p>Hogar</p>
-                        @elseif($datospro->categoria_id==3)
+                        @elseif($datosproducto->categoria_id==3)
                             <p>Electrodomésticos</p>
-                        @elseif($datospro->categoria_id==4)
+                        @elseif($datosproducto->categoria_id==4)
                             <p>Joyas</p>
-                        @elseif($datospro->categoria_id==5)
+                        @elseif($datosproducto->categoria_id==5)
                             <p>Instrumento musical</p>
                         @else
                             <p>Juguetes</p> 
@@ -52,18 +52,18 @@
                     </div>
                     <div class="col-md-4">
                         <h5 class="font-weight-bold">Estado:</h5>
-                        <p>{{$datospro->estado}}</p>
+                        <p>{{$datosproducto->estado}}</p>
                     </div>
                     <div class="col-md-4">
                         <h5 class="font-weight-bold">Ubicación:</h5>
-                        <p>{{$datospro->ubicacion}}</p>
+                        <p>{{$datosproducto->ubicacion}}</p>
                     </div>
                 </div>
                 
                 <div class="row">
                     <div class="col-md-12">
                         <h5 class="font-weight-bold">Garantia:</h5>
-                        <p>{{$datospro->garantia}}</p>
+                        <p>{{$datosproducto->garantia}}</p>
                     </div>
                 </div>
 
@@ -71,22 +71,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h5 class="font-weight-bold">Condición:</h5>
-                        <p>{{$datospro->condicion}}</p>
+                        <p>{{$datosproducto->condicion}}</p>
                     </div>
                     <div class="col-md-6">
                         <h5 class="font-weight-bold">Precio Inicial:</h5>
-                        <p>S/ {{$datospro->precio_inicial}}</p>
+                        <p>S/ {{$datosproducto->precio_inicial}}</p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <h5 class="font-weight-bold">Inicio subasta:</h5>
-                        <p>{{$datospro->inicio_subasta}}</p>
+                        <p>{{$datosproducto->inicio_subasta}}</p>
                     </div>
                     <div class="col-md-6">
                         <h5 class="font-weight-bold">Fin subasta:</h5>
-                        <p>{{$datospro->final_subasta}}</p>
+                        <p>{{$datosproducto->final_subasta}}</p>
                     </div>
                 </div>
             <div>
