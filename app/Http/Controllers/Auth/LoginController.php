@@ -27,21 +27,22 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = "/";
+    //protected $redirectTo = "/subastaRapida";
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
+
+
+  
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
 
-    public function showLoginForm(){
-        return view("auth/login");
-    }
 
     public function username()
     {
@@ -57,7 +58,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials))
        {
-            return redirect()->route('home');
+            return redirect()->route('subastaRapida');
         }
 
         return back()
