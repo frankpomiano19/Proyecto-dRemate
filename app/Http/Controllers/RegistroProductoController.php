@@ -62,8 +62,8 @@ class RegistroProductoController extends Controller
         $datospro->categoria_id = $request->categoria_id;
         $datospro->estado = $request->estado;
         $datospro->condicion = $request->condicion;
-        $datospro->ubicacion = $request->ubicacion;
-        $datospro->distrito = $request->distrito;
+        $datospro->ubicacion = $request->selectDepartamento;
+        $datospro->distrito = $request->selectProvincia;
         $datospro->garantia = $request->garantia;
         $datospro->user_id = auth()->id();
 

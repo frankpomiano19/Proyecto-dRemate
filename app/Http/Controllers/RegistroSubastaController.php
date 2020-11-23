@@ -61,8 +61,8 @@ class RegistroSubastaController extends Controller
         $datospro->categoria_id = $request->categoria_id;
         $datospro->estado = $request->estado;
         $datospro->condicion = $request->condicion;
-        $datospro->ubicacion = $request->ubicacion;
-        $datospro->distrito = $request->distrito;
+        $datospro->ubicacion = $request->selectDepartamento;
+        $datospro->distrito = $request->selectProvincia;
         $datospro->garantia = $request->garantia;
         $datospro->precio_inicial = $request->precio_inicial;
         $datospro->inicio_subasta = $request->inicio_subasta;
@@ -76,34 +76,5 @@ class RegistroSubastaController extends Controller
 
         return view('productoRegistradoSubasta')->with('datosProducto', $request)->with('imagen1', $image_url1);
 
-    }
-
-    public function saveImages(Request $request, $image_url1,$image_url2,$image_url3,$image_url4)
-    {
-        
-        // $datospro = new App\Models\Tablaimagen;
-        $datospro = new App\Models\Producto;
-
-        $datospro->image_name1 = $image_url1;
-        $datospro->image_name2 = $image_url2;
-        $datospro->image_name3 = $image_url3;
-        $datospro->image_name4 = $image_url4;
-
-        $datospro->nombre_producto = $request->nombre_producto;
-        $datospro->descripcion = $request->descripcion;
-        $datospro->categoria_id = $request->categoria_id;
-        $datospro->estado = $request->estado;
-        $datospro->condicion = $request->condicion;
-        $datospro->ubicacion = $request->ubicacion;
-        $datospro->distrito = $request->distrito;
-        $datospro->garantia = $request->garantia;
-        $datospro->precio_inicial = $request->precio_inicial;
-        $datospro->inicio_subasta = $request->inicio_subasta;
-        $datospro->final_subasta = $request->final_subasta;
-        $datospro->user_id = auth()->id();
-
-        $datospro -> save();
- 
-    }
- 
+    } 
 }
