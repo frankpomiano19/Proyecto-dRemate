@@ -123,5 +123,18 @@ class HomeController extends Controller
 
         return back();
     } 
+    public function pRegister() {
+       
+        return view('index');
+        
+    }
+    public function get_index_data(Request $request)
+    {
+        $companies = Producto::latest()->paginate(5);
+  
+        return Request::ajax() ? 
+                     response()->json($companies,Response::HTTP_OK) 
+                     : abort(404);
+    }
 }
 

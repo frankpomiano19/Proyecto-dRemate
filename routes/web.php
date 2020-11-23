@@ -85,3 +85,4 @@ Route::post('/home/perfil/edit-pago',[userController::class,'pagoUser'] );
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
+Route::get('/index', [HomeController::class, 'pRegister'])->name('index');
