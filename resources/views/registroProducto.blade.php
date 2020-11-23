@@ -1,88 +1,122 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Registro de producto</title>
+@extends('layouts.app')
 
-        <!-- Styles -->
-        <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <style type="text/css">
-            body{
-                background-color: #0093E9;
-                background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-            }
-            .cuerpo{
-                margin-top: 20px;
-                margin-bottom: 20px;
-                background-color: #fff;
-                width: 90%;
-            }
-            .linea{
-                border-top:solid 1px #d9e3e8;
-                width:100%;
-                height:10px;
-            }
-            #parrafo{
-                margin-left: 20px;
-            }
-            #siguiente{
-                float: none;
-                text-align: center;
-            }
-            #mapa{
-                width: 100%;
-                height: 400px;
 
-            }
-        </style>
-        
-    </head>
-    <body class="antialiased" >
-        <div class="container-md border rounded-lg cuerpo">
-            <form class="needs-validation"  method="POST" action="{{ route('producto.registroe')}}" enctype="multipart/form-data" novalidate>
+@section('cont_cabe')
+    <title>Registro Producto</title>
+
+@endsection
+
+@section('contenidoJS')
+    <!-- Colocar js-->
+@endsection
+
+@section('contenidoCSS')
+    <!-- Colocar css-->
+    <link rel="stylesheet" href="css/inicio.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Styles -->
+    <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/registro.css') }}" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   
+@endsection
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">D'REMATE</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarCollapse" style="">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">HOME <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            CATEGORIAS
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Articulos de moda</a>
+                <a class="dropdown-item" href="#">Productos tecnologicos</a>
+                <a class="dropdown-item" href="#">Articulos para el hogar</a>
+                <a class="dropdown-item" href="#">Deportes y ocio</a>
+                <a class="dropdown-item" href="#">Antigüedades</a>
+                <a class="dropdown-item" href="#">Articulos de jardineria</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Ver todas</a>
+            </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">SUBASTAS EN VIVO</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">NOVEDADES</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">ABOUT</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">REGISTRATE</a>
+        </li>
+      </ul>
+      <ul>
+          <li>
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </li>
+      </ul>
+      
+    </div>
+  </nav>
+
+<div class="container-md border rounded-lg cuerpo">
+    <div class="contenido"></div>
+        <form  id="demo-form" data-parsley-validate="" novalidate  method="POST" action="{{ route('producto.registroe')}}" enctype="multipart/form-data" novalidate>
             @csrf
             <h1 class="text-center">Registro de producto</h1><br>
-            <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br></p>
+            <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br><br></p>
             
             <div class="linea"></div>
-    
-            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
-                <small  class="form-text text-muted">Escoja su categoría</small>
-                <select class="form-control" name="categoria">
-                    <option value="1">Antiguedades</option>
-                    <option value="2">Tecnología</option>
-                    <option value="3">Fósiles</option>
-                    <option value="4">Fisi</option>
-                    <option value="5">Otra</option>
-                </select>
-                <div class="invalid-feedback">
-                    Seleccione una categoría
+            
+            
+                <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6 form-group">
+                    <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
+                    <select class="form-control"  id="heard" required="" data-parsley-error-message="Seleccione una categoría">
+                        <option value="">Seleccione...</option>
+                        <option value="1">Artículos de moda</option>
+                        <option value="2">Productos tecnológicos</option>
+                        <option value="3">Artículos para el hogar</option>
+                        <option value="4">Deportes y ocio</option>
+                        <option value="5">Antigüedades</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Seleccione una categoría por favor
+                    </div>
+                    <br>
+                    <div class="linea"></div>
                 </div>
-                <br>
-                <div class="linea"></div>
-            </div>
-    
-            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                <label for="formGroupExampleInput"><h3>Título</h3></label><br>
-                <small  class="form-text text-muted">Un buen título atrae más miradas</small>
-                <input type="text" name="nombre" class="form-control" id="titulo" placeholder="Nombre del producto" required>
-                <div class="invalid-feedback">
-                    Not nice >:v
+        
+                <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6 form-group"></div>
+        
+                <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
+                    <label for="formGroupExampleInput"><h3>Título</h3></label><br>
+                    <input type="text" class="form-control" id="titulo" placeholder="Nombre del producto" required  data-parsley-error-message="Es necesario un título">
+                    <div class="invalid-feedback">
+                        Por favor, ingrese un título
+                    </div>
+                    <br>
+                    <div class="linea"></div>
                 </div>
-                <div class="valid-feedback">
-                    Nice!
-                </div>
-                <br>
-                <div class="linea"></div>
-            </div>
+            
     
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6 form-group">
-                <h3>Descripción</h3>
-                <small class="form-text text-muted">Brinda todos los detalles de tu producto aquí</small>
-                <textarea input type="text" name="descripcion" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4" required></textarea>
+                <h3 for="message">Descripción</h3>
+                <small>Brinda todos los detalles de tu producto aquí</small>
+                <textarea input type="text" class="form-control" placeholder="Añade una descripción" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="200" data-parsley-minlength-message="Tu descripción debe tener por lo menos 20 caracteres" data-parsley-validation-threshold="10" rows="4"></textarea>
                 <div class="invalid-feedback">
                     Es necesaria una descripción
                 </div>
@@ -90,33 +124,13 @@
             
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Estado</h3>
-                <select name="estado">
-                    <option value="Disponible" selected>Disponible</option> 
-                    <option value="No disponible">No disponible</option>
-                    <option value="En curso">En curso</option>
-                </select>
-                <br><br>
-                <div class="linea"></div>
-            </div>
-            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                <h3>Condicion</h3>
-                <select name="condicion">
-                    <option value="Nuevo" selected>Nuevo</option> 
-                    <option value="Usado">No Usado</option>
-                </select>
-                <br><br>
-                <div class="linea"></div>
-            </div>
-    
-            <div class="col-12">
-                <h3>Ubicación</h3>
-                <small  class="form-text text-muted">¿Dónde se encuentra su producto?</small>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15607.301886182962!2d-77.08160471552735!3d-12.055526440052137!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2spe!4v1605044901305!5m2!1ses!2spe" id="mapa" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                <div class="invalid-feedback">
-                    Not nice >:v
+                <div class="form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <label class="form-check-label" for="inlineRadio1">Nuevo</label>
                 </div>
-                <div class="valid-feedback">
-                    Nice!
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+                    <label class="form-check-label" for="inlineRadio2">Usado</label>
                 </div>
                 <br>
                 <div class="linea"></div>
@@ -124,51 +138,43 @@
     
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <h3>Agregar fotos</h3>
-                <small class="form-text text-muted">Una imagen vale más que mil palabras</small>
+                <small>Una imagen vale más que mil palabras</small>
                 <div class="custom-file">
-                    <input type="file" name="imagen" class="custom-file-input" required>
+                    <input type="file" class="custom-file-input" required  data-parsley-error-message="Sube por lo menos una imagen"><br>
                     <label class="custom-file-label" for="customFile">Selecciona tus imágenes</label>
-                    </div>          
+                </div>
+                <div class="invalid-feedback">
+                    Sube por lo menos una imagen
+                </div>
                 <br>
                 <div class="linea"></div>
             </div>
     
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                <h3>Garantía</h3>
-                <small class="form-text text-muted">Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
-                <textarea input type="text" name="garantia" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
+                <br><h3>Garantía</h3>
+                <small>Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
+                <textarea input type="text" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
                 <br>
             </div>
     
             <div id="siguiente">
-                <button type="submit" class="btn btn-primary">Siguiente</button>
+                <button type="submit" class="btn boton" value="validate">Registrar</button>
                 <br><br>
             </div>
-            </form>
-        </div>
-        
-        <script src="{{ asset(mix('js/app.js')) }}"></script>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-        <script>
-            // Example starter JavaScript for disabling form submissions if there are invalid fields
-            (function() {
-                'use strict';
-                window.addEventListener('load', function() {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function(form) {
-                    form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                    }, false);
-                });
-                }, false);
-            })();
-        </script>
-    </body>
-</html>
+        </form>
+
+    </div>
+    <script src="{{ asset(mix('js/app.js')) }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    
+    <script src="/js/parsley.js"></script>
+    <script src="{{ asset('js/producto.js') }}"></script>
+</div>
+
+
+
+@section('contenidoJSabajo')
+<script src="https://use.fontawesome.com/c9d7a705d9.js"></script>
+    <!-- Colocar js abajo-->
+@endsection
