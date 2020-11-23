@@ -15,9 +15,10 @@
             </button>
         </div>
 
-        <h1 class="text-center">
-            {{$datosProducto->nombre_producto}}
+        <h1>
+                {{$datosProducto->nombre_producto}}
         </h1>
+        
 
         <div class="row">
 

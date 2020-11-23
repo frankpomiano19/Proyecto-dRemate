@@ -69,9 +69,6 @@ class RegistroProductoController extends Controller
 
         $datospro -> save();
 
-
-        
-
         return view('productoRegistrado')->with('datosProducto', $request)->with('imagen1', $image_url1);
 
     }
