@@ -4,6 +4,13 @@ function pasar() {
 
     var inicioSubastaF = fechaHoy.getFullYear() + "-" + (fechaHoy.getMonth() +1 + "-" + fechaHoy.getDate());
     inicioSubasta.setAttribute("min",inicioSubastaF);
+
+    //
+    var inicioSubastaF = document.getElementById("fechaInicioF");
+    var fechaHoyF = new Date();
+
+    var inicioSubastaFF = fechaHoyF.getFullYear() + "-" + (fechaHoyF.getMonth() +1 + "-" + fechaHoyF.getDate());
+    inicioSubastaF.setAttribute("min",inicioSubastaFF);
 }
 
 pasar();

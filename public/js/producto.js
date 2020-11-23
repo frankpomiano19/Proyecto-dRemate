@@ -38,8 +38,8 @@ $("form").validate({
 function cambia()
 {
   
-  var sel_departamento = document.getElementsByName("ubicacion")[0];
-  var sel_provincia = document.getElementsByName("distrito")[0];
+  var sel_departamento = document.getElementsByName("selectDepartamento")[0];
+  var sel_provincia = document.getElementsByName("selectProvincia")[0];
   var sel_distrito = document.getElementsByName("selectDistrito")[0];
   
  var opt_Amazonas = new Array ("Seleccione la Provincia", "Bagua", "Bongará", "Chachapoyas", "Condorcanqui","Luya","Rodríguez de Mendoza","Utcubamba");
@@ -118,15 +118,15 @@ function cambia()
  var opt_Ucayali_value=new Array("Seleccione Provincia","Atalaya","Coronel_Portillo","Padre_Abad","Purús");
 
 
-    var cosa;
+   var cosa;
   
- ubicacion = sel_departamento.options[sel_departamento.selectedIndex].value;
+ selectDepartamento = sel_departamento.options[sel_departamento.selectedIndex].value;
 
  
- if(ubicacion!=0)
+ if(selectDepartamento!=0)
  {
-     mis_opts=eval("opt_" + ubicacion);
-     mis_value=eval("opt_" + ubicacion +"_value");
+     mis_opts=eval("opt_" + selectDepartamento);
+     mis_value=eval("opt_" + selectDepartamento +"_value");
 
      num_opts=mis_opts.length;
 
@@ -384,15 +384,15 @@ function cambia()
 function cambiaDistrito()
 {
     var cosa;
-    var sel_departamento = document.getElementsByName("ubicacion")[0];
-  var sel_provincia = document.getElementsByName("distrito")[0];
+    var sel_departamento = document.getElementsByName("selectDepartamento")[0];
+  var sel_provincia = document.getElementsByName("selectProvincia")[0];
   var sel_distrito = document.getElementsByName("selectDistrito")[0];
   
-    distrito = sel_provincia.options[sel_provincia.selectedIndex].value;
+    selectProvincia = sel_provincia.options[sel_provincia.selectedIndex].value;
 
- if(distrito!=0)
+ if(selectProvincia!=0)
  {
-  mis_opts=eval("opt_" + distrito);
+  mis_opts=eval("opt_" + selectProvincia);
   num_opts=mis_opts.length;
 
   sel_distrito.length = num_opts;
@@ -414,4 +414,3 @@ function cambiaDistrito()
  }
  sel_distrito.options[0].selected = true;     
 }
-

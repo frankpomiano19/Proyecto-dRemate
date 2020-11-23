@@ -32,12 +32,11 @@
                             <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
                             <small  class="form-text text-muted">Escoja su categoría</small>
                             <select class="form-control" name="categoria_id" required>
-                                <option value="">-Seleccione-</option>
-                                <option value="1">Antiguedades</option>
-                                <option value="2">Tecnología</option>
-                                <option value="3">Fósiles</option>
-                                <option value="4">Fisi</option>
-                                <option value="5">Nulo</option>
+                                <option value="1" selected>Tecnología</option>
+                                <option value="2">Hogar</option>
+                                <option value="3">Electrodomésticos</option>
+                                <option value="4">Joyas</option>
+                                <option value="5">Instrumento musical</option>
                             </select>
                             <div class="invalid-feedback">
                                 Seleccione una categoría
@@ -79,7 +78,7 @@
                             </div>
                             @enderror
                             <small class="form-text text-muted">Brinda todos los detalles de tu producto aquí</small>
-                            <input type="text" name="descripcion" value="{{ old('descripcion') }}" class="form-control" placeholder="Añade una descripción" id="" rows="4">
+                            <input type="text" name="descripcion" value="{{ old('descripcion') }}" class="form-control" placeholder="Añade una descripción" id="" rows="4" required>
                             <div class="invalid-feedback">
                                 Es necesaria una descripción
                             </div>
@@ -166,14 +165,14 @@
                             <h3>Garantía</h3>
                             @error('garantia')
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                De no bridar garantía puedes escribir "Sin garantía"
+                                Garantía de minimo 8 caracteres
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             @enderror
-                            <small class="form-text text-muted">Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
-                            <input type="text" name="garantia" value="{{ old('garantia') }}" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4">
+                            <small class="form-text text-muted">Brinda detalles de tu garantía</small>
+                            <input type="text" name="garantia" value="{{ old('garantia') }}" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4" required>
                             <br>
                             <div class="linea"></div>
                         </div>
@@ -182,7 +181,7 @@
                             <small class="form-text text-muted">Una imagen vale más que mil palabras</small>
                             {{-- IMAGEN UNO --}}
                             <div class="form-group{{ $errors->has('name1') ? ' has-error' : '' }}">
-                                <input type="file" name="image_name1" class="form-control" id="name1" value="">
+                                <input type="file" name="image_name1" class="form-control" id="name1" value="" required>
                                 @if($errors->has('image_name1'))
                                     <span class="help-block">{{ $errors->first('image_name1') }}</span>
                                 @endif
@@ -190,7 +189,7 @@
 
                             {{-- IMAGEN DOS --}}
                             <div class="form-group{{ $errors->has('name2') ? ' has-error' : '' }}">
-                                <input type="file" name="image_name2" class="form-control" id="name2" value="">
+                                <input type="file" name="image_name2" class="form-control" id="name2" value="" required>
                                 @if($errors->has('image_name2'))
                                     <span class="help-block">{{ $errors->first('image_name2') }}</span>
                                 @endif
@@ -198,7 +197,7 @@
 
                             {{-- IMAGEN TRES --}}
                             <div class="form-group{{ $errors->has('name3') ? ' has-error' : '' }}">
-                                <input type="file" name="image_name3" class="form-control" id="name3" value="">
+                                <input type="file" name="image_name3" class="form-control" id="name3" value="" required>
                                 @if($errors->has('image_name3'))
                                     <span class="help-block">{{ $errors->first('image_name3') }}</span>
                                 @endif
@@ -206,7 +205,7 @@
 
                             {{-- IMAGEN CUATRO --}}
                             <div class="form-group{{ $errors->has('name4') ? ' has-error' : '' }}">
-                                <input type="file" name="image_name4" class="form-control" id="name4" value="">
+                                <input type="file" name="image_name4" class="form-control" id="name4" value="" required>
                                 @if($errors->has('image_name4'))
                                     <span class="help-block">{{ $errors->first('image_name4') }}</span>
                                 @endif

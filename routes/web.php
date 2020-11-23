@@ -44,6 +44,10 @@ Route::get('/producto', function () {
     return view('producto');
 });
 
+Route::get('/menuSubasta', function () {
+    return view('menuSubasta');
+});
+
 
 Route::get('/registroProducto', function () {
     return view('registroProducto');
@@ -52,13 +56,11 @@ Route::get('/registroProducto', function () {
 
 Route::get('/registroSubasta', function () {
     return view('registroSubasta');
-});
+})->middleware('auth');
 
 
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 
-
-//Guarda 2doos datos de producto
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
 
 Auth::routes();

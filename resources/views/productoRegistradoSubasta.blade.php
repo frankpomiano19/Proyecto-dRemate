@@ -94,8 +94,8 @@
 
             
         </div>
-            <button class="btn btn-success btn-block"><a class="btn btn-success btn-block" href="{{ url('registroProducto') }}">Registrar otro producto</a></button>
-            <button class="btn btn-success btn-block"><a class="btn btn-success btn-block" href="{{ url('/') }}">Menú principal</a></button>
+            <button class="btn btn-success btn-block"><a class="btn btn-success btn-block" href="{{ url('registroSubasta') }}">Registrar y subastar otro producto</a></button>
+            <button class="btn btn-success btn-block"><a class="btn btn-success btn-block" href="{{ url('/home') }}">Menú Principal</a></button>
         </div>
 
     </div>
