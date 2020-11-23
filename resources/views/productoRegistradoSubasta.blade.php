@@ -22,7 +22,7 @@
         <div class="row">
 
             <div class="col-md-6">
-                <img class="img-fluid" src="https://www.diproelsac.com/dipro/722-large_default/horno-microondas-menumaster-jet14.jpg" alt="">
+                <img class="img-fluid" src={{$imagen1}} alt="">
             </div>
 
             <div class="col-md-6">

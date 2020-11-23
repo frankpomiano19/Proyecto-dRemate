@@ -22,7 +22,10 @@ class CreateProductosTable extends Migration
             $table->unsignedBigInteger('categoria_id');
             $table->string('estado');
             $table->string('condicion')->nullable();
-            $table->string('imagen');
+            $table->string('image_name1')->nullable();
+            $table->string('image_name2')->nullable();
+            $table->string('image_name3')->nullable();
+            $table->string('image_name4')->nullable();
             $table->string('garantia')->nullable();
             $table->string('ubicacion');
             $table->string('distrito');

@@ -4,6 +4,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\SubastaRapController;
 use App\Http\Controllers\registroProductoController;
+use App\Http\Controllers\ImageUploadController;
+use App\Http\Controllers\RegistroSubastaController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -13,6 +15,12 @@ use App\Mail\MessageReceived;
 Route::get('/', function () {
     return view('welcome');
 })->name("welcome");
+
+
+
+Route::get('/imagen', [ImageUploadController::class,'home']);
+
+Route::post('/imagen', [ImageUploadController::class,'uploadImages'])->name("uploadImage");
 
 
 Route::get('/prueba', function () {
@@ -51,7 +59,7 @@ Route::post('/registroProducto', [registroProductoController::class,'formularioP
 
 
 //Guarda 2doos datos de producto
-Route::post('/registroSubasta', [registroProductoController::class,'formularioProDos'])->name('producto.registroee');
+Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
 
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
