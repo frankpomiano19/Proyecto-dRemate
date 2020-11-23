@@ -30,8 +30,12 @@ class SubirProductoRequest extends FormRequest
             'estado'=>'required',
             'condicion'=>'required',
             'ubicacion'=>'required',
-            'imagen'=>'required',
-            'garantia'=>['required','min:8']
+            'distrito'=>'required',
+            'garantia'=>['required','min:8'],
+            'image_name1'=>'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+            'image_name2'=>'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+            'image_name3'=>'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
+            'image_name4'=>'required|mimes:jpeg,bmp,jpg,png|between:1, 6000'
         ];
     }
 

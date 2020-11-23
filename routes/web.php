@@ -55,7 +55,7 @@ Route::get('/registroSubasta', function () {
 });
 
 
-Route::post('/registroProducto', [registroProductoController::class,'formularioProducto'])->name('producto.registroe');
+Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 
 
 //Guarda 2doos datos de producto

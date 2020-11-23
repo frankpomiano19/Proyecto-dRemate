@@ -155,7 +155,6 @@
                 <!-- Esta es la información de la subasta -->
                 <div class="col-sm-12 col-md-6 col-lg-5">
                     <h2>Información de la subasta</h2><br>
-                    <form class="needs-validation" novalidate>
                         
                         <div>
                             <label for="formGroupExampleInput"><h3>Precio inicial</h3></label>
@@ -287,7 +286,7 @@
                             </div>
                             <br><br>
                         </div>
-                    </form>
+
                 </div>
             </form>
             </div>
