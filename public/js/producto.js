@@ -1,6 +1,3 @@
-  
-
-
 $(function () {
     $('#demo-form').parsley().on('field:validated', function () {
         var ok = $('.parsley-error').length === 0;
@@ -45,15 +42,16 @@ window.Parsley
 //Select
 function cambia()
 {
-  
-  var sel_departamento = document.getElementById("selectDepartamento")[0];
-  var sel_provincia = document.getElementById("selectProvincia")[0];
+  var sel_departamento = document.getElementsByName("selectDepartamento")[0];
+  var sel_provincia = document.getElementsByName("selectProvincia")[0];
   var sel_distrito = document.getElementsByName("selectDistrito")[0];
   
  var opt_Amazonas = new Array ("Seleccione la Provincia", "Bagua", "Bongará", "Chachapoyas", "Condorcanqui","Luya","Rodríguez de Mendoza","Utcubamba");
+
  var opt_Amazonas_value = new Array ("Seleccione la Provincia", "Bagua", "Bongará", "Chachapoyas", "Condorcanqui","Luya","Rodríguez_de_Mendoza","Utcubamba");
 
  var opt_Ancash = new Array ("Seleccione la Provincia", "Aija", "Antonio Raymondi", "Asunción", "Bolognesi","Carhuaz","Carlos Fermín Fitzcarrald","Casma","Corongo","Huaraz","Huari","Huarmey","Huaylas","Mariscal Luzuriaga","Ocros","Pallasca","Pomabamba","Recuay","Santa","Sihuas","Yungay");
+
  var opt_Ancash_value = new Array ("Seleccione la Provincia", "Aija", "Antonio_Raymondi", "Asunción", "Bolognesi","Carhuaz","Carlos_Fermín_Fitzcarrald","Casma","Corongo","Huaraz","Huari","Huarmey","Huaylas","Mariscal_Luzuriaga","Ocros","Pallasca","Pomabamba","Recuay","Santa","Sihuas","Yungay");
   
  var opt_Apurímac = new Array ("Seleccione la Provincia", "Abancay", "Andahuaylas", "Antabamba", "Aymaraes","Cotabambas","Chincheros","Grau");
@@ -169,8 +167,8 @@ function cambia()
 function cambiaDistrito()
 {
     var cosa;
-    var sel_departamento = document.getElementById("selectDepartamento")[0];
-  var sel_provincia = document.getElementById("selectProvincia")[0];
+    var sel_departamento = document.getElementsByName("selectDepartamento")[0];
+  var sel_provincia = document.getElementsByName("selectProvincia")[0];
   var sel_distrito = document.getElementsByName("selectDistrito")[0];
   
     selectProvincia = sel_provincia.options[sel_provincia.selectedIndex].value;

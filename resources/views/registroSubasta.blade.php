@@ -2,7 +2,7 @@
 
 
 @section('cont_cabe')
-    <title>Subtitulo - dRemate</title>
+    <title>Registrar subasta</title>
 
 @endsection
 
@@ -79,10 +79,9 @@
     <body class="antialiased" >
 
         <div class="container-md border rounded-lg cuerpo">
-            <h1 class="text-center">Registrar Subasta</h1><br>
+            <h1 class="text-center">Registrar y subastar producto</h1><br>
             <p id="parrafo"><br>Revisa la información del producto y llena los campos de la subasta para empezar :)</p>
             <div class="row">
-                
                 
                 <!-- Aquí va la información del producto -->
                 <div class="col-sm-12 col-md-6 colum">
@@ -141,11 +140,11 @@
                             </div>
                             @enderror
                             <small>Brinda todos los detalles de tu producto aquí</small>
-                            <input type="text" name="descripcion" value="{{ old('descripcion') }}" class="form-control" placeholder="Añade una descripción" id="" rows="4" required>
+                            <textarea input name="descripcion" id="" class="form-control" cols="30" rows="4" placeholder="Añade una descripción" required>{{ old('descripcion') }}</textarea>
                             <div class="invalid-feedback">
                                 Es necesaria una descripción
                             </div>
-                            <br><br>
+                            <br>
                             <div class="linea"></div>
                         </div>
                         
@@ -166,42 +165,58 @@
                                 <option value="Nuevo" selected>Nuevo</option> 
                                 <option value="Usado">Usado</option>
                             </select>
-                            <br><br>
+                            <br>
                             <div class="linea"></div>
                         </div>   
                         <div class="col-sm-12">
                             <h3>Agregar fotos</h3>
                             <small class="form-text text-muted">Una imagen vale más que mil palabras</small>
-                            {{-- IMAGEN UNO --}}
-                            <div class="form-group{{ $errors->has('name1') ? ' has-error' : '' }}">
+                            @error('image_name1')
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <small>Solo se acepta imagen con formato JPEG,BMP,JPG o PNG (máx 6MB)</small>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @enderror
+                            <div class="form-group">
                                 <input type="file" name="image_name1" class="form-control" id="name1" value="" required>
-                                @if($errors->has('image_name1'))
-                                    <span class="help-block">{{ $errors->first('image_name1') }}</span>
-                                @endif
                             </div>
 
-                            {{-- IMAGEN DOS --}}
-                            <div class="form-group{{ $errors->has('name2') ? ' has-error' : '' }}">
+                            @error('image_name2')
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <small>Solo se acepta imagen con formato JPEG,BMP,JPG o PNG (máx 6MB)</small>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @enderror
+                            <div class="form-group">
                                 <input type="file" name="image_name2" class="form-control" id="name2" value="" required>
-                                @if($errors->has('image_name2'))
-                                    <span class="help-block">{{ $errors->first('image_name2') }}</span>
-                                @endif
                             </div>
 
-                            {{-- IMAGEN TRES --}}
-                            <div class="form-group{{ $errors->has('name3') ? ' has-error' : '' }}">
+                            @error('image_name3')
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <small>Solo se acepta imagen con formato JPEG,BMP,JPG o PNG (máx 6MB)</small>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @enderror
+                            <div class="form-group">
                                 <input type="file" name="image_name3" class="form-control" id="name3" value="" required>
-                                @if($errors->has('image_name3'))
-                                    <span class="help-block">{{ $errors->first('image_name3') }}</span>
-                                @endif
                             </div>
 
-                            {{-- IMAGEN CUATRO --}}
-                            <div class="form-group{{ $errors->has('name4') ? ' has-error' : '' }}">
+                            @error('image_name4')
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <small>Solo se acepta imagen con formato JPEG,BMP,JPG o PNG (máx 6MB)</small>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @enderror
+                            <div class="form-group">
                                 <input type="file" name="image_name4" class="form-control" id="name4" value="" required>
-                                @if($errors->has('image_name4'))
-                                    <span class="help-block">{{ $errors->first('image_name4') }}</span>
-                                @endif
                             </div>      
                             <br>
                             <div class="linea"></div>
@@ -284,8 +299,8 @@
                     </div>
             
                     <div>
-                        <h3>Ubicación</h3>
-                        <select name="ubicacion" onchange="cambia()" class="form-control" required="">
+                        <h3>Departamento y Provincia</h3>
+                        <select name="selectDepartamento" onchange="cambia()" class="form-control" required="">
                             <option value="">Seleccione</option>
                             <option value="Amazonas">Amazonas</option>
                             <option value="Ancash">Ancash</option>
@@ -314,7 +329,7 @@
                             <option value="Ucayali">Ucayali</option>
                         </select><br>
                         
-                        <select class="form-control" name="distrito" onchange="cambiaDistrito()" required="">
+                        <select class="form-control" name="selectProvincia" onchange="cambiaDistrito()" required="">
                             <option>Seleccione la Provincia</option>
                         </select>
                         
@@ -329,14 +344,14 @@
                         <h3>Garantía</h3>
                         @error('garantia')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            De no bridar garantía puedes escribir "Sin garantía"
+                            De no brindar garantía puedes escribir "Sin garantía"
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         @enderror
                         <small class="form-text text-muted">Brinda detalles de tu garantía</small>
-                        <input type="text" name="garantia" value="{{ old('garantia') }}" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4" required>
+                        <textarea input id="validationCustom05" name="garantia" id="" class="form-control" cols="30" rows="4" placeholder="Detalla la garantía" required>{{ old('garantia') }}</textarea>
                         <br>
                     </div>
             
@@ -355,10 +370,12 @@
         </div>
         <script src="{{ asset(mix('js/app.js')) }}"></script>
         <script src="{{ asset('js/fechaSubasta.js') }}"></script>
+        <script src="{{ asset('js/producto.js') }}"></script>
+        <script src="/js/parsley.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-        <script src="/js/parsley.js"></script>
-        <script src="{{ asset('js/producto.js') }}"></script>
+        
+        
 
         @endsection
 
