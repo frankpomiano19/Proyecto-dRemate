@@ -163,6 +163,13 @@ ol, ul {
     position: relative;
     padding-left: 20px;
     padding-right: 20px;
+    background-repeat: no-repeat;
+    background-position: 0px 0px;
+    background-attachment: fixed;
+    -webkit-background-size: calc(100vw) calc(100vh);
+    -moz-background-size: calc(100vw) calc(100vh);
+    -o-background-size: calc(100vw) calc(100vh);
+    background-size: calc(100vw) calc(100vh);
 }
 
 @media (max-width: 1330px){
@@ -173,10 +180,6 @@ ol, ul {
 .input-group>.form-control:not(:last-child) {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    box-sizing: border-box;
-}
-
-.navbar .container{
     box-sizing: border-box;
 }
 
@@ -1306,13 +1309,6 @@ img {
     font-size: 14px;
     font-weight: 400;
     color: rgba(0,0,0,0.5);
-}
-
-a, a:hover, a:visited, a:active, a:link {
-    text-decoration: none;
-    -webkit-font-smoothing: antialiased;
-    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
-    text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 
 .deals_item_price_a {
@@ -3130,8 +3126,8 @@ html.lt-ie-10 * + .range, * + .range {
     font-weight: 700;
     line-height: 1.2;
     text-transform: uppercase;
-    font-family: "Poppins",sans-serif;
-    color: #c8102ede;
+    font-family: "Lucida Console", Courier, monospace;
+    color: #c8102e;
     margin-top: 25px;
     font-style: normal;
     position: relative;

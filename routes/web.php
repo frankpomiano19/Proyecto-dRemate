@@ -23,8 +23,8 @@ Route::get('/template', function () {
     return view('template');
 });
 
-Route::get('/oferta', function () {
-    return view('puja');
+Route::get('/inicio', function () {
+    return view('paginaPrincipal');
 });
     
 
