@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/bootstrap-social.css">
     <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
 
-        @yield('contenidoCSS')
+    @yield('contenidoCSS')
 
 </head>
 

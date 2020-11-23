@@ -1,14 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body{
-    background-color: #0093E9;
-    background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    background:url(/img/background/hammer.jpg) no-repeat fixed;
+    background-size:cover;
+    background-position:50%;
     font-family: 'Roboto', sans-serif;
+    
 }
 .cuerpo{
     margin-top: 80px;
     margin-bottom: 20px;
-    background-color: #fff;
+    padding: 30px;
+    background: rgba(255,255,255,0.85);
+    color: #000000;
     width: 90%;
+    backdrop-filter: blur(5px);
+}
+.colum{
+    padding: 40px;
 }
 .linea{
     border-top:solid 1px #d9e3e8;
@@ -31,3 +40,27 @@ body{
     float: none;
     text-align: center;
 }
+
+.boton{
+    padding: 10px 20px;
+    width:150px;
+    font-size: 1.2rem;
+    font-family: Raleway;
+    font-weight:200;
+    border-bottom: 8px;
+    color: white;
+    /*position:relative;*/
+    border:1px solid rgba(255,255,255,0.4);
+    background: rgba(29,3,4,0.75);
+    @include border-radius(6px);
+    cursor:pointer;
+    
+}
+.boton:focus{
+    outline:none;
+  }
+.boton:hover{
+    color:white;
+    background: rgba(29,3,4);
+    border: 1px solid white;
+  }
