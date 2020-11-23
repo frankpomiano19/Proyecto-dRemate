@@ -8,6 +8,8 @@
 
 @section('contenidoJS')
     <!-- Colocar js-->
+        <script src="js/jquery-3.5.1.js"></script>
+        <script src="parsley.min.js"></script>
 @endsection
 
 @section('contenidoCSS')
@@ -15,14 +17,15 @@
     <link rel="stylesheet" href="css/inicio.css">
     <link rel="stylesheet" href="css/footer.css">
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- Styles -->
     <link href="{{ asset(mix('css/app.css')) }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/registro.css') }}" />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    
    
+  
 @endsection
 
+
+@section('contenido')
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="#">D'REMATE</a>
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,110 +74,229 @@
       </ul>
       
     </div>
-  </nav>
+</nav>
 
-<div class="container-md border rounded-lg cuerpo">
-    <div class="contenido"></div>
-        <form  id="demo-form" data-parsley-validate="" novalidate  method="POST" action="{{ route('producto.registroe')}}" enctype="multipart/form-data" novalidate>
-            @csrf
-            <h1 class="text-center">Registro de producto</h1><br>
-            <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br><br></p>
-            
-            <div class="linea"></div>
-            
-            
-                <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6 form-group">
-                    <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
-                    <select class="form-control"  id="heard" required="" data-parsley-error-message="Seleccione una categoría">
-                        <option value="">Seleccione...</option>
-                        <option value="1">Artículos de moda</option>
-                        <option value="2">Productos tecnológicos</option>
-                        <option value="3">Artículos para el hogar</option>
-                        <option value="4">Deportes y ocio</option>
-                        <option value="5">Antigüedades</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Seleccione una categoría por favor
-                    </div>
+    <body class="antialiased" >
+
+        <div class="container-md border rounded-lg cuerpo">
+            <h1 class="text-center">Registrar Producto</h1><br>
+            <p id="parrafo"><br>Revisa la información del producto y llena los campos de la subasta para empezar :)</p>
+            <div class="row">
+                
+                
+                <!-- Aquí va la información del producto -->
+                <div class="col-sm-12 col-md-6 colum">
+                <!--<div class="col-sm-12 col-md-6 col-lg-5">-->
+                    <h2>Información del producto</h2><br>
+                    <form class="needs-validation" method="POST" enctype="multipart/form-data"  action="{{ route('producto.registroe')}}" novalidate>
+                        {{csrf_field()}}
+                        @csrf
+                        <div class="col-sm-12">
+                            <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
+                            <small>Escoja su categoría</small>
+                            <select name="categoria_id" class="form-control" required>
+                                <option value="1" selected>Tecnología</option>
+                                <option value="2">Hogar</option>
+                                <option value="3">Electrodomésticos</option>
+                                <option value="4">Joyas</option>
+                                <option value="5">Instrumento musical</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Seleccione una cateroría
+                            </div>
+                            <br>
+                            <div class="linea"></div>
+                        </div>
+                
+                        <div class="col-sm-12">
+                            <label for="formGroupExampleInput"><h3>Título</h3></label><br>
+                            @error('nombre_producto')
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Describe tu producto en al menos en 8 caracteres
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @enderror
+                            <small>Un buen título atrae más miradas</small>
+                            <input type="text" name="nombre_producto" value="{{ old('nombre_producto') }}" class="form-control" id="titulo" placeholder="Nombre del producto" required>
+                            <div class="invalid-feedback">
+                                Por favor, inserte un título
+                            </div>
+                            <div class="valid-feedback">
+                                ¡Bien!
+                            </div>
+                            <br>
+                            <div class="linea"></div>
+                        </div>
+                
+                        <div class="col-sm-12">
+                            <h3>Descripción</h3>
+                            @error('descripcion')
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Brinda una mejor descripción de tu producto
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @enderror
+                            <small>Brinda todos los detalles de tu producto aquí</small>
+                            <input type="text" name="descripcion" value="{{ old('descripcion') }}" class="form-control" placeholder="Añade una descripción" id="" rows="4" required>
+                            <div class="invalid-feedback">
+                                Es necesaria una descripción
+                            </div>
+                            <br><br>
+                            <div class="linea"></div>
+                        </div>
+                        
+                        <div class="col-sm-12">
+                            <h3>Estado</h3>
+                            <select class="form-control" name="estado">
+                                <option value="Disponible" selected>Disponible</option> 
+                                <option value="No disponible">No disponible</option>
+                                <option value="En curso">En curso</option>
+                            </select>
+                            <br>
+                            <div class="linea"></div>
+                        </div>
+                    
+                        <div class="col-sm-12">
+                            <h3>Condicion</h3>
+                            <select class="form-control" name="condicion">
+                                <option value="Nuevo" selected>Nuevo</option> 
+                                <option value="Usado">Usado</option>
+                            </select>
+                            <br><br>
+                            <div class="linea"></div>
+                        </div>     
+
+                </div>
+                
+                <!--Columna separadora
+                <div class="col-1 d-none d-lg-block">
+
+                </div>-->
+
+                <!-- Esta es la información de la subasta 
+                <div class="col-sm-12 col-md-6 col-lg-5">-->
+                <div class="col-sm-12 col-md-6 colum">
                     <br>
-                    <div class="linea"></div>
-                </div>
-        
-                <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6 form-group"></div>
-        
-                <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                    <label for="formGroupExampleInput"><h3>Título</h3></label><br>
-                    <input type="text" class="form-control" id="titulo" placeholder="Nombre del producto" required  data-parsley-error-message="Es necesario un título">
-                    <div class="invalid-feedback">
-                        Por favor, ingrese un título
-                    </div>
-                    <br>
-                    <div class="linea"></div>
-                </div>
-            
-    
-            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6 form-group">
-                <h3 for="message">Descripción</h3>
-                <small>Brinda todos los detalles de tu producto aquí</small>
-                <textarea input type="text" class="form-control" placeholder="Añade una descripción" name="message" data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-maxlength="200" data-parsley-minlength-message="Tu descripción debe tener por lo menos 20 caracteres" data-parsley-validation-threshold="10" rows="4"></textarea>
-                <div class="invalid-feedback">
-                    Es necesaria una descripción
-                </div>
-            </div>
-            
-            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                <h3>Estado</h3>
-                <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">Nuevo</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
-                    <label class="form-check-label" for="inlineRadio2">Usado</label>
-                </div>
-                <br>
-                <div class="linea"></div>
-            </div>
-    
-            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                <h3>Agregar fotos</h3>
-                <small>Una imagen vale más que mil palabras</small>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" required  data-parsley-error-message="Sube por lo menos una imagen"><br>
-                    <label class="custom-file-label" for="customFile">Selecciona tus imágenes</label>
-                </div>
-                <div class="invalid-feedback">
-                    Sube por lo menos una imagen
-                </div>
-                <br>
-                <div class="linea"></div>
-            </div>
-    
-            <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
-                <br><h3>Garantía</h3>
-                <small>Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
-                <textarea input type="text" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
-                <br>
-            </div>
-    
-            <div id="siguiente">
-                <button type="submit" class="btn boton" value="validate">Registrar</button>
-                <br><br>
-            </div>
-        </form>
+                        <div>
+                            <h3>Ubicación</h3>
+                            <select name="ubicacion" onchange="cambia()" class="form-control" required=""  data-parsley-error-message="Escoja su ubicación" id="selectDepartamento">
+                                <option value="">Seleccione</option>
+                                <option value="Amazonas">Amazonas</option>
+                                <option value="Ancash">Ancash</option>
+                                <option value="Apurímac">Apurímac</option>
+                                <option value="Arequipa">Arequipa</option>
+                                <option value="Ayacucho">Ayacucho</option>
+                                <option value="Cajamarca">Cajamarca</option>
+                                <option value="Callao">Callao</option>
+                                <option value="Cuzco">Cuzco </option>
+                                <option value="Huancavelica">Huancavelica</option>
+                                <option value="Huánuco">Huánuco</option>
+                                <option value="Ica">Ica</option>
+                                <option value="Junín">Junín</option>
+                                <option value="La_Libertad">La Libertad</option>
+                                <option value="Lambayeque">Lambayeque</option>
+                                <option value="Lima">Lima</option>
+                                <option value="Loreto">Loreto</option>
+                                <option value="Madre_de_Dios">Madre de Dios</option>
+                                <option value="Moquegua">Moquegua</option>
+                                <option value="Pasco">Pasco</option>
+                                <option value="Piura">Piura</option>
+                                <option value="Puno">Puno</option>
+                                <option value="San_Martín">San Martín</option>
+                                <option value="Tacna">Tacna</option>
+                                <option value="Tumbes">Tumbes</option>
+                                <option value="Ucayali">Ucayali</option>
+                            </select><br>
+                            
+                            <select class="form-control" id="selectProvincia" name="distrito" onchange="cambiaDistrito()" required="">
+                                <option>Seleccione la Provincia</option>
+                            </select>
+                            <br>
+                            <div class="linea"></div>
+                        </div>
 
-    </div>
-    <script src="{{ asset(mix('js/app.js')) }}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    
-    <script src="/js/parsley.js"></script>
-    <script src="{{ asset('js/producto.js') }}"></script>
-</div>
+                        <div>
+                            <h3>Garantía</h3>
+                            @error('garantia')
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                Garantía de minimo 8 caracteres
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @enderror
+                            <small  >Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
+                            <input type="text" name="garantia" value="{{ old('garantia') }}" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="4" required>
+                            <br>
+                        </div>
 
+                        <div class="col-sm-12">
+                            <h3>Agregar fotos</h3>
+                            <small class="form-text text-muted">Una imagen vale más que mil palabras</small>
+                            {{-- IMAGEN UNO --}}
+                            <div class="form-group{{ $errors->has('name1') ? ' has-error' : '' }}">
+                                <input type="file" name="image_name1" class="form-control" id="name1" value="" required>
+                                @if($errors->has('image_name1'))
+                                    <span class="help-block">{{ $errors->first('image_name1') }}</span>
+                                @endif
+                            </div>
 
+                            {{-- IMAGEN DOS --}}
+                            <div class="form-group{{ $errors->has('name2') ? ' has-error' : '' }}">
+                                <input type="file" name="image_name2" class="form-control" id="name2" value="" required>
+                                @if($errors->has('image_name2'))
+                                    <span class="help-block">{{ $errors->first('image_name2') }}</span>
+                                @endif
+                            </div>
 
-@section('contenidoJSabajo')
-<script src="https://use.fontawesome.com/c9d7a705d9.js"></script>
-    <!-- Colocar js abajo-->
-@endsection
+                            {{-- IMAGEN TRES --}}
+                            <div class="form-group{{ $errors->has('name3') ? ' has-error' : '' }}">
+                                <input type="file" name="image_name3" class="form-control" id="name3" value="" required>
+                                @if($errors->has('image_name3'))
+                                    <span class="help-block">{{ $errors->first('image_name3') }}</span>
+                                @endif
+                            </div>
+
+                            {{-- IMAGEN CUATRO --}}
+                            <div class="form-group{{ $errors->has('name4') ? ' has-error' : '' }}">
+                                <input type="file" name="image_name4" class="form-control" id="name4" value="" required>
+                                @if($errors->has('image_name4'))
+                                    <span class="help-block">{{ $errors->first('image_name4') }}</span>
+                                @endif
+                            </div>      
+                            <br>
+                            <div class="linea"></div>
+                        </div>
+                
+                        
+                
+                        <div id="center">
+                            <!--Remplazar el # por la vista a donde debería llevar-->
+                            <div id="siguiente">
+                                <button type="submit" class="btn btn-success btn-block">Registrar Producto</button>
+                                <br><br>
+                            </div>
+                            <br><br>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="{{ asset(mix('js/app.js')) }}"></script>
+        <script src="{{ asset('js/fechaSubasta.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="/js/parsley.js"></script>
+        <script src="{{ asset('js/producto.js') }}"></script>
+
+        @endsection
+
+        @section('contenidoJSabajo')
+        <script src="https://use.fontawesome.com/c9d7a705d9.js"></script>
+            <!-- Colocar js abajo-->
+        @endsection

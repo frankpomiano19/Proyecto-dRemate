@@ -4,6 +4,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\SubastaRapController;
 use App\Http\Controllers\userController ;
+use App\Http\Controllers\registroProductoController;
+use App\Http\Controllers\ImageUploadController;
+use App\Http\Controllers\RegistroSubastaController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -14,10 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 })->name("welcome");
 
+
+
+Route::get('/imagen', [ImageUploadController::class,'home']);
+
+Route::post('/imagen', [ImageUploadController::class,'uploadImages'])->name("uploadImage");
+
+
 Route::get('/prueba', function () {
     return view("paginaNT");
 })->name("paginaPrueba");
-
 
 Route::get('/template', function () {
     return view('template');
@@ -29,6 +38,7 @@ Route::get('/oferta', function () {
     
 
 Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
+
 Route::post('/subastaRapida',[SubastaRapController::class,'filtroProc'])->name("subastaRapida_filtro_proc");
 
 
@@ -39,15 +49,15 @@ Route::get('/subastaRapida/fetch_data2',[SubastaRapController::class,'fetch_data
 
 Route::get('/producto', function () {
     return view('producto');
-});    
-Route::get('/subirProducto', function () {
-    return view('subirProducto');
 });
 
 
 
 Route::get('/registroProducto', function () {
     return view('registroProducto');
+    
+Route::get('/menuSubasta', function () {
+    return view('menuSubasta');
 });
 Route::get('/registroSubasta', function () {
     return view('registroSubasta');
@@ -61,22 +71,20 @@ Route::get('/producto-{idus}-{idpro}', [HomeController::class, 'viewproduct'])->
 // Route::post('/','HomeController@registro')->name('producto.registro');
 Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
 
-//Edson-View
-Route::post('/registroProducto', [HomeController::class,'registroE'])->name('producto.registroe');
 
-Route::post('/registrarSubasta', [HomeController::class,'registroEE'])->name('producto.registroee');
+Route::get('/registroProducto', function () {
+    return view('registroProducto');
+})->middleware('auth');
 
 
-Route::get('/registrarSubasta', function () {
+Route::get('/registroSubasta', function () {
     return view('registroSubasta');
-});
+})->middleware('auth');
 
-Route::get('/registrarSubasta',  [HomeController::class,'registroS']);
 
-Route::get('/prueba', function () {
-    return view('prueba');
-});
+Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 
+Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
 //Usuario

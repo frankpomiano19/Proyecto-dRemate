@@ -45,8 +45,8 @@ window.Parsley
 function cambia()
 {
   
-  var sel_departamento = document.getElementsByName("selectDepartamento")[0];
-  var sel_provincia = document.getElementsByName("selectProvincia")[0];
+  var sel_departamento = document.getElementById("selectDepartamento")[0];
+  var sel_provincia = document.getElementById("selectProvincia")[0];
   var sel_distrito = document.getElementsByName("selectDistrito")[0];
   
  var opt_Amazonas = new Array ("Seleccione la Provincia", "Bagua", "Bongará", "Chachapoyas", "Condorcanqui","Luya","Rodríguez de Mendoza","Utcubamba");
@@ -168,8 +168,8 @@ function cambia()
 function cambiaDistrito()
 {
     var cosa;
-    var sel_departamento = document.getElementsByName("selectDepartamento")[0];
-  var sel_provincia = document.getElementsByName("selectProvincia")[0];
+    var sel_departamento = document.getElementById("selectDepartamento")[0];
+  var sel_provincia = document.getElementById("selectProvincia")[0];
   var sel_distrito = document.getElementsByName("selectDistrito")[0];
   
     selectProvincia = sel_provincia.options[sel_provincia.selectedIndex].value;
