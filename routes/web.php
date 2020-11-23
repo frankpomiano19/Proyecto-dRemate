@@ -48,6 +48,14 @@ Route::get('/menuSubasta', function () {
     return view('menuSubasta');
 });
 
+Route::get('/rpEdson', function () {
+    return view('rpEdson');
+})->middleware('auth');
+
+Route::get('/rsEdson', function () {
+    return view('rsEdson');
+})->middleware('auth');
+
 
 Route::get('/registroProducto', function () {
     return view('registroProducto');
