@@ -1,5 +1,32 @@
 <form action="{{ route('edit-datos-per') }}" id="usuario-perso-form-id" method="POST">
     @csrf
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-danger alert-dismissible esconder-alerta" id="alerta-aparece-1" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span> &times;</span>
+                </button>
+                <strong>Error : </strong>No se pudo editar los datos
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-success alert-dismissible esconder-alerta" id="alerta-aparece-2" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span> &times;</span>
+                </button>
+                <strong>Datos cambiados correctmente : </strong>Se modificaron los datos satisfactoriamente
+            </div>
+
+        </div>
+    </div>
+
+
+
     <div class="row py-2">
         <div class="col-sm-6 col-md-6 col-lg-6">
             <label class="label-input" for="">Usuario</label> <input class="input-cuadro" type="text" name="usuario"

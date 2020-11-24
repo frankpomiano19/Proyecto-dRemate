@@ -88,3 +88,11 @@
     pointer-events: none;
     opacity: 0.4;
 }
+
+.esconder-alerta {
+    display: none;
+}
+
+.mostrar-alerta {
+    display: block;
+}

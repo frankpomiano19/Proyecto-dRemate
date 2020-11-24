@@ -34,8 +34,6 @@
 
                 <label class="pest-perfil-cate h5"> Información adicional </label>
                 <br>
-                <label class="texto-advertencia" for="">* Toda la información colocada en esta seccion sera pública y
-                    aparecera en tu subasta</label>
                 <div id="usuario-publi-id">
                     @include('usuarioOpc.partialsUser.datosPubli')
                 </div>
@@ -61,6 +59,25 @@
                 </div>
                 <div class="row py-2" id="datos-pago">
                     @include('usuarioOpc.partialsUser.datosDine')
+                </div>
+
+
+                <div class="row text-center py-2">
+                    <div class="col-sm-12 col-md-12 col-lg-12  ">
+                        <a href="{{ route('subirProducto-now') }}" class="btn boton-actualizar">Subir producto</a>
+                    </div>
+                </div>
+                <div class="row text-center py-2">
+                    <div class="col-sm-12 col-md-12 col-lg-12  ">
+                        <a href="{{ route('registroProducto-now') }}" class="btn boton-actualizar">Registrar producto</a>
+                    </div>
+                </div>
+
+                <div class="row text-center py-2">
+                    <div class="col-sm-12 col-md-12 col-lg-12  ">
+                        <a href="{{ route('registroSubasta-now') }}" class="btn boton-actualizar">Registrar producto y
+                            subastar</a>
+                    </div>
                 </div>
 
                 <!--contenido abajo-->
@@ -143,10 +160,10 @@
                                                         type="text" class="form-control" placeholder="CCV">
                                                 </div>
                                                 <!--
-                                                                                                                                                                                    <div class="col-md-3 col-sm-3 col-xs-3"><img src="assets/img/1.png"
-                                                                                                                                                                                            class="img-rounded">
-                                                                                                                                                                                    </div>
-                                                                                                                                                                                -->
+                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-md-3 col-sm-3 col-xs-3"><img src="assets/img/1.png"
+                                                                                                                                                                                                                                                                                                                                                                                                class="img-rounded">
+                                                                                                                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                                                                                                                    -->
                                             </div>
                                             <div class="row py-2">
                                                 <div class="col-md-12 pad-adjust">
@@ -214,6 +231,7 @@
                 data: datosForm,
                 success: function(response) {
                     $('#usuario-perso-id').html(response);
+                    $('#alerta-aparece-2').removeClass('esconder-alerta');
                     $("#usuario-perso-id").removeClass('div-disabled');
                     $('#enviar-datos-perso').removeClass('div-disabled');
                 },
@@ -228,6 +246,7 @@
                     }
                 },
                 error: function(jqXHR, status, error) {
+                    $('#alerta-aparece-1').removeClass('esconder-alerta');
                     alert("Error al cargar");
                 }
             });
@@ -243,6 +262,7 @@
                 data: datosForm,
                 success: function(response) {
                     $('#usuario-publi-id').html(response);
+                    $('#alerta-aparece-4').removeClass('esconder-alerta');
                     $("#usuario-publi-id").removeClass('div-disabled');
                     $('#enviar-datos-publi').removeClass('div-disabled');
                 },
@@ -258,6 +278,7 @@
                 },
                 error: function(jqXHR, status, error) {
                     alert("Error al cargar");
+                    $('#alerta-aparece-3').removeClass('esconder-alerta');
                 }
             });
         });

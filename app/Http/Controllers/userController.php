@@ -32,8 +32,25 @@ class userController extends Controller
     }
 
     public function editarDatosPubli(Request $request){
-        return view('usuarioOpc.partialsUser.datosPubli');
 
+        $usuarioActual = Auth::user();
+        if($request->youtube!=null){
+            $usuarioActual->us_youtube = $request->youtube;
+        }
+
+        if($request->facebook!=null){
+            $usuarioActual->us_facebook = $request->facebook;
+        }
+        if($request->twitter!=null){
+            $usuarioActual->us_twitter = $request->twitter;
+        }
+        if($request->twitch!=null){
+            $usuarioActual->us_twitch = $request->twitch;
+        }
+
+        $usuarioActual->save();
+
+        return view('usuarioOpc.partialsUser.datosPubli');
     }
 
     public function pagoUser(Request $request){

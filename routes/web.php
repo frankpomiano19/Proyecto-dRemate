@@ -46,16 +46,16 @@ Route::get('/producto', function () {
 });    
 Route::get('/subirProducto', function () {
     return view('subirProducto');
-});
+})->name('subirProducto-now');
 
 
 
 Route::get('/registroProducto', function () {
     return view('registroProducto');
-});
+})->name('registroProducto-now');
 Route::get('/registroSubasta', function () {
     return view('registroSubasta');
-});
+})->name('registroSubasta-now');
 
 
 //Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
