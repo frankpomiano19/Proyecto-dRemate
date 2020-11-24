@@ -53,7 +53,8 @@
 
                 </div>
 
-                <a href="#" class="btn btn-primary col-md-12 boton-ver-subasta">
+                <a href="{{ route('producto.detalles', $su_dispo->id) }}"
+                    class="btn btn-primary col-md-12 boton-ver-subasta">
                     <div class="row">
                         <div class="col-md-12" style="text-align: center">Ver Subasta
                         </div>
