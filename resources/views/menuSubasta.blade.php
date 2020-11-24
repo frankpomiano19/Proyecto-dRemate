@@ -2,7 +2,7 @@
 
 
 @section('cont_cabe')
-    <title>Registrar producto</title>
+    <title>Registrar-Subastar</title>
 
 @endsection
 

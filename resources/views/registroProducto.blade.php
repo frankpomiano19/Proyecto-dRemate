@@ -102,7 +102,7 @@
                                 <option value="5">Instrumento musical</option>
                             </select>
                             <div class="invalid-feedback">
-                                Seleccione una cateroría
+                                Seleccione una categoría
                             </div>
                             <br>
                             <div class="linea"></div>
