@@ -22,6 +22,10 @@ class User extends Authenticatable
         'us_din',
         'us_descp',
         'email',
+        'Nombres',
+        'Apellidos',
+        'telefono',
+        'fechadenacimiento',
         'password',
     ];
 

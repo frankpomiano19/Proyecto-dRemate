@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap-social.css')}}">
     <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.css')}}">
 
-        @yield('contenidoCSS')
+    @yield('contenidoCSS')
 
 </head>
 
