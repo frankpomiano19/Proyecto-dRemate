@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/barra.css">
 
+
     @yield('contenidoCSS')
 
 </head>
