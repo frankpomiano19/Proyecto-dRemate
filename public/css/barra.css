@@ -593,7 +593,3 @@ ul li div:hover {
     max-width: 100%;
 }}
 
-@media (min-width: 576px){
-    .navbar-tool {
-        display: none!important;
-    }}
