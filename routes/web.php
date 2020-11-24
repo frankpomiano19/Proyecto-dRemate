@@ -11,7 +11,7 @@ use App\Mail\MessageReceived;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('paginaPrincipal');
 })->name("welcome");
 
 Route::get('/prueba', function () {

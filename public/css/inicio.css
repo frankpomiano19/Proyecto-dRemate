@@ -962,7 +962,7 @@ a.red {
 }
 
 a.register {
-    background: url(https://www.exleasingcar.it/VER3/images/home_register.png) no-repeat 30px center #c8102e;
+    background: url(https://www.exleasingcar.it/VER3/images/home_register.png) no-repeat 30px center #801022;
     height: auto;
     line-height: 17px!important;
     font-size: 16px;
@@ -3127,7 +3127,7 @@ html.lt-ie-10 * + .range, * + .range {
     line-height: 1.2;
     text-transform: uppercase;
     font-family: "Lucida Console", Courier, monospace;
-    color: #c8102e;
+    color: #801022;
     margin-top: 25px;
     font-style: normal;
     position: relative;
