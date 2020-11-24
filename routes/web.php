@@ -60,7 +60,7 @@ Route::get('/registroSubasta', function () {
 
 //Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
 
-Route::get('/producto-{idus}-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
+Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
 
 // Route::post('/','HomeController@registro')->name('producto.registro');
 Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');

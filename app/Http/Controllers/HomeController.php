@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -56,26 +57,55 @@ class HomeController extends Controller
         return view("registroSubasta");
     }
 
-    public function viewproduct($id,$idpro){
-        $vendedor = App\Models\User::findOrFail($id);
+    public function viewproduct($idpro){
+        
         $prod = App\Models\Producto::findOrFail($idpro);
+        $vendedor = App\Models\User::findOrFail($prod->user_id);
         $cat = App\Models\Categoria::findOrFail($prod->categoria_id);
-        $pujastotales = App\Models\Puja::all();
-        $ultimapuja = App\Models\Puja::all()->last();
+        $pujastotales = App\Models\Puja::all()->sortDesc();
+        $ultimapuja = $pujastotales->where('producto_id',$idpro)->first();
         $usuarios = App\Models\User::all();
+        $iniciosubasta = new \Carbon\Carbon($prod->inicio_subasta);
+        $limitepuja = new \Carbon\Carbon($prod->final_subasta);
+        if ($ultimapuja === null) {
+            $ultimoprecio = $prod->precio_inicial;
+        } else {
+            $ultimoprecio = $ultimapuja->valor_puja;
+        }
 
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','ultimapuja','cat'));
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','ultimapuja','cat','limitepuja','iniciosubasta','ultimoprecio'));
     }
-    
+ 
+
 
     public function hacerpuja(Request $request){
+
+        $pujastotales = App\Models\Puja::all()->sortDesc();
+        $ultimapuja = $pujastotales->where('producto_id',$request->productoid)->first();
+
+        $request->validate([
+            'valorpuja' => 'required|gt:ultimoprecio',
+            'saldousuario' => 'gt:ultimoprecio|gte:valorpuja'
+        ]);
+
         $datosPuja = new App\Models\Puja;
 
         $datosPuja->valor_puja = $request->valorpuja;
         $datosPuja->user_id = auth()->id();       
         $datosPuja->producto_id = $request->productoid;
-
+        $nuevosaldo = $request->saldousuario - $request->valorpuja;
+        auth()->user()->us_din = $nuevosaldo;
+        
+        
+        if($ultimapuja->valorpuja  != 'null'){
+            $usuariodevolucion = App\Models\User::findOrFail($ultimapuja->user_id);
+            $saldouseranterior = $usuariodevolucion->us_din;
+            $usuariodevolucion->us_din = $saldouseranterior + $request->ultimoprecio;
+            $usuariodevolucion->save();
+        }
+        auth()->user()->save();
         $datosPuja->save();
+        
         return back();
     }
 
