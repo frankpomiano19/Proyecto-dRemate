@@ -1,10 +1,11 @@
 simplyCountdown('#tiempopuja', {
+    //var = date_create('2020-11-17'),
     year: 2020, // required
     month: 11, // required
     day: 17, // required
-    hours: 1, // Default is 0 [0-23] integer
-    minutes: 42, // Default is 0 [0-59] integer
-    seconds: 58, // Default is 0 [0-59] integer
+    hours: 17, // Default is 0 [0-23] integer
+    minutes: 21, // Default is 0 [0-59] integer
+    seconds: 7, // Default is 0 [0-59] integer
     words: { //words displayed into the countdown
         days: 'Día',
         hours: 'Hora',
