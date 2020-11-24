@@ -11,7 +11,7 @@ use App\Mail\MessageReceived;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('paginaPrincipal');
 })->name("welcome");
 
 Route::get('/prueba', function () {
@@ -23,10 +23,14 @@ Route::get('/template', function () {
     return view('template');
 });
 
-Route::get('/oferta', function () {
-    return view('puja');
+Route::get('/inicio', function () {
+    return view('paginaPrincipal');
 });
     
+
+Route::get('/category', function () {
+    return view('categorias');
+});
 
 Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
 Route::post('/subastaRapida',[SubastaRapController::class,'filtroProc'])->name("subastaRapida_filtro_proc");
@@ -49,12 +53,14 @@ Route::get('/subirProducto', function () {
 Route::get('/registroProducto', function () {
     return view('registroProducto');
 });
-
+Route::get('/registroSubasta', function () {
+    return view('registroSubasta');
+});
 
 
 //Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
 
-Route::get('/producto-{idus}-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
+Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
 
 // Route::post('/','HomeController@registro')->name('producto.registro');
 Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
