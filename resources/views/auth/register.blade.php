@@ -58,6 +58,79 @@
                                     </span>
                                     @enderror
 
+                                    <div class="form-label-group">
+                                        <input type="text" id="inputNombres"
+                                            class="form-control @error('Nombres') is-invalid @enderror"
+                                            placeholder="Nombres" required name="Nombres" value="{{ old('Nombres') }}"
+                                            required autocomplete="Nombres" autofocus>
+                                        <label for="inputNombres">Nombres</label>
+
+                                        @error('Nombres')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>El campo nombres es requerido</strong>
+                                        </span>
+                                        @enderror
+
+                                    </div>
+
+                                    <div class="form-label-group">
+                                        <input type="text" id="inputApellidos"
+                                            class="form-control @error('Apellidos') is-invalid @enderror"
+                                            placeholder="Apellidos" required name="Apellidos" value="{{ old('Apellidos') }}"
+                                            required autocomplete="Apellidos" autofocus>
+                                        <label for="inputApellidos">Apellidos</label>
+
+                                        @error('Apellidos')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>El campo apellidos es requerido</strong>
+                                        </span>
+                                        @enderror
+
+                                    </div>
+
+                                    <!--<div class="form-label-group">
+                                        <input type="text" id="inputTelef"
+                                            class="form-control @error('Teléfono') is-invalid @enderror"
+                                            placeholder="Teléfono" required name="Teléfono" value="{{ old('Teléfono') }}"
+                                            required autocomplete="Teléfono" autofocus>
+                                        <label for="inputTelef">Teléfono</label>
+
+                                        @error('Apellidos')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>El teléfono es requerido</strong>
+                                        </span>
+                                        @enderror
+
+                                    </div>-->
+                                    <div class="form-group">
+                                           <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text"><i class="fa fa-phone text-info"></i></div>
+                                                </div>
+                                            <input class="form-control" type="number" name="telefono" placeholder="Telefono: 18491115555"  required name="telefono " id="telefono" >
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label >Fecha de nacimiento</label>
+                                           <div class="input-group">
+                                                <div class="input-group-prepend">                                                    
+                                                    <div class="input-group-text"><i class="fa fa-calendar-alt text-info"></i></div>
+                                                </div>
+                                                
+                                                <input type="date" name="fechadenacimiento" required name="fechadenacimiento" id="fechadenacimiento" min="1000-01-01"
+                                                  max="3000-12-31" class="form-control"  >                                                   
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
 
                                     <hr class="linea-negra" style="border-color: black;border-width:1px;border-radius:50%;">
 

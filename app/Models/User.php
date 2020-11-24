@@ -16,11 +16,16 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table = 'users';
     protected $fillable = [
         'usuario',
         'us_din',
         'us_descp',
         'email',
+        'Nombres',
+        'Apellidos',
+        'telefono',
+        'fechadenacimiento',
         'password',
     ];
 
@@ -42,4 +47,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function userProducto(){
+        return $this->hasMany(Producto::class);
+    }
 }

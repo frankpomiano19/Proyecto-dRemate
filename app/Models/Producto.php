@@ -15,7 +15,10 @@ class Producto extends Model
         'nombre_producto', 'descripcion', 'precio_inicial', 'imagen', 'estado','final_subasta'
     ];
 
-    public function productoUser(){
-        return $this->belongsTo(User::class);
+    public function productoUserPropietario(){
+        return $this->belongsTo(User::class,'user_id');
+    }
+    public function productoUserComprador(){
+        return $this->belongsTo(User::class,'user_id_comprador');
     }
 }
