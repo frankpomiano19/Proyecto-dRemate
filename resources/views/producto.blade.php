@@ -84,13 +84,13 @@
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img class="d-block w-100" src="img/productimages/{{$prod->imagen}}" alt="First slide">
+                    <img class="d-block w-100" src="{{$prod->imagen}}" alt="Primera imagen">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="/img/productimages/{{$prod->imagen}}" alt="Second slide">
+                    <img class="d-block w-100" src="{{$prod->imagen}}" alt="Segunda Imagen">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="img/productimages/{{$prod->imagen}}" alt="Third slide">
+                    <img class="d-block w-100" src="{{$prod->imagen}}" alt="Tercera imagen">
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -103,7 +103,7 @@
                 </a>
               </div>
               
-              <h2>Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2>
+              <h2 style="display: none">Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2>
         </div>
         <div class="col">
           <div class="row mb-2">
@@ -143,11 +143,9 @@
                   </div>
                   <br>
                   <div class="cant_puja" id="cantpuja">
-                    @if ($ultimapuja=='null')
-                        <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$prod->precio_inicial +1}}.00">
-                    @else if($ultimapuja!='null')
-                        <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$ultimapuja->valor_puja +1}}.00">    
-                    @endif
+                    
+                        <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$ultimoprecio +1}}.00">    
+                    
                     
                   </div>
                   <!-- id del producto, es invisible para que no se vea mal el cuadro y saque el id del producto para crar la puja --> 
@@ -159,11 +157,10 @@
                   </div>
                   <div class="precio_directo my-2">
                     
-                    @if ($ultimapuja=='NULL')
-                      <h5>Precio actual: S/.{{$prod->precio_inicial}}</h5>
-                    @else
+
+                    
                       <h5>Precio actual: S/.{{$ultimoprecio}}</h5>
-                    @endif
+                    
                   </div>
                   
                   <div class="boton_compra my-2" style="display: none" id="boton_compra">
@@ -226,6 +223,7 @@
       <div class="tab-pane container active" id="descripcion">
         <h5 class="tilulo_producto my-2">{{$prod->nombre_producto}}</h5>
         <p style='font-family: "Times New Roman", Times, serif;'> {{$prod->descripcion}} </p>
+        <!--
         <h5>Caracteristicas</h5>
           <ul style='font-family: "Times New Roman", Times, serif;'>
             <li>lorem</li>
@@ -237,15 +235,16 @@
             </li>
             
           </ul>
+            -->
       </div>
       <div class="tab-pane container fade" id="opiniones">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, delectus et ratione libero incidunt nemo maiores assumenda quasi facere cupiditate, qui voluptatem quidem sequi, suscipit est tempore officiis quia fuga?</p>
+        <p>Ninguna opinion encontrada</p>
       </div>
       <div class="tab-pane container fade" id="estadisticas">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, delectus et ratione libero incidunt nemo maiores assumenda quasi facere cupiditate, qui voluptatem quidem sequi, suscipit est tempore officiis quia fuga?</p>
+        <p>Estadisticas no calculadas</p>
       </div>
       <div class="tab-pane container fade" id="similares">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, delectus et ratione libero incidunt nemo maiores assumenda quasi facere cupiditate, qui voluptatem quidem sequi, suscipit est tempore officiis quia fuga?</p>
+        <p>Area en mantenimiento</p>
       </div>
     </div>
   </div><br><br>

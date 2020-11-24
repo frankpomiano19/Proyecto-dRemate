@@ -73,7 +73,8 @@ class HomeController extends Controller
         } else {
             $ultimoprecio = $ultimapuja->valor_puja;
         }
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','ultimapuja','cat','limitepuja','iniciosubasta','ultimoprecio'));
+
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio'));
     }
  
 
@@ -97,7 +98,9 @@ class HomeController extends Controller
         auth()->user()->us_din = $nuevosaldo;
         
         
-        if($ultimapuja->valorpuja  != 'null'){
+        if($ultimapuja=== null){
+            
+        }else{
             $usuariodevolucion = App\Models\User::findOrFail($ultimapuja->user_id);
             $saldouseranterior = $usuariodevolucion->us_din;
             $usuariodevolucion->us_din = $saldouseranterior + $request->ultimoprecio;
@@ -119,18 +122,19 @@ class HomeController extends Controller
     public function registroE(Request $request){
         
         $datosProducto = new App\Models\Producto;
-
-        $datosProducto->nombre_producto = $request->nombre;
-        $datosProducto->descripcion = $request->descripcion;
-        $datosProducto->categoria_id = $request->categoria;
-        $datosProducto->estado = $request->estado;
-        $datosProducto->condicion = $request->condicion;
-        $file = $request->file('imagen');
-        $nameimage = $file->getClientOriginalName();
-        $file->move(public_path("img/productimages/"),$nameimage);
-        $datosProducto->imagen = $nameimage;
-        $datosProducto->garantia = $request->garantia;
-        $datosProducto->user_id = auth()->id();
+        
+            $datosProducto->nombre_producto = $request->nombre;
+            $datosProducto->descripcion = $request->message;
+            $datosProducto->categoria_id = $request->categoria;
+            $datosProducto->estado = $request->inlineRadioOptions;
+            $datosProducto->condicion = $request->condicion;
+            $file = $request->file('imagen');
+            $nameimage = $file->getClientOriginalName();
+            $file->move(public_path("img/productimages/"),$nameimage);
+            $datosProducto->imagen = $nameimage;
+            $datosProducto->garantia = $request->garantia;
+            $datosProducto->user_id = auth()->id();
+        
     
         $datosProducto -> save();
         
