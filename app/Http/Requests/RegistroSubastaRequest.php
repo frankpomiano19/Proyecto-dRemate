@@ -36,9 +36,9 @@ class RegistroSubastaRequest extends FormRequest
             'image_name3'=>'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
             'image_name4'=>'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
             'garantia'=>['required','min:8'],
-            'precio_inicial'=>'required|numeric|regex:/^[\d]{0,3}(\.[\d]{1,2})?$/',
-            'inicio_subasta'=>'required',
-            'final_subasta'=>'required'
+            'precio_inicial'=>'required|numeric|min:10|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
+            'inicio_subasta'=>'required|date',
+            'final_subasta'=>'required|date|after:inicio_subasta'
         ];
     }
 }

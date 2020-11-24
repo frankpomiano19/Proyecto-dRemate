@@ -11,6 +11,7 @@ function pasar() {
 
     var inicioSubastaFF = fechaHoyF.getFullYear() + "-" + (fechaHoyF.getMonth() +1 + "-" + fechaHoyF.getDate());
     inicioSubastaF.setAttribute("min",inicioSubastaFF);
+
 }
 
 pasar();

@@ -236,16 +236,16 @@
                     <br>
                     <div>
                         <label for="formGroupExampleInput"><h3>Precio inicial</h3></label>
-                        <small class="form-text text-muted">Ingrese la cantidad en Soles (S/)</small>
+                        <small class="form-text text-muted">Ingrese la cantidad en Soles (S/) y máximo con dos decimales. Ejemplo: 25.50</small>
                         @error('precio_inicial')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        El precio debe estar entre 1,00 y 99,99
+                        Precio mínimo 10.00 - Precio máximo 999.99
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
                         @enderror
-                        <input type="text" name="precio_inicial" value="{{ old('precio_inicial') }}" class="form-control" id="precioInicial" placeholder="Precio inicial" required>
+                        <input type="text" name="precio_inicial" value="{{ old('precio_inicial') }}" class="form-control" id="precioInicial" placeholder="Precio mínimo 10.00 - Precio máximo 999.99" required>
                         <div class="invalid-feedback">
                             Not nice >:v
                         </div>
@@ -281,7 +281,7 @@
                         <label for="formGroupExampleInput"><h3>Fecha de fin de la subasta</h3></label><br>
                         @error('final_subasta')
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            Debes ingresar la fecha de fin de subasta
+                            La subasta debe durar mínimo 1 día
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
