@@ -75,7 +75,7 @@
 
 <div class="container-md border rounded-lg cuerpo">
     <div class="contenido"></div>
-        <form  id="demo-form" data-parsley-validate="" novalidate enctype="multipart/form-data"  method="POST" action="{{ route('producto.registroe')}}"  novalidate>
+        <form  id="demo-form" data-parsley-validate="" novalidate method="POST"  enctype="multipart/form-data"  action="{{ route('producto.registroe')}}"  novalidate>
             @csrf
             <h1 class="text-center">Registro de producto</h1><br>
             <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br><br></p>
@@ -85,7 +85,7 @@
             
                 <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6 form-group">
                     <label for="formGroupExampleInput"><h3>Categoría</h3></label><br>
-                    <select class="form-control"  id="heard" required="" data-parsley-error-message="Seleccione una categoría">
+                    <select class="form-control" name="categoria" id="heard" required="" data-parsley-error-message="Seleccione una categoría">
                         <option value="">Seleccione...</option>
                         <option value="1">Artículos de moda</option>
                         <option value="2">Productos tecnológicos</option>
@@ -104,7 +104,7 @@
         
                 <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                     <label for="formGroupExampleInput"><h3>Título</h3></label><br>
-                    <input type="text" class="form-control" id="titulo" placeholder="Nombre del producto" required  data-parsley-error-message="Es necesario un título">
+                    <input type="text" class="form-control" name="nombre" id="titulo" placeholder="Nombre del producto" required  data-parsley-error-message="Es necesario un título">
                     <div class="invalid-feedback">
                         Por favor, ingrese un título
                     </div>
@@ -153,7 +153,7 @@
             <div class="col-sm-12 col-md-8 col-lg-7 col-xl-6">
                 <br><h3>Garantía</h3>
                 <small>Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
-                <textarea input type="text" class="form-control" placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
+                <textarea input type="text" class="form-control" name='garantia' placeholder="Añade una descripción" id="validationCustom05" rows="2"></textarea>
                 <br>
             </div>
     

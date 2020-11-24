@@ -103,7 +103,7 @@
                 </a>
               </div>
               
-              <h2>Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2>
+              <h2 style="display: none">Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2>
         </div>
         <div class="col">
           <div class="row mb-2">
@@ -143,11 +143,9 @@
                   </div>
                   <br>
                   <div class="cant_puja" id="cantpuja">
-                    @if ($ultimapuja->valor_puja=='NULL')
-                        <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$prod->precio_inicial +1}}.00">
-                    @else
-                        <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$ultimapuja->valor_puja +1}}.00">    
-                    @endif
+                    
+                        <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$ultimoprecio +1}}.00">    
+                    
                     
                   </div>
                   <!-- id del producto, es invisible para que no se vea mal el cuadro y saque el id del producto para crar la puja --> 
@@ -159,11 +157,9 @@
                   </div>
                   <div class="precio_directo my-2">
                     
-                    @if ($ultimapuja->valor_puja=='NULL')
-                      <h5>Precio actual: S/.{{$prod->precio_inicial}}</h5>
-                    @else
+                    
                       <h5>Precio actual: S/.{{$ultimoprecio}}</h5>
-                    @endif
+                    
                   </div>
                   
                   <div class="boton_compra my-2" style="display: none" id="boton_compra">
