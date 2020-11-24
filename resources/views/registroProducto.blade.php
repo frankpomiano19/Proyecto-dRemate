@@ -285,7 +285,7 @@
                             <div class="form-group">
                                 <input type="file" name="image_name4" class="form-control" id="name4" value="" required>
                             </div>      
-                            <br>
+                            
                             <div class="linea"></div>
                         </div>
                 
@@ -295,12 +295,12 @@
                             <!--Remplazar el # por la vista a donde debería llevar-->
                             <div id="siguiente">
                                 <button type="submit" class="btn btn-success btn-block">Registrar Producto</button>
-                                <br><br>
                             </div>
-                            <br><br>
+                            <br>
                         </div>
 
                     </form>
+                    <a href="{{ url('/menuSubasta') }}" class="btn btn-danger btn-block" style="text-decoration: none; color:white;">Cancelar</a>
                 </div>
             </div>
         </div>

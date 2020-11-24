@@ -360,11 +360,11 @@
                         <!--Remplazar el # por la vista a donde debería llevar-->
                         <div id="siguiente">
                             <button type="submit" class="btn btn-success btn-block">Registrar y Subastar Producto</button>
-                            <br><br>
                         </div>
-                        <br><br>
+                        <br>
                     </div>
                     </form>
+                    <a href="{{ url('/menuSubasta') }}" class="btn btn-danger btn-block" style="text-decoration: none; color:white;">Cancelar</a>
                 </div>
             </div>
         </div>
