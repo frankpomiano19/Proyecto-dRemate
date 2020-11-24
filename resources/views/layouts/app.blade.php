@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="{{asset('bootstrap-4.5.3-dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap-social.css')}}">
     <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.css')}}">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/barra.css">
+    <link rel="stylesheet" href="{{asset('css/footer.css')}}">
+    <link rel="stylesheet" href="{{asset('css/barra.css')}}">
 
     @yield('contenidoCSS')
 
@@ -228,7 +228,7 @@
     </div>
     <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2" style="padding-bottom: 0px!important;">
         <div class="container">
-        <a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="/" style="min-width: 7rem;"><img width="142" src="img/logo.png" alt="Cartzilla" style="height: 55px;"></a><!--<a class="navbar-brand d-sm-none mr-2" href="/" style="min-width: 4.625rem;"><img width="74" src="img/logo.png" alt="Cartzilla" style="height: 34px;min-width: 74px;"></a>-->
+        <a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="/" style="min-width: 7rem;"><img width="142" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 55px;"></a><!--<a class="navbar-brand d-sm-none mr-2" href="/" style="min-width: 4.625rem;"><img width="74" src="img/logo.png" alt="Cartzilla" style="height: 34px;min-width: 74px;"></a>-->
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="input-group-overlay d-lg-none my-3">
             <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
