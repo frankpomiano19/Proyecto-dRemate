@@ -52,9 +52,12 @@
                 </div>
                 <div class="alert alert-success alerta-terminado" role="alert">Carga completa!</div>
                 -->
-                <a href="#" class="btn btn-primary col-md-12 boton-ver-subasta">
+                <a href="{{ route('producto.detalles', $su_curso->id) }}"
+                    class="btn btn-primary col-md-12 boton-ver-subasta">
                     <div class="row">
                         <div class="col-md-12" style="text-align: center">Ver Subasta</div>
+
+
                     </div>
                 </a>
             </div>

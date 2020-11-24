@@ -143,9 +143,9 @@
                   </div>
                   <br>
                   <div class="cant_puja" id="cantpuja">
-                    @if ($ultimapuja->valor_puja=='NULL')
+                    @if ($ultimapuja=='null')
                         <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$prod->precio_inicial +1}}.00">
-                    @else
+                    @else if($ultimapuja!='null')
                         <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$ultimapuja->valor_puja +1}}.00">    
                     @endif
                     
@@ -159,7 +159,7 @@
                   </div>
                   <div class="precio_directo my-2">
                     
-                    @if ($ultimapuja->valor_puja=='NULL')
+                    @if ($ultimapuja=='NULL')
                       <h5>Precio actual: S/.{{$prod->precio_inicial}}</h5>
                     @else
                       <h5>Precio actual: S/.{{$ultimoprecio}}</h5>

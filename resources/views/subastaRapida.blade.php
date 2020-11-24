@@ -163,8 +163,8 @@
 
 
                             <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </a>-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div style="text-align: center;">Ver mas subastas</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </a>-->
 
                         </div>
 
@@ -185,7 +185,6 @@
                             </div>
                         </div>
 
-
                         <div class="tab-pane fade " id="pills-sub-his" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <div class="container">
                                 <div class="row">
@@ -199,11 +198,11 @@
                                             </div>
                                         </div>
                                         <!--
-                                            <div class="card-footer text-center"><a class="btn btn-fill-1" href="#">Ver mas
-                                                    en el
-                                                    historial</a>
-                                            </div>
-                                        -->
+                                                                                        <div class="card-footer text-center"><a class="btn btn-fill-1" href="#">Ver mas
+                                                                                                en el
+                                                                                                historial</a>
+                                                                                        </div>
+                                                                                    -->
                                     </div>
                                 </div>
                             </div>

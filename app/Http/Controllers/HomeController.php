@@ -67,12 +67,12 @@ class HomeController extends Controller
         $usuarios = App\Models\User::all();
         $iniciosubasta = new \Carbon\Carbon($prod->inicio_subasta);
         $limitepuja = new \Carbon\Carbon($prod->final_subasta);
+
         if ($ultimapuja === null) {
             $ultimoprecio = $prod->precio_inicial;
         } else {
             $ultimoprecio = $ultimapuja->valor_puja;
         }
-
         return view('producto',compact('vendedor','prod','pujastotales','usuarios','ultimapuja','cat','limitepuja','iniciosubasta','ultimoprecio'));
     }
  

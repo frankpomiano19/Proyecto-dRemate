@@ -11,7 +11,8 @@
 @endsection
 
 @section('contenidoCSS')
-    <link rel="stylesheet" href="{{ asset('css/stylePerfil.css') }}">
+    <link rel="stylesheet" href="../css/stylePerfil.css">
+
 @endsection
 
 
@@ -160,10 +161,10 @@
                                                         type="text" class="form-control" placeholder="CCV">
                                                 </div>
                                                 <!--
-                                                                                                                                                                                                                                                                                                                                                                                        <div class="col-md-3 col-sm-3 col-xs-3"><img src="assets/img/1.png"
-                                                                                                                                                                                                                                                                                                                                                                                                class="img-rounded">
-                                                                                                                                                                                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                                                                                                                                                                                    -->
+                                                                                                                                                                                                                                                                                                                                                                                                            <div class="col-md-3 col-sm-3 col-xs-3"><img src="assets/img/1.png"
+                                                                                                                                                                                                                                                                                                                                                                                                                    class="img-rounded">
+                                                                                                                                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                                                                                                                                        -->
                                             </div>
                                             <div class="row py-2">
                                                 <div class="col-md-12 pad-adjust">
