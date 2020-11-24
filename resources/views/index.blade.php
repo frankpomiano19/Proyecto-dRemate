@@ -66,29 +66,13 @@
                                             <label class="font-weight-bold titulo-card-header-1">Filtro</label>
 
                                         </div>
-                                        <div class="col-sm-12">
-                                            <ul class="nav nav-pills mb-3 " id="" role="tablist">
-                                                <li class="nav-item">
-                                                    <a class="nav-link active" id="mayor-tiempo" data-toggle="pill" href=""
-                                                        role="tab" aria-controls="pills-home" onclick="filtroOpc = 0;">Mayor
-                                                        tiempo
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" id="menor-tiempo" data-toggle="pill" href=""
-                                                        role="tab" aria-controls="pills-profile" aria-selected="false"
-                                                        onclick="filtroOpc = 1;">Menor
-                                                        tiempo</a>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </div>
 
                                 </div>
                             </section>
                             <div id="subasta_proc_filtro_include" class="row">
 
-                              
+
 
                             </div>
 
@@ -100,8 +84,8 @@
 
 
                             <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </a>-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div style="text-align: center;">Ver mas subastas</div>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </a>-->
 
                         </div>
 
@@ -117,7 +101,7 @@
 
                             <div class="container">
                                 <div class="row justify-content-center" id="id_subasta_programada">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -132,15 +116,15 @@
                                         </div>
                                         <div class="card-body card-contenido-cuerpo-2">
                                             <div class="table-responsive font-popin" id="historial_sub">
-                                                @include('partials/prod-reg')
+                                                @include('partials/prod_reg')
                                             </div>
                                         </div>
                                         <!--
-                                            <div class="card-footer text-center"><a class="btn btn-fill-1" href="#">Ver mas
-                                                    en el
-                                                    historial</a>
-                                            </div>
-                                        -->
+                                                    <div class="card-footer text-center"><a class="btn btn-fill-1" href="#">Ver mas
+                                                            en el
+                                                            historial</a>
+                                                    </div>
+                                                -->
                                     </div>
                                 </div>
                             </div>
@@ -318,8 +302,8 @@
         });
 
     </script>
- 
-  
+
+
 
 
 @endsection
