@@ -162,13 +162,32 @@ class HomeController extends Controller
         return view('index');
         
     }
-    public function get_index_data(Request $request)
+    public function get_producto_data(Request $request)
     {
-        $companies = Producto::latest()->paginate(5);
+        $productos = Producto::latest()->paginate(5);
   
         return Request::ajax() ? 
-                     response()->json($companies,Response::HTTP_OK) 
+                     response()->json($productos,Response::HTTP_OK) 
                      : abort(404);
     }
+    public function update($id)
+  {
+    $producto  = Producto::find($id);
+
+    return response()->json([
+      'data' => $producto
+    ]);
+  }
+  
+  public function destroy($id)
+  {
+    $producto = Producto::find($id);
+
+    $producto->delete();
+
+    return response()->json([
+      'message' => 'Data deleted successfully!'
+    ]);
+  }
 }
 
