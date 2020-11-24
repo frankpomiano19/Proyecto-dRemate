@@ -80,9 +80,27 @@
                 <li class="nav-item"><a class="nav-link" href="/register">Registrarse</a>
                 </li>
             </ul>
-
-
-            
+            <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center" style="margin-right: 50px;margin-left: 50px;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
+                <a class="navbar-tool navbar-stuck-toggler" href="#">
+                    <span class="navbar-tool-tooltip">Expand menu</span>
+                    <div class="navbar-tool-icon-box">
+                        <i class="navbar-tool-icon czi-menu"></i>
+                    </div>
+                </a>
+                <!--<a class="navbar-tool d-none d-lg-flex" href="#"><span class="navbar-tool-tooltip">Favoritos</span>
+                <div class="navbar-tool-icon-box"><i class="fa fa-heart"></i></div></a>-->
+                <a class="navbar-tool ml-1 ml-lg-0 mr-n1 mr-lg-2" href="/login">
+                    <div class="navbar-tool-icon-box">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <!--<div class="navbar-tool-text ml-n3">
+                        <small style="font-weight: bold;">Iniciar sesión</small>Mi cuenta
+                    </div>-->
+                </a>
+            <!--<div class="navbar-tool dropdown ml-3"><div class="navbar-tool-icon-box bg-secondary"><i class="fa fa-money"></i></div><div class="navbar-tool-text" style="padding-left: 0px;"><small>Mis créditos</small>$00.00</div>
+                </div>-->
+            </div>
         </div>
     </div>
     <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2" style="padding-bottom: 0px!important;">
@@ -138,7 +156,9 @@
             </li>
             <li class="nav-item"><a class="nav-link" href="/subastaRapida" style="color:#343a40;font-weight: bold;">Subasta Rápida</a>
             </li>
-            <li class="nav-item"><a class="nav-link" href="/register">Registrarse</a>
+            <li class="nav-item"><a class="nav-link" href="/register" style="color:#343a40;font-weight: bold;">Ingresar</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/register" style="color:#343a40;font-weight: bold;">Registrarse</a>
             </li>
             </ul>
         </div>
@@ -281,94 +301,6 @@
         </div>
     </div>
 </section>
-
-<!-- CATEGORIAS
-<section class="c-posts">
-        <h2 class="c-posts__title">Explora las diversas categorias</h2>
-        <h3 class="c-posts__subtitle">Articulos personales y para el hogar</h3>
-
-        <div class="home-categories" style="display: inline-block;">
-    <div class="grid">
-    <hr>
-    <br>
-        <figure class="effect-zoe">
-            <img src="https://elempresario.mx/sites/default/files/imagecache/nota_completa/moda.jpg" alt="img25">
-            <figcaption>
-                <h2>
-                    Articulos de
-                    <span>Moda</span>
-                </h2>
-                <p class="description">  
-                    asd
-                </p>
-            </figcaption> 
-        </figure>
-        <figure class="effect-zoe">
-            <img src="https://myperuglobal.com/wp-content/uploads/2015/10/Untitled-design.png" alt="img26">
-            <figcaption>
-                <h2>
-                    Productos
-                    <span>Tecnologicos</span>
-                </h2>
-                <p class="description">  
-                    asd
-                </p>
-            </figcaption> 
-        </figure>
-        <figure class="effect-zoe">
-            <img src="https://cdn.shopify.com/s/files/1/0899/2262/articles/10-tiendas-de-decoraci-n-de-interiores-para-tu-hogar.jpg?v=1559339599" alt="img27">
-            <figcaption>
-                <h2>
-                    Articulos para el
-                    <span>HOGAR</span>
-                </h2>
-                <p class="description">  
-                   asd
-                </p>
-            </figcaption> 
-        </figure>
-    </div>
-    <div class="grid">
-        <figure class="effect-zoe">
-            <img src="https://www.engelglobal.com/fileadmin/master/Branchen/technical_moulding/TEC_Sport___Freizeit.jpg" alt="img28">
-            <figcaption>
-                <h2>
-                    Deportes y
-                    <span>Ocio</span>
-                </h2>
-                <p class="description">  
-                    asd
-                </p>
-            </figcaption> 
-        </figure>
-        <figure class="effect-zoe">
-            <img src="https://kasaniu.com/wp-content/uploads/2017/08/ScreenHunter_450-Aug.-13-17.43-1170x680.jpg" alt="img28">
-            <figcaption>
-                <h2>
-                    
-                    <span>Antigüedades</span>
-                </h2>
-                <p class="description">  
-                    asd
-                </p>
-            </figcaption> 
-        </figure>
-        <figure class="effect-zoe">
-            <img src="https://us.emedemujer.com/wp-content/uploads/sites/3/2017/02/Jardiner%C3%ADa-b%C3%A1sica-lo-que-toda-newbie-debe-saber-770x512.jpg" alt="img28">
-            <figcaption>
-                <h2>
-                    Articulos de
-                    <span>Jardineria</span>
-                </h2>
-                <p class="description">  
-                    asd
-                </p>
-            </figcaption> 
-        </figure>
-    </div>
-</div>
-<br>
--->
 
 <section class="c-callout" style="background-color: #000000;;">
     <div class="c-callout__wrap">
