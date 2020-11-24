@@ -14,7 +14,7 @@ use App\Mail\MessageReceived;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('paginaPrincipal');
 })->name("welcome");
 
 
@@ -32,10 +32,14 @@ Route::get('/template', function () {
     return view('template');
 });
 
-Route::get('/oferta', function () {
-    return view('puja');
+Route::get('/inicio', function () {
+    return view('paginaPrincipal');
 });
     
+
+Route::get('/category', function () {
+    return view('categorias');
+});
 
 Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
 
@@ -66,7 +70,7 @@ Route::get('/registroSubasta', function () {
 
 //Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
 
-Route::get('/producto-{idus}-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
+Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
 
 // Route::post('/','HomeController@registro')->name('producto.registro');
 Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
@@ -96,3 +100,9 @@ Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
 Route::get('/index', [HomeController::class, 'pRegister'])->name('index');
+Route::get('/producto', 'HomeController@pRegister')->name('index');
+Route::get('/productos', 'HomeController@get_company_data')->name('data');
+Route::get('/addproducto', 'HomeController@pRegister')->name('view');
+Route::post('/addproducto', 'HomeController@Store')->name('store');
+Route::delete('/addproducto/{id}', 'HomeController@destroy')->name('destroy');
+Route::get('/addproducto/{id}/edit', 'HomeController@update')->name('update');
