@@ -60,7 +60,7 @@ class HomeController extends Controller
         $datospro->user_id = auth()->id();
 
         $datospro -> save();
-    
+    }
 
         // dd($request);
 
@@ -117,7 +117,7 @@ class HomeController extends Controller
         
         return back();
     }
-    
+    /*
     public function registroE(Request $request){
         
         $datosProducto = new App\Models\Producto;
@@ -139,7 +139,7 @@ class HomeController extends Controller
         
         // return view('registroSubasta')->with('datosProducto',$request);
         
-    }
+    }*/
 
     public function registroEE(SubirSubastaRequest $request){
 

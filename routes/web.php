@@ -59,6 +59,7 @@ Route::get('/producto', function () {
 
 Route::get('/registroProducto', function () {
     return view('registroProducto');
+});
     
 Route::get('/menuSubasta', function () {
     return view('menuSubasta');
