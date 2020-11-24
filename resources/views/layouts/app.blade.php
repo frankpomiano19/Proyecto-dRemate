@@ -129,14 +129,7 @@
                         </div>
                     </li>
                 -->
-                <div class="container">
-            <div class="row">
-                 <div class="col-md-3">
-                     @include('includes.menu')
-                 </div>
-                 <div class="col-md-9">
-                 @yield('content')
-                </div>
+             
                 </ul>
             </div>
         </div>
@@ -159,6 +152,7 @@
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
     @yield('contenidoJSabajo')
+    @stack('ajax_crud')
 
 </body>
 

@@ -86,3 +86,9 @@ Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
 Route::get('/index', [HomeController::class, 'pRegister'])->name('index');
+Route::get('/producto', 'HomeController@pRegister')->name('index');
+Route::get('/productos', 'HomeController@get_company_data')->name('data');
+Route::get('/addproducto', 'HomeController@pRegister')->name('view');
+Route::post('/addproducto', 'HomeController@Store')->name('store');
+Route::delete('/addproducto/{id}', 'HomeController@destroy')->name('destroy');
+Route::get('/addproducto/{id}/edit', 'HomeController@update')->name('update');
