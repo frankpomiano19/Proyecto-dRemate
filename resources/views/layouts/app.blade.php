@@ -43,7 +43,6 @@
     @endphp
 <!--
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
-
         <div class="container">
             <a class="navbar-brand" href="{{route("welcome")}}">dRemate</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -51,7 +50,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-
                 
                   <form class="form-inline">
                     <div class="input-group">
@@ -68,17 +66,13 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-
                     <li class="nav-item @if($stringRuta == 'subastaRapida') active  @endif ">
                         <a class=" nav-link" href="{{ route('subastaRapida') }}">Subasta rapida
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-
                     <li class="nav-item">
-
                     @guest
-
                         <li class="nav-item @if($stringRuta == 'login') active  @endif">
                             <a class="nav-link" href="{{ route('login') }}">Ingresar</a>
                         </li>
@@ -86,21 +80,15 @@
                             <li class="nav-item @if($stringRuta == 'register') active  @endif">
                                 <a class="nav-link" href="{{ route('register') }}">Registrarse
                                     <span class="sr-only">(current)</span>
-
                                 </a>
                             </li>
-
                         @endif
-
                     @else
-
-
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->usuario }}
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('perfil_us') }}">
                                     Mi perfil
@@ -113,10 +101,8 @@
                                     @csrf
                                 </form>
                             </div>
-
                         </li>
                     @endguest
-
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -332,6 +318,7 @@
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
     @yield('contenidoJSabajo')
+      @stack('ajax_crud')
 
 </body>
 

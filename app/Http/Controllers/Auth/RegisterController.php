@@ -81,6 +81,10 @@ class RegisterController extends Controller
             'us_din' => $dinero,
             'us_descp'=> "Mi perfil",
             'email' => $data['email'],
+            'Nombres' => $data['Nombres'],
+            'Apellidos' => $data['Apellidos'],
+            'telefono' => $data['telefono'],
+            'fechadenacimiento' => $data['fechadenacimiento'],
             'password' => Hash::make($data['password']),
         ]);
     }

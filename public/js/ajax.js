@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    get_company_data()
+    get_product_data()
     
     $.ajaxSetup({
         headers: {
@@ -9,7 +9,7 @@ $(document).ready(function () {
     });
     
     //Get all company
-    function get_company_data() {
+    function get_product_data() {
         
         $.ajax({
             url: root_url,
@@ -28,8 +28,9 @@ $(document).ready(function () {
         $.each( data, function( key, value ) {
             
               rows = rows + '<tr>';
-              rows = rows + '<td>'+value.name+'</td>';
-              rows = rows + '<td>'+value.address+'</td>';
+              rows = rows + '<td>'+value.nombre_producto+'</td>';
+              rows = rows + '<td>'+value.descripcion+'</td>';
+              rows = rows + '<td>'+value.categoria_id+'</td>';
               rows = rows + '<td data-id="'+value.id+'">';
                     rows = rows + '<a class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" id="editCompany" data-id="'+value.id+'" data-toggle="modal" data-target="#modal-id">Edit</a> ';
                     rows = rows + '<a class="btn btn-sm btn-outline-danger py-0" style="font-size: 0.8em;" id="deleteCompany" data-id="'+value.id+'" >Delete</a> ';
@@ -40,72 +41,27 @@ $(document).ready(function () {
         $("tbody").html(rows);
     }
     
-    //Insert company data
-    $("body").on("click","#createNewCompany",function(e){
-    
-        e.preventDefault;
-        $('#userCrudModal').html("Create company");
-        $('#submit').val("Create company");
-        $('#modal-id').modal('show');
-        $('#company_id').val('');
-        $('#companydata').trigger("reset");
-    
-    });
-    
-    //Save data into database
-    $('body').on('click', '#submit', function (event) {
-        event.preventDefault()
-        var id = $("#company_id").val();
-        var name = $("#name").val();
-        var address = $("#address").val();
-       
-        $.ajax({
-          url: store,
-          type: "POST",
-          data: {
-            id: id,
-            name: name,
-            address: address
-          },
-          dataType: 'json',
-          success: function (data) {
-              
-              $('#companydata').trigger("reset");
-              $('#modal-id').modal('hide');
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Success',
-                showConfirmButton: false,
-                timer: 1500
-              })
-              get_company_data()
-          },
-          error: function (data) {
-              console.log('Error......');
-          }
-      });
-    });
-    
+ 
     //Edit modal window
-    $('body').on('click', '#editCompany', function (event) {
+    $('body').on('click', '#editProduct', function (event) {
     
         event.preventDefault();
         var id = $(this).data('id');
        
         $.get(store+'/'+ id+'/edit', function (data) {
              
-             $('#userCrudModal').html("Edit company");
-             $('#submit').val("Edit company");
+             $('#userCrudModal').html("Edit product");
+             $('#submit').val("Edit product");
              $('#modal-id').modal('show');
-             $('#company_id').val(data.data.id);
-             $('#name').val(data.data.name);
-             $('#address').val(data.data.address);
+             $('#product_id').val(data.data.id);
+             $('#nombre_producto').val(data.data.nombre_producto);
+             $('#descripcion').val(data.data.descripcion);
+             $('#categoria_id').val(data.data.categoria_id);
          })
     });
     
      //DeleteCompany
-     $('body').on('click', '#deleteCompany', function (event) {
+     $('body').on('click', '#deleteProduct', function (event) {
         if(!confirm("Do you really want to do this?")) {
            return false;
          }
@@ -124,7 +80,7 @@ $(document).ready(function () {
               
                 Swal.fire(
                   'Remind!',
-                  'Company deleted successfully!',
+                  'product deleted successfully!',
                   'success'
                 )
                 get_company_data()
