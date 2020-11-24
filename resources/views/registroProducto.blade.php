@@ -75,7 +75,7 @@
 
 <div class="container-md border rounded-lg cuerpo">
     <div class="contenido"></div>
-        <form  id="demo-form" data-parsley-validate="" novalidate  method="POST" action="{{ route('producto.registroe')}}" enctype="multipart/form-data" novalidate>
+        <form  id="demo-form" data-parsley-validate="" novalidate enctype="multipart/form-data"  method="POST" action="{{ route('producto.registroe')}}"  novalidate>
             @csrf
             <h1 class="text-center">Registro de producto</h1><br>
             <p id="parrafo"><br>Primero registra tu producto para mostrarlo a los usuarios<br><br></p>
@@ -141,7 +141,7 @@
                 <small>Una imagen vale más que mil palabras</small>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" required  data-parsley-error-message="Sube por lo menos una imagen"><br>
-                    <label class="custom-file-label" for="customFile">Selecciona tus imágenes</label>
+                    <label class="custom-file-label" name="imagen" for="customFile">Selecciona tus imágenes</label>
                 </div>
                 <div class="invalid-feedback">
                     Sube por lo menos una imagen

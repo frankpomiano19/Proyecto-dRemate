@@ -57,9 +57,10 @@ class HomeController extends Controller
         return view("registroSubasta");
     }
 
-    public function viewproduct($id,$idpro){
-        $vendedor = App\Models\User::findOrFail($id);
+    public function viewproduct($idpro){
+        
         $prod = App\Models\Producto::findOrFail($idpro);
+        $vendedor = App\Models\User::findOrFail($prod->user_id);
         $cat = App\Models\Categoria::findOrFail($prod->categoria_id);
         $pujastotales = App\Models\Puja::all()->sortDesc();
         $ultimapuja = $pujastotales->where('producto_id',$idpro)->first();
