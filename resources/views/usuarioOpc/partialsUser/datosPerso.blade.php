@@ -26,8 +26,34 @@
     </div>
     <div class="row py-2">
         <div class="col-sm-6 col-md-6 col-lg-6">
+            <label class="label-input">Nombre : </label> <input class="input-cuadro" type="text" name="password"
+                placeholder="Nombre" value="{{ Auth::user()->nombres }}" disabled>
+        </div>
+
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <label class="label-input">Apellidos : </label> <input class="input-cuadro" type="text" name="password"
+                placeholder="Apellidos" value="{{ Auth::user()->apellidos }}" disabled>
+        </div>
+    </div>
+
+
+    <div class="row py-2">
+        <div class="col-sm-6 col-md-6 col-lg-6">
             <label class="label-input">Cambiar contraseña</label> <input class="input-cuadro" type="text"
                 name="password" placeholder="Contraseña" value="">
         </div>
     </div>
+    <div class="row py-2">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <label class="label-input">Telefono : </label> <input class="input-cuadro" type="text" name="telefono"
+                placeholder="Telefono" value="{{ Auth::user()->telefono }}">
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            <label class="label-input">Fecha de nacimiento : </label> <input class="input-cuadro" type="text"
+                name="fecha de nacimiento" placeholder="Fecha de nacimiento"
+                value="{{ Auth::user()->fechadenacimiento }}" disabled>
+        </div>
+    </div>
+
+
 </form>
