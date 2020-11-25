@@ -64,6 +64,7 @@ Route::get('/menuSubasta', function () {
 });
 
 //Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
+//Route::get('/rutaNoValida', [HomeController::class, 'viewproduct'])->name("ErrorNoValid");
 
 Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
 
