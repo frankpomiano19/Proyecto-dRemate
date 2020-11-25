@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{asset('css/barra.css')}}">
 
+
     @yield('contenidoCSS')
 
 </head>
