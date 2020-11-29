@@ -92,3 +92,8 @@
 .comt-titulo-1 {
     margin-top: 40px;
 }
+
+.div-disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
