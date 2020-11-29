@@ -7,6 +7,7 @@ use App\Http\Controllers\userController ;
 use App\Http\Controllers\registroProductoController;
 use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\RegistroSubastaController;
+use App\Http\Controllers\userGuest;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -87,6 +88,10 @@ Route::post('/registroProducto', [RegistroProductoController::class,'formularioP
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
+
+//Comentario
+Route::get('/comentario-{idUser}',[userGuest::class,'comentarNow'])->name('comentarios-now');
+
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');
 Route::post('/home/perfil/edit-per',[userController::class,'editarDatosPerso'] )->name('edit-datos-per');
