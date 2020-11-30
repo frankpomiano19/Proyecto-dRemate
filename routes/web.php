@@ -26,8 +26,8 @@ Route::get('/template', function () {
     return view('template');
 });
 
-Route::get('/inicio', function () {
-    return view('paginaPrincipal');
+Route::get('/info', function () {
+    return view('informacion');
 });
     
 

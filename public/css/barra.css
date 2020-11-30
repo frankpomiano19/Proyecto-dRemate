@@ -64,6 +64,12 @@
     content: "\e972";
 }
 
+@media (max-width: 576px){
+.navbar-toolbar {
+    margin-right: 0px!important;
+    margin-left: 0px!important;
+}}
+
 .navbar-stuck-toggler {
     display: none;
 }
