@@ -90,8 +90,11 @@ Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioPro
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
 
 //Comentario
+Route::get('/comentarios/fetch_data_coment-{idUser}',[userGuest::class,'paginacionAjax']);
 Route::get('/comentario-{idUser}',[userGuest::class,'comentarNow'])->name('comentarios-now');
 Route::post('/comentario-crear',[userGuest::class,'comentarCreate'])->middleware('auth')->name('comentarios-create');
+
+
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');

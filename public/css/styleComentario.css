@@ -97,3 +97,11 @@
     pointer-events: none;
     opacity: 0.4;
 }
+
+#contadorCaracteres {
+    clear: both;
+    text-align: right;
+    padding: 5px;
+    color: #555555;
+    font-style: italic;
+}

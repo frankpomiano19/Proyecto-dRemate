@@ -40,6 +40,7 @@
 
                         <div class="ajustar-label-1">
                             <a href="#" class="nombre-url">{{ Auth::user()->usuario }}</a>
+                            <div id="contadorCaracteres">400/0 letras</div>
 
                         </div>
 
@@ -54,14 +55,13 @@
                                 <form method="POST" id="form-comentar">
                                     <textarea class="comentario-now-text" id="input-text-area-id" name="comentarioNow"
                                         placeholder="Inserte su comentario" required></textarea>
-                                    <input type="hidden" value="{{ $idPerfil }}" name="idUserPerfil">
+                                    <input type="hidden" value="{{ $idPerfil }}" name="idUserPerfil" id="hidden-id-user">
                                 </form>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-12">
-
                                 <label
                                     class="ajustar-label-1 label-2-new">{{ Auth::user()->userProductoSubastaGanada->count() }}<br>
                                     subastas<br> ganadas</label>
@@ -69,7 +69,7 @@
                                     class="ajustar-label-1 label-2-new">{{ Auth::user()->userProductoSubastaIniciada->count() }}<br>
                                     subastas<br> iniciadas</label>
                                 <button type="button" id="comentar-button"
-                                    class="btn ajustar-label-2 boton-color">Comentar</button>
+                                    class="btn ajustar-label-2 boton-color div-disabled">Comentar</button>
                             </div>
                         </div>
                     </div>

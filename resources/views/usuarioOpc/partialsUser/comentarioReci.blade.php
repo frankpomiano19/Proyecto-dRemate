@@ -52,6 +52,11 @@
             <div class="col-md-1"></div>
         </div>
     @endforeach
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {{ $comentariosPerfil_s->links() }}
+        </div>
+    </div>
 
 @else
     <h5 class="text-center comt-titulo-1">No se encontraron comentarios</h4>
