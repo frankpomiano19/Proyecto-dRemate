@@ -12,7 +12,7 @@ $(document).ready(function () {
             data: {
                 'idUser': formId
             },
-            url: "/comentarios/fetch_data_coment-" + formId + "?page=" + page0,
+            url: "/info/fetch_data_coment-" + formId + "?page=" + page0,
             success: function (response) {
                 $('#comentarios-recientes-partial').html(response);
                 $('#comentarios-recientes-partial').removeClass('div-disabled');
@@ -76,7 +76,7 @@ $.ajaxSetup({
 $('#comentar-button').click(function () {
     var datosForm = $('#form-comentar').serialize();
     $.ajax({
-        url: "/comentario-crear", //URL DE LA RUTA
+        url: "/info-crear", //URL DE LA RUTA
         type: 'POST',
         data: datosForm,
         success: function (response) {

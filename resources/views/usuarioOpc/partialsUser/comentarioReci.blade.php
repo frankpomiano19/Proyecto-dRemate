@@ -52,10 +52,8 @@
             <div class="col-md-1"></div>
         </div>
     @endforeach
-    <div class="row">
-        <div class="col-md-12 text-center">
-            {{ $comentariosPerfil_s->links() }}
-        </div>
+    <div class="row justify-content-center">
+        {{ $comentariosPerfil_s->links() }}
     </div>
 
 @else

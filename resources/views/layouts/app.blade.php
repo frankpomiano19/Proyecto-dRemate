@@ -187,6 +187,8 @@
                 </li>
                 @endif
                 @else
+                <li class="nav-item"><a class="nav-link" style="font-size: 12px;font-weight: lighter;">S/{{ Auth::user()->us_din }}</a>
+                </li>
 
                         <li class="nav-item dropdown">
                             <label id="navbarDropdown" class="nav-link dropdown-toggle" role="button"

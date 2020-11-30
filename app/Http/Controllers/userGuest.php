@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Comentario;
+use App\Models\User;
 
 
 class userGuest extends Controller
@@ -13,8 +14,10 @@ class userGuest extends Controller
     public function comentarNow($idUser){
         $comentariosPerfil_s = Comentario::where('use_id',$idUser)->orderBy('created_at','DESC')->paginate(3);
         $comentariosGustado_s = Comentario::where('use_id',$idUser)->where('com_like','>',5)->orderBy('com_like','DESC')->take(2)->get();
-        $idPerfil = $idUser;        
-        return view('usuarioOpc.comentarioBorrar',compact('comentariosPerfil_s','comentariosGustado_s','idPerfil'));        
+        $idPerfil = $idUser;
+        $usuarioPerfil =  User::where('id','=',$idPerfil)->first();       
+        
+        return view('usuarioOpc.infoPerfil',compact('comentariosPerfil_s','comentariosGustado_s','idPerfil','usuarioPerfil'));        
     }
 
     public function paginacionAjax(Request $request){

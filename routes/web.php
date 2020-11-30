@@ -25,12 +25,16 @@ Route::get('/prueba', function () {
 Route::get('/template', function () {
     return view('template');
 });
-
+//Informacion y comentario
 Route::get('/info', function () {
     return view('informacion');
 });
-    
 
+Route::get('/info/fetch_data_coment-{idUser}',[userGuest::class,'paginacionAjax']);
+Route::get('/info-{idUser}',[userGuest::class,'comentarNow'])->name('comentarios-now');
+Route::post('/info-crear',[userGuest::class,'comentarCreate'])->middleware('auth')->name('comentarios-create');
+    
+//////////////////////////////////////
 Route::get('/category', function () {
     return view('categorias');
 });
@@ -81,11 +85,6 @@ Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioPro
 
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
-
-//Comentario
-Route::get('/comentarios/fetch_data_coment-{idUser}',[userGuest::class,'paginacionAjax']);
-Route::get('/comentario-{idUser}',[userGuest::class,'comentarNow'])->name('comentarios-now');
-Route::post('/comentario-crear',[userGuest::class,'comentarCreate'])->middleware('auth')->name('comentarios-create');
 
 
 
