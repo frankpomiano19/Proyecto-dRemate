@@ -28,7 +28,7 @@
             <div class="product__item">
                 <div class="product__item__pic img-thumbnail set-bg card-img-top imagen-producto-card"
                     data-setbg="img/trending/trend-1.jpg"
-                    style="background-image: url('{{ $su_curso->imagen }}');background-size:100% 100%;">
+                    style="background-image: url('{{ $su_curso->image_name1 }}');background-size:100% 100%;">
                     <div class="ep">Precio base : ${{ $su_curso->precio_inicial }} </div>
                     <div class="comment"><i class="fa fa-comments"></i> {{ rand(1, 200) }}
                     </div>

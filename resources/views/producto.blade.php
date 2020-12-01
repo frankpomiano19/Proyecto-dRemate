@@ -84,13 +84,16 @@
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{$prod->imagen}}" alt="Primera imagen">
+                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name1 }} @endif" alt="Primera imagen">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="{{$prod->imagen}}" alt="Segunda Imagen">
+                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name2 }} @endif" alt="Segunda Imagen">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="{{$prod->imagen}}" alt="Tercera imagen">
+                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name3 }} @endif" alt="Tercera imagen">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name4 }} @endif" alt="Tercera imagen">
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

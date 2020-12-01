@@ -16,8 +16,14 @@
                 <th>{{ $su_hist->final_subasta }}</th>
                 <th>{{ $su_hist->nombre_producto }}</th>
                 <th>{{ $su_hist->precio_inicial + rand(1, 200) }}</th>
-                <th>{{ $su_hist->productoUserPropietario->usuario }}</th>
-                <th>{{ $su_hist->productoUserComprador->usuario }}</th>
+                <th><a
+                        href="{{ route('comentarios-now', $su_hist->productoUserPropietario->id) }}">{{ $su_hist->productoUserPropietario->usuario }}</a>
+                </th>
+                <th><a
+                        href="{{ route('comentarios-now', $su_hist->productoUserComprador->id) }}">{{ $su_hist->productoUserComprador->usuario }}</a>
+                </th>
+
+
             </tr>
         @endforeach
 
