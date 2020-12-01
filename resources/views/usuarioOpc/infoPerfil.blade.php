@@ -168,7 +168,10 @@
 
 
         @guest
-            <h2>Para poder comentar, necesita identificarse</h2>
+            <!--<h2>Para poder comentar, necesita identificarse</h2>-->
+            <div class="p-3 bg-white mt-2 rounded text-center">
+                <h2 style="padding-bottom: 15px;">Regístrate para poder comentar</h2><a class="btn btn-success btn-sm px-3" href="{{ route('register') }}" role="button">Registrarse</a>
+            </div>
         @else
 
             <div class="row py-4" id="cuadro-texto-comentario">

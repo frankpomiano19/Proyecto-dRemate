@@ -618,3 +618,16 @@ p {
 
 
 
+
+
+.fa-thumbs-o-up:hover {
+    color: green;
+}
+
+.fa-thumbs-o-down:hover {
+    color: red;
+}
+
+.etiqueta-destacado {
+    border-radius: 10px 1px 10px 10px;
+}
