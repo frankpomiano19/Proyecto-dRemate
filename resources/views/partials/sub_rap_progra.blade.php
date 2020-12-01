@@ -29,8 +29,8 @@
             <img class="card-img-top img-logo-size align-center" src="https://na002.leafletcdns.com/pe/data/24/logo.png"
                 alt="" srcset="">
 
-            <a href="#"><img class="card-img-top imagen-producto-card" src="{{ $su_dispo->imagen }}" alt=""></a>
-            <div class="card-contenido-cuerpo-1">
+            <a href="#"><img class="card-img-top imagen-producto-card" src=" {{ $su_dispo->image_name1 }}" alt=""></a>
+            <div class=" card-contenido-cuerpo-1">
                 <div class="card-footer">
                     Precio base : S/ {{ $su_dispo->precio_inicial }}
                 </div>
@@ -53,7 +53,8 @@
 
                 </div>
 
-                <a href="#" class="btn btn-primary col-md-12 boton-ver-subasta">
+                <a href="{{ route('producto.detalles', $su_dispo->id) }}"
+                    class="btn btn-primary col-md-12 boton-ver-subasta">
                     <div class="row">
                         <div class="col-md-12" style="text-align: center">Ver Subasta
                         </div>
