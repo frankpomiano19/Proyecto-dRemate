@@ -144,6 +144,13 @@
                   <div class="finalsubasta" id="finalsubasta">
                     <h5>La subasta ha finalizado</h5>
                   </div>
+                  <div class="ganador" id="ganador">
+                    @if ($ultimapuja === null)
+                        <h4>No hay ganadores</h4>
+                    @else
+                        <h4>El ganador es:<br>{{$usuarios[($ultimapuja->user_id) - 1]->usuario}} </h4>
+                    @endif
+                  </div>
                   <br>
                   <div class="cant_puja" id="cantpuja">
                     
@@ -286,6 +293,8 @@
         document.getElementById('botonpuja').classList.add('oculta');
         document.getElementById('cantpuja').classList.add('oculta');
         document.getElementById('finalsubasta').classList.add('revelado');
+        document.getElementById('ganador').classList.add('revelado');
+
          return; }, //Callback on countdown end, put your own function here
     refresh: 1000, // default refresh every 1s
     sectionClass: 'simply-section', //section css class

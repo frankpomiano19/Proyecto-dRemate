@@ -54,7 +54,7 @@ class HomeController extends Controller
             $ultimoprecio = $ultimapuja->valor_puja;
         }
 
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio'));
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja'));
     }
  
 
