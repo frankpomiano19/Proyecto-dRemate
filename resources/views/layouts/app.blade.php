@@ -28,7 +28,8 @@
     <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.css')}}">
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{asset('css/barra.css')}}">
-
+    <link rel="stylesheet" href="{{asset('animateCss/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.css')}}">
 
     @yield('contenidoCSS')
 
@@ -326,6 +327,7 @@
     <!--<script src="js/poper-1.16.1.js"></script>-->
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
+    <script src="{{asset('sweetalert2/dist/sweetalert2.js')}}"></script>
     @yield('contenidoJSabajo')
       @stack('ajax_crud')
 
