@@ -17,7 +17,6 @@ Route::get('/', function () {
     return view('paginaPrincipal');
 })->name("welcome");
 
-
 Route::get('/prueba', function () {
     return view("paginaNT");
 })->name("paginaPrueba");
@@ -25,6 +24,7 @@ Route::get('/prueba', function () {
 Route::get('/template', function () {
     return view('template');
 });
+
 //Informacion y comentario
 Route::get('/info', function () {
     return view('informacion');
@@ -72,6 +72,7 @@ Route::post('/prueba', [HomeController::class,'registro'])->name('producto.regis
 Route::get('/menuSubasta', function () {
     return view('RegistroProductoSubasta/menuSubasta');
 });
+
 //1 Registrar Producto
 Route::get('registroProducto', function () {
     return view('RegistroProductoSubasta/registroProducto');
@@ -81,6 +82,10 @@ Route::get('registroSubasta', function () {
     return view('RegistroProductoSubasta/registroSubasta');
 })->middleware('auth')->name('registroSubasta-now');
 
+//Mostrar todos los productos
+Route::get('mostrarProductos', function () {
+    return view('mostrarProductos');
+});
 
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
@@ -88,7 +93,6 @@ Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioPro
 
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
-
 
 
 //Usuario
