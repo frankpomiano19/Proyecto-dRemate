@@ -10,6 +10,8 @@ use App\Http\Controllers\RegistroSubastaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MessageReceived;
+use App\Http\Livewire\ProductosComponente;
+use App\Http\Livewire\busquedaFiltro;
 
 
 Route::get('/', function () {
@@ -73,6 +75,16 @@ Route::get('registroSubasta', function () {
     return view('RegistroProductoSubasta/registroSubasta');
 })->middleware('auth')->name('registroSubasta-now');
 
+
+Route::get('/vistaLive', function () {
+    return view('vistaLive');
+});
+
+Route::get('/busquedaFiltro', function () {
+    return view('filtroBusqueda');
+});
+
+Route::get('/productoComponente',[ProductosComponente::class,'render']);
 
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');

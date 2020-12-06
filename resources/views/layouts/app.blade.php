@@ -127,7 +127,7 @@
     </nav>-->
 <!--barra navegación-->
 <div class="navbar-sticky bg-light fixed-top">
-    <div class="navbar navbar-expand-lg navbar-light" style="background:#343a40!important;padding-top: 12px;padding-bottom: 20px;">
+    <div class="navbar navbar-expand-lg navbar-light" style="background:#343a40!important;padding-top: 0px;padding-bottom: 0px;">
         <div class="container" style="padding-left: 0px;margin-left: 25px;margin-right: 25px;"><a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="{{route("welcome")}}" style="min-width: 7rem;"><img width="142" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 55px;"></a><a class="navbar-brand d-sm-none mr-2" href="/" style="min-width: 4.625rem;"><img width="74" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 34px;min-width: 74px;"></a>
         <ul class="navbar-nav mega-nav d-none pr-lg-2 mr-lg-2" style="margin-left: 200px;">
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle pl-0" href="/category" data-toggle="dropdown"><i class="fa fa-th mr-2" style="color:#dee2e6;"></i>Categorías</a>

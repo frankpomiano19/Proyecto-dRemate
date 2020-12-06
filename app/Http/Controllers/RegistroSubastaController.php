@@ -74,7 +74,7 @@ class RegistroSubastaController extends Controller
 
         
 
-        return view('productoRegistradoSubasta')->with('datosProducto', $request)->with('imagen1', $image_url1);
+        return view('VistaPreviaRegistrado/productoRegistradoSubasta')->with('datosProducto', $request)->with('imagen1', $image_url1);
 
     } 
 }

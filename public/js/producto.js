@@ -9,7 +9,6 @@ $(function () {
         });
 });
 
-
 // add the rule here
 $.validator.addMethod("valueNotEquals", function (value, element, arg) {
     return arg !== value;
@@ -168,8 +167,8 @@ function cambiaDistrito()
 {
     var cosa;
     var sel_departamento = document.getElementsByName("selectDepartamento")[0];
-  var sel_provincia = document.getElementsByName("selectProvincia")[0];
-  var sel_distrito = document.getElementsByName("selectDistrito")[0];
+    var sel_provincia = document.getElementsByName("selectProvincia")[0];
+    var sel_distrito = document.getElementsByName("selectDistrito")[0];
   
     selectProvincia = sel_provincia.options[sel_provincia.selectedIndex].value;
 
