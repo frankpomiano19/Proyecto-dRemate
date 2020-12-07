@@ -20,18 +20,22 @@
 @endsection
 
 <div class="container">
+    
     <br><br>
     <div class="row">
-        <div class="col-3 position-sticky">
-            
-            <h5>Precio minimo</h5>
+        <div class="col-3">
+
+           
+
+            <h5>Precio desde</h5>
             @error('precioMin')
             <div class="alert alert-danger" role="alert">
                 {{ $message }}
             </div>
             @enderror
             <input type="text" class="form-control" name="precioMin" wire:model="precioMin">
-            <h5>Precio Maximo</h5>
+
+            <h5>Hasta</h5>
             @error('precioMax')
             <div class="alert alert-danger" role="alert">
                 {{ $message }}
@@ -40,7 +44,11 @@
             <input type="text" class="form-control" name="precioMax" wire:model="precioMax">
 
             <h5>Categoria</h5>
-            @error('categoria') <span class="error">{{ $message }}</span> @enderror
+            @error('categoria')
+            <div class="alert alert-danger" role="alert">
+                {{ $message }}
+            </div>
+            @enderror
             <select name="categoria" class="form-control" id="" wire:model="categoria">
                 <option value="1">Tecnología</option>
                 <option value="2">Hogar</option>
@@ -48,15 +56,24 @@
                 <option value="4">Joyas</option>
                 <option value="5">Instrumento musical</option>
             </select>
+
             <h5>Condicion</h5>
-            @error('condicion') <span class="error">{{ $message }}</span> @enderror
+            @error('condicion')
+            <div class="alert alert-danger" role="alert">
+                {{ $message }}
+            </div>
+            @enderror
                 <select class="form-control" name="condicion" id="" wire:model="condicion">
                     <option value="Nuevo" >Nuevo</option>
                     <option value="Usado">Usado</option>
                 </select>
 
             <h5>Departamento</h5>
-            @error('departamento') <span class="error">{{ $message }}</span> @enderror
+            @error('departamento')
+            <div class="alert alert-danger" role="alert">
+                {{ $message }}
+            </div>
+            @enderror
                 <select name="selectDepartamento" onchange="cambia()" class="form-control mb-1" required=""
                 data-parsley-error-message="Escoja su ubicación" wire:model="departamento">
                     <option value="" selected>Seleccionar</option>
@@ -86,7 +103,7 @@
                     <option value="Tumbes">Tumbes</option>
                     <option value="Ucayali">Ucayali</option>
                 </select>
-                <button class="btn btn-success btn-block my-2">Reestablecer</button>
+                <br><br>
         </div>
 
         <div class="col-9">
@@ -105,7 +122,7 @@
                     @endif
                 </div>
             </div>
-            {{ $precioMax}}
+
             @if($productos->count())
                 <div class="row">
             
@@ -131,7 +148,8 @@
                 </div>
         @else
             <div class="text-center">
-                No existe el producto
+                <h4 class="my-1">Ups, no existe producto con esas condiciones.</h4>
+                <img class="img-fluid my-3 animate__animated animate__bounceInLeft" src="{{ asset('img/undraw_Taken_re_yn20.svg') }}" style="width: 30%; heigth: 30%;" alt="insertar SVG con la etiqueta image">
             </div>
         @endif
         </div>

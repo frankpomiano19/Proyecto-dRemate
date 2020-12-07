@@ -6,6 +6,7 @@ use Illuminate\Http\Support\Facades\Storage;
 use App;
 use App\Http\Requests\SubirProductoRequest;
 use App\Http\Requests\SubirSubastaRequest;
+use Livewire\Component\Busqueda;
 use Carbon\Carbon;
 
 class HomeController extends Controller
@@ -35,6 +36,16 @@ class HomeController extends Controller
 
     public function regresarP(){
         return view("subastaRapida");
+    }
+
+    public function buscaProducto(Request $request){
+
+
+        return view('vistaLive');
+        // return view('livewire.busqueda',[
+        //     'productos' => App\Models\Producto::where('nombre_producto','LIKE',"%{$request}%")
+        //     ->paginate(10)
+        // ]);
     }
     
     public function viewproduct($idpro){

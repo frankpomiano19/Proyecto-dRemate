@@ -22,7 +22,11 @@
 @section('contenido')
 
 <div>
-    <livewire:busqueda-filtro>
+    
+    <livewire:busqueda-filtro />
+
+
+
 </div>
 @livewireScripts
 

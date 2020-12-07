@@ -76,19 +76,24 @@ Route::get('registroSubasta', function () {
 })->middleware('auth')->name('registroSubasta-now');
 
 
-Route::get('/vistaLive', function () {
-    return view('vistaLive');
-});
-
 Route::get('/busquedaFiltro', function () {
     return view('filtroBusqueda');
 });
 
-Route::get('/productoComponente',[ProductosComponente::class,'render']);
+// Route::get('/productoComponente',[ProductosComponente::class,'render']);
 
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
+
+Route::post('/vistaLive', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
+
+
+
+Route::get('/vistaLive', function () {
+    return view('vistaLive');
+});
+
 
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');

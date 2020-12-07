@@ -8,10 +8,11 @@ use App\Models\Producto;
 class BusquedaFiltro extends Component
 {
     public $precioMin = 0;
-    public $precioMax = 0;
+    public $precioMax = 999;
     public $categoria = 1;
     public $condicion = "Nuevo";
     public $departamento = "Lima";
+    public $verdadero = true;
 
     protected $rules = [
         'precioMin' => 'required|numeric|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
@@ -22,12 +23,12 @@ class BusquedaFiltro extends Component
     ];
 
     protected $messages = [
-        'precioMin.required' => 'Precio minimo requerido',
-        'precioMax.required' => 'Precio maximo requerido',
+        'precioMin.required' => 'Precio mínimo requerido',
+        'precioMax.required' => 'Precio máximo requerido',
         'precioMin.numeric' => 'Solo carácteres numéricos',
         'precioMax.numeric' => 'Solo carácteres numéricos',
-        'precioMax.regex' => 'Formato xxx.xx',
-        'precioMin.regex' => 'Formato xxx.xx',
+        'precioMax.regex' => 'Máximo 999.99',
+        'precioMin.regex' => 'Mínimo 10.00',
         'condicion.required' => 'Seleccione condicion',
         'categoria.required' => 'Seleccione categoria',
         'departamento.required' => 'Seleccione departamento'
@@ -45,7 +46,7 @@ class BusquedaFiltro extends Component
             'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
                 ->where("precio_inicial",">=", $this->precioMin)
                 ->where('ubicacion','=',"$this->departamento")
-                ->where('categoria_id',"$this->categoria")
+                ->where('categoria_id',$this->categoria)
                 ->where('condicion','=',"$this->condicion")
                 ->get()
         ]);
