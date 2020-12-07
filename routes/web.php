@@ -103,9 +103,10 @@ Route::post('/home/perfil/edit-pago',[userController::class,'pagoUser'] );
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
-Route::get('/index', [HomeController::class, 'pRegister'])->name('index');
-Route::get('/producto', 'HomeController@pRegister')->name('index');
-Route::get('/productos', 'HomeController@get_company_data')->name('data');
+Route::get('/productos', [RegistroProductoController::class, 'pRegister'])->name('producto');
+//Route::get('/producto', 'RegistroProductoController@pRegister');
+Route::resource('productos', RegistroProductoController::class);
+Route::get('/productos1', 'HomeController@get_company_data')->name('data');
 Route::get('/addproducto', 'HomeController@pRegister')->name('view');
 Route::post('/addproducto', 'HomeController@Store')->name('store');
 Route::delete('/addproducto/{id}', 'HomeController@destroy')->name('destroy');
