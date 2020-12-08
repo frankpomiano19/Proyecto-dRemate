@@ -41,7 +41,8 @@ class userGuest extends Controller
             $nuevoComentario->save();    
         }
         $comentariosPerfil_s = Comentario::where('use_id',$request->idUserPerfil)->orderBy('created_at','DESC')->paginate(3);
-        $idPerfil = $request->idUser;
+        $idPerfil = $request->idUserPerfil;
+
         return view('usuarioOpc.partialsUser.comentarioReci',compact('comentariosPerfil_s','idPerfil'));        
         
     }
@@ -62,6 +63,7 @@ class userGuest extends Controller
         }
         $comentariosPerfil_s = Comentario::where('use_id',$request->idUserPerfilPartial)->orderBy('created_at','DESC')->paginate(3);
         $idPerfil = $request->idUserPerfilPartial;
+
         return view('usuarioOpc.partialsUser.comentarioReci',compact('comentariosPerfil_s','idPerfil'));        
 
     }

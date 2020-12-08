@@ -288,7 +288,7 @@
 
                                     @else
                                         @if (Auth::user()->id == $comentariosGustado->comentUserPerteneciente->id)
-                                            <button type="button" class="btn ajustar-label-2 boton-color-2">Editar</button>
+                                            <button type="button" class="btn ajustar-label-2 boton-color-2" disabled>Editar</button>
                                         @endif
                                     @endguest
 

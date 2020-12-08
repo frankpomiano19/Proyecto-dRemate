@@ -192,10 +192,9 @@
                 </li>
 
                         <li class="nav-item dropdown">
-                            <label id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
+                            <label id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->usuario }}
-                        </label>
+                            </label>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('productos.index') }}">
