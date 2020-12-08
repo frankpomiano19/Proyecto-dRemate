@@ -198,7 +198,7 @@
                         </label>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('perfil_us') }}">
+                                <a class="dropdown-item" href="{{ route('productos.index') }}">
                                     Mi perfil
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"

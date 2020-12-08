@@ -1,11 +1,9 @@
 <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Lista </h2>
+                <h2> </h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('productos.create') }}" title="Create a project"> <i class="fas fa-plus-circle"></i>
-                    </a>
             </div>
         </div>
     </div>
@@ -49,10 +47,10 @@
                     <form action="{{ route('productos.destroy', $producto->id) }}" method="POST">
                   
                         <a href="{{ route('productos.show', $producto->id) }}" title="show">
-                            <i class="fas fa-eye text-success  fa-lg"></i>
+                            <i class="fa fa-eye text-success  fa-lg"></i>
                         </a>
                         <a href="{{ route('productos.edit', $producto->id) }}" >
-                            <i class="fas fa-edit  fa-lg"></i>
+                            <i class="fa fa-edit  fa-lg"></i>
 
                         </a>
 
@@ -60,7 +58,7 @@
                         @method('DELETE')
 
                         <button type="submit" title="delete" style="border: none; background-color:transparent;">
-                            <i class="fas fa-trash fa-lg text-danger"></i>
+                            <i class="fa fa-trash fa-lg text-danger"></i>
 
                         </button>
                     </form>

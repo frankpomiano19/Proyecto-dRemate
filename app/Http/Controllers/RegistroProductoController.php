@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 use JD\Cloudder\Facades\Cloudder;
 use App;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\SubirProductoRequest;
-
-
+use App\Support\Collection;
+use Illuminate\Pagination\Paginator; 
 class RegistroProductoController extends Controller
 {
     public function formularioProducto(SubirProductoRequest $request){
@@ -121,8 +122,10 @@ class RegistroProductoController extends Controller
     public function index(Request $request)
     {
 
-        $productos = App\Models\Producto::latest()->paginate(4);
-		return view('productos.index',compact('productos'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
+
+        $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
+        return view('productos.index',compact('productos','productosSub_s'))->with('i', (request()->input('page', 1) - 1) * 5);
         
 
         
