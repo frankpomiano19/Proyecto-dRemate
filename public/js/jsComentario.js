@@ -1,4 +1,38 @@
+
+
+var indexClassVal = -1;
+
+function editarOn(indexComentario) {
+    indexClassVal = indexComentario;
+    classBotonEditar[indexComentario].classList.add('div-ocultar');
+    classBotonCancelar[indexComentario].classList.remove('div-ocultar');
+    classBotonConfirmar[indexComentario].classList.remove('div-ocultar');
+    classParrafoComentario[indexComentario].classList.remove('div-ocultar');
+    classParrafoComentarioEdit[indexComentario].classList.remove('div-ocultar');
+
+}
+
+function editarOff(indexComentario) {
+    indexClassVal = indexComentario;
+    classBotonEditar[indexComentario].classList.remove('div-ocultar');
+    classBotonCancelar[indexComentario].classList.add('div-ocultar');
+    classBotonConfirmar[indexComentario].classList.add('div-ocultar');
+    classParrafoComentario[indexComentario].classList.add('div-ocultar');
+    classParrafoComentarioEdit[indexComentario].classList.add('div-ocultar');
+
+}
+
+
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //Obtiene el token 										csrf
+    }
+
+});
+
 $(document).ready(function () {
+
+
     $(document).on('click', '#comentarios-recientes-partial .pagination a', function (event) {
         event.preventDefault();
         var page0 = $(this).attr('href').split('page=')[1];
@@ -66,13 +100,6 @@ $("#input-text-area-id").on('input', function () {
 
 
 
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //Obtiene el token 										csrf
-    }
-
-});
-
 $('#comentar-button').click(function () {
     var datosForm = $('#form-comentar').serialize();
     $.ajax({
@@ -102,3 +129,79 @@ $('#comentar-button').click(function () {
         }
     });
 });
+
+
+/*
+$('.boton-confirmar').click(function () {
+    alert("listo");
+    var datosForm = $('#' + indexClassVal).serialize();
+    $.ajax({
+        url: "/info-editar", //URL DE LA RUTA
+        type: 'POST',
+        data: datosForm,
+        success: function (response) {
+
+            $('#comentarios-recientes-partial').html(response);
+            $('#comentarios-recientes-partial').removeClass('div-disabled');
+            $('#cuadro-texto-comentario').removeClass('div-disabled');
+            $('#comentar-button').addClass('div-disabled');
+        },
+        beforeSend: function (thisXHR) {
+            $('#comentarios-recientes-partial').addClass('div-disabled');
+            $('#cuadro-texto-comentario').addClass('div-disabled');
+        },
+
+        statusCode: {
+            404: function () {
+                alert("pagina no encontrada mascota");
+            }
+        },
+        error: function (jqXHR, status, error) {
+            alert("Error al enviar");
+        }
+    });
+});*/
+function enviarEdicionComentarios() {
+    var datosForm = $('#' + indexClassVal).serialize();
+    $.ajax({
+        url: "/info-editar", //URL DE LA RUTA
+        type: 'POST',
+        data: datosForm,
+        success: function (response) {
+
+            $('#comentarios-recientes-partial').html(response);
+            $('#comentarios-recientes-partial').removeClass('div-disabled');
+            $('#cuadro-texto-comentario').removeClass('div-disabled');
+            $('#comentar-button').addClass('div-disabled');
+        },
+        beforeSend: function (thisXHR) {
+            $('#comentarios-recientes-partial').addClass('div-disabled');
+            $('#cuadro-texto-comentario').addClass('div-disabled');
+        },
+
+        statusCode: {
+            404: function () {
+                alert("pagina no encontrada mascota");
+            }
+        },
+        error: function (jqXHR, status, error) {
+            alert("Error al enviar");
+        }
+    });
+}
+
+
+
+$(document)
+    .one('focus.autoExpand', 'textarea.autoExpand', function () {
+        var savedValue = this.value;
+        this.value = '';
+        this.baseScrollHeight = this.scrollHeight;
+        this.value = savedValue;
+    })
+    .on('input.autoExpand', 'textarea.autoExpand', function () {
+        var minRows = this.getAttribute('data-min-rows') | 0, rows;
+        this.rows = minRows;
+        rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
+        this.rows = minRows + rows;
+    });

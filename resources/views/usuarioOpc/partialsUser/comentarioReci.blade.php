@@ -1,5 +1,29 @@
 @if ($comentariosPerfil_s->count() > 0)
+    <script>
+        contadorComentario = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+        identificadorComentario = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    </script>
+    @php
+    $index = -1;
+    @endphp
     @foreach ($comentariosPerfil_s as $comentariosPerfil)
+        @guest
+
+        @else
+            @if (Auth::user()->id == $comentariosPerfil->comentUserPerteneciente->id)
+                @php
+                $index++;
+                @endphp
+                <script>
+                    indexComentario++;
+                    contadorComentario[indexComentario] = indexComentario;
+                    identificadorComentario[indexComentario] = "{{ $comentariosPerfil->id }}";
+
+                </script>
+            @endif
+
+        @endguest
         <div class="row py-4">
             <div class="col-md-2"></div>
             <div class="col-md-9">
@@ -19,8 +43,28 @@
                     @endif
                     <div class="row comentario-contenido">
                         <div class="col-md-12">
-                            <p>{{ $comentariosPerfil->com_texto }}
-                            </p>
+                            <div class="texto-result-comment autoExpand" style="width: 100%">
+                                {{ $comentariosPerfil->com_texto }}
+                            </div>
+                            @guest
+
+                            @else
+                                @if (Auth::user()->id == $comentariosPerfil->comentUserPerteneciente->id)
+                                    <div class="parrafo-comentario div-ocultar">Edicion
+                                        {{ $comentariosPerfil->com_editado + 1 }}
+                                    </div>
+                                    <form method="POST" id="{{ $index }}">
+                                        @csrf
+                                        <textarea style="width: 100%;height=200px"
+                                            class="parrafo-comentario-edit div-ocultar" type="text"
+                                            name="comentarioEditado"></textarea>
+                                        <input type="hidden" value="{{ $idPerfil }}" name="idUserPerfilPartial">
+                                        <input type="hidden" value="{{ $comentariosPerfil->id }}" name="idComentario">
+
+                                    </form>
+                                @endif
+
+                            @endguest
                         </div>
                     </div>
                     <hr class="linea-separadora-centro-abajo">
@@ -40,7 +84,16 @@
 
                             @else
                                 @if (Auth::user()->id == $comentariosPerfil->comentUserPerteneciente->id)
-                                    <button type="button" class="btn ajustar-label-2 boton-color-2">Editar</button>
+
+                                    <button type="button" class="btn ajustar-label-2 boton-color-2 boton-editar"
+                                        onclick="editarOn({{ $index }});">Editar</button>
+                                    <button type="button"
+                                        class="btn ajustar-label-2 boton-color-2 boton-confirmar div-ocultar"
+                                        onclick="enviarEdicionComentarios();    ">Confirmar</button>
+                                    <button type="button"
+                                        class="btn ajustar-label-2 boton-color-2 boton-cancelar div-ocultar"
+                                        onclick="editarOff({{ $index }});">Cancelar</button>
+
                                 @endif
                             @endguest
                         </div>
@@ -60,3 +113,12 @@
     <h5 class="text-center comt-titulo-1">No se encontraron comentarios</h4>
 
 @endif
+<script>
+    indexComentario = -1;
+    classBotonEditar = document.getElementsByClassName('boton-editar');
+    classBotonCancelar = document.getElementsByClassName('boton-cancelar');
+    classBotonConfirmar = document.getElementsByClassName('boton-confirmar');
+    classParrafoComentario = document.getElementsByClassName('parrafo-comentario');
+    classParrafoComentarioEdit = document.getElementsByClassName('parrafo-comentario-edit');
+
+</script>
