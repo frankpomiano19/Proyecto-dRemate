@@ -8,6 +8,7 @@ use App\Http\Requests\SubirProductoRequest;
 use App\Http\Requests\SubirSubastaRequest;
 use Livewire\Component\Busqueda;
 use Carbon\Carbon;
+use App\Models\Producto;
 
 class HomeController extends Controller
 {
@@ -40,12 +41,14 @@ class HomeController extends Controller
 
     public function buscaProducto(Request $request){
 
+        $request->validate([
+            'bproducto' => 'required'
+        ]);
 
-        return view('vistaLive');
-        // return view('livewire.busqueda',[
-        //     'productos' => App\Models\Producto::where('nombre_producto','LIKE',"%{$request}%")
-        //     ->paginate(10)
-        // ]);
+        return view('vistaLive',[
+            'productos' => Producto::where('nombre_producto','LIKE',"{$request->bproducto}%")
+            ->paginate(10)
+        ],['nombreProducto' => $request->bproducto]);
     }
     
     public function viewproduct($idpro){

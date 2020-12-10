@@ -21,7 +21,7 @@
 
 <div class="container">
     
-    <br><br>
+    <br>
     <div class="row">
         <div class="col-3">
 
@@ -44,17 +44,8 @@
             <input type="text" class="form-control" name="precioMax" wire:model="precioMax">
 
             <h5>Categoria</h5>
-            @error('categoria')
-            <div class="alert alert-danger" role="alert">
-                {{ $message }}
-            </div>
-            @enderror
-            <select name="categoria" class="form-control" id="" wire:model="categoria">
-                <option value="1">Tecnología</option>
-                <option value="2">Hogar</option>
-                <option value="3">Electrodomésticos</option>
-                <option value="4">Joyas</option>
-                <option value="5">Instrumento musical</option>
+            <select name="" class="form-control" id="" wire:model="" disabled>
+                <option value="">Electrodomésticos</option>
             </select>
 
             <h5>Condicion</h5>
@@ -109,17 +100,7 @@
         <div class="col-9">
             <div class="row">
                 <div class="col-12 mb-2">
-                    @if($categoria==1)
-                        <h5>Categoria: Tecnología > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
-                    @elseif($categoria==2)
-                        <h5>Categoria: Hogar > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
-                    @elseif($categoria==3)
-                        <h5>Categoria: Electrodomésticos > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
-                    @elseif($categoria==4)
-                        <h5>Categoria: Joyas > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
-                    @else
-                        <h5>Categoria: Instrumento Musical > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
-                    @endif
+                    <h5>Categoria: Electrodomésticos > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
                 </div>
             </div>
 

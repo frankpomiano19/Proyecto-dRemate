@@ -7,11 +7,14 @@ use App\Models\Producto;
 
 class Busqueda extends Component
 {
-    // protected $queryString = ['search'=> ['except'=>'']];
+    protected $queryString = ['search'=> ['except'=>'']];
 
     // public $count = 0;
 
     public $search;
+
+    public $casa;
+
 
     // public function increment()
     // {

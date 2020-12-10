@@ -4,11 +4,15 @@
         wire:model="search"
         class = "forms-control"
         type="text"
-        placeholder="buscar"    
+        placeholder="buscar"
+        value={{$search}}    
     >
     {{-- <button wire:click="increment">+</button>
     <h1>{{ $count }}</h1> --}}
-    <h1>{{ $search }}</h1>
+    <br><br><br><br>
+    <p>{{ $search }}</p>
+
+    
 
     @if($productos->count())
     <div>

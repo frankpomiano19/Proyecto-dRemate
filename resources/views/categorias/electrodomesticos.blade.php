@@ -22,10 +22,8 @@
 @section('contenido')
 
 <div>
-    
-    <livewire:busqueda-filtro />
-
-
+    <br>
+    <livewire:electrodomesticos />
 
 </div>
 @livewireScripts

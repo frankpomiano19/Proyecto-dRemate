@@ -30,11 +30,6 @@ Route::get('/template', function () {
 Route::get('/inicio', function () {
     return view('paginaPrincipal');
 });
-    
-
-Route::get('/category', function () {
-    return view('categorias');
-});
 
 Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
 
@@ -45,6 +40,9 @@ Route::get('/subastaRapida/fetch_data',[SubastaRapController::class,'fetch_data'
 Route::get('/subastaRapida/fetch_data1',[SubastaRapController::class,'fetch_data1']);
 Route::get('/subastaRapida/fetch_data2',[SubastaRapController::class,'fetch_data2']);
 
+Route::get('/vistaLive', function () {
+    return view('vistaLive');
+});
 
 Route::get('/producto', function () {
     return view('producto');
@@ -77,23 +75,29 @@ Route::get('registroSubasta', function () {
 
 
 Route::get('/busquedaFiltro', function () {
-    return view('filtroBusqueda');
+    return view('categorias/filtroBusqueda');
 });
-
-// Route::get('/productoComponente',[ProductosComponente::class,'render']);
+Route::get('categorias/joyas', function () {
+    return view('categorias/joyas');
+});
+Route::get('categorias/tecnologia', function () {
+    return view('categorias/tecnologia');
+});
+Route::get('categorias/hogar', function () {
+    return view('categorias/hogar');
+});
+Route::get('categorias/instrumentos', function () {
+    return view('categorias/instrumentos');
+});
+Route::get('categorias/electrodomesticos', function () {
+    return view('categorias/electrodomesticos');
+});
 
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
 
-Route::post('/vistaLive', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
-
-
-
-Route::get('/vistaLive', function () {
-    return view('vistaLive');
-});
-
+Route::post('/', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
 
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
