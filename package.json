@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "parsley": "^0.1.0",
-        "parsleyjs": "^2.9.2"
+        "parsleyjs": "^2.9.2",
+        "sweetalert2": "^10.11.1"
     }
 }

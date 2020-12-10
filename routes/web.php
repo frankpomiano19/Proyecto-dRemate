@@ -6,6 +6,7 @@ use App\Http\Controllers\SubastaRapController;
 use App\Http\Controllers\userController ;
 use App\Http\Controllers\registroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
+use App\Http\Controllers\userGuest;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -18,7 +19,6 @@ Route::get('/', function () {
     return view('paginaPrincipal');
 })->name("welcome");
 
-
 Route::get('/prueba', function () {
     return view("paginaNT");
 })->name("paginaPrueba");
@@ -27,8 +27,21 @@ Route::get('/template', function () {
     return view('template');
 });
 
-Route::get('/inicio', function () {
-    return view('paginaPrincipal');
+//Informacion y comentario
+Route::get('/info', function () {
+    return view('informacion');
+});
+
+Route::get('/info/fetch_data_coment-{idUser}',[userGuest::class,'paginacionAjax']);
+Route::get('/info-{idUser}',[userGuest::class,'comentarNow'])->name('comentarios-now');
+Route::post('/info-crear',[userGuest::class,'comentarCreate'])->middleware('auth')->name('comentarios-create');
+Route::post('/info-editar',[userGuest::class,'comentarEdit'])->middleware('auth')->name('comentarios-edit');
+    
+
+
+//////////////////////////////////////
+Route::get('/category', function () {
+    return view('categorias');
 });
 
 Route::get('/subastaRapida',[SubastaRapController::class,'index'])->name("subastaRapida");
@@ -64,6 +77,7 @@ Route::post('/prueba', [HomeController::class,'registro'])->name('producto.regis
 Route::get('/menuSubasta', function () {
     return view('RegistroProductoSubasta/menuSubasta');
 });
+
 //1 Registrar Producto
 Route::get('registroProducto', function () {
     return view('RegistroProductoSubasta/registroProducto');
@@ -73,6 +87,10 @@ Route::get('registroSubasta', function () {
     return view('RegistroProductoSubasta/registroSubasta');
 })->middleware('auth')->name('registroSubasta-now');
 
+//Mostrar todos los productos
+Route::get('mostrarProductos', function () {
+    return view('mostrarProductos');
+});
 
 Route::get('/busquedaFiltro', function () {
     return view('categorias/filtroBusqueda');
@@ -101,6 +119,8 @@ Route::post('/', [HomeController::class,'buscaProducto'])->name('busqueda.busque
 
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
+
+
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');
 Route::post('/home/perfil/edit-per',[userController::class,'editarDatosPerso'] )->name('edit-datos-per');
@@ -109,10 +129,9 @@ Route::post('/home/perfil/edit-pago',[userController::class,'pagoUser'] );
 Auth::routes();
 Route::get('/home',  [HomeController::class,'index'])->name('home');
 Route::get('/vacassss',[HomeController::class, 'valores'])->name("nombre");//Formato ejemplo
-Route::get('/index', [HomeController::class, 'pRegister'])->name('index');
-Route::get('/producto', 'HomeController@pRegister')->name('index');
-Route::get('/productos', 'HomeController@get_company_data')->name('data');
-Route::get('/addproducto', 'HomeController@pRegister')->name('view');
-Route::post('/addproducto', 'HomeController@Store')->name('store');
-Route::delete('/addproducto/{id}', 'HomeController@destroy')->name('destroy');
-Route::get('/addproducto/{id}/edit', 'HomeController@update')->name('update');  
+Route::get('/productos', [RegistroProductoController::class, 'pRegister'])->name('producto');
+Route::resource('productos', RegistroProductoController::class);
+Route::get('/addproducto', [HomeController::class,'pRegister'])->name('view');
+Route::post('/addproducto',[HomeController::class,'Store'])->name('store');
+Route::delete('/addproducto/{id}', [HomeController::class,'destroy'])->name('destroy');
+Route::get('/addproducto/{id}/edit',[HomeController::class,'update'])->name('update');

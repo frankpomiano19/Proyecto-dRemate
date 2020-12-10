@@ -61,14 +61,14 @@ class HomeController extends Controller
         $usuarios = App\Models\User::all();
         $iniciosubasta = new \Carbon\Carbon($prod->inicio_subasta);
         $limitepuja = new \Carbon\Carbon($prod->final_subasta);
-        //dd($prod->id,$iniciosubasta,$limitepuja);
+        $productosRelac =  App\Models\Producto::where('categoria_id','=',$prod->categoria_id)->latest()->take(5)->get();
         if ($ultimapuja === null) {
             $ultimoprecio = $prod->precio_inicial;
         } else {
             $ultimoprecio = $ultimapuja->valor_puja;
         }
 
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio'));
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac'));
     }
  
 
@@ -106,37 +106,57 @@ class HomeController extends Controller
         return back();
     }
 
-    public function pRegister() {
-       
-        return view('index');
+     /*
+    public function registroE(Request $request){
         
-    }
-    public function get_producto_data(Request $request)
-    {
-        $productos = Producto::latest()->paginate(5);
-  
-        return Request::ajax() ? 
-                     response()->json($productos,Response::HTTP_OK) 
-                     : abort(404);
-    }
-    public function update($id)
-  {
-    $producto  = Producto::find($id);
+        $datosProducto = new App\Models\Producto;
+        
+            $datosProducto->nombre_producto = $request->nombre;
+            $datosProducto->descripcion = $request->message;
+            $datosProducto->categoria_id = $request->categoria;
+            $datosProducto->estado = $request->inlineRadioOptions;
+            $datosProducto->condicion = $request->condicion;
+            $file = $request->file('imagen');
+            $nameimage = $file->getClientOriginalName();
+            $file->move(public_path("img/productimages/"),$nameimage);
+            $datosProducto->imagen = $nameimage;
+            $datosProducto->garantia = $request->garantia;
+            $datosProducto->user_id = auth()->id();
+        
+    
+        $datosProducto -> save();
+        
+        // return view('registroSubasta')->with('datosProducto',$request);
+        
+    }*/
 
-    return response()->json([
-      'data' => $producto
-    ]);
-  }
-  
-  public function destroy($id)
-  {
-    $producto = Producto::find($id);
+    public function registroEE(SubirSubastaRequest $request){
 
-    $producto->delete();
+        // dd($request);
 
-    return response()->json([
-      'message' => 'Data deleted successfully!'
-    ]);
-  }
+        return view('paginaProducto')->with('datospro',$request);
+    
+
+
+        // dd($request);
+
+        //-----------------------------------------------------
+        // $datospro = new App\Models\Producto;
+        //-----------------------------------------------------
+
+        // $datospro = App\Models\Producto::findOrFail($request->id);
+        // dd($datospro->id);
+        // $datospro->id = $request->id;
+
+        //-----------------------------------------------------
+        // $datospro->precio_inicial = $request->precio_inicial;
+        // $datospro->inicio_subasta = $request->inicio_subasta;
+        // $datospro->final_subasta = $request->final_subasta;
+        //-----------------------------------------------------
+
+
+    return back();
+} 
+
 }
 

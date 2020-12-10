@@ -1,0 +1,127 @@
+.imagen-avatar {
+    width: 100%;
+    height: 100px;
+}
+
+#cuadro-texto-input {
+    background-color: #EEEEEE;
+    border-color: #000000;
+    border-style: solid;
+    border-width: 1px;
+    width: 80%;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.ajustar-label-1 {
+    float: left;
+}
+
+.ajustar-label-2 {
+    float: right;
+}
+
+.etiqueta-destacado {
+    background-color: #D9534F;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    margin: 5px 5px 5px 5px;
+    font-size: 0.6em;
+}
+
+.nombre-url {
+    padding: 5px;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.evitar-float {
+    clear: both;
+}
+
+.label-2-new {
+    background-color: #4F2F2C;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+    margin: 0px 5px 5px 5px;
+    text-align: center;
+    font-size: 0.6em;
+}
+
+.boton-color {
+    background-color: #4F2F2C;
+    color: white;
+    font-weight: bold;
+}
+
+.boton-color-2 {
+    background-color: #801022;
+    color: white;
+    font-weight: bold;
+}
+
+.comentario-now-text {
+    width: 100%;
+    height: 10em;
+}
+
+.comentario-salida {
+    background-color: white;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.comentario-contenido {
+    padding: 15px;
+    clear: both;
+}
+
+.icon-button-like {
+    font-size: large;
+}
+
+.linea-separadora-centro-abajo {
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+
+.comt-titulo-1 {
+    margin-top: 40px;
+}
+
+.div-disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+#contadorCaracteres {
+    clear: both;
+    text-align: right;
+    padding: 5px;
+    color: #555555;
+    font-style: italic;
+}
+
+.div-ocultar {
+    display: none;
+}
+
+.div-mostrar {
+    display: inline-block;
+}
+
+.texto-result-comment {
+    border: 0px solid black;
+    background-color: white;
+    display: block;
+    box-sizing: padding-box;
+    overflow: auto;
+    width: 30rem;
+    padding: .5rem;
+    min-height: 3rem;
+    white-space: pre-line;
+}

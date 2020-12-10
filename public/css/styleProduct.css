@@ -73,10 +73,10 @@ body{
     margin-bottom: 10px;
 }
 
-.tiempo_producto, .cant_puja, #botonpuja, .finalsubasta{
+.tiempo_producto, .cant_puja, #botonpuja, .finalsubasta, #ganador{
     display: none;
 }
-.tiempo_producto.revelado, .cant_puja.revelado, #botonpuja.revelado, .finalsubasta.revelado{
+.tiempo_producto.revelado, .cant_puja.revelado, #botonpuja.revelado, .finalsubasta.revelado, #ganador.revelado{
     display:flex;
     justify-content: center;
 }
