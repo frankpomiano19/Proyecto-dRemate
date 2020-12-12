@@ -130,7 +130,7 @@
             @else
                 <div class="text-center">
                     <h4 class="my-1">Ups, no existe producto con esas condiciones.</h4>
-                    <img class="img-fluid my-3 animate__animated animate__bounceInLeft" src="{{ asset('img/undraw_Taken_re_yn20.svg') }}" style="width: 30%; heigth: 30%;" alt="insertar SVG con la etiqueta image">
+                    <img class="img-fluid my-3 animate__animated animate__flash" src="{{ asset('img/undraw_Taken_re_yn20.svg') }}" style="width: 30%; heigth: 30%;" alt="insertar SVG con la etiqueta image">
                 </div>
             @endif
         </div>

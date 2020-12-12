@@ -50,8 +50,8 @@
         </div>
         @else
         <div class="text-center">
-            <h4 class="my-1">Ups, no existe un producto con nombre "{{ $nombreProducto }}".</h4>
-            <img class="img-fluid my-3 animate__animated animate__bounceInLeft" src="{{ asset('img/undraw_Taken_re_yn20.svg') }}" style="width: 30%; heigth: 30%;" alt="insertar SVG con la etiqueta image">
+            <h4 class="my-1 animate__animated animate__backInDown">Ups, no existe un producto con nombre "{{ $nombreProducto }}".</h4>
+            <img class="img-fluid my-3 animate__animated animate__backInDown" src="{{ asset('img/undraw_Taken_re_yn20.svg') }}" style="width: 30%; heigth: 30%;" alt="insertar SVG con la etiqueta image">
         </div>
     @endif
     
