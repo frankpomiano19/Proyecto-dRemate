@@ -22,58 +22,24 @@
     
   <div class="product">
     <br><br>
+    <!--Contenedor de productos relacionados-->
     <div class ="container1">
         <div class="row">
-            <div class="col-md">
+          @foreach ($productosRelac as $prodRelac)
+          <div class="col-md">
                 <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta_1.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Máquina Café Express</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
+                    <img class="card-img-top" src="@if($prodRelac->imagen!=null){{ $prodRelac->imagen }} @else {{ $prodRelac->image_name1 }} @endif" alt="Card image cap">
+                    <a href="{{ route('producto.detalles', $prodRelac->id) }}"><div class="card-body text-center">
+                    <h5 class="card-title"> {{$prodRelac->nombre_producto}} </h5>
+                    <p class="card-text"><small class="text">Last updated {{Carbon\Carbon::now()->diffForHumans($prodRelac->updated_at)}} </small></p>
+                    </div></a>
                 </div>
             </div>
-            <div class="col-md">
-                <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta_2.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Máquina Capuccinos Zoe</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta_3.png" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Máquina bebidas calientes</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta4.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Máquina Axioo Latte</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md">
-                <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta5.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Coffee Party</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
       </div>
     </div>
-  
+    <!--fin del Contenedor de productos relacionados-->
   <br>
   <!-- Información del producto -->
   <div class="container2">
@@ -209,6 +175,7 @@
         </div>
     </div>
   </div>
+  <!-- fin de la Información del producto -->
   <br>
 
 
