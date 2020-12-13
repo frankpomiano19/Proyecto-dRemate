@@ -23,7 +23,14 @@
 
 @section('contenido')
     <script>
-        var contadorComentario = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let contadorComentario = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
+        let identificadorComentario = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        let indexComentario = -1;
+        let classBotonEditar;
+        let classBotonCancelar;
+        let classBotonConfirmar;
+        let classParrafoComentario;
+        let classParrafoComentarioEdit;
 
     </script>
 
@@ -86,7 +93,7 @@
                                 <div class="info">
                                     <i class="fa fa-envelope"></i>
                                     <div class="right-area">
-                                        <h5>valor@asdaw.com</h5>
+                                        <h5>{{ $usuarioPerfil->email }}</h5>
                                         <h6>RESPONDE EN 24 HORAS</h6>
                                     </div>
                                 </div>
@@ -126,8 +133,9 @@
                                     </li>
                                 </ul>
                                 <ul class="social-icons" style="padding-left: 0px;margin-bottom: 0px;">
-                                    <li><a href="{{ $twitterUrl }}" class="btn btn-social-icon
-                                                                            btn-twitter"><span
+                                    <li><a href="{{ $twitterUrl }}"
+                                            class="btn btn-social-icon
+                                                                                                                                                                                                        btn-twitter"><span
                                                 class="fa fa-twitter"></span></a>
                                     </li>
                                     <li><a href="{{ $facebookUrl }}" class="btn btn-social-icon btn-facebook"><span
@@ -161,14 +169,32 @@
                     </div><!-- row -->
                 </div><!-- container -->
             </section>
+            <section class="about-section section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <div class="heading">
+                                <h3><b>Mis productos</b></h3>
+                                <h6 class="font-lite-black"><b></b></h6>
+                            </div>
+                        </div><!-- col-sm-12 -->
+                    </div>
+                    <div  id="info-prod-2">
+                        @include('usuarioOpc.partialsUser.comentarioProd')
+                    </div>
+                </div><!-- container -->
+            </section>
         </section>
-
-
-
-
-
         @guest
-            <h2>Para poder comentar, necesita identificarse</h2>
+            <!--<h2>Para poder comentar, necesita identificarse</h2>-->
+            <div class="p-3 bg-white mt-2 rounded text-center">
+                <h2 style="padding-bottom: 15px;">Regístrate para poder comentar</h2><a class="btn btn-success btn-sm px-3"
+                    href="{{ route('register') }}" role="button">Registrarse</a>
+            </div>
+            <form method="POST" id="form-comentar">
+                <input type="hidden" value="{{ $idPerfil }}" name="idUserPerfil" id="hidden-id-user">
+            </form>
+
         @else
 
             <div class="row py-4" id="cuadro-texto-comentario">
@@ -194,8 +220,8 @@
                         <div class="row py-2 evitar-float">
                             <div class="col-md-12 color-input">
                                 <form method="POST" id="form-comentar">
-                                    <textarea class="comentario-now-text" id="input-text-area-id" name="comentarioNow"
-                                        placeholder="Inserte su comentario" required></textarea>
+                                    <textarea class="comentario-now-text autoExpand" id="input-text-area-id"
+                                        name="comentarioNow" placeholder="Inserte su comentario" required></textarea>
                                     <input type="hidden" value="{{ $idPerfil }}" name="idUserPerfil" id="hidden-id-user">
                                 </form>
                             </div>
@@ -251,8 +277,11 @@
 
                             <div class="row comentario-contenido">
                                 <div class="col-md-12">
-                                    <p>{{ $comentariosGustado->com_texto }}
-                                    </p>
+
+                                    <div disabled class="texto-result-comment autoExpand" style="width: 100%">
+                                        {{ $comentariosGustado->com_texto }}
+                                    </div>
+
 
                                 </div>
                             </div>
@@ -274,7 +303,7 @@
 
                                     @else
                                         @if (Auth::user()->id == $comentariosGustado->comentUserPerteneciente->id)
-                                            <button type="button" class="btn ajustar-label-2 boton-color-2">Editar</button>
+                                            <button type="button" class="btn ajustar-label-2 boton-color-2" disabled>Editar</button>
                                         @endif
                                     @endguest
 
@@ -302,10 +331,11 @@
 
 
 
-
 @endsection
 
 @section('contenidoJSabajo')
+    <script src="../js/vue.js"></script>
+    <script src="../js/axios.js"></script>
     <script src="../js/jsComentario.js"></script>
     <!-- Colocar js abajo-->
 @endsection

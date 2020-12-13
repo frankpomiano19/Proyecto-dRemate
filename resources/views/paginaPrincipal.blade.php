@@ -152,7 +152,7 @@
     </div>
 </section>
 
-<section class="c-callout" style="background-color: #000000;;">
+{{-- <section class="c-callout" style="background-color: #000000;;">
     <div class="c-callout__wrap">
         <span class="c-callout__icon" style="background-image:url(https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/newsletter-3.png);">
         </span>
@@ -165,10 +165,10 @@
                 Subastas
         </a>
     </div>
-</section>
+</section> --}}
 
 
-<div class="deals_featured">
+{{-- <div class="deals_featured">
     <div class="container">
         <div class="row"><h2 style="background: #f3f6fd">Productos destacados</h2>
             <div class="col d-flex flex-lg-row flex-column align-items-center justify-content-start">
@@ -404,7 +404,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 @endsection

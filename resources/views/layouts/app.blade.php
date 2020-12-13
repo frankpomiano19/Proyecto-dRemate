@@ -28,7 +28,8 @@
     <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.css')}}">
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{asset('css/barra.css')}}">
-
+    <link rel="stylesheet" href="{{asset('animateCss/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.css')}}">
 
     @yield('contenidoCSS')
 
@@ -191,13 +192,12 @@
                 </li>
 
                         <li class="nav-item dropdown">
-                            <label id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
+                            <label id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->usuario }}
-                        </label>
+                            </label>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('perfil_us') }}">
+                                <a class="dropdown-item" href="{{ route('productos.index') }}">
                                     Mi perfil
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -326,6 +326,7 @@
     <!--<script src="js/poper-1.16.1.js"></script>-->
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
+    <script src="{{asset('sweetalert2/dist/sweetalert2.js')}}"></script>
     @yield('contenidoJSabajo')
       @stack('ajax_crud')
 

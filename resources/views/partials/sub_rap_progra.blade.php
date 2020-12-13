@@ -23,7 +23,7 @@
         <div class="card h-100">
             <div class="card-body">
                 <h4 class="card-title">
-                    <a href="#" class="titulo-card-header-1">{{ $su_dispo->nombre_producto }}</a>
+                    <a href="{{ route('producto.detalles', $su_dispo->id) }}" class="titulo-card-header-1">{{ $su_dispo->nombre_producto }}</a>
                 </h4>
             </div>
             <img class="card-img-top img-logo-size align-center" src="https://na002.leafletcdns.com/pe/data/24/logo.png"
@@ -64,4 +64,7 @@
         </div>
     </div>
 @endforeach
-{{ $su_dispo_s->links() }}
+<div class="d-flex justify-content-center">
+    {{ $su_dispo_s->links() }}
+
+</div>
