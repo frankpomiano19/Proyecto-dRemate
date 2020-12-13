@@ -26,4 +26,6 @@
 
     </tbody>
 </table>
-{{ $su_hist_s->render() }}
+<div class="d-flex justify-content-center">
+    {{ $su_hist_s->render() }}
+</div>

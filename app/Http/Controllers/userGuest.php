@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Comentario;
 use App\Models\User;
+use App\Models\Producto;
 
 
 class userGuest extends Controller
@@ -17,8 +18,8 @@ class userGuest extends Controller
         $comentariosGustado_s = Comentario::where('use_id',$idUser)->where('com_like','>',5)->orderBy('com_like','DESC')->take(2)->get();
         $idPerfil = $idUser;
         $usuarioPerfil =  User::where('id','=',$idPerfil)->first();       
-        
-        return view('usuarioOpc.infoPerfil',compact('comentariosPerfil_s','comentariosGustado_s','idPerfil','usuarioPerfil'));        
+        $productUser_s = Producto::where('user_id','=',$idUser)->paginate(4);       
+        return view('usuarioOpc.infoPerfil',compact('comentariosPerfil_s','comentariosGustado_s','idPerfil','usuarioPerfil','productUser_s'));        
     }
 
     public function paginacionAjax(Request $request){
@@ -26,6 +27,13 @@ class userGuest extends Controller
         $comentariosPerfil_s = Comentario::where('use_id',$request->idUser)->orderBy('created_at','DESC')->paginate(3);
         $idPerfil = $request->idUser;
         return view('usuarioOpc.partialsUser.comentarioReci',compact('comentariosPerfil_s','idPerfil'));        
+    }
+
+    public function paginacionProductAjax(Request $request){
+        $productUser_s = Producto::where('user_id','=',$request->idUser)->paginate(4);       
+        $idPerfil = $request->idUser;
+
+        return view('usuarioOpc.partialsUser.comentarioProd',compact('idPerfil','productUser_s'));        
     }
 
     public function comentarCreate(Request $request){
@@ -41,7 +49,8 @@ class userGuest extends Controller
             $nuevoComentario->save();    
         }
         $comentariosPerfil_s = Comentario::where('use_id',$request->idUserPerfil)->orderBy('created_at','DESC')->paginate(3);
-        $idPerfil = $request->idUser;
+        $idPerfil = $request->idUserPerfil;
+
         return view('usuarioOpc.partialsUser.comentarioReci',compact('comentariosPerfil_s','idPerfil'));        
         
     }
@@ -62,6 +71,7 @@ class userGuest extends Controller
         }
         $comentariosPerfil_s = Comentario::where('use_id',$request->idUserPerfilPartial)->orderBy('created_at','DESC')->paginate(3);
         $idPerfil = $request->idUserPerfilPartial;
+
         return view('usuarioOpc.partialsUser.comentarioReci',compact('comentariosPerfil_s','idPerfil'));        
 
     }

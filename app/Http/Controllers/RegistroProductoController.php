@@ -131,6 +131,19 @@ class RegistroProductoController extends Controller
         
     }
 
+    public function pagProReg(){
+        $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
+        return view('partials.prod_reg',compact('productos'))->with('i', (request()->input('page', 1) - 1) * 5);
+        
+    }
+
+    public function pagProSub(){
+        $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
+        return view('partials.prod_sub',compact('productosSub_s'))->with('i', (request()->input('page', 1) - 1) * 5);
+        
+    }
+
+
     public function create()
     {
         return view('productos.create');
