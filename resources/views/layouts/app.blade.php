@@ -326,7 +326,6 @@
 
     <div class="container">
       <h3>D'REMATE</h3>
-      <p></p>
       <div class="social-links">
         <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
         <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>

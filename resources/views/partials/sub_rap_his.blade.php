@@ -11,7 +11,6 @@
     </thead>
     <tbody>
         @foreach ($su_hist_s as $su_hist)
-
             <tr>
                 <th>{{ $su_hist->final_subasta }}</th>
                 <th>{{ $su_hist->nombre_producto }}</th>
@@ -22,8 +21,6 @@
                 <th><a
                         href="{{ route('comentarios-now', $su_hist->productoUserComprador->id) }}">{{ $su_hist->productoUserComprador->usuario }}</a>
                 </th>
-
-
             </tr>
         @endforeach
 

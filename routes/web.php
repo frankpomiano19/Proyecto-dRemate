@@ -39,6 +39,10 @@ Route::post('/info-editar',[userGuest::class,'comentarEdit'])->middleware('auth'
     
 
 
+Route::get('/subastarProducto', function () {
+    return view('RegistroProductoSubasta/subastarProducto');
+});
+
 //////////////////////////////////////
 Route::get('/category', function () {
     return view('categorias');
