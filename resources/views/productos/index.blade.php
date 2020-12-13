@@ -90,7 +90,7 @@
                                     <h3 class="font-weight-bold font-popin">Mis productos en subasta</h3>
                                  <h4 class="font-weight-bold font-popin"> </h4>
                                  <div class="card-body card-contenido-cuerpo-2">
-                                    <div class="table-responsive font-popin" id="">
+                                    <div class="table-responsive font-popin" id="historial_prod_sub">
                                         @include('partials/prod_sub')
                                     </div>
                                 </div>
@@ -114,7 +114,7 @@
                                             <h3 class="titulo-card-header-2">Mis productos registrados</h3>
                                         </div>
                                         <div class="card-body card-contenido-cuerpo-2">
-                                            <div class="table-responsive font-popin" id="historial_sub">
+                                            <div class="table-responsive font-popin" id="historial_prod_reg">
                                                 @include('partials/prod_reg')
                                             </div>
                                         </div>
@@ -134,14 +134,12 @@
         </div>
     </main>
 
-
-
-
     
 
 @endsection
 @section('contenidoJSabajo')
-
+<script src="{{asset("js/vue.js")}}"></script>
+<script src="{{asset("js/axios.js")}}"></script>
 <script src="{{asset('js/jsPerfil.js')}}"></script>
 
 @endsection

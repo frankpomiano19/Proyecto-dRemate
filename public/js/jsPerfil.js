@@ -96,3 +96,47 @@ $('#enviar-pago-now').click(function() {
         }
     });
 });
+
+
+//Paginacion para productos registrados
+axios.interceptors.request.use(function (config) {
+    $('#historial_prod_reg').addClass('div-disabled');
+    $('#historial_prod_sub').addClass('div-disabled');
+    return config;
+  }, function (error) {
+    return Promise.reject(error);
+  });
+
+$(document).on('click', '#historial_prod_reg .pagination a', function (event) {
+    event.preventDefault();
+    // var formId = jQuery('#hidden-id-user').val();
+    var page0 = $(this).attr('href').split('pagination-prod-reg=')[1];
+    axios.get('/producto/pagination_data_prod_reg?pagination-prod-reg='+page0)
+    .then(response=>{
+        $('#historial_prod_reg').html(response.data);
+        $('#historial_prod_reg').removeClass('div-disabled');
+        $('#historial_prod_sub').removeClass('div-disabled');
+    })
+    .catch(e=>{
+        alert("Error al enviar");
+    })
+});
+
+
+//Paginacion para productos en subasta
+
+$(document).on('click', '#historial_prod_sub .pagination a', function (event) {
+    event.preventDefault();
+    // var formId = jQuery('#hidden-id-user').val();
+    var page0 = $(this).attr('href').split('pagination-prod-sub=')[1];
+    axios.get('/producto/pagination_data_prod_sub?pagination-prod-sub='+page0)
+    .then(response=>{
+        $('#historial_prod_sub').html(response.data);
+        $('#historial_prod_reg').removeClass('div-disabled');
+        $('#historial_prod_sub').removeClass('div-disabled');
+    })
+    .catch(e=>{
+        alert("Error al enviar");
+    })
+});
+

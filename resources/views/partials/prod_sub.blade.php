@@ -25,13 +25,14 @@
 
 <table class="table table-hover table-striped">
     <thead class="thead-dark">
-              <tr>
+            <tr>
                 <th>Nombre del producto</th>
                 <th>Precio Inicial</th>
                 <th>Descripcion</th>
                 <th>Inicio de subasta</th>
                 <th>Fin de subasta</th>
-     </tr>
+                <th>Accion</th>
+            </tr>
     </thead>
 
     <tbody id="" name="">
@@ -42,7 +43,7 @@
                <td>{{ $productosSub->precio_inicial }}</td>
                <td>{{ $productosSub->inicio_subasta }}</td>
                <td>{{ $productosSub->final_subasta }}</td>
-
+               <td><a href="" class="btn btn-dark">Subastar</a></td>
         </tr>
             @endforeach
 

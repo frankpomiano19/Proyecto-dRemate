@@ -34,7 +34,9 @@ Route::get('/info/fetch_data_coment-{idUser}',[userGuest::class,'paginacionAjax'
 Route::get('/info-{idUser}',[userGuest::class,'comentarNow'])->name('comentarios-now');
 Route::post('/info-crear',[userGuest::class,'comentarCreate'])->middleware('auth')->name('comentarios-create');
 Route::post('/info-editar',[userGuest::class,'comentarEdit'])->middleware('auth')->name('comentarios-edit');
-    
+
+Route::get('/info/fetch_data_product-{idUser}',[userGuest::class,'paginacionProductAjax']);
+
 
 
 //////////////////////////////////////
@@ -109,3 +111,7 @@ Route::get('/addproducto', [HomeController::class,'pRegister'])->name('view');
 Route::post('/addproducto',[HomeController::class,'Store'])->name('store');
 Route::delete('/addproducto/{id}', [HomeController::class,'destroy'])->name('destroy');
 Route::get('/addproducto/{id}/edit',[HomeController::class,'update'])->name('update');
+
+Route::get('/producto/pagination_data_prod_reg',[RegistroProductoController::class,'pagProReg']);
+Route::get('/producto/pagination_data_prod_sub',[RegistroProductoController::class,'pagProSub']);
+
