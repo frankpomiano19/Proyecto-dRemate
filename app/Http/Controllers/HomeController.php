@@ -63,7 +63,7 @@ class HomeController extends Controller
 
         $pujastotales = App\Models\Puja::all()->sortDesc();
         $ultimapuja = $pujastotales->where('producto_id',$request->productoid)->first();
-
+        $producto = App\Models\Producto::findOrFail($request->productoid);
         $request->validate([
             'valorpuja' => 'required|gt:ultimoprecio',
             'saldousuario' => 'gt:ultimoprecio|gte:valorpuja'
@@ -76,7 +76,7 @@ class HomeController extends Controller
         $datosPuja->producto_id = $request->productoid;
         $nuevosaldo = $request->saldousuario - $request->valorpuja;
         auth()->user()->us_din = $nuevosaldo;
-        
+        $producto->user_id_comprador = $request->idganador;
         
         if($ultimapuja=== null){
             
@@ -88,7 +88,7 @@ class HomeController extends Controller
         }
         auth()->user()->save();
         $datosPuja->save();
-        
+        $producto->save();
         return back();
     }
 
