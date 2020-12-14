@@ -121,7 +121,14 @@ Route::get('categorias/electrodomesticos', function () {
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
 
-Route::post('/', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
+Route::post('/vistaLive', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
+
+Route::get('/pagoVendedor', function () {
+    return view('partials/sub_ganadas');
+});
+
+
+Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');

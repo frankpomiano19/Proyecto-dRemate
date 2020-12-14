@@ -158,7 +158,7 @@
                         </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('/busquedaFiltro') }}"><img src="https://www.4rsoluciones.com/wp-content/uploads/2016/03/filtros-facetados.png" alt="Hogar"></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('/busquedaFiltro') }}"><img src="https://cdn.shopify.com/s/files/1/0899/2262/articles/10-tiendas-de-decoraci-n-de-interiores-para-tu-hogar.jpg?v=1559339599" alt="Hogar"></a>
                             <a href="{{ url('/busquedaFiltro') }}"><h6 class="font-size-base mb-2">Búsqueda por filtro</h6></a>
                         </div>
                     </div>

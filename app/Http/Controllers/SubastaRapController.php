@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Producto;
+use App\Models\Puja;
+
+use DB;
 
 class SubastaRapController extends Controller
 {
@@ -58,6 +61,40 @@ class SubastaRapController extends Controller
 
     }
 
+    public function pagoVendedor(){
+
+        $pujaComprador = Puja::where('user_id','=',auth()->user()->id)->get();
+
+        $ab = date_default_timezone_get();
+        date_default_timezone_set('America/Lima');
+        $fecha = date('Y-m-d H:i:s');
+
+        $subastaTerminada = Producto::where('final_subasta','<',$fecha)->get();  
+        
+
+        $pujasMezcla = DB::table('pujas')
+        ->join('productos','productos.id','=','pujas.producto_id')
+        ->select('pujas.valor_puja as valorPuja','pujas.user_id as userId','productos.nombre_producto as nombreProducto','productos.final_subasta as finalSubasta', 'pujas.producto_id as productoId')
+        ->where('productos.final_subasta','<',$fecha)
+        
+        ->where('pujas.user_id','=',auth()->user()->id)
+
+        ->get();
+
+
+
+
+        // dd($pujasMezcla);
+
+
+        return view('partials.sub_ganadas',compact('pujasMezcla'));
+
+    }
+
+    public function sumarVendedor(){
+        
+    }
+
 
     public function fetch_data(Request $request){
 
@@ -72,7 +109,7 @@ class SubastaRapController extends Controller
     
             }else if($request->filtro==1){
                 $su_curso_s = Producto::where('inicio_subasta','<',$valorN)->where('final_subasta','>',$valorN)->orderBy('final_subasta','DESC')->paginate(6);
-                return view('partials.sub_rap_pro',compact('su_curso_s'));    
+                return view('partials.sub_rap_pro',compact('su_curso_s'));
         
             }
     
