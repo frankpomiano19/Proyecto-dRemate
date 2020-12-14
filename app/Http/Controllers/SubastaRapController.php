@@ -81,11 +81,7 @@ class SubastaRapController extends Controller
 
         ->get();
 
-
-
-
         // dd($pujasMezcla);
-
 
         return view('partials.sub_ganadas',compact('pujasMezcla'));
 

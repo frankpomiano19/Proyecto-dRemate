@@ -96,6 +96,12 @@ class HomeController extends Controller
         $nuevosaldo = $request->saldousuario - $request->valorpuja;
         auth()->user()->us_din = $nuevosaldo;
         
+
+        $modiUser = App\Models\Producto::where('id','=',$request->productoid)->firts();
+        $modiUser->user_id_comprador = auth()->id();
+        $modiUser->ultimaPuja = $request->valorpuja;
+        $modiUser->indicador = 1;
+        $modiUser->save();
         
         if($ultimapuja=== null){
             
@@ -106,6 +112,7 @@ class HomeController extends Controller
             $usuariodevolucion->save();
         }
         auth()->user()->save();
+        
         $datosPuja->save();
         
         return back();
