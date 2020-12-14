@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categoria extends Model
 {
-    use HasFactory;
+    //use HasFactory;
+
+    public function productoRelacionado(){
+        return $this->belongsTo(Producto::class,'categoria_id');
+    }
 }

@@ -14,6 +14,8 @@ class BusquedaFiltro extends Component
     public $departamento = "Lima";
     public $verdadero = true;
 
+    public $tipo;
+
     protected $rules = [
         'precioMin' => 'required|numeric|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
         'precioMax' => 'required|numeric|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 use JD\Cloudder\Facades\Cloudder;
 use App;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\SubirProductoRequest;
-
-
+use App\Support\Collection;
+use Illuminate\Pagination\Paginator; 
 class RegistroProductoController extends Controller
 {
     public function formularioProducto(SubirProductoRequest $request){
@@ -73,4 +74,159 @@ class RegistroProductoController extends Controller
 
     }
     
+
+
+    public function pRegister()
+    {
+        $productos = App\Models\Producto::all();
+        return view('productos.index')->with('productos', $productos);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+   
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+   
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+  
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+
+
+
+
+    public function index(Request $request)
+    {
+
+        $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
+
+        $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
+        return view('productos.index',compact('productos','productosSub_s'))->with('i', (request()->input('page', 1) - 1) * 5);
+        
+
+        
+    }
+
+    public function pagProReg(){
+        $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
+        return view('partials.prod_reg',compact('productos'))->with('i', (request()->input('page', 1) - 1) * 5);
+        
+    }
+
+    public function pagProSub(){
+        $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
+        return view('partials.prod_sub',compact('productosSub_s'))->with('i', (request()->input('page', 1) - 1) * 5);
+        
+    }
+
+
+    public function create()
+    {
+        return view('productos.create');
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        
+
+
+        $r=$request->validate([
+            'nombre_producto' => 'required',
+            'descripcion' => 'required',
+            'condicion' => 'required',
+            'ubicacion' => 'required',
+
+            ]);
+    
+            App\Models\Producto::create($request->all());
+
+            return redirect()->route('productos.index')
+                ->with('success', 'Product created successfully.');
+    }
+
+
+    public function show(App\Models\Producto $producto)
+    {
+       
+
+        return view('productos.show',compact('producto'));
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Producto  $Producto
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function edit(App\Models\Producto $producto)
+    {
+        return view('productos.edit', compact('producto'));
+    }
+
+
+  
+
+
+    public function update(Request $request, App\Models\Producto $producto)
+    {
+        $request->validate([
+
+            'nombre_producto' =>  'required',
+            'descripcion'=>  'required',
+           'estado' => 'required',
+           'ubicacion' =>  'required',
+        ]);
+        $producto->update($request->all());
+
+        return redirect()->route('productos.index')
+            ->with('success', 'Project updated successfully');
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Producto  $Producto
+     * @return \Illuminate\Http\Response
+     */
+  
+   
+    public function destroy(App\Models\Producto $producto)
+    {
+        $producto->delete();
+
+        return redirect()->route('productos.index')
+            ->with('success', 'Project deleted successfully');
+    }
 }

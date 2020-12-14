@@ -1,3 +1,4 @@
+<div class="row">
 @foreach ($su_curso_s as $su_curso)
 
     @php
@@ -20,7 +21,7 @@
         <div class="card">
             <div class="card-body" style="margin-bottom: auto;padding-bottom:0px;">
                 <h5 class="card-title titulo-card-header-1">
-                    <a href="#">{{ $su_curso->nombre_producto }}</a>
+                    <a href="{{ route('producto.detalles', $su_curso->id) }}">{{ $su_curso->nombre_producto }}</a>
                 </h5>
             </div>
             <img class="card-img-top img-logo-size" src="https://na002.leafletcdns.com/pe/data/24/logo.png" alt=""
@@ -28,7 +29,7 @@
             <div class="product__item">
                 <div class="product__item__pic img-thumbnail set-bg card-img-top imagen-producto-card"
                     data-setbg="img/trending/trend-1.jpg"
-                    style="background-image: url('{{ $su_curso->imagen }}');background-size:100% 100%;">
+                    style="background-image: url('{{ $su_curso->image_name1 }}');background-size:100% 100%;">
                     <div class="ep">Precio base : ${{ $su_curso->precio_inicial }} </div>
                     <div class="comment"><i class="fa fa-comments"></i> {{ rand(1, 200) }}
                     </div>
@@ -69,9 +70,7 @@
 
     </script>
 @endforeach
-
-<div class="row">
-    <div class="col-md-12 text-center">
+</div>
+    <div class="row d-flex justify-content-center">
         {{ $su_curso_s->links() }}
     </div>
-</div>

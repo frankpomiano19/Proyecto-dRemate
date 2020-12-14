@@ -22,58 +22,24 @@
     
   <div class="product">
     <br><br>
+    <!--Contenedor de productos relacionados-->
     <div class ="container1">
         <div class="row">
-            <div class="col-md">
+          @foreach ($productosRelac as $prodRelac)
+          <div class="col-md">
                 <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta_1.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Máquina Café Express</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
+                    <img class="card-img-top" src="@if($prodRelac->imagen!=null){{ $prodRelac->imagen }} @else {{ $prodRelac->image_name1 }} @endif" alt="Card image cap">
+                    <a href="{{ route('producto.detalles', $prodRelac->id) }}"><div class="card-body text-center">
+                    <h5 class="card-title"> {{$prodRelac->nombre_producto}} </h5>
+                    <p class="card-text"><small class="text">Last updated {{Carbon\Carbon::now()->diffForHumans($prodRelac->updated_at)}} </small></p>
+                    </div></a>
                 </div>
             </div>
-            <div class="col-md">
-                <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta_2.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Máquina Capuccinos Zoe</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta_3.png" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Máquina bebidas calientes</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta4.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Máquina Axioo Latte</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md">
-                <div class="card">
-                    <img class="card-img-top" src="img/assets/subasta5.jpg" alt="Card image cap">
-                    <div class="card-body text-center">
-                    <h5 class="card-title">Coffee Party</h5>
-                    <p class="card-text"><small class="text">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
+            @endforeach
 
       </div>
     </div>
-  
+    <!--fin del Contenedor de productos relacionados-->
   <br>
   <!-- Información del producto -->
   <div class="container2">
@@ -84,13 +50,16 @@
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                   <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{$prod->imagen}}" alt="Primera imagen">
+                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name1 }} @endif" alt="Primera imagen">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="{{$prod->imagen}}" alt="Segunda Imagen">
+                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name2 }} @endif" alt="Segunda Imagen">
                   </div>
                   <div class="carousel-item">
-                    <img class="d-block w-100" src="{{$prod->imagen}}" alt="Tercera imagen">
+                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name3 }} @endif" alt="Tercera imagen">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name4 }} @endif" alt="Tercera imagen">
                   </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -140,6 +109,13 @@
                   </div>
                   <div class="finalsubasta" id="finalsubasta">
                     <h5>La subasta ha finalizado</h5>
+                  </div>
+                  <div class="ganador" id="ganador">
+                    @if ($ultimapuja === null)
+                        <h4>No hay ganadores</h4>
+                    @else
+                        <h4>El ganador es:<br>{{$usuarios[($ultimapuja->user_id) - 1]->usuario}} </h4>
+                    @endif
                   </div>
                   <br>
                   <div class="cant_puja" id="cantpuja">
@@ -199,6 +175,7 @@
         </div>
     </div>
   </div>
+  <!-- fin de la Información del producto -->
   <br>
 
 
@@ -283,6 +260,8 @@
         document.getElementById('botonpuja').classList.add('oculta');
         document.getElementById('cantpuja').classList.add('oculta');
         document.getElementById('finalsubasta').classList.add('revelado');
+        document.getElementById('ganador').classList.add('revelado');
+
          return; }, //Callback on countdown end, put your own function here
     refresh: 1000, // default refresh every 1s
     sectionClass: 'simply-section', //section css class

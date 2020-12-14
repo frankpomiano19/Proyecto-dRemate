@@ -29,7 +29,8 @@
     <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.css')}}">
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{asset('css/barra.css')}}">
-
+    <link rel="stylesheet" href="{{asset('animateCss/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.css')}}">
 
     @yield('contenidoCSS')
 
@@ -135,35 +136,35 @@
                 <ul class="dropdown-menu px-2 pl-0 pb-4">
                     <div class="d-flex flex-wrap flex-md-nowrap">
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://elempresario.mx/sites/default/files/imagecache/nota_completa/moda.jpg" alt="Moda"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Joyas</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/joyas') }}"><img src="https://elempresario.mx/sites/default/files/imagecache/nota_completa/moda.jpg" alt="Moda"></a>
+                            <a href="{{ url('categorias/joyas') }}"><h6 class="font-size-base mb-2">Joyas</h6></a>
                         </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://myperuglobal.com/wp-content/uploads/2015/10/Untitled-design.png" alt="Tecno"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Tecnologia</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/tecnologia') }}"><img src="https://myperuglobal.com/wp-content/uploads/2015/10/Untitled-design.png" alt="Tecno"></a>
+                            <a href="{{ url('categorias/tecnologia') }}"><h6 class="font-size-base mb-2">Tecnologia</h6></a>
                         </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://kasaniu.com/wp-content/uploads/2017/08/ScreenHunter_450-Aug.-13-17.43-1170x680.jpg" alt="Anti"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Instrumentos musicales</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/instrumentos') }}"><img src="https://kasaniu.com/wp-content/uploads/2017/08/ScreenHunter_450-Aug.-13-17.43-1170x680.jpg" alt="Anti"></a>
+                            <a href="{{ url('categorias/instrumentos') }}"><h6 class="font-size-base mb-2">Instrumentos musicales</h6></a>
                         </div>
                     </div>
                     </div>
                     <div class="d-flex flex-wrap flex-md-nowrap">
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://www.engelglobal.com/fileadmin/master/Branchen/technical_moulding/TEC_Sport___Freizeit.jpg" alt="Depor"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Hogar</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/hogar') }}"><img src="https://www.engelglobal.com/fileadmin/master/Branchen/technical_moulding/TEC_Sport___Freizeit.jpg" alt="Depor"></a>
+                            <a href="{{ url('categorias/hogar') }}"><h6 class="font-size-base mb-2">Hogar</h6></a>
                         </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('/busquedaFiltro') }}"><img src="https://www.4rsoluciones.com/wp-content/uploads/2016/03/filtros-facetados.png" alt="Hogar"></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('/busquedaFiltro') }}"><img src="https://cdn.shopify.com/s/files/1/0899/2262/articles/10-tiendas-de-decoraci-n-de-interiores-para-tu-hogar.jpg?v=1559339599" alt="Hogar"></a>
                             <a href="{{ url('/busquedaFiltro') }}"><h6 class="font-size-base mb-2">Búsqueda por filtro</h6></a>
                         </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://us.emedemujer.com/wp-content/uploads/sites/3/2017/02/Jardiner%C3%ADa-b%C3%A1sica-lo-que-toda-newbie-debe-saber-770x512.jpg" alt="Jardi"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Electrodomésticos</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/electrodomesticos') }}"><img src="https://us.emedemujer.com/wp-content/uploads/sites/3/2017/02/Jardiner%C3%ADa-b%C3%A1sica-lo-que-toda-newbie-debe-saber-770x512.jpg" alt="Jardi"></a>
+                            <a href="{{ url('categorias/electrodomesticos') }}"><h6 class="font-size-base mb-2">Electrodomésticos</h6></a>
                         </div>
                     </div>
                     </div>
@@ -174,13 +175,18 @@
 
             <form class="needs-validation" method="POST" enctype="multipart/form-data"
             action="{{ route('busqueda.busquedaespecifica') }}" novalidate>
-                <input type="text" name="bproducto" placeholder="Busqueda">
+                @csrf
+                <input type="text" name="bproducto" class="form-control" placeholder="Buscar producto" required>
             </form>
             {{-- <livewire:busqueda-especifica> --}}
 
-            <input class = "form-control appended-form-control" type = "text" placeholder = "Buscar productos">
-            <div class = "input-group-append-overlay"><span class = "input-group-text "><i class = "fa fa-search"> </i ></span ></div>
+
+            {{-- <input class = "form-control appended-form-control" type = "text" placeholder = "Buscar productos">
+            <div class = "input-group-append-overlay"><span class = "input-group-text "><i class = "fa fa-search"> </i ></span ></div> --}}
             </div>
+
+
+
             {{-- <input class="form-control appended-form-control" type="text" placeholder="Bur productos"> --}}
             
         
@@ -197,15 +203,16 @@
                 </li>
                 @endif
                 @else
+                <li class="nav-item"><a class="nav-link" style="font-size: 12px;font-weight: lighter;">S/{{ Auth::user()->us_din }}</a>
+                </li>
 
                         <li class="nav-item dropdown">
-                            <label id="navbarDropdown" class="nav-link dropdown-toggle" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-pre>
+                            <label id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->usuario }}
-                        </label>
+                            </label>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('perfil_us') }}">
+                                <a class="dropdown-item" href="{{ route('productos.index') }}">
                                     Mi perfil
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -258,24 +265,24 @@
                 <div class="d-flex flex-wrap flex-md-nowrap">
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://elempresario.mx/sites/default/files/imagecache/nota_completa/moda.jpg" alt="Moda"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Joyas</h6></a>
+                        <a href="{{ url('categorias/joyas') }}"><h6 class="font-size-base mb-2">Joyas</h6></a>
                     </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://myperuglobal.com/wp-content/uploads/2015/10/Untitled-design.png" alt="Tecno"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Tecnologia</h6></a>
+                        <a href="{{ url('categorias/tecnologia') }}"><h6 class="font-size-base mb-2">Tecnologia</h6></a>
                     </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://kasaniu.com/wp-content/uploads/2017/08/ScreenHunter_450-Aug.-13-17.43-1170x680.jpg" alt="Anti"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Electrodomésticos</h6></a>
+                        <a href="{{ url('categorias/electrodomesticos') }}"><h6 class="font-size-base mb-2">Electrodomésticos</h6></a>
                     </div>
                     </div>
                 </div>
                 <div class="d-flex flex-wrap flex-md-nowrap">
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://www.engelglobal.com/fileadmin/master/Branchen/technical_moulding/TEC_Sport___Freizeit.jpg" alt="Depor"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Deportes</h6></a>
+                        <a href="{{ url('/busquedaFiltro') }}"><h6 class="font-size-base mb-2">Deportes</h6></a>
                     </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
@@ -285,7 +292,7 @@
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://us.emedemujer.com/wp-content/uploads/sites/3/2017/02/Jardiner%C3%ADa-b%C3%A1sica-lo-que-toda-newbie-debe-saber-770x512.jpg" alt="Jardi"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Jardineria</h6></a>
+                        <a href="{{ url('/busquedaFiltro') }}"><h6 class="font-size-base mb-2">Jardineria</h6></a>
                     </div>
                     </div>
                 </div>
@@ -318,7 +325,6 @@
 
     <div class="container">
       <h3>D'REMATE</h3>
-      <p></p>
       <div class="social-links">
         <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
         <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>
@@ -338,6 +344,7 @@
     <!--<script src="js/poper-1.16.1.js"></script>-->
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
+    <script src="{{asset('sweetalert2/dist/sweetalert2.js')}}"></script>
     @yield('contenidoJSabajo')
       @stack('ajax_crud')
 

@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Puja extends Model
 {
-    use HasFactory;
+    //use HasFactory;
+    protected $table = 'pujas';
+
+    protected $fillable = [
+        'valor_puja', 'created_at', 'updated_at'
+    ];
+
+    public function productosPujar(){
+        return $this->hasMany(Producto::class,'producto_id');
+    }    
+
+    
 }

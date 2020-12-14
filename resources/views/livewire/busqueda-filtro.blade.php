@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-3">
 
-           
+           {{-- {{ $tipo }} --}}
 
             <h5>Precio desde</h5>
             @error('precioMin')
@@ -146,12 +146,12 @@
                     
                 @endforeach
                 </div>
-        @else
-            <div class="text-center">
-                <h4 class="my-1">Ups, no existe producto con esas condiciones.</h4>
-                <img class="img-fluid my-3 animate__animated animate__bounceInLeft" src="{{ asset('img/undraw_Taken_re_yn20.svg') }}" style="width: 30%; heigth: 30%;" alt="insertar SVG con la etiqueta image">
-            </div>
-        @endif
+            @else
+                <div class="text-center">
+                    <h4 class="my-1">Ups, no existe producto con esas condiciones.</h4>
+                    <img class="img-fluid my-3 animate__animated animate__bounceInLeft" src="{{ asset('img/undraw_Taken_re_yn20.svg') }}" style="width: 30%; heigth: 30%;" alt="insertar SVG con la etiqueta image">
+                </div>
+            @endif
         </div>
     </div>
 </div>
