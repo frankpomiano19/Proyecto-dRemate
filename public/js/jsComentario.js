@@ -205,3 +205,37 @@ $(document)
         rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
         this.rows = minRows + rows;
     });
+//Paginacion para productos
+    axios.interceptors.request.use(function (config) {
+        // Do something before request is sent
+        $('#comentarios-recientes-partial').addClass('div-disabled');
+        $('#cuadro-texto-comentario').addClass('div-disabled');
+        return config;
+      }, function (error) {
+        // Do something with request error
+        return Promise.reject(error);
+      });
+
+$(document).on('click', '#info-prod-2 .pagination a', function (event) {
+
+
+    event.preventDefault();
+    var formId = jQuery('#hidden-id-user').val();
+    var page0 = $(this).attr('href').split('page=')[1];
+    axios.get('/info/fetch_data_product-'+formId+"?page="+page0,{
+        params:{
+            idUser: formId
+        },
+    })
+    .then(response=>{
+        $('#info-prod-2').html(response.data);
+        $('#info-prod-2').removeClass('div-disabled');
+        $('#comentarios-recientes-partial').removeClass('div-disabled');
+        $('#cuadro-texto-comentario').removeClass('div-disabled');
+    })
+    .catch(e=>{
+        alert("Error al enviar");
+    })
+});
+
+

@@ -149,7 +149,7 @@
 
                                 </div>
                             </section>
-                            <div id="subasta_proc_filtro_include" class="row">
+                            <div id="subasta_proc_filtro_include">
 
                                 @include('partials.sub_rap_pro')
 
@@ -197,12 +197,6 @@
                                                 @include('partials/sub_rap_his')
                                             </div>
                                         </div>
-                                        <!--
-                                                                                        <div class="card-footer text-center"><a class="btn btn-fill-1" href="#">Ver mas
-                                                                                                en el
-                                                                                                historial</a>
-                                                                                        </div>
-                                                                                    -->
                                     </div>
                                 </div>
                             </div>

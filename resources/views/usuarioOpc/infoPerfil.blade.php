@@ -169,6 +169,21 @@
                     </div><!-- row -->
                 </div><!-- container -->
             </section>
+            <section class="about-section section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 d-flex justify-content-center">
+                            <div class="heading">
+                                <h3><b>Mis productos</b></h3>
+                                <h6 class="font-lite-black"><b></b></h6>
+                            </div>
+                        </div><!-- col-sm-12 -->
+                    </div>
+                    <div  id="info-prod-2">
+                        @include('usuarioOpc.partialsUser.comentarioProd')
+                    </div>
+                </div><!-- container -->
+            </section>
         </section>
         @guest
             <!--<h2>Para poder comentar, necesita identificarse</h2>-->
@@ -288,7 +303,7 @@
 
                                     @else
                                         @if (Auth::user()->id == $comentariosGustado->comentUserPerteneciente->id)
-                                            <button type="button" class="btn ajustar-label-2 boton-color-2">Editar</button>
+                                            <button type="button" class="btn ajustar-label-2 boton-color-2" disabled>Editar</button>
                                         @endif
                                     @endguest
 
@@ -320,6 +335,7 @@
 
 @section('contenidoJSabajo')
     <script src="../js/vue.js"></script>
+    <script src="../js/axios.js"></script>
     <script src="../js/jsComentario.js"></script>
     <!-- Colocar js abajo-->
 @endsection

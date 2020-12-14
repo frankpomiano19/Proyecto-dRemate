@@ -7,23 +7,8 @@
 @endsection
 
 @section('contenidoJS')
-    <style>
-        .cuerpo {
-            margin-top: 80px;
-            margin-bottom: 40px;
 
-        }
-
-        .uno {
-            background-color: blueviolet;
-        }
-
-        .dos {
-            background-color: red;
-            height: 400px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="css/mostrarProductos.css">
 
     <!-- Colocar js-->
     <script src="js/jquery-3.5.1.js"></script>
@@ -38,108 +23,243 @@
 @section('contenido')
 
     <div class="container-lg cuerpo">
-        <h2>Término de búsqueda: </h2>
-
         <div class="row">
-            <div class="col-3 uno">
-                <h4>Filtros</h4>
-                <form>
-                    <div>
-                        <h5>Categoría</h5>
-                        <select name="categoria" id="">
-                            <option value="" selected>Mostrar todos</option>
-                            <option value="1">Tecnología</option>
-                            <option value="2">Hogar</option>
-                            <option value="3">Electrodomésticos</option>
-                            <option value="4">Joyas</option>
-                            <option value="5">Instrumento musical</option>
-                        </select>
+            <div class="col-3 d-none d-md-block">                
+                <div id="filtro">
+                    <div id="texto-filtro">
+                        <h4 id="titulo">Filtros</h4>
                     </div>
+                    <form>
+                        <div>
+                            <h5>Categoría</h5>
+                            <!--Select-->
+                            <div class="selector">
+                                <select id="select_id" style="display:none"></select>
+                                <div class="desplegable">
+                                    <p>Orden</p>
+                                </div>
+                                <ul class="menu">
+                                    <li class="sup">Mostrar todo</li>
+                                    <li>Tecnología</li>
+                                    <li>Hogar</li>
+                                    <li>Electrodomésticos</li>
+                                    <li>Joyas</li>
+                                    <li>Instrumentos musicales</li>
+                                    </ul>
+                            </div>
+                        </div>
 
-                    <div>
-                        <h5>Estado</h5>
-                        <select name="categoria" id="">
-                            <option value="" selected>Mostrar todos</option>
-                            <option value="1">Nuevo</option>
-                            <option value="2">Usado</option>
-                        </select>
-                    </div>
+                        <div>
+                            <h5>Ubicación</h5>
+                            <!--Select-->
+                            <div class="selector">
+                                <select id="select_id" style="display:none"></select>
+                                <div class="desplegable">
+                                    <p>Orden</p>
+                                </div>
+                                <ul class="menu">
+                                    <li value="" selected>Mostrar todos</li>
+                                    <li value="Amazonas">Amazonas</li>
+                                    <li value="Ancash">Ancash</li>
+                                    <li value="Apurímac">Apurímac</li>
+                                    <li value="Arequipa">Arequipa</li>
+                                    <li value="Ayacucho">Ayacucho</li>
+                                    <li value="Cajamarca">Cajamarca</li>
+                                    <li value="Callao">Callao</li>
+                                    <li value="Cuzco">Cuzco </li>
+                                    <li value="Huancavelica">Huancavelica</li>
+                                    <li value="Huánuco">Huánuco</li>
+                                    <li value="Ica">Ica</li>
+                                    <li value="Junín">Junín</li>
+                                    <li value="La_Libertad">La Libertad</li>
+                                    <li value="Lambayeque">Lambayeque</li>
+                                    <li value="Lima">Lima</li>
+                                    <li value="Loreto">Loreto</li>
+                                    <li value="Madre_de_Dios">Madre de Dios</li>
+                                    <li value="Moquegua">Moquegua</li>
+                                    <li value="Pasco">Pasco</li>
+                                    <li value="Piura">Piura</li>
+                                    <li value="Puno">Puno</li>
+                                    <li value="San_Martín">San Martín</li>
+                                    <li value="Tacna">Tacna</li>
+                                    <li value="Tumbes">Tumbes</li>
+                                    <li value="Ucayali">Ucayali</li>
+                                </ul>
+                            </div>
+                        </div>
 
-                    <div>
-                        <h5>Ubicación</h5>
-                        <p>Precio mínimo</p>
-                        <input type="number">
-                        <p>Precio máximo</p>
-                        <input type="number">
-                    </div>
+                        <div>
+                            <h5>Estado</h5>
+                            <!--Select-->
+                            <div class="selector" id="selector-ordenar">
+                                <select id="select_id" style="display:none"></select>
+                                <div class="desplegable">
+                                    <p>Orden</p>
+                                </div>
+                                <ul class="menu">
+                                <li class="sup">Mostrar todo</li>
+                                <li>Nuevo</li>
+                                <li>Usado</li>
+                                </ul>
+                            </div>
+                        </div>
 
-                    <div>
-                        <h5>Ubicación</h5>.
-                        <select name="selectDepartamento" onchange="cambia()" class="form-control" required=""
-                        data-parsley-error-message="Escoja su ubicación">
-                        <option value="">Seleccione</option>
-                        <option value="Amazonas">Amazonas</option>
-                        <option value="Ancash">Ancash</option>
-                        <option value="Apurímac">Apurímac</option>
-                        <option value="Arequipa">Arequipa</option>
-                        <option value="Ayacucho">Ayacucho</option>
-                        <option value="Cajamarca">Cajamarca</option>
-                        <option value="Callao">Callao</option>
-                        <option value="Cuzco">Cuzco </option>
-                        <option value="Huancavelica">Huancavelica</option>
-                        <option value="Huánuco">Huánuco</option>
-                        <option value="Ica">Ica</option>
-                        <option value="Junín">Junín</option>
-                        <option value="La_Libertad">La Libertad</option>
-                        <option value="Lambayeque">Lambayeque</option>
-                        <option value="Lima">Lima</option>
-                        <option value="Loreto">Loreto</option>
-                        <option value="Madre_de_Dios">Madre de Dios</option>
-                        <option value="Moquegua">Moquegua</option>
-                        <option value="Pasco">Pasco</option>
-                        <option value="Piura">Piura</option>
-                        <option value="Puno">Puno</option>
-                        <option value="San_Martín">San Martín</option>
-                        <option value="Tacna">Tacna</option>
-                        <option value="Tumbes">Tumbes</option>
-                        <option value="Ucayali">Ucayali</option>
-                    </select><br>
+                        <div>
+                            <h5>Precio mínimo</h5>
+                            <input type="number" class="selector" min="0" max="99999999">
+                            <h5>Precio máximo</h5>
+                            <input type="number" class="selector" min="0" max="99999999">
+                        </div>
 
-                    <select class="form-control" name="selectProvincia" onchange="cambiaDistrito()" required="">
-                        <option>Seleccione la Provincia</option>
-                    </select>
-                    </div>
-
-                    <input type="submit">
-                </form>
+                        
+                    </form>
+                </div>
             </div>
 
-            <div class="col-sm-12 col-lg-9 dos">
-                <div>
-                    <p>Ordenar por</p>
+            <div class="col-sm-12 col-lg-9">
+                <div id="superior">
+                    <div id="cantidad-resultados">
+                        <h4>Se encontraron 654 resultados</h4>
+                    </div>
+                    
+
+                    <div id="desplegable-select">
+                        <div class="selector">
+                            <select id="select_id" style="display:none"></select>
+                            <div class="desplegable">
+                                <p>Orden</p>
+                            </div>
+                            <ul class="menu">
+                                <li class="sup">Mostrar todo</li>
+                                <li>Nuevo</li>
+                                <li>Usado</li>
+                            </ul>
+                        </div>   
+                    </div>
+                    
+                    <div id="ordenar-por">
+                        Ordenar por
+                    </div>
+
+                    <div style="clear: both"></div>
                 </div>
 
-                <div>
-                    <form action="" method="" >
-                        <select onchange="this.form.action = this.value; this.disabled = true; this.form.submit()" >
-                            <option value="0" selected>Más relevantes</option>
-                            <option value="1">Menor precio</option>
-                            <option value="2">Mayor precio</option>
-                            <option value="3"></option>
-                        </select>
-                    </form>
-                </div>                
+                <div class="lista-productos">
+                    <div class="producto fix">
+                        <div class="contenedor-imagen">
+                            <img src="img/assets/subasta4.jpg" alt="" class="imagen">
+                        </div>
+                        
+                        <div class="texto"> 
+                            <div class="titulo">          
+                                <h3>Mazo</h3>
+                                <i class="fa fa-heart cora"></i>                                
+                            </div>
+                            <h5>S/321</h5>
+                            <p class="texto-descripcion">
+                                Lorem ipsum dolor sit amet...
+                            </p>
+                            <p>2 días, 22:51:51</p>
+                            <div class="ubicacion">
+                                Surco, Lima
+                            </div> 
+                        </div>  
+                        
+                    </div>  
+                    <div class="abajo-producto"></div>
+
+                    <div class="producto fix">
+                        <div class="contenedor-imagen">
+                            <img src="img/assets/car-718781_1920.jpg" alt="" class="imagen">
+                        </div>
+                        
+                        <div class="texto"> 
+                            <div class="titulo">          
+                                <h3>Mazo</h3>
+                                <i class="fa fa-heart cora"></i>                                
+                            </div>
+                            <h5>S/321</h5>
+                            <p class="texto-descripcion">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                            </p>
+                            <p>2 días, 22:51:51</p>
+                            <div class="ubicacion">
+                                Callao, Lima
+                            </div>           
+                        </div>            
+                    </div>
+                    <div class="abajo-producto"></div> 
+
+                    <div class="producto fix">
+                        <div class="contenedor-imagen">
+                            <img src="img/assets/subasta_3.png" alt="" class="imagen">
+                        </div>
+                        
+                        <div class="texto"> 
+                            <div class="titulo">          
+                                <h3>Mazo</h3>
+                                <i class="fa fa-heart cora"></i>                                
+                            </div>
+                            <h5>S/321</h5>
+                            <p class="texto-descripcion">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                            </p>
+                            <p>2 días, 22:51:51</p>
+                            <div class="ubicacion">
+                                Callao, Lima
+                            </div>           
+                        </div>            
+                    </div>
+                    <div class="abajo-producto"></div> 
+
+                    <div class="producto fix">
+                        <div class="contenedor-imagen">
+                            <img src="img/assets/subasta_3.png" alt="" class="imagen">
+                        </div>
+                        
+                        <div class="texto"> 
+                            <div class="titulo">          
+                                <h3>Mazo</h3>
+                                <i class="fa fa-heart cora"></i>                                
+                            </div>
+                            <h5>S/321</h5>
+                            <p class="texto-descripcion">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                            </p>
+                            <p>2 días, 22:51:51</p>
+                            <div class="ubicacion">
+                                Callao, Lima
+                            </div>           
+                        </div>            
+                    </div>
+                    <div class="abajo-producto"></div> 
+                    
+                </div>
+
+                
+                      
             </div>
         </div>
 
         <div class="row">
-            <div class="imagen">
-
-            </div>
-            <div class="descripcion">
-                <div class="texto">
-
-                </div>
+            <div id="centro-pie">
+                <div id="pie">
+                    <span>
+                        &lt&ltAnterior
+                    </span>
+                    <span class="numeros">
+                        1
+                    </span>                      
+                    <span class="numeros">
+                        2
+                    </span>                       
+                    <span class="numeros">
+                        3
+                    </span>                
+                    <span id="sig">
+                        Siguiente&gt&gt
+                    </span> 
+                </div>                 
             </div>
         </div>
 
@@ -154,4 +274,40 @@
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
     <script src="js/moment-2.29.1.js"></script>    
     <script src="{{ asset('js/producto.js') }}"></script>
+    <script>/*
+        let clase="";
+        $(document).ready(function(){    
+            $(".desplegable").click(function(){
+                $(".menu").toggleClass("showMenu");
+                $(".menu > li").click(function(){
+                    $(".desplegable > p").html($(this).html());
+                    $(".menu").removeClass("showMenu");
+                });
+            });            
+        });
+
+        let clase="";
+        $(document).ready(function(){    
+            $(".desplegable").click(function(){
+                clase=$(this);
+                (clase).find("ul").toggleClass("showMenu");
+                (clase).find("ul.menu > li").click(function(){
+                    (clase).siblings("div.desplegable > p").html($(this).html());
+                    (clase).find("ul").removeClass("showMenu");
+                });
+            });            
+        });*/
+
+        $(document).ready(function(){
+            $(".desplegable").click(function(){
+                let clase = $(this);
+                $(clase).closest(".selector").find("ul").toggleClass("showMenu");
+                $(clase).closest(".selector").find("ul.menu > li").click(function(){
+                    $(clase).closest(".selector").find("div.desplegable > p").html($(this).html());
+                    $(clase).closest(".selector").find("ul.menu").removeClass("showMenu");
+                });
+            });
+        });
+
+    </script>
 @endsection

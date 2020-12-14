@@ -125,3 +125,18 @@
     min-height: 3rem;
     white-space: pre-line;
 }
+
+.image-perso{
+    height: 200px;
+}
+
+.line-separation-1{
+    width: 100%;
+    height: 1px;
+    background-color: #000000;
+}
+.info-prod-div{
+    height: 380px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
