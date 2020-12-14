@@ -36,7 +36,7 @@
                             <div class="selector">
                                 <select id="select_id" style="display:none"></select>
                                 <div class="desplegable">
-                                    <p>Orden</p>
+                                    <p>Mostrar todo</p>
                                 </div>
                                 <ul class="menu">
                                     <li class="sup">Mostrar todo</li>
@@ -55,7 +55,7 @@
                             <div class="selector">
                                 <select id="select_id" style="display:none"></select>
                                 <div class="desplegable">
-                                    <p>Orden</p>
+                                    <p>Mostrar todos</p>
                                 </div>
                                 <ul class="menu">
                                     <li value="" selected>Mostrar todos</li>
@@ -94,10 +94,10 @@
                             <div class="selector" id="selector-ordenar">
                                 <select id="select_id" style="display:none"></select>
                                 <div class="desplegable">
-                                    <p>Orden</p>
+                                    <p>Mostrar todos</p>
                                 </div>
                                 <ul class="menu">
-                                <li class="sup">Mostrar todo</li>
+                                <li class="sup">Mostrar todos</li>
                                 <li>Nuevo</li>
                                 <li>Usado</li>
                                 </ul>
@@ -106,9 +106,9 @@
 
                         <div>
                             <h5>Precio mínimo</h5>
-                            <input type="number" class="selector" min="0" max="99999999">
+                            <div class="centrado"><input type="number" class="selector precio" min="0" max="99999999"></div>
                             <h5>Precio máximo</h5>
-                            <input type="number" class="selector" min="0" max="99999999">
+                            <div class="centrado"><input type="number" class="selector precio" min="0" max="99999999"></div>
                         </div>
 
                         
@@ -118,21 +118,19 @@
 
             <div class="col-sm-12 col-lg-9">
                 <div id="superior">
-                    <div id="cantidad-resultados">
-                        <h4>Se encontraron 654 resultados</h4>
-                    </div>
-                    
 
                     <div id="desplegable-select">
                         <div class="selector">
                             <select id="select_id" style="display:none"></select>
                             <div class="desplegable">
-                                <p>Orden</p>
+                                <p>Relevancia</p>
                             </div>
                             <ul class="menu">
-                                <li class="sup">Mostrar todo</li>
-                                <li>Nuevo</li>
-                                <li>Usado</li>
+                                <li>Relevancia</li>
+                                <li class="sup">Menor precio</li>
+                                <li>Mayor precio</li>
+                                <li>Menor tiempo</li>
+                                <li>Mayor tiempo</li>
                             </ul>
                         </div>   
                     </div>
@@ -140,6 +138,10 @@
                     <div id="ordenar-por">
                         Ordenar por
                     </div>
+                    <div id="cantidad-resultados">
+                        <h4>Se encontraron 654 resultados</h4>
+                    </div>
+                    
 
                     <div style="clear: both"></div>
                 </div>
@@ -297,6 +299,11 @@
                 });
             });            
         });*/
+
+        
+
+
+
 
         $(document).ready(function(){
             $(".desplegable").click(function(){
