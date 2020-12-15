@@ -942,6 +942,10 @@
                 "laravel4",
                 "upload"
             ],
+            "support": {
+                "issues": "https://github.com/jrm2k6/cloudder/issues",
+                "source": "https://github.com/jrm2k6/cloudder/tree/master"
+            },
             "time": "2017-02-03T19:10:37+00:00"
         },
         {
