@@ -54,6 +54,8 @@ class HomeController extends Controller
             $ultimoprecio = $ultimapuja->valor_puja;
         }
 
+        // dd($productosRelac);
+
         return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac'));
     }
  
@@ -77,6 +79,12 @@ class HomeController extends Controller
         $nuevosaldo = $request->saldousuario - $request->valorpuja;
         auth()->user()->us_din = $nuevosaldo;
         
+
+        $modiUser = App\Models\Producto::where('id','=',$request->productoid)->first();
+        $modiUser->user_id_comprador = auth()->id();
+        $modiUser->ultima_puja = $request->valorpuja;
+        $modiUser->indicador = 1;
+        $modiUser->save();
         
         if($ultimapuja=== null){
             
@@ -87,6 +95,7 @@ class HomeController extends Controller
             $usuariodevolucion->save();
         }
         auth()->user()->save();
+        
         $datosPuja->save();
         
         return back();

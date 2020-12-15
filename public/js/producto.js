@@ -1,3 +1,5 @@
+alert("Desde producto");
+
 $(function () {
     $('#demo-form').parsley().on('field:validated', function () {
         var ok = $('.parsley-error').length === 0;
@@ -10,31 +12,31 @@ $(function () {
 });
 
 // add the rule here
-$.validator.addMethod("valueNotEquals", function (value, element, arg) {
-    return arg !== value;
-}, "Value must not equal arg.");
+// $.validator.addMethod("valueNotEquals", function (value, element, arg) {
+//     return arg !== value;
+// }, "Value must not equal arg.");
 
 // configure your validation
-$("form").validate({
-    rules: {
-        SelectName: { valueNotEquals: "default" }
-    },
-    messages: {
-        SelectName: { valueNotEquals: "Please select an item!" }
-    }
-});
+// $("form").validate({
+//     rules: {
+//         SelectName: { valueNotEquals: "default" }
+//     },
+//     messages: {
+//         SelectName: { valueNotEquals: "Please select an item!" }
+//     }
+// });
 
-window.Parsley
-  .addValidator('multipleOf', {
-    requirementType: 'integer',
-    validateNumber: function(value, requirement) {
-      return 0 === value % requirement;
-    },
-    messages: {
-      en: 'This value should be a multiple of %s',
-      fr: 'Cette valeur doit être un multiple de %s'
-    }
-  });
+// window.Parsley
+//   .addValidator('multipleOf', {
+//     requirementType: 'integer',
+//     validateNumber: function(value, requirement) {
+//       return 0 === value % requirement;
+//     },
+//     messages: {
+//       en: 'This value should be a multiple of %s',
+//       fr: 'Cette valeur doit être un multiple de %s'
+//     }
+//   });
 
 
 //------------------------------Select---------------------------------
@@ -196,3 +198,4 @@ function cambiaDistrito()
  }
  sel_distrito.options[0].selected = true;     
 }
+

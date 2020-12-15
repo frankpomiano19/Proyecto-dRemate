@@ -117,22 +117,28 @@ Route::get('categorias/electrodomesticos', function () {
     return view('categorias/electrodomesticos');
 });
 
+Route::get('edson', function () {
+    return view('edson');
+});
+
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
 
 Route::post('/vistaLive', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
 
-Route::get('/pagoVendedor', function () {
-    return view('partials/sub_ganadas');
-});
-
-
+//Controlador pago vendedor
+Route::post('/', [SubastaRapController::class,'sumarVendedor'])->name('pago.vendedor');
+//GET
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
+
+// Route::get('/pagoVendedor', function () {
+//     return view('partials/sub_ganadas');
+// });
+
 
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
-
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');

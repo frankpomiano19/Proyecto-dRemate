@@ -1,17 +1,14 @@
+@extends('layouts.app')
+
+
+@section('cont_cabe')
+    <title>Subasta rapida - dRemate</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('contenidoJS')
-    <style>
-        .cuerpo {
-            margin-top: 80px;
-            margin-bottom: 40px;
-        }
-        .uno {
-            background-color: blueviolet;
-        }
-        .dos {
-            background-color: red;
-            height: 400px;
-        }
-    </style>
+
+    <link rel="stylesheet" href="css/mostrarProductos.css">
 
     <!-- Colocar js-->
     <script src="js/jquery-3.5.1.js"></script>
@@ -19,13 +16,24 @@
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
 @endsection
 
+@section('contenidoCSS')
+    <link rel="stylesheet" href="css/styleSubastaRapida.css">
+@endsection
+
+@section('contenidoCSS')
+    <link rel="stylesheet" href="css/styleSubastaRapida.css">
+@endsection
+
+@section('contenido')
+
+
+
+
 <div class="container">
     
     <br>
     <div class="row">
         <div class="col-3">
-
-           {{-- {{ $tipo }} --}}
 
             <h5>Precio desde</h5>
             @error('precioMin')
@@ -135,7 +143,31 @@
             @endif
         </div>
     </div>
+
+    <div class="row">
+        <div id="centro-pie">
+            <div id="pie">
+                <span>
+                    &lt&ltAnterior
+                </span>
+                <span class="numeros">
+                    1
+                </span>                      
+                <span class="numeros">
+                    2
+                </span>                       
+                <span class="numeros">
+                    3
+                </span>                
+                <span id="sig">
+                    Siguiente&gt&gt
+                </span> 
+            </div>                 
+        </div>
+    </div>
 </div>
+
+
 @section('contenidoJSabajo')
     <script src="js/jsSubastaRapida.js"></script>
     <script src="js/jquery.chrony.js"></script>
@@ -143,4 +175,38 @@
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
     <script src="js/moment-2.29.1.js"></script>    
     <script src="{{ asset('js/producto.js') }}"></script>
+    <script>/*
+        let clase="";
+        $(document).ready(function(){    
+            $(".desplegable").click(function(){
+                $(".menu").toggleClass("showMenu");
+                $(".menu > li").click(function(){
+                    $(".desplegable > p").html($(this).html());
+                    $(".menu").removeClass("showMenu");
+                });
+            });            
+        });
+        let clase="";
+        $(document).ready(function(){    
+            $(".desplegable").click(function(){
+                clase=$(this);
+                (clase).find("ul").toggleClass("showMenu");
+                (clase).find("ul.menu > li").click(function(){
+                    (clase).siblings("div.desplegable > p").html($(this).html());
+                    (clase).find("ul").removeClass("showMenu");
+                });
+            });            
+        });*/
+        
+        $(document).ready(function(){
+            $(".desplegable").click(function(){
+                let clase = $(this);
+                $(clase).closest(".selector").find("ul").toggleClass("showMenu");
+                $(clase).closest(".selector").find("ul.menu > li").click(function(){
+                    $(clase).closest(".selector").find("div.desplegable > p").html($(this).html());
+                    $(clase).closest(".selector").find("ul.menu").removeClass("showMenu");
+                });
+            });
+        });
+    </script>
 @endsection

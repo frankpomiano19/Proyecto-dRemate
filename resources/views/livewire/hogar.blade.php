@@ -1,146 +1,248 @@
-@section('contenidoJS')
-    <style>
-        .cuerpo {
-            margin-top: 80px;
-            margin-bottom: 40px;
-        }
-        .uno {
-            background-color: blueviolet;
-        }
-        .dos {
-            background-color: red;
-            height: 400px;
-        }
-    </style>
 
-    <!-- Colocar js-->
-    <script src="js/jquery-3.5.1.js"></script>
-    <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
-    <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
-@endsection
-
-<div class="container">
-    
-    <br>
+<div class="container-lg cuerpo">
     <div class="row">
-        <div class="col-3">
-
-           {{-- {{ $tipo }} --}}
-
-            <h5>Precio desde</h5>
-            @error('precioMin')
-            <div class="alert alert-danger" role="alert">
-                {{ $message }}
-            </div>
-            @enderror
-            <input type="text" class="form-control" name="precioMin" wire:model="precioMin">
-
-            <h5>Hasta</h5>
-            @error('precioMax')
-            <div class="alert alert-danger" role="alert">
-                {{ $message }}
-            </div>
-            @enderror
-            <input type="text" class="form-control" name="precioMax" wire:model="precioMax">
-
-            <h5>Categoria</h5>
-            <select name="" class="form-control" id="" wire:model="" disabled>
-                <option value="">Hogar</option>
-            </select>
-
-            <h5>Condicion</h5>
-            @error('condicion')
-            <div class="alert alert-danger" role="alert">
-                {{ $message }}
-            </div>
-            @enderror
-                <select class="form-control" name="condicion" id="" wire:model="condicion">
-                    <option value="Nuevo" >Nuevo</option>
-                    <option value="Usado">Usado</option>
-                </select>
-
-            <h5>Departamento</h5>
-            @error('departamento')
-            <div class="alert alert-danger" role="alert">
-                {{ $message }}
-            </div>
-            @enderror
-                <select name="selectDepartamento" onchange="cambia()" class="form-control mb-1" required=""
-                data-parsley-error-message="Escoja su ubicación" wire:model="departamento">
-                    <option value="" selected>Seleccionar</option>
-                    <option value="Amazonas">Amazonas</option>
-                    <option value="Ancash">Ancash</option>
-                    <option value="Apurímac">Apurímac</option>
-                    <option value="Arequipa">Arequipa</option>
-                    <option value="Ayacucho">Ayacucho</option>
-                    <option value="Cajamarca">Cajamarca</option>
-                    <option value="Callao">Callao</option>
-                    <option value="Cuzco">Cuzco </option>
-                    <option value="Huancavelica">Huancavelica</option>
-                    <option value="Huánuco">Huánuco</option>
-                    <option value="Ica">Ica</option>
-                    <option value="Junín">Junín</option>
-                    <option value="La_Libertad">La Libertad</option>
-                    <option value="Lambayeque">Lambayeque</option>
-                    <option value="Lima">Lima</option>
-                    <option value="Loreto">Loreto</option>
-                    <option value="Madre_de_Dios">Madre de Dios</option>
-                    <option value="Moquegua">Moquegua</option>
-                    <option value="Pasco">Pasco</option>
-                    <option value="Piura">Piura</option>
-                    <option value="Puno">Puno</option>
-                    <option value="San_Martín">San Martín</option>
-                    <option value="Tacna">Tacna</option>
-                    <option value="Tumbes">Tumbes</option>
-                    <option value="Ucayali">Ucayali</option>
-                </select>
-                <br><br>
-        </div>
-
-        <div class="col-9">
-            <div class="row">
-                <div class="col-12 mb-2">
-                    <h5>Categoria: Hogar > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
+        <div class="col-3 d-none d-md-block">                
+            <div id="filtro">
+                <div id="texto-filtro">
+                    <h4 id="titulo">Filtros</h4>
                 </div>
-            </div>
-
-            @if($productos->count())
-                <div class="row">
-            
-                @foreach ($productos as $producto)
-                    <div class="col-4">
-                        <div class="card m-1 p-0">
-                            <div class="card-body">
-                                <h5 class="card-title">{{$producto->nombre_producto}}</h5>
+                <form>
+                    <div>
+                        <h5>Categoría</h5>
+                        <!--Select-->
+                        <div class="selector">
+                            <select id="select_id" style="display:none"></select>
+                            <div class="desplegable">
+                                <p>Mostrar todo</p>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">{{$producto->ubicacion}}</li>
-                                <li class="list-group-item">{{$producto->precio_inicial}}</li>
-                                <li class="list-group-item">{{$producto->categoria_id}}</li>
-                            </ul>
-                            <div class="card-body">
-                                <a href="#" class="card-link">{{$producto->condicion}}</a>
-                                <a href="#" class="card-link">{{$producto->ubicacion}}</a>
-                            </div>
+                            <ul class="menu">
+                                <li class="sup">Mostrar todo</li>
+                                <li>Tecnología</li>
+                                <li>Hogar</li>
+                                <li>Electrodomésticos</li>
+                                <li>Joyas</li>
+                                <li>Instrumentos musicales</li>
+                                </ul>
                         </div>
                     </div>
+
+                    <div>
+                        <h5>Ubicación</h5>
+                        <!--Select-->
+                        <div class="selector">
+                            <select id="select_id" style="display:none"></select>
+                            <div class="desplegable">
+                                <p>Mostrar todos</p>
+                            </div>
+                            <ul class="menu">
+                                <li value="" selected>Mostrar todos</li>
+                                <li value="Amazonas">Amazonas</li>
+                                <li value="Ancash">Ancash</li>
+                                <li value="Apurímac">Apurímac</li>
+                                <li value="Arequipa">Arequipa</li>
+                                <li value="Ayacucho">Ayacucho</li>
+                                <li value="Cajamarca">Cajamarca</li>
+                                <li value="Callao">Callao</li>
+                                <li value="Cuzco">Cuzco </li>
+                                <li value="Huancavelica">Huancavelica</li>
+                                <li value="Huánuco">Huánuco</li>
+                                <li value="Ica">Ica</li>
+                                <li value="Junín">Junín</li>
+                                <li value="La_Libertad">La Libertad</li>
+                                <li value="Lambayeque">Lambayeque</li>
+                                <li value="Lima">Lima</li>
+                                <li value="Loreto">Loreto</li>
+                                <li value="Madre_de_Dios">Madre de Dios</li>
+                                <li value="Moquegua">Moquegua</li>
+                                <li value="Pasco">Pasco</li>
+                                <li value="Piura">Piura</li>
+                                <li value="Puno">Puno</li>
+                                <li value="San_Martín">San Martín</li>
+                                <li value="Tacna">Tacna</li>
+                                <li value="Tumbes">Tumbes</li>
+                                <li value="Ucayali">Ucayali</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5>Estado</h5>
+                        <!--Select-->
+                        <div class="selector" id="selector-ordenar">
+                            <select id="select_id" style="display:none"></select>
+                            <div class="desplegable">
+                                <p>Mostrar todos</p>
+                            </div>
+                            <ul class="menu">
+                            <li class="sup">Mostrar todos</li>
+                            <li>Nuevo</li>
+                            <li>Usado</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h5>Precio mínimo</h5>
+                        <div class="centrado"><input type="number" class="selector precio" min="0" max="99999999"></div>
+                        <h5>Precio máximo</h5>
+                        <div class="centrado"><input type="number" class="selector precio" min="0" max="99999999"></div>
+                    </div>
+
                     
-                @endforeach
+                </form>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-9">
+            <div id="superior">
+
+                <div id="desplegable-select">
+                    <div class="selector">
+                        <select id="select_id" style="display:none"></select>
+                        <div class="desplegable">
+                            <p>Relevancia</p>
+                        </div>
+                        <ul class="menu">
+                            <li>Relevancia</li>
+                            <li class="sup">Menor precio</li>
+                            <li>Mayor precio</li>
+                            <li>Menor tiempo</li>
+                            <li>Mayor tiempo</li>
+                        </ul>
+                    </div>   
                 </div>
-            @else
-                <div class="text-center">
-                    <h4 class="my-1">Ups, no existe producto con esas condiciones.</h4>
-                    <img class="img-fluid my-3 animate__animated animate__flash" src="{{ asset('img/undraw_Taken_re_yn20.svg') }}" style="width: 30%; heigth: 30%;" alt="insertar SVG con la etiqueta image">
+                
+                <div id="ordenar-por">
+                    Ordenar por
                 </div>
-            @endif
+                <div id="cantidad-resultados">
+                    <h4>Se encontraron 654 resultados</h4>
+                </div>
+                
+
+                <div style="clear: both"></div>
+            </div>
+
+            <div class="lista-productos">
+                <div class="producto fix">
+                    <div class="contenedor-imagen">
+                        <img src="" alt="" class="imagen">
+                    </div>
+                    
+                    <div class="texto"> 
+                        <div class="titulo">          
+                            <h3>Mazo</h3>
+                            <i class="fa fa-heart cora"></i>                                
+                        </div>
+                        <h5>S/321</h5>
+                        <p class="texto-descripcion">
+                            Lorem ipsum dolor sit amet...
+                        </p>
+                        <p>2 días, 22:51:51</p>
+                        <div class="ubicacion">
+                            Surco, Lima
+                        </div> 
+                    </div>  
+                    
+                </div>  
+                <div class="abajo-producto"></div>
+
+                <div class="producto fix">
+                    <div class="contenedor-imagen">
+                        <img src="" alt="" class="imagen">
+                    </div>
+                    
+                    <div class="texto"> 
+                        <div class="titulo">          
+                            <h3>Mazo</h3>
+                            <i class="fa fa-heart cora"></i>                                
+                        </div>
+                        <h5>S/321</h5>
+                        <p class="texto-descripcion">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        </p>
+                        <p>2 días, 22:51:51</p>
+                        <div class="ubicacion">
+                            Callao, Lima
+                        </div>           
+                    </div>            
+                </div>
+                <div class="abajo-producto"></div> 
+
+                <div class="producto fix">
+                    <div class="contenedor-imagen">
+                        <img src="" alt="" class="imagen">
+                    </div>
+                    
+                    <div class="texto"> 
+                        <div class="titulo">          
+                            <h3>Mazo</h3>
+                            <i class="fa fa-heart cora"></i>                                
+                        </div>
+                        <h5>S/321</h5>
+                        <p class="texto-descripcion">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        </p>
+                        <p>2 días, 22:51:51</p>
+                        <div class="ubicacion">
+                            Callao, Lima
+                        </div>           
+                    </div>            
+                </div>
+                <div class="abajo-producto"></div> 
+
+                <div class="producto fix">
+                    <div class="contenedor-imagen">
+                        <img src="" alt="" class="imagen">
+                    </div>
+                    
+                    <div class="texto"> 
+                        <div class="titulo">          
+                            <h3>Mazo</h3>
+                            <i class="fa fa-heart cora"></i>                                
+                        </div>
+                        <h5>S/321</h5>
+                        <p class="texto-descripcion">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+                        </p>
+                        <p>2 días, 22:51:51</p>
+                        <div class="ubicacion">
+                            Callao, Lima
+                        </div>           
+                    </div>            
+                </div>
+                <div class="abajo-producto"></div> 
+                
+            </div>
+
+            
+                  
         </div>
     </div>
+
+    <div class="row">
+        <div id="centro-pie">
+            <div id="pie">
+                <span>
+                    &lt&ltAnterior
+                </span>
+                <span class="numeros">
+                    1
+                </span>                      
+                <span class="numeros">
+                    2
+                </span>                       
+                <span class="numeros">
+                    3
+                </span>                
+                <span id="sig">
+                    Siguiente&gt&gt
+                </span> 
+            </div>                 
+        </div>
+    </div>
+
 </div>
-@section('contenidoJSabajo')
-    <script src="js/jsSubastaRapida.js"></script>
-    <script src="js/jquery.chrony.js"></script>
-    <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
-    <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
-    <script src="js/moment-2.29.1.js"></script>    
-    <script src="{{ asset('js/producto.js') }}"></script>
-@endsection
+
+
+
