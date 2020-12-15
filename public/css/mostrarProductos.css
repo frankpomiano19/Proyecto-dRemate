@@ -154,7 +154,7 @@ input[type=number]::-webkit-outer-spin-button {
     z-index:5;
     overflow:hidden;
 }
-.menu li{
+.menu option{
     list-style: none;
     padding: 10px 10px;
     border-bottom: 1px dotted #fff;
@@ -162,11 +162,11 @@ input[type=number]::-webkit-outer-spin-button {
     transition:all 0.3s;
     line-height: 15px;
 }
-.menu li:hover{
+.menu option:hover{
     background:#ff7a81;
     padding-left:20px;
 }
-.menu li:last-child{
+.menu option:last-child{
     border:none;
 }
 
@@ -298,3 +298,17 @@ input[type=number]::-webkit-outer-spin-button {
 #sig{
     padding-left: 10px;
 }
+/* 
+
+.option-valor{
+    background-image: linear-gradient(rgb(114, 18, 34), rgb(199, 45, 50));
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+} */
