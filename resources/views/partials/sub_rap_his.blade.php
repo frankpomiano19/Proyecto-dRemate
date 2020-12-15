@@ -11,7 +11,6 @@
     </thead>
     <tbody>
         @foreach ($su_hist_s as $su_hist)
-
             <tr>
                 <th>{{ $su_hist->final_subasta }}</th>
                 <th>{{ $su_hist->nombre_producto }}</th>

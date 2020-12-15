@@ -28,6 +28,7 @@
                 <div class="col-lg-2 py-2 columna-barra-lateral">
                     <div class="nav flex-column nav-pills nav-pills-custom" id="v-pills-tab" role="tablist"
                         aria-orientation="vertical">
+
                         <a class="nav-link mb-3 p-3 shadow active" id="v-pills-subasta-cur" data-toggle="pill"
                             href="#pills-sub-curso" role="tab" aria-controls="v-pills-home" aria-selected="true"
                             onclick="tablasOpc = 0;">
@@ -44,7 +45,14 @@
                             href="#pills-sub-his" role="tab" aria-controls="v-pills-messages" aria-selected="false"
                             onclick="tablasOpc = 2;">
                             <i class="fa fa-search"></i>
-                            <span class="font-weight-bold small text-uppercase">Mis productos registrados</span></a>
+                            <span class="font-weight-bold small text-uppercase">Mis productos registrados</span>
+                        </a>
+                        <a class="nav-link mb-3 p-3 shadow" id="v-pills-subasta-his" data-toggle="pill"
+                            href="#pills-pro-gan" role="tab" aria-controls="v-pills-messages" aria-selected="false"
+                            onclick="tablasOpc = 2;">
+                            <i class="fa fa-search"></i>
+                            <span class="font-weight-bold small text-uppercase">Mis subastas ganadas</span>
+                        </a>
 
                     </div>
                 </div>
@@ -53,22 +61,18 @@
                     <!--3era-->
 
                     <div class="container tab-content" id="pills-tabContent">
+
                         <div class="tab-pane fade show active" id="pills-sub-curso" role="tabpanel"
                             aria-labelledby="pills-home-tab">
                             <section class="py-2">
-
                                 <div class="container">
                                     <h3 class="font-weight-bold font-popin" >Perfil de usuario</h3>
 										<div class="table-responsive font-popin" id="">
-
-                                                @include('usuarioOpc.pestAux')
-                                        </div>
-                                    
-
+                                            @include('usuarioOpc.pestAux')
+                                        </div>                              
                                 </div>
                             </section>
                             <div id="" class="row">
-
 
                             </div>
 
@@ -77,25 +81,19 @@
 
                                 </div>
                             </div>
-
-                            <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </a>-->
-
                         </div>
+
 
                         <div class="tab-pane fade " id="pills-sub-pro" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <section class="py-0">
                                 <div class="container">
                                     <h3 class="font-weight-bold font-popin">Mis productos en subasta</h3>
-                                 <h4 class="font-weight-bold font-popin"> </h4>
-                                 <div class="card-body card-contenido-cuerpo-2">
-                                    <div class="table-responsive font-popin" id="historial_prod_sub">
-                                        @include('partials/prod_sub')
+                                    <h4 class="font-weight-bold font-popin"> </h4>
+                                    <div class="card-body card-contenido-cuerpo-2">
+                                        <div class="table-responsive font-popin" id="historial_prod_sub">
+                                            @include('partials/prod_sub')
+                                        </div>
                                     </div>
-                                </div>
-
-
                                 </div>
                             </section>
 
@@ -107,27 +105,46 @@
                         </div>
 
                         <div class="tab-pane fade " id="pills-sub-his" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <section class="py-0">
+                                <div class="container">
+                                    <h3 class="font-weight-bold font-popin">Mis productos registrados</h3>
+                                    <h4 class="font-weight-bold font-popin"> </h4>
+                                    <div class="card-body card-contenido-cuerpo-2">
+                                        <div class="table-responsive font-popin" id="historial_prod_sub">
+                                            @include('partials/prod_reg')
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="container">
+                                <div class="row justify-content-center" id="">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- -- --}}
+
+
+                        <div class="tab-pane fade " id="pills-pro-gan" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 mb-12">
                                         <div class="card-header">
-                                            <h3 class="titulo-card-header-2">Mis productos registrados</h3>
+                                            <h3 class="titulo-card-header-2">Subastas ganadas</h3>
                                         </div>
                                         <div class="card-body card-contenido-cuerpo-2">
                                             <div class="table-responsive font-popin" id="historial_prod_reg">
-                                                @include('partials/prod_reg')
+                                                @include('partials/sub_gan')
                                             </div>
                                         </div>
-                                        <!--
-                                                    <div class="card-footer text-center"><a class="btn btn-fill-1" href="#">Ver mas
-                                                            en el
-                                                            historial</a>
-                                                    </div>
-                                                -->
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>

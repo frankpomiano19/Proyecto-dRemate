@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Producto;
+use App\Models\Puja;
+use App\Models\User;
+
+use DB;
 
 class SubastaRapController extends Controller
 {
@@ -58,6 +62,60 @@ class SubastaRapController extends Controller
 
     }
 
+    public function pagoVendedor(){
+
+        $ab = date_default_timezone_get();
+        date_default_timezone_set('America/Lima');
+        $fecha = date('Y-m-d H:i:s');
+        $productosGanados = DB::table('users')
+        ->join('productos','productos.user_id','=','users.id')
+        ->select('productos.ultima_puja as ultimaPuja','productos.nombre_producto as producto','productos.ubicacion as departamento','productos.final_subasta as finalSubasta','productos.indicador as indicador', 'users.usuario as usuario', 'users.id as idVendedor','productos.id as idProducto')
+        ->where('productos.final_subasta','<',$fecha)
+        ->where('productos.user_id_comprador','=',auth()->user()->id)
+        ->get();
+        
+        $i = 0;
+
+        return view('partials.sub_ganadas',compact('productosGanados','i'));
+
+    }
+
+
+
+    public function sumarVendedor(Request $request){
+
+        $nombre = "Manuel";
+
+        $id_vendedor = $request->vendedor;
+        $monto = $request->monto;
+        $idProduc = $request->idProducto;
+
+        // dd($idProduc);
+        // dd($nombre,$id_vendedor,$monto);
+
+        $pagoVendedor = User::where('id','=',$id_vendedor)->first();
+
+        $pagoProducto = Producto::where('id','=',$idProduc)->first();
+
+        $pagoProducto->indicador = 0;
+
+        // dd($pagoProducto);
+
+        $saldoActual = $pagoVendedor->us_din;
+        
+        $pagoVendedor->us_din = $saldoActual + $monto;
+
+
+        $pagoVendedor->save();
+        $pagoProducto->save();
+
+
+
+        // dd($pagoVendedor->us_din
+
+        return back();
+    }
+
 
     public function fetch_data(Request $request){
 
@@ -72,7 +130,7 @@ class SubastaRapController extends Controller
     
             }else if($request->filtro==1){
                 $su_curso_s = Producto::where('inicio_subasta','<',$valorN)->where('final_subasta','>',$valorN)->orderBy('final_subasta','DESC')->paginate(6);
-                return view('partials.sub_rap_pro',compact('su_curso_s'));    
+                return view('partials.sub_rap_pro',compact('su_curso_s'));
         
             }
     
