@@ -62,6 +62,9 @@
 
                         </button>
                     </form>
+
+                    <a href="" class="btn btn-dark">Subastar</a>
+
                 </td>
 
             </tr>
