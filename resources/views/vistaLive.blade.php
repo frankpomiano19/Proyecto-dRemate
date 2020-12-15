@@ -29,7 +29,7 @@
             @foreach ($productos as $producto)
 
             <div class="col-md-5 mx-5">
-                <a href=" {{ url('producto-',$producto->id) }} " style="color:black">
+                <a href=" {{ route('producto.detalles',$producto->id) }} " style="color:black">
                     <div class="producto fix">
                         <div class="contenedor-imagen">
                             <img src="{{$producto->image_name1}}" alt="" class="imagen">
