@@ -41,6 +41,15 @@ class Hogar extends Component
 
     public function render()
     {
+        // return view('livewire.hogar',[
+        //     'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
+        //         ->where("precio_inicial",">=", $this->precioMin)
+        //         ->where('ubicacion','=',"$this->departamento")
+        //         ->where('categoria_id',2)
+        //         ->where('condicion','=',"$this->condicion")
+        //         ->get()
+        // ]);
+
         return view('livewire.hogar',[
             'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
                 ->where("precio_inicial",">=", $this->precioMin)

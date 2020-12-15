@@ -117,6 +117,10 @@ Route::get('categorias/electrodomesticos', function () {
     return view('categorias/electrodomesticos');
 });
 
+Route::get('edson', function () {
+    return view('edson');
+});
+
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
