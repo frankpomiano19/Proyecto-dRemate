@@ -4,7 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\SubastaRapController;
 use App\Http\Controllers\userController ;
-use App\Http\Controllers\registroProductoController;
+use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
 use App\Http\Controllers\userGuest;
 
