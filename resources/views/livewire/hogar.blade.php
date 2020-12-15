@@ -98,17 +98,13 @@
 
                 <div id="desplegable-select">
                     <div class="selector">
-                        <select id="select_id" style="display:none"></select>
-                        <div class="desplegable">
-                            <p>Relevancia</p>
-                        </div>
-                        <ul class="menu">
-                            <li>Relevancia</li>
-                            <li class="sup">Menor precio</li>
-                            <li>Mayor precio</li>
-                            <li>Menor tiempo</li>
-                            <li>Mayor tiempo</li>
-                        </ul>
+                        <select style="color:white " class="desplegable">
+                            <option style="background: #c72d32 ;">Relevancia</option>
+                            <option >Menor precio</option>
+                            <option class="option-valor">Mayor precio</option>
+                            <option value=""> Menor tiempo</option>
+                            <option>Mayor tiempo</option>
+                        </select>
                     </div>   
                 </div>
                 
