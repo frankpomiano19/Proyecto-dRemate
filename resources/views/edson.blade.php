@@ -14,6 +14,7 @@
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
+
 @endsection
 
 @section('contenidoCSS')
@@ -270,12 +271,12 @@
 @endsection
 
 @section('contenidoJSabajo')
-    <script src="js/jsSubastaRapida.js"></script>
-    <script src="js/jquery.chrony.js"></script>
+
+    {{-- <script src="js/jquery.chrony.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
-    <script src="js/moment-2.29.1.js"></script> 
-       
+    <script src="js/moment-2.29.1.js"></script>  --}}
+
     {{-- <script src="{{ asset('js/producto.js') }}"></script> --}}
     <script>
         $(document).ready(function(){

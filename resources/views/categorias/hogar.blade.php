@@ -12,9 +12,8 @@
     
     @livewireStyles
 
-    <script src="{{ asset('/js/jquery-3.5.1.js') }}"></script>
-    <script src="{{ asset('/js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js') }}"></script>
-    <script src="{{ asset('/js/jquery.countdown.package-2.1.0/js/jquery.countdown.js') }}"></script>
+
+
 
     
 @endsection

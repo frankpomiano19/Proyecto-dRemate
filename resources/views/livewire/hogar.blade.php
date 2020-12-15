@@ -12,11 +12,14 @@
     {{-- <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script> --}}
-
-
+{{-- 
     <script src="{{ asset('/js/jquery-3.5.1.js') }}"></script>
     <script src="{{ asset('/js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js') }}"></script>
-    <script src="{{ asset('/js/jquery.countdown.package-2.1.0/js/jquery.countdown.js') }}"></script>
+
+    <script src="{{ asset('/js/jquery.countdown.package-2.1.0/js/jquery.countdown.js') }}"></script> --}}
+
+
+
 
 
 @endsection
@@ -279,23 +282,10 @@
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
     <script src="js/moment-2.29.1.js"></script>     --}}
 
-    <script src="{{ asset('/js/jsSubastaRapida.js') }}"></script>
-    <script src="{{ asset('/js/jquery.chrony.js') }}"></script>
-    <script src="{{ asset('/js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js') }}"></script>
-    <script src="{{ asset('/js/jquery.countdown.package-2.1.0/js/jquery.countdown.js') }}"></script>
-    <script src="{{ asset('/js/moment-2.29.1.js') }}"></script>    
 
-    <script>
-        // $(document).ready(function(){
-        //     $(".desplegable").click(function(){
-        //         let clase = $(this);
-        //         $(clase).closest(".selector").find("ul").toggleClass("showMenu");
-        //         $(clase).closest(".selector").find("ul.menu > li").click(function(){
-        //             $(clase).closest(".selector").find("div.desplegable > p").html($(this).html());
-        //             $(clase).closest(".selector").find("ul.menu").removeClass("showMenu");
-        //         });
-        //     });
-        // });
-    </script>
     <script src="{{ asset('/js/mostrarProductos.js') }}"></script>
+    <script src="{{ asset('/js/test.js') }}"></script>
+
+
+
 @endsection
