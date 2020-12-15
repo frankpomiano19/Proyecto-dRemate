@@ -23,9 +23,14 @@ class Busqueda extends Component
 
     public function render()
     {
+        $ab = date_default_timezone_get();
+        date_default_timezone_set('America/Lima');
+        $fecha = date('Y-m-d H:i:s');
+
         return view('livewire.busqueda',[
             'productos' => Producto::where('nombre_producto','LIKE',"%{$this->search}%")
-            ->paginate(10)
+                                    ->where('productos.final_subasta','<',$fecha)
+                                    ->paginate(10)
         ]);
     }
 }

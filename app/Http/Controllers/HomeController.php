@@ -59,6 +59,13 @@ class HomeController extends Controller
         return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac'));
     }
  
+    public function buscaProducto(Request $request){
+
+        return view('vistaLive',[
+            'productos' => App\Models\Producto::where('nombre_producto','LIKE',"%{$request->bproducto}%")
+            ->get()
+        ],['nombreProducto'=>$request->bproducto]);
+    }
 
 
     public function hacerpuja(Request $request){

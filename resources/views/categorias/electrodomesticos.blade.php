@@ -7,14 +7,15 @@
 @endsection
 
 @section('contenidoJS')
-    <!-- Colocar js-->
+
     @livewireStyles
     
 @endsection
 
 @section('contenidoCSS')
-    <!-- Colocar css-->
-    <link rel="stylesheet" href="css/styleProduct.css">
+    <link href="{{ asset('css/mostrarProductos.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/styleSubastaRapida.css')}}">
+
     
 @endsection
 
@@ -22,13 +23,20 @@
 @section('contenido')
 
 <div>
-    <br>
+    
     <livewire:electrodomesticos />
 
 </div>
+
+
 @livewireScripts
 
 @endsection
 
 @section('contenidoJSabajo')
+
+<script src="{{ asset('/js/mostrarProductos.js') }}"></script>
+<script src="{{ asset('/js/test.js') }}"></script>
+
+
 @endsection

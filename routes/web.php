@@ -67,6 +67,7 @@ Route::get('/producto', function () {
     return view('producto');
 });
 
+
 Route::get('/subirProducto', function () {
     return view('subirProducto');
 })->name('subirProducto-now');
@@ -74,7 +75,11 @@ Route::get('/subirProducto', function () {
 //Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
 //Route::get('/rutaNoValida', [HomeController::class, 'viewproduct'])->name("ErrorNoValid");
 
+
+
 Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
+
+
 
 // Route::post('/','HomeController@registro')->name('producto.registro');
 Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
@@ -121,22 +126,18 @@ Route::get('edson', function () {
     return view('edson');
 });
 
+
+
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
 
-Route::post('/vistaLive', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
+Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
 
 //Controlador pago vendedor
 Route::post('/', [SubastaRapController::class,'sumarVendedor'])->name('pago.vendedor');
 //GET
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
-
-// Route::get('/pagoVendedor', function () {
-//     return view('partials/sub_ganadas');
-// });
-
-
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
 

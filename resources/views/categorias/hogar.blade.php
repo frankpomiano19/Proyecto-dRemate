@@ -8,13 +8,7 @@
 
 @section('contenidoJS')
 
-   
-    
     @livewireStyles
-
-
-
-
     
 @endsection
 
