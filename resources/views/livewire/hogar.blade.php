@@ -11,18 +11,13 @@
                         <h5>Categoría</h5>
                         <!--Select-->
                         <div class="selector">
-                            <select id="select_id" style="display:none"></select>
-                            <div class="desplegable">
-                                <p>Mostrar todo</p>
-                            </div>
-                            <ul class="menu">
-                                <li class="sup">Mostrar todo</li>
-                                <li>Tecnología</li>
-                                <li>Hogar</li>
-                                <li>Electrodomésticos</li>
-                                <li>Joyas</li>
-                                <li>Instrumentos musicales</li>
-                                </ul>
+                            <select style="color:white " class="desplegable">
+                                <option style="background: #c72d32;">Tecnología</option>
+                                <option style="background: #c72d32;">Hogar</option>
+                                <option style="background: #c72d32;">Electrodomésticos</option>
+                                <option style="background: #c72d32;">Joyas</option>
+                                <option style="background: #c72d32;">Instrumentos musicales</option>
+                            </select>
                         </div>
                     </div>
 
@@ -30,38 +25,33 @@
                         <h5>Ubicación</h5>
                         <!--Select-->
                         <div class="selector">
-                            <select id="select_id" style="display:none"></select>
-                            <div class="desplegable">
-                                <p>Mostrar todos</p>
-                            </div>
-                            <ul class="menu">
-                                <li value="" selected>Mostrar todos</li>
-                                <li value="Amazonas">Amazonas</li>
-                                <li value="Ancash">Ancash</li>
-                                <li value="Apurímac">Apurímac</li>
-                                <li value="Arequipa">Arequipa</li>
-                                <li value="Ayacucho">Ayacucho</li>
-                                <li value="Cajamarca">Cajamarca</li>
-                                <li value="Callao">Callao</li>
-                                <li value="Cuzco">Cuzco </li>
-                                <li value="Huancavelica">Huancavelica</li>
-                                <li value="Huánuco">Huánuco</li>
-                                <li value="Ica">Ica</li>
-                                <li value="Junín">Junín</li>
-                                <li value="La_Libertad">La Libertad</li>
-                                <li value="Lambayeque">Lambayeque</li>
-                                <li value="Lima">Lima</li>
-                                <li value="Loreto">Loreto</li>
-                                <li value="Madre_de_Dios">Madre de Dios</li>
-                                <li value="Moquegua">Moquegua</li>
-                                <li value="Pasco">Pasco</li>
-                                <li value="Piura">Piura</li>
-                                <li value="Puno">Puno</li>
-                                <li value="San_Martín">San Martín</li>
-                                <li value="Tacna">Tacna</li>
-                                <li value="Tumbes">Tumbes</li>
-                                <li value="Ucayali">Ucayali</li>
-                            </ul>
+                            <select style="color:white " class="desplegable">
+                                <option style="background: #c72d32;" value="Amazonas">Amazonas</option>
+                                <option style="background: #c72d32;" value="Ancash">Ancash</option>
+                                <option style="background: #c72d32;" value="Apurímac">Apurímac</option>
+                                <option style="background: #c72d32;" value="Arequipa">Arequipa</option>
+                                <option style="background: #c72d32;" value="Ayacucho">Ayacucho</option>
+                                <option style="background: #c72d32;" value="Cajamarca">Cajamarca</option>
+                                <option style="background: #c72d32;" value="Callao">Callao</option>
+                                <option style="background: #c72d32;" value="Cuzco">Cuzco </option>
+                                <option style="background: #c72d32;" value="Huancavelica">Huancavelica</option>
+                                <option style="background: #c72d32;" style="background: #c72d32;"n value="Huánuco">Huánuco</option>
+                                <option style="background: #c72d32;" value="Ica">Ica</option>
+                                <option style="background: #c72d32;" value="Junín">Junín</option>
+                                <option style="background: #c72d32;" value="La_Libertad">La Libertad</option>
+                                <option style="background: #c72d32;" value="Lambayeque">Lambayeque</option>
+                                <option style="background: #c72d32;" value="Lima">Lima</option>
+                                <option style="background: #c72d32;" value="Loreto">Loreto</option>
+                                <option style="background: #c72d32;" value="Madre_de_Dios">Madre de Dios</option>
+                                <option style="background: #c72d32;" value="Moquegua">Moquegua</option>
+                                <option style="background: #c72d32;" value="Pasco">Pasco</option>
+                                <option style="background: #c72d32;" value="Piura">Piura</option>
+                                <option style="background: #c72d32;" value="Puno">Puno</option>
+                                <option style="background: #c72d32;" value="San_Martín">San Martín</option>
+                                <option style="background: #c72d32;" value="Tacna">Tacna</option>
+                                <option style="background: #c72d32;" value="Tumbes">Tumbes</option>
+                                <option style="background: #c72d32;" value="Ucayali">Ucayali</option>
+                            </select>
                         </div>
                     </div>
 
@@ -69,15 +59,10 @@
                         <h5>Estado</h5>
                         <!--Select-->
                         <div class="selector" id="selector-ordenar">
-                            <select id="select_id" style="display:none"></select>
-                            <div class="desplegable">
-                                <p>Mostrar todos</p>
-                            </div>
-                            <ul class="menu">
-                            <li class="sup">Mostrar todos</li>
-                            <li>Nuevo</li>
-                            <li>Usado</li>
-                            </ul>
+                            <select style="color:white " class="desplegable">
+                                <option style="background: #c72d32;">Nuevo</option>
+                                <option style="background: #c72d32;">Usado</option>
+                            </select>
                         </div>
                     </div>
 
@@ -100,17 +85,14 @@
                     <div class="selector">
                         <select style="color:white " class="desplegable">
                             <option style="background: #c72d32 ;">Relevancia</option>
-                            <option >Menor precio</option>
-                            <option class="option-valor">Mayor precio</option>
-                            <option value=""> Menor tiempo</option>
-                            <option>Mayor tiempo</option>
+                            <option style="background: #c72d32 ;">Menor precio</option>
+                            <option style="background: #c72d32 ;" class="option-valor">Mayor precio</option>
+                            <option style="background: #c72d32 ;" value=""> Menor tiempo</option>
+                            <option style="background: #c72d32 ;">Mayor tiempo</option>
                         </select>
                     </div>   
                 </div>
                 
-                <div id="ordenar-por">
-                    Ordenar por
-                </div>
                 <div id="cantidad-resultados">
                     <h4>Se encontraron 654 resultados</h4>
                 </div>
