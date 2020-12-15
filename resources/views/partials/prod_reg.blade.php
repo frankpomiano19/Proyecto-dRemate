@@ -24,7 +24,7 @@
     <table class="table table-hover table-striped">
         <thead class="thead-dark">
                   <tr>
-                     <th>No</th>
+                   
                      <th>Nombre del producto</th>
                      <th>Descripcion</th>
                      <th>Condicion</th>
@@ -37,7 +37,7 @@
         <tbody id="productos-list" name="productos-list">
               @foreach ($productos as $producto)
             <tr>
-                   <td>{{ ++$i }}</td>
+                   
                    <td>{{ $producto->nombre_producto }}</td>
                    <td>{{ $producto->descripcion }}</td>
                    <td>{{ $producto->condicion }}</td>
@@ -76,4 +76,4 @@
         {!! $productos->links() !!}
 
     </div>
-
+   
