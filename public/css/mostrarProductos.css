@@ -72,6 +72,8 @@ input[type=number]::-webkit-outer-spin-button {
     padding-left: 10px;
 }
 
+/*---------------------Select-------------------------*/
+
 
 
 /*---------------------Select-------------------------*/
@@ -115,8 +117,8 @@ input[type=number]::-webkit-outer-spin-button {
     background:linear-gradient(#721222 ,#c72d32);
 }
 .desplegable{
-    width: 100%;
-
+    float: left;
+    width: 200px;
     border-radius: 7px 7px 7px 7px;
     cursor: pointer;
     height: 40px;
@@ -204,7 +206,6 @@ input[type=number]::-webkit-outer-spin-button {
     width: 100%;
     float: right;
 }
-
 
 .producto{
     height: 225px;
@@ -298,17 +299,3 @@ input[type=number]::-webkit-outer-spin-button {
 #sig{
     padding-left: 10px;
 }
-/* 
-
-.option-valor{
-    background-image: linear-gradient(rgb(114, 18, 34), rgb(199, 45, 50));
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    background-repeat-x: initial;
-    background-repeat-y: initial;
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: initial;
-} */

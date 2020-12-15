@@ -201,6 +201,7 @@
                 @if (Route::has('register'))
                 <li class="nav-item @if($stringRuta == 'register') active active-2  @endif"><a class="nav-link" href="{{ route('register') }}">Registrarse</a>
                 </li>
+
                 @endif
                 @else
                 <li class="nav-item"><a class="nav-link" style="font-size: 12px;font-weight: lighter;">S/{{ Auth::user()->us_din }}</a>
@@ -225,6 +226,26 @@
                             </div>
 
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                              <i class="fa fa-bell-o"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <span class="dropdown-header" >Notificaciones</span>
+                              @forelse (auth()->user()->userProductoSubastaGanada as $prodganado)
+                                @if (Carbon\Carbon::now()->greaterThan($prodganado->final_subasta))
+                                    <a href="{{ route('producto.detalles', $prodganado->id) }}"><span class="ml-3 pull-right text-muted text-sm">Ha ganado el producto {{$prodganado->nombre_producto}} </span></a>
+                                <div class="dropdown-divider"></div>
+                                @endif
+                                
+                              @empty
+                              <span class="ml-3 pull-right text-muted text-sm">Sin notificaciones por leer </span>
+                              @endforelse
+                              <div class="dropdown-divider"></div>
+                              
+                              
+                            </div>
+                          </li>
                     @endguest
             </ul>
             <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center" style="margin-right: 50px;margin-left: 50px;">

@@ -49,4 +49,7 @@
 
     </tbody>
 </table>
+<div class="d-flex justify-content-center">
 {!! $productosSub_s->links() !!}
+</div>
+
