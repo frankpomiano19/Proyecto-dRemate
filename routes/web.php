@@ -123,16 +123,18 @@ Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioPro
 
 Route::post('/vistaLive', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
 
-Route::get('/pagoVendedor', function () {
-    return view('partials/sub_ganadas');
-});
-
-
+//Controlador pago vendedor
+Route::post('/', [SubastaRapController::class,'sumarVendedor'])->name('pago.vendedor');
+//GET
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
+
+// Route::get('/pagoVendedor', function () {
+//     return view('partials/sub_ganadas');
+// });
+
 
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
-
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');

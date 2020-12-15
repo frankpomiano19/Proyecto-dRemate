@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Producto;
 use App\Models\Puja;
+use App\Models\User;
 
 use DB;
 
@@ -63,32 +64,55 @@ class SubastaRapController extends Controller
 
     public function pagoVendedor(){
 
-        $pujaComprador = Puja::where('user_id','=',auth()->user()->id)->get();
-
         $ab = date_default_timezone_get();
         date_default_timezone_set('America/Lima');
         $fecha = date('Y-m-d H:i:s');
-
-        $subastaTerminada = Producto::where('final_subasta','<',$fecha)->get();  
-        
-
-        $pujasMezcla = DB::table('pujas')
-        ->join('productos','productos.id','=','pujas.producto_id')
-        ->select('pujas.valor_puja as valorPuja','pujas.user_id as userId','productos.nombre_producto as nombreProducto','productos.final_subasta as finalSubasta', 'pujas.producto_id as productoId')
+        $productosGanados = DB::table('users')
+        ->join('productos','productos.user_id','=','users.id')
+        ->select('productos.ultima_puja as ultimaPuja','productos.nombre_producto as producto','productos.ubicacion as departamento','productos.final_subasta as finalSubasta','productos.indicador as indicador', 'users.usuario as usuario', 'users.id as idVendedor','productos.id as idProducto')
         ->where('productos.final_subasta','<',$fecha)
-        
-        ->where('pujas.user_id','=',auth()->user()->id)
-
+        ->where('productos.user_id_comprador','=',auth()->user()->id)
         ->get();
+        
+        $i = 0;
 
-        // dd($pujasMezcla);
-
-        return view('partials.sub_ganadas',compact('pujasMezcla'));
+        return view('partials.sub_ganadas',compact('productosGanados','i'));
 
     }
 
-    public function sumarVendedor(){
+
+    public function sumarVendedor(Request $request){
+
+        $nombre = "Manuel";
+
+        $id_vendedor = $request->vendedor;
+        $monto = $request->monto;
+        $idProduc = $request->idProducto;
+
+        // dd($idProduc);
+        // dd($nombre,$id_vendedor,$monto);
+
+        $pagoVendedor = User::where('id','=',$id_vendedor)->first();
+
+        $pagoProducto = Producto::where('id','=',$idProduc)->first();
+
+        $pagoProducto->indicador = 0;
+
+        // dd($pagoProducto);
+
+        $saldoActual = $pagoVendedor->us_din;
         
+        $pagoVendedor->us_din = $saldoActual + $monto;
+
+
+        $pagoVendedor->save();
+        $pagoProducto->save();
+
+
+
+        // dd($pagoVendedor->us_din
+
+        return back();
     }
 
 

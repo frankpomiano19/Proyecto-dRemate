@@ -31,8 +31,11 @@ class CreateProductosTable extends Migration
             $table->string('ubicacion');
             $table->string('distrito');
 
+
             //Segundo Formulario
-            $table->string('precio_inicial')->nullable();
+            $table->float('precio_inicial')->nullable();
+            $table->float('ultima_puja')->nullable();
+            $table->integer('indicador')->nullable();
 
             $table->dateTime('inicio_subasta')->nullable();
             $table->dateTime('final_subasta')->nullable();

@@ -51,7 +51,7 @@
                             href="#pills-pro-gan" role="tab" aria-controls="v-pills-messages" aria-selected="false"
                             onclick="tablasOpc = 2;">
                             <i class="fa fa-search"></i>
-                            <span class="font-weight-bold small text-uppercase">Mis productos registrados</span>
+                            <span class="font-weight-bold small text-uppercase">Mis subastas ganadas</span>
                         </a>
 
                     </div>
@@ -104,14 +104,14 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade " id="pills-pro-gan" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="tab-pane fade " id="pills-sub-his" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <section class="py-0">
                                 <div class="container">
-                                    <h3 class="font-weight-bold font-popin">Mis productos en subasta</h3>
+                                    <h3 class="font-weight-bold font-popin">Mis productos registrados</h3>
                                     <h4 class="font-weight-bold font-popin"> </h4>
                                     <div class="card-body card-contenido-cuerpo-2">
                                         <div class="table-responsive font-popin" id="historial_prod_sub">
-                                            @include('partials/prod_sub')
+                                            @include('partials/prod_reg')
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                         {{-- -- --}}
 
 
-                        <div class="tab-pane fade " id="pills-sub-gan" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <div class="tab-pane fade " id="pills-pro-gan" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 mb-12">
@@ -136,7 +136,7 @@
                                         </div>
                                         <div class="card-body card-contenido-cuerpo-2">
                                             <div class="table-responsive font-popin" id="historial_prod_reg">
-                                                @include('partials/prod_reg')
+                                                @include('partials/sub_gan')
                                             </div>
                                         </div>
                                     </div>
