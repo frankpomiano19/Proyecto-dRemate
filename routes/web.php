@@ -4,13 +4,15 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PruebaController;
 use App\Http\Controllers\SubastaRapController;
 use App\Http\Controllers\userController ;
-use App\Http\Controllers\registroProductoController;
+use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
 use App\Http\Controllers\userGuest;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MessageReceived;
+use App\Http\Livewire\ProductosComponente;
+use App\Http\Livewire\busquedaFiltro;
 
 
 Route::get('/', function () {
@@ -39,6 +41,10 @@ Route::get('/info/fetch_data_product-{idUser}',[userGuest::class,'paginacionProd
 
 
 
+Route::get('/subastarProducto', function () {
+    return view('RegistroProductoSubasta/subastarProducto');
+});
+
 //////////////////////////////////////
 Route::get('/category', function () {
     return view('categorias');
@@ -53,10 +59,14 @@ Route::get('/subastaRapida/fetch_data',[SubastaRapController::class,'fetch_data'
 Route::get('/subastaRapida/fetch_data1',[SubastaRapController::class,'fetch_data1']);
 Route::get('/subastaRapida/fetch_data2',[SubastaRapController::class,'fetch_data2']);
 
+Route::get('/vistaLive', function () {
+    return view('vistaLive');
+});
 
 Route::get('/producto', function () {
     return view('producto');
 });
+
 
 Route::get('/subirProducto', function () {
     return view('subirProducto');
@@ -65,7 +75,11 @@ Route::get('/subirProducto', function () {
 //Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
 //Route::get('/rutaNoValida', [HomeController::class, 'viewproduct'])->name("ErrorNoValid");
 
+
+
 Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
+
+
 
 // Route::post('/','HomeController@registro')->name('producto.registro');
 Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
@@ -89,13 +103,43 @@ Route::get('mostrarProductos', function () {
     return view('mostrarProductos');
 });
 
+Route::get('/busquedaFiltro', function () {
+    return view('categorias/filtroBusqueda');
+});
+Route::get('categorias/joyas', function () {
+    return view('categorias/joyas');
+});
+Route::get('categorias/tecnologia', function () {
+    return view('categorias/tecnologia');
+});
+Route::get('categorias/hogar', function () {
+    return view('categorias/hogar');
+});
+Route::get('categorias/instrumentos', function () {
+    return view('categorias/instrumentos');
+});
+Route::get('categorias/electrodomesticos', function () {
+    return view('categorias/electrodomesticos');
+});
+
+Route::get('edson', function () {
+    return view('edson');
+});
+
+
+
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
 
+Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
+
+//Controlador pago vendedor
+Route::post('/', [SubastaRapController::class,'sumarVendedor'])->name('pago.vendedor');
+//GET
+Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
-
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');

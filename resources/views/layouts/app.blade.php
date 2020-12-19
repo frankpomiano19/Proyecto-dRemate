@@ -16,6 +16,7 @@
 
     @yield('cont_cabe')
     <!-- Scripts -->
+    @livewireStyles
     @yield('contenidoJS')
 
     <!-- Fonts -->
@@ -128,42 +129,42 @@
     </nav>-->
 <!--barra navegación-->
 <div class="navbar-sticky bg-light fixed-top">
-    <div class="navbar navbar-expand-lg navbar-light" style="background:#343a40!important;padding-top: 12px;padding-bottom: 20px;">
+    <div class="navbar navbar-expand-lg navbar-light" style="background:#343a40!important;padding-top: 0px;padding-bottom: 0px;">
         <div class="container" style="padding-left: 0px;margin-left: 25px;margin-right: 25px;"><a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="{{route("welcome")}}" style="min-width: 7rem;"><img width="142" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 55px;"></a><a class="navbar-brand d-sm-none mr-2" href="/" style="min-width: 4.625rem;"><img width="74" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 34px;min-width: 74px;"></a>
-        <ul class="navbar-nav mega-nav d-none pr-lg-2 mr-lg-2" style="margin-left: 200px;">
+        <ul class="navbar-nav mega-nav d-none pr-lg-2 mr-lg-2" style="margin-left: 100px;">
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle pl-0" href="/category" data-toggle="dropdown"><i class="fa fa-th mr-2" style="color:#dee2e6;"></i>Categorías</a>
                 <ul class="dropdown-menu px-2 pl-0 pb-4">
                     <div class="d-flex flex-wrap flex-md-nowrap">
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://elempresario.mx/sites/default/files/imagecache/nota_completa/moda.jpg" alt="Moda"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Moda</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/joyas') }}"><img src="https://elempresario.mx/sites/default/files/imagecache/nota_completa/moda.jpg" alt="Moda"></a>
+                            <a href="{{ url('categorias/joyas') }}"><h6 class="font-size-base mb-2">Joyas</h6></a>
                         </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://myperuglobal.com/wp-content/uploads/2015/10/Untitled-design.png" alt="Tecno"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Tecnologia</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/tecnologia') }}"><img src="https://myperuglobal.com/wp-content/uploads/2015/10/Untitled-design.png" alt="Tecno"></a>
+                            <a href="{{ url('categorias/tecnologia') }}"><h6 class="font-size-base mb-2">Tecnologia</h6></a>
                         </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://kasaniu.com/wp-content/uploads/2017/08/ScreenHunter_450-Aug.-13-17.43-1170x680.jpg" alt="Anti"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Antigüedades</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/instrumentos') }}"><img src="https://kasaniu.com/wp-content/uploads/2017/08/ScreenHunter_450-Aug.-13-17.43-1170x680.jpg" alt="Anti"></a>
+                            <a href="{{ url('categorias/instrumentos') }}"><h6 class="font-size-base mb-2">Instrumentos musicales</h6></a>
                         </div>
                     </div>
                     </div>
                     <div class="d-flex flex-wrap flex-md-nowrap">
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://www.engelglobal.com/fileadmin/master/Branchen/technical_moulding/TEC_Sport___Freizeit.jpg" alt="Depor"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Deportes</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/hogar') }}"><img src="https://www.engelglobal.com/fileadmin/master/Branchen/technical_moulding/TEC_Sport___Freizeit.jpg" alt="Depor"></a>
+                            <a href="{{ url('categorias/hogar') }}"><h6 class="font-size-base mb-2">Hogar</h6></a>
                         </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://cdn.shopify.com/s/files/1/0899/2262/articles/10-tiendas-de-decoraci-n-de-interiores-para-tu-hogar.jpg?v=1559339599" alt="Hogar"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Hogar</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('/busquedaFiltro') }}"><img src="https://cdn.shopify.com/s/files/1/0899/2262/articles/10-tiendas-de-decoraci-n-de-interiores-para-tu-hogar.jpg?v=1559339599" alt="Hogar"></a>
+                            <a href="{{ url('/busquedaFiltro') }}"><h6 class="font-size-base mb-2">Búsqueda por filtro</h6></a>
                         </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://us.emedemujer.com/wp-content/uploads/sites/3/2017/02/Jardiner%C3%ADa-b%C3%A1sica-lo-que-toda-newbie-debe-saber-770x512.jpg" alt="Jardi"></a>
-                            <a href="/category"><h6 class="font-size-base mb-2">Jardineria</h6></a>
+                        <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('categorias/electrodomesticos') }}"><img src="https://us.emedemujer.com/wp-content/uploads/sites/3/2017/02/Jardiner%C3%ADa-b%C3%A1sica-lo-que-toda-newbie-debe-saber-770x512.jpg" alt="Jardi"></a>
+                            <a href="{{ url('categorias/electrodomesticos') }}"><h6 class="font-size-base mb-2">Electrodomésticos</h6></a>
                         </div>
                     </div>
                     </div>
@@ -171,9 +172,23 @@
                 </li>
             </ul>
             <div class="input-group-overlay d-none d-lg-flex mx-4">
-            <input class="form-control appended-form-control" type="text" placeholder="Buscar productos">
-            <div class="input-group-append-overlay"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
-            </div> 
+
+            <form class="needs-validation" method="POST" enctype="multipart/form-data"
+            action="{{ route('busqueda.busquedaespecifica') }}" novalidate>
+                @csrf
+                <input type="text" name="bproducto" class="form-control" placeholder="Buscar producto" required>
+            </form>
+            {{-- <livewire:busqueda-especifica> --}}
+
+
+            {{-- <input class = "form-control appended-form-control" type = "text" placeholder = "Buscar productos">
+            <div class = "input-group-append-overlay"><span class = "input-group-text "><i class = "fa fa-search"> </i ></span ></div> --}}
+            </div>
+
+
+
+            {{-- <input class="form-control appended-form-control" type="text" placeholder="Bur productos"> --}}
+            
         
             <ul class="navbar-nav d-none" style="align-items: center;">
                 <li class="nav-item @if($stringRuta == 'welcome') active active-2  @endif "><a class="nav-link" href="{{ route('welcome') }}">Home</a>
@@ -186,6 +201,7 @@
                 @if (Route::has('register'))
                 <li class="nav-item @if($stringRuta == 'register') active active-2  @endif"><a class="nav-link" href="{{ route('register') }}">Registrarse</a>
                 </li>
+
                 @endif
                 @else
                 <li class="nav-item"><a class="nav-link" style="font-size: 12px;font-weight: lighter;">S/{{ Auth::user()->us_din }}</a>
@@ -210,6 +226,26 @@
                             </div>
 
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                              <i class="fa fa-bell-o"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                            <span class="dropdown-header" >Notificaciones</span>
+                              @forelse (auth()->user()->userProductoSubastaGanada as $prodganado)
+                                @if (Carbon\Carbon::now()->greaterThan($prodganado->final_subasta))
+                                    <a href="{{ route('producto.detalles', $prodganado->id) }}"><span class="ml-3 pull-right text-muted text-sm">Ha ganado el producto {{$prodganado->nombre_producto}} </span></a>
+                                <div class="dropdown-divider"></div>
+                                @endif
+                                
+                              @empty
+                              <span class="ml-3 pull-right text-muted text-sm">Sin notificaciones por leer </span>
+                              @endforelse
+                              <div class="dropdown-divider"></div>
+                              
+                              
+                            </div>
+                          </li>
                     @endguest
             </ul>
             <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center" style="margin-right: 50px;margin-left: 50px;">
@@ -241,7 +277,8 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="input-group-overlay d-lg-none my-3">
             <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
-            <input class="form-control prepended-form-control" type="text" placeholder="Buscar productos">
+            <input class="form-control prepended-form-control" type="text" placeholder="Bur productos">
+
             </div>
             <ul class="navbar-nav mega-nav pr-lg-2 mr-lg-2">
             <li class="nav-item dropdown"><a class="nav-link dropdown-toggle pl-0" href="/category" data-toggle="dropdown" style="color:#343a40;font-weight: bold;"><i class="fa fa-th mr-2"></i>Categorías</a>
@@ -249,34 +286,34 @@
                 <div class="d-flex flex-wrap flex-md-nowrap">
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://elempresario.mx/sites/default/files/imagecache/nota_completa/moda.jpg" alt="Moda"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Moda</h6></a>
+                        <a href="{{ url('categorias/joyas') }}"><h6 class="font-size-base mb-2">Joyas</h6></a>
                     </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://myperuglobal.com/wp-content/uploads/2015/10/Untitled-design.png" alt="Tecno"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Tecnologia</h6></a>
+                        <a href="{{ url('categorias/tecnologia') }}"><h6 class="font-size-base mb-2">Tecnologia</h6></a>
                     </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://kasaniu.com/wp-content/uploads/2017/08/ScreenHunter_450-Aug.-13-17.43-1170x680.jpg" alt="Anti"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Antigüedades</h6></a>
+                        <a href="{{ url('categorias/electrodomesticos') }}"><h6 class="font-size-base mb-2">Electrodomésticos</h6></a>
                     </div>
                     </div>
                 </div>
                 <div class="d-flex flex-wrap flex-md-nowrap">
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://www.engelglobal.com/fileadmin/master/Branchen/technical_moulding/TEC_Sport___Freizeit.jpg" alt="Depor"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Deportes</h6></a>
+                        <a href="{{ url('/busquedaFiltro') }}"><h6 class="font-size-base mb-2">Deportes</h6></a>
                     </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
-                    <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://cdn.shopify.com/s/files/1/0899/2262/articles/10-tiendas-de-decoraci-n-de-interiores-para-tu-hogar.jpg?v=1559339599" alt="Hogar"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Hogar</h6></a>
+                    <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="{{ url('/busquedaFiltro') }}"><img src="https://cdn.shopify.com/s/files/1/0899/2262/articles/10-tiendas-de-decoraci-n-de-interiores-para-tu-hogar.jpg?v=1559339599" alt="Hogar"></a>
+                        <a href="{{ url('/busquedaFiltro') }}"><h6 class="font-size-base mb-2">Búsqueda por filtro</h6></a>
                     </div>
                     </div>
                     <div class="mega-dropdown-column pt-4 px-3">
                     <div class="widget widget-links"><a class="d-block overflow-hidden rounded-lg mb-3" href="#"><img src="https://us.emedemujer.com/wp-content/uploads/sites/3/2017/02/Jardiner%C3%ADa-b%C3%A1sica-lo-que-toda-newbie-debe-saber-770x512.jpg" alt="Jardi"></a>
-                        <a href="/category"><h6 class="font-size-base mb-2">Jardineria</h6></a>
+                        <a href="{{ url('/busquedaFiltro') }}"><h6 class="font-size-base mb-2">Jardineria</h6></a>
                     </div>
                     </div>
                 </div>
@@ -299,14 +336,16 @@
 </div>
 <br><br>
 <!--fin barra navegación-->
+    @livewireScripts
 
     @yield('contenido')
     <!--Footer-->
 
 <footer id="footer">
+    @livewireScripts
+
     <div class="container">
       <h3>D'REMATE</h3>
-      <p></p>
       <div class="social-links">
         <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
         <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>

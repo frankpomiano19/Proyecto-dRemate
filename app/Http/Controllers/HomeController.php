@@ -54,16 +54,25 @@ class HomeController extends Controller
             $ultimoprecio = $ultimapuja->valor_puja;
         }
 
+        // dd($productosRelac);
+
         return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac'));
     }
  
+    public function buscaProducto(Request $request){
+
+        return view('vistaLive',[
+            'productos' => App\Models\Producto::where('nombre_producto','LIKE',"%{$request->bproducto}%")
+            ->get()
+        ],['nombreProducto'=>$request->bproducto]);
+    }
 
 
     public function hacerpuja(Request $request){
 
         $pujastotales = App\Models\Puja::all()->sortDesc();
         $ultimapuja = $pujastotales->where('producto_id',$request->productoid)->first();
-
+        $producto = App\Models\Producto::findOrFail($request->productoid);
         $request->validate([
             'valorpuja' => 'required|gt:ultimoprecio',
             'saldousuario' => 'gt:ultimoprecio|gte:valorpuja'
@@ -77,6 +86,13 @@ class HomeController extends Controller
         $nuevosaldo = $request->saldousuario - $request->valorpuja;
         auth()->user()->us_din = $nuevosaldo;
         
+
+        $modiUser = App\Models\Producto::where('id','=',$request->productoid)->first();
+        $modiUser->user_id_comprador = auth()->id();
+        $modiUser->ultima_puja = $request->valorpuja;
+        $modiUser->indicador = 1;
+        $modiUser->save();
+        $producto->user_id_comprador = $request->idganador;
         
         if($ultimapuja=== null){
             
@@ -87,8 +103,9 @@ class HomeController extends Controller
             $usuariodevolucion->save();
         }
         auth()->user()->save();
-        $datosPuja->save();
         
+        $datosPuja->save();
+        $producto->save();
         return back();
     }
 

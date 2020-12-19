@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SubirProductoRequest;
 use App\Support\Collection;
 use Illuminate\Pagination\Paginator; 
+use App\Models\Producto;
+use App\Models\Puja;
+use App\Models\User;
+
+use DB;
 class RegistroProductoController extends Controller
 {
     public function formularioProducto(SubirProductoRequest $request){
@@ -121,11 +126,21 @@ class RegistroProductoController extends Controller
 
     public function index(Request $request)
     {
+        $ab = date_default_timezone_get();
+        date_default_timezone_set('America/Lima');
+        $fecha = date('Y-m-d H:i:s');
+        $productosGanados = DB::table('users')
+        ->join('productos','productos.user_id','=','users.id')
+        ->select('productos.ultima_puja as ultimaPuja','productos.nombre_producto as producto','productos.ubicacion as departamento','productos.final_subasta as finalSubasta','productos.indicador as indicador', 'users.usuario as usuario', 'users.id as idVendedor','productos.id as idProducto')
+        ->where('productos.final_subasta','<',$fecha)
+        ->where('productos.user_id_comprador','=',auth()->user()->id)
+        ->get();
 
+        $i = 0;
         $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
 
         $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
-        return view('productos.index',compact('productos','productosSub_s'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('productos.index',compact('productos','productosSub_s','productosGanados','i'))->with('i', (request()->input('page', 1) - 1) * 5);
         
 
         

@@ -14,7 +14,9 @@ class Puja extends Model
         'valor_puja', 'created_at', 'updated_at'
     ];
 
-    
+    public function productosPujar(){
+        return $this->hasMany(Producto::class,'producto_id');
+    }    
 
     
 }

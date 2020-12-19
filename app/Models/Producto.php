@@ -12,7 +12,7 @@ class Producto extends Model
     protected $table = 'productos';
 
     protected $fillable = [
-        'nombre_producto', 'descripcion', 'precio_inicial', 'imagen', 'estado','final_subasta'
+        'nombre_producto', 'descripcion','categoria_id', 'precio_inicial', 'imagen', 'estado','final_subasta'
     ];
 
     public function productoUserPropietario(){
@@ -28,6 +28,10 @@ class Producto extends Model
     }*/
     public function categoriaRelacionado(){
         return $this->hasOne(Categoria::class,'categoria_id');
+    }
+
+    public function productoPuja(){
+        return $this->belongsToMany(Puja::class,'producto_id');
     }
     
 }

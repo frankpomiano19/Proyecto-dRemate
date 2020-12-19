@@ -128,6 +128,7 @@
                   <input type="number" id="productoid" name="productoid" style="display: none" value="{{$prod->id}}" readonly><br>
                   <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
                   <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
+                  <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
                   <div class="boton_puja my-2" id="botonpuja">
                     <button  type="submit" class="btn btn-outline-primary">Realizar puja</button>
                   </div>
