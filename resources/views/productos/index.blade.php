@@ -53,7 +53,12 @@
                             <i class="fa fa-search"></i>
                             <span class="font-weight-bold small text-uppercase">Mis subastas ganadas</span>
                         </a>
-
+                        <a class="nav-link mb-3 p-3 shadow" id="v-pills-men-now" data-toggle="pill"
+                            href="#pills-men-now" role="tab" aria-controls="v-pills-messages" aria-selected="false"
+                            onclick="tablasOpc = 3;">
+                            <i class="fa fa-search"></i>
+                            <span class="font-weight-bold small text-uppercase">Mensajeria</span>
+                        </a>
                     </div>
                 </div>
                 <div class="col-lg-10 contenido-dinamico-lateral">
@@ -123,6 +128,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade " id="pills-men-now" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <section class="py-0">
+                                <div class="container">
+                                    <h3 class="font-weight-bold font-popin">Mensajeria</h3>
+                                    <h4 class="font-weight-bold font-popin"> </h4>
+                                    <div class="card-body" style="padding: 0px;">
+                                        <div class="table-responsive font-popin" id="mensajeria-perfil">
+                                            @include('partials.men_perfil')
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="container">
+                                <div class="row justify-content-center" id="">
+
+                                </div>
+                            </div>
+                        </div>                        
 
                         {{-- -- --}}
 
@@ -143,7 +167,9 @@
                                 </div>
                             </div>
                         </div>
+                        {{--  --}}
 
+                        {{--  --}}
 
                     </div>
                 </div>

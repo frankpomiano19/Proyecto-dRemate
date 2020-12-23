@@ -7,6 +7,7 @@ use App\Http\Controllers\userController ;
 use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
 use App\Http\Controllers\userGuest;
+use App\Http\Controllers\MedioNego;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -141,6 +142,10 @@ Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
 
+//Medio de negociacion
+
+Route::get('/producto/{productUser}/{usuarioPerfil}',[MedioNego::class,'index'])->name('infoProducto');
+
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');
 Route::post('/home/perfil/edit-per',[userController::class,'editarDatosPerso'] )->name('edit-datos-per');
@@ -158,4 +163,3 @@ Route::get('/addproducto/{id}/edit',[HomeController::class,'update'])->name('upd
 
 Route::get('/producto/pagination_data_prod_reg',[RegistroProductoController::class,'pagProReg']);
 Route::get('/producto/pagination_data_prod_sub',[RegistroProductoController::class,'pagProSub']);
-

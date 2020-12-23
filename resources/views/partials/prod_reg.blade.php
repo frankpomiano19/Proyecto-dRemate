@@ -44,6 +44,8 @@
                    <td>{{ $producto->precio_inicial }}</td>
                    <td>{{ $producto->ubicacion }}</td>
                    <td>
+                    <a href="" class="btn btn-dark">Subastar</a>
+
                     <form action="{{ route('productos.destroy', $producto->id) }}" method="POST">
                   
                         <a href="{{ route('productos.show', $producto->id) }}" title="show">

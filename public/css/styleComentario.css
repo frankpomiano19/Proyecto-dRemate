@@ -127,7 +127,7 @@
 }
 
 .image-perso{
-    height: 200px;
+    height: 200px !important;
 }
 
 .line-separation-1{
@@ -139,4 +139,9 @@
     height: 380px;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+
+.pro-registrado{
+    background-color: #D9534F !important;
 }
