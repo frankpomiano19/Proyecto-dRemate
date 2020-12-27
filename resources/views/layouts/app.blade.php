@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="{{asset('css/barra.css')}}">
     <link rel="stylesheet" href="{{asset('animateCss/animate.css')}}">
     <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.css')}}">
-
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     @yield('contenidoCSS')
 
 </head>
@@ -366,6 +366,7 @@
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
     <script src="{{asset('sweetalert2/dist/sweetalert2.js')}}"></script>
+    <!-- <script src="{{asset('js/moment-2.29.1.js')}}"></script> -->
     @yield('contenidoJSabajo')
       @stack('ajax_crud')
 

@@ -75,7 +75,7 @@
                                             </td> --}}
                                             <td>
                                                 <strong>Fecha</strong>
-                                                <br> {{ $mensaje->created_at }}
+                                                <br> <div id="colocarFecha"><fecha-formateada fecha="{{ $mensaje->created_at}}"></fecha-formateada> </div> 
                                             </td>
                                             <td>
                                                 <button class="btn btn-dark" style="padding:2px;" data-toggle="modal"

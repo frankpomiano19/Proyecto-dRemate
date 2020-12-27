@@ -8,9 +8,9 @@
 @section('contenidoJS')
     <!-- Colocar js-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-
+    <script src="{{asset("js/axios.js")}}"></script>
+    
 @endsection
 
 @section('contenidoCSS')
@@ -281,14 +281,6 @@
 
 @endsection
 @section('contenidoJSabajo')
-<script src="{{asset("js/vue.js")}}"></script>
-<script src="{{asset("js/axios.js")}}"></script>
 <script src="{{asset('js/jsPerfil.js')}}"></script>
 
 @endsection
-@push('ajax_crud')
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="{{asset('js/ajax.js')}}"></script>
-
-@endpush 

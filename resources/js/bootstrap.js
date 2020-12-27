@@ -10,7 +10,7 @@ try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap');
+    //  require('bootstrap');
 } catch (e) {}
 
 /**
@@ -20,7 +20,7 @@ try {
  */
 
 window.axios = require('axios');
-
+window.moment = require('moment');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
