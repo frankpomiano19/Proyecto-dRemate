@@ -34,18 +34,23 @@
                     </div> --}}
                     <div class="inbox-body">
                         @if ($errors->respuesta->any())
-                            <div class="alert alert-danger" role="alert">
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                
+                            <button type="button" class="close" data-dismiss="alert">
+                                <span> &times;</span>
+                            </button>
+
                                 <ul>
-                                    @foreach($errors->respuesta->all() as $error)
-                                    <li>{{$error}}</li>
-                                        
+                                    @foreach ($errors->respuesta->all() as $error)
+                                        <li>{{ $error }}</li>
+
                                     @endforeach
                                 </ul>
-                            </div>                            
+                            </div>
                         @endif
                         <table class="table table-inbox table-hover">
                             <tbody>
-                                @if ($mensaje_s->count()>0)
+                                @if ($mensaje_s->count() > 0)
 
                                     @foreach ($mensaje_s as $mensaje)
 
@@ -122,8 +127,8 @@
                     <div class="inbox-body">
                         <table class="table table-inbox table-hover">
                             <tbody>
-                                @if ($mensajeEnviado_s->count()>0)
-                                {{$mensajeEnviado_s}}
+                                @if ($mensajeEnviado_s->count() > 0)
+                                    {{ $mensajeEnviado_s }}
                                     @foreach ($mensajeEnviado_s as $mensajeEnviado)
 
                                         <tr class="unread element-td-enviados-now" data-toggle="modal"
@@ -154,12 +159,25 @@
                                                     data-target="#modalMensajeEnviadoMostrar" data-whatever="@mdo">Abrir
                                                     mensaje</button>
                                             </td>
+                                            <input type="hidden" class="cMensajeProducto"
+                                                value="{{ $mensaje->mensajeProducto->nombre_producto }}">
+                                            <input type="hidden" class="cMensajeEmisor"
+                                                value="{{ $mensaje->mensajeUserEmisor->usuario }}">
+                                            <input type="hidden" class="cMensajeId"
+                                                value="{{ $mensaje->use_id_emisor }}">
+                                            <input type="hidden" class="cMensajeAsunto"
+                                                value="{{ $mensaje->men_asunto }}">
+                                            <input type="hidden" class="cMensajeTexto"
+                                                value="{{ $mensaje->men_mensaje }}">
+                                            <input type="hidden" class="cMensajeIdProducto"
+                                                value="{{ $mensaje->mensajeProducto->id }}">
+
                                         </tr>
                                     @endforeach
                                 @else
                                     <h3 class="text-center">No se encontro mensajes</h2>
                                 @endif
-                                    {{-- <tr class="">
+                                {{-- <tr class="">
                                     <td class="inbox-small-cells">
                                         <input type="checkbox" class="mail-checkbox">
                                     </td>
