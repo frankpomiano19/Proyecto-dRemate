@@ -142,7 +142,7 @@ $(document).on('click', '#historial_prod_sub .pagination a', function (event) {
 
 
 
-// Colocar valores en el popup form
+// Colocar valores en el popup form de mensajeria
 $(document).on('click','.element-td-now',function(event){
     $('#modalMensajeMostrar #recipientMensajeModal').val($(this).find('.cMensajeProducto').val());
     $('#modalMensajeMostrar #recipientReceptorModal').val($(this).find('.cMensajeEmisor').val());
@@ -152,7 +152,7 @@ $(document).on('click','.element-td-now',function(event){
     $('#modalMensajeMostrar #recipientIdProductoModal').val($(this).find('.cMensajeIdProducto').val());
         
 });
-// Colocar valores en el popup de mostrar
+// Colocar valores en el popup de mostrar en mensajeria
 $(document).on('click','.element-td-enviados-now',function(){
     $('#modalMensajeEnviadoMostrar #recipientMensajeModal2').val($(this).find('.cMensajeProducto').val());
     $('#modalMensajeEnviadoMostrar #recipientReceptorModal2').val($(this).find('.cMensajeEmisor').val());
