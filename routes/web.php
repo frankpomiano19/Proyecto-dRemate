@@ -7,7 +7,7 @@ use App\Http\Controllers\userController ;
 use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
 use App\Http\Controllers\userGuest;
-use App\Http\Controllers\MedioNego;
+use App\Http\Controllers\MedioNegoController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -144,7 +144,7 @@ Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear'
 
 //Medio de negociacion
 
-Route::get('/producto/{productUser}/{usuarioPerfil}',[MedioNego::class,'index'])->name('infoProducto');
+Route::get('/producto/{productUser}/{usuarioPerfil}',[MedioNegoController::class,'index'])->name('infoProducto');
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');
@@ -163,3 +163,6 @@ Route::get('/addproducto/{id}/edit',[HomeController::class,'update'])->name('upd
 
 Route::get('/producto/pagination_data_prod_reg',[RegistroProductoController::class,'pagProReg']);
 Route::get('/producto/pagination_data_prod_sub',[RegistroProductoController::class,'pagProSub']);
+// Mensajeria
+Route::post('/home/perfil/enviar-mensaje',[userController::class,'responderMensaje'])->name('responder-mensaje');
+Route::get('/home/perfil/enviar-mensaje/create',[userController::class,'messageCreate']);

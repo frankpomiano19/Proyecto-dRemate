@@ -140,3 +140,45 @@ $(document).on('click', '#historial_prod_sub .pagination a', function (event) {
     })
 });
 
+
+
+// Colocar valores en el popup
+$(document).on('click','.element-td-now',function(event){
+    $('#modalMensajeMostrar #recipientMensajeModal').val($(this).find('.cMensajeProducto').val());
+    $('#modalMensajeMostrar #recipientReceptorModal').val($(this).find('.cMensajeEmisor').val());
+    $('#modalMensajeMostrar #recipientIdModal').val($(this).find('.cMensajeId').val());
+    $('#modalMensajeMostrar #recipientAsuntoModal').val($(this).find('.cMensajeAsunto').val());
+    $('#modalMensajeMostrar #recipientMensajeEmisor').val($(this).find('.cMensajeTexto').val());
+    $('#modalMensajeMostrar #recipientIdProductoModal').val($(this).find('.cMensajeIdProducto').val());
+        
+});
+
+$(document).on('click','.element-td-enviados-now',function(){
+    $('#modalMensajeMostrar #recipientMensajeModal').val($(this).find('.cMensajeProducto').val());
+});
+
+// Enviar form
+$('#enviarRespuestaNow').click(function() {
+    var datosForm2 = $('#formResponderMensaje').serialize();
+     $.ajax({
+        url: "/home/perfil/enviar-mensaje", //URL DE LA RUTA
+        type: 'POST',
+        data: datosForm2,
+        success: function(response) {
+             $('#mensajeria-perfil').html(response);
+             $("#mensajeria-perfil").removeClass('div-disabled');
+        },
+        beforeSend: function(thisXHR) {
+            $("#mensajeria-perfil").addClass('div-disabled');
+        },
+
+        statusCode: {
+            404: function() {
+                alert("pagina no encontrada mascota");
+            }
+        },
+        error: function(jqXHR, status, error) {
+            alert("Error al cargar");
+        }
+    });
+});

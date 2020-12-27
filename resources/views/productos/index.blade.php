@@ -167,9 +167,6 @@
                                 </div>
                             </div>
                         </div>
-                        {{--  --}}
-
-                        {{--  --}}
 
                     </div>
                 </div>
@@ -178,6 +175,110 @@
     </main>
 
     
+{{-- Popup de responder mensajes --}}
+<div class="modal fade" id="modalMensajeMostrar" tabindex="-1" role="dialog" aria-labelledby="modalMensajeMostrar"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalMensajeMostrarLabel">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Producto :</label>
+                    <input type="text" class="form-control" id="recipientMensajeModal" name="recipientMensajeModal"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Usuario destino :</label>
+                    <input type="text" class="form-control" id="recipientReceptorModal" name="recipientReceptorModal"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Asunto :</label>
+                    <input type="text" class="form-control" id="recipientAsuntoModal" placeholder="inserte el asunto"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Mensaje:</label>
+                    <textarea class="form-control" id="recipientMensajeEmisor" disabled></textarea>
+                </div>
+
+                <h5 class="modal-title" id="modalMensajeMostrarLabel2">Responder</h5>
+                {{-- Formulario de respondida --}}
+                <form method="POST" id="formResponderMensaje">
+                    @csrf
+                    <input type="hidden" id="recipientIdProductoModal" name="recipientIdProductoModal">
+                    <input type="hidden" id="recipientIdModal" name="recipientIdModal">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Asunto :</label>
+                        <input type="text" class="form-control" id="recipientAsuntoRespuestaModal"
+                            name="recipientAsuntoRespuestaModal" placeholder="inserte el asunto" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Responder:</label>
+                        <textarea class="form-control" id="recipientMensajeResponder" name="recipientMensajeResponder" required
+                            placeholder="Responder mensaje"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="enviarRespuestaNow" class="btn btn-primary" data-dismiss="modal">Responder mensaje</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{{-- Popup de ver mensaje --}}
+<div class="modal fade" id="modalMensajeEnviadoMostrar" tabindex="-1" role="dialog" aria-labelledby="modalMensajeMostrar"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalMensajeMostrarLabel">Mensaje</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Producto :</label>
+                    <input type="text" class="form-control" id="recipientMensajeModal" name="recipientMensajeModal"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Usuario destino :</label>
+                    <input type="text" class="form-control" id="recipientReceptorModal" name="recipientReceptorModal"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Asunto :</label>
+                    <input type="text" class="form-control" id="recipientAsuntoModal" placeholder="inserte el asunto"
+                        disabled>
+                </div>
+                <div class="form-group">
+                    <label for="message-text" class="col-form-label">Mensaje:</label>
+                    <textarea class="form-control" id="recipientMensajeEmisor" disabled></textarea>
+                </div>
+
+                <h5 class="modal-title" id="modalMensajeMostrarLabel2">Responder</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 @endsection
 @section('contenidoJSabajo')

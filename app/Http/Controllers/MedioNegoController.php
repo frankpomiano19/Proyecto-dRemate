@@ -7,7 +7,7 @@ use App;
 use App\Models\Producto;
 use App\Models\User;
 
-class MedioNego extends Controller
+class MedioNegoController extends Controller
 {
 
     public function index($productUser,$usuarioPerfil)
