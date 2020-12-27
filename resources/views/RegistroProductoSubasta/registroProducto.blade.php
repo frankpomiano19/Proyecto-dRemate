@@ -13,12 +13,10 @@
 
 @section('contenidoCSS')
     <!--footer.css pal footer / barra.css pal navbar / no es necesario el fontawesome-->
-    <link rel="stylesheet" href="css/inicio.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/barra.css">
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/menuSubasta.css">
     <link rel="stylesheet" href="{{ asset('css/registro.css') }}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
 @endsection
 
 
@@ -166,6 +164,14 @@
             </div>
 
             <div>
+                <h3>Ubicación</h3>
+                <small>Seleccione una ubicación en el mapa</small>
+                <div id="inputmapa" style="height: 300px; width:100%;"></div>
+                <input type="text" class="form-control" id="latitud" style="display: none;">
+                <input type="text" class="form-control" id="longitud" style="display: none;">
+            </div>
+
+            <div>
                 <h3>Garantía</h3>
                 @error('garantia')
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -251,16 +257,15 @@
         </div>
     </div>
 </div>
+
+
         
 
 @endsection
 
 @section('contenidoJSabajo')
     <!-- Colocar js abajo-->
-    <script src="{{ asset(mix('js/app.js')) }}"></script>
-    <script src="{{ asset('js/fechaSubasta.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
-    </script>
     <script src="/js/parsley.js"></script>
     <script src="{{ asset('js/producto.js') }}"></script>
+    <script src="/js/mapa.js"></script>
 @endsection
