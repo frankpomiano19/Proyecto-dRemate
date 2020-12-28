@@ -1,6 +1,6 @@
+
 <template>
-<p>hola mundo</p>
-    {{formatearFecha}}
+    <p>hola mundo</p>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
     },
     computed: {
         formatearFecha(){
-            return moment(this.fecha).locale('es').format('DD [de] MMM [del] YYYY');
+            return moment(this.fecha).locale('es').format('DD [de] MMMM [del] YYYY');
         }
     },
 }

@@ -1,3 +1,5 @@
+// const { default: Swal } = require("sweetalert2");
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //Obtiene el token 										csrf
@@ -169,10 +171,13 @@ $('#enviarRespuestaNow').click(function() {
         type: 'POST',
         data: datosForm2,
         success: function(response) {
-             $('#mensajeria-perfil').html(response);
-             $("#mensajeria-perfil").removeClass('div-disabled');
+            Swal.close();            
+            $('#mensajeria-perfil').html(response);
+            $("#mensajeria-perfil").removeClass('div-disabled');
         },
         beforeSend: function(thisXHR) {
+            Swal.fire('Enviando . . .');
+            Swal.showLoading();
             $("#mensajeria-perfil").addClass('div-disabled');
         },
 

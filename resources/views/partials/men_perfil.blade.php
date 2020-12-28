@@ -75,7 +75,15 @@
                                             </td> --}}
                                             <td>
                                                 <strong>Fecha</strong>
-                                                <br> <div id="colocarFecha"><fecha-formateada fecha="{{ $mensaje->created_at}}"></fecha-formateada> </div> 
+                                                <br> 
+                                                {{$mensaje->created_at}}
+                                                <div class="colocarFecha">
+                                                    {{-- <script>
+                                                        var formateado = (function(){
+                                                            $(".colocarFecha")[{{$loop->iteration - 1}}].text(moment('{{$mensaje->created_at}}').locale('es').format('DD [de] MMMM [del] YYYY'));
+                                                        }());
+                                                    </script>  --}}
+                                                </div>
                                             </td>
                                             <td>
                                                 <button class="btn btn-dark" style="padding:2px;" data-toggle="modal"
@@ -96,6 +104,8 @@
                                                 value="{{ $mensaje->mensajeProducto->id }}">
                                         </tr>
                                     @endforeach
+                                    <div class="d-flex justify-content-center">{{$mensaje_s->links()}}</div>
+                                    
                                 @else
                                     <h3 class="text-center">No se encontro mensajes</h2>
                                 @endif
@@ -174,6 +184,7 @@
 
                                         </tr>
                                     @endforeach
+                                    <div class="d-flex justify-content-center">{{$mensajeEnviado_s->links()}}</div>
                                 @else
                                     <h3 class="text-center">No se encontro mensajes</h2>
                                 @endif
