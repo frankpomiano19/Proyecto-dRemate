@@ -21,11 +21,6 @@ class Producto extends Model
     public function productoUserComprador(){
         return $this->belongsTo(User::class,'user_id_comprador');
     }
-    /*public function productoPuja(){
-        //$products = App\Models\Producto::all();
-        
-        return $this->hasMany(Puja::class,'producto_id');
-    }*/
     public function categoriaRelacionado(){
         return $this->hasOne(Categoria::class,'categoria_id');
     }
@@ -33,5 +28,8 @@ class Producto extends Model
     public function productoPuja(){
         return $this->belongsToMany(Puja::class,'producto_id');
     }
-    
+
+    public function productoMensaje(){
+        return $this->hasMany(Mensaje::class,'pro_id');
+    }
 }

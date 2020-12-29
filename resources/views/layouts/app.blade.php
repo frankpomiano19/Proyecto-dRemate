@@ -24,6 +24,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('bootstrap-4.5.3-dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap-social.css')}}">
     <link rel="stylesheet" href="{{asset('font-awesome/css/font-awesome.css')}}">
@@ -31,12 +32,13 @@
     <link rel="stylesheet" href="{{asset('css/barra.css')}}">
     <link rel="stylesheet" href="{{asset('animateCss/animate.css')}}">
     <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.css')}}">
-
+    <script src="{{asset('js/moment-2.29.1.js')}}"></script> 
+    <script src="{{asset('js/app.js')}}"></script>
     @yield('contenidoCSS')
 
 </head>
 
-<body>
+<body class="clase-formateada">
 
     <style>
             .active-2{
@@ -360,14 +362,12 @@
 <!--fin Footer-->
 
 
-
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <!--<script src="js/poper-1.16.1.js"></script>-->
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
     <script src="{{asset('sweetalert2/dist/sweetalert2.js')}}"></script>
     @yield('contenidoJSabajo')
-      @stack('ajax_crud')
 
 </body>
 

@@ -79,4 +79,12 @@ class User extends Authenticatable
         
         $this->notify(new MyResetPassword($token));
     }
+
+    public function userMensajeEmisor(){
+        return $this->hasMany(Mensaje::class,'use_id_emisor');
+    }
+    public function userMensajeReceptor(){
+        return $this->hasMany(Mensaje::class,'use_id_receptor');
+    }
+
 }
