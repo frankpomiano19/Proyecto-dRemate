@@ -170,17 +170,17 @@
                                                     mensaje</button>
                                             </td>
                                             <input type="hidden" class="cMensajeProducto"
-                                                value="{{ $mensaje->mensajeProducto->nombre_producto }}">
+                                                value="{{ $mensajeEnviado->mensajeProducto->nombre_producto }}">
                                             <input type="hidden" class="cMensajeEmisor"
-                                                value="{{ $mensaje->mensajeUserEmisor->usuario }}">
+                                                value="{{ $mensajeEnviado->mensajeUserEmisor->usuario }}">
                                             <input type="hidden" class="cMensajeId"
-                                                value="{{ $mensaje->use_id_emisor }}">
+                                                value="{{ $mensajeEnviado->use_id_emisor }}">
                                             <input type="hidden" class="cMensajeAsunto"
-                                                value="{{ $mensaje->men_asunto }}">
+                                                value="{{ $mensajeEnviado->men_asunto }}">
                                             <input type="hidden" class="cMensajeTexto"
-                                                value="{{ $mensaje->men_mensaje }}">
+                                                value="{{ $mensajeEnviado->men_mensaje }}">
                                             <input type="hidden" class="cMensajeIdProducto"
-                                                value="{{ $mensaje->mensajeProducto->id }}">
+                                                value="{{ $mensajeEnviado->mensajeProducto->id }}">
 
                                         </tr>
                                     @endforeach
