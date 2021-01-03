@@ -127,7 +127,6 @@ Route::get('edson', function () {
 });
 
 
-
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
@@ -142,6 +141,8 @@ Route::post('/', [HomeController::class,'agregarFavorito'])->name('producto.favo
 
 //GET
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
+
+Route::get('/edson',[SubastaRapController::class,'productosFavoritos']);
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
 

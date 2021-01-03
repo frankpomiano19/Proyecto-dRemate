@@ -110,67 +110,58 @@ class HomeController extends Controller
 
     public function agregarFavorito(Request $request){
 
+        //Fila de usuario
         $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
 
+        //Campo favorito del usuario
         $listaUsuario = $listaFavoritos->favoritos;
 
+        //Inicio de text
         $listaInicio = str_replace("[", "", $listaUsuario);
 
+        //Final de text
         $listaFin = str_replace("]", "", $listaInicio);
 
-
-
+        //Conversion a array
         $favoritos = explode(',',$listaFin);
 
-        // $nombre = "Manuel";
+        //Tamanio de array
+        $tamanio = sizeof($favoritos);
 
-        dd($favoritos);
+        //Convertir a entero
+        for($i = 0; $i<$tamanio;$i++){
 
-        //Convierte a lista
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
+
+        //Convierte a int el id que llega
+        $favNuevo = (int)$request->favorito;
+
         
+        array_push($favoritos,$favNuevo);
+        
+        for($i = 0; $i<$tamanio;$i++){
+
+            if($favoritos[$i] == $favNuevo){
+                $favoritos[$i] = 0;
+                $favoritos[$i+1] = 0;
+            }
+        }
+
+        // $favUsuario = array_unique($favoritos);
+
+        $listaFavoritos->favoritos = $favoritos;
+
+        $listaFavoritos->save();
 
         // dd($favoritos);
 
-        // dd($nombre);
+        $productos = App\Models\Producto::all();
 
-        $tamanio = sizeof($favoritos);
+        // dd($productos);
 
-        
-
-        $sinCo = substr($favoritos[$tamanio-1], -3, -1);
-
-        $favoritos[$tamanio-1] = $sinCo;
-
-
-        // $entradaFav = $request->favorito;
-
-        dd($favoritos);
-
-        // $favoritoLista = (int)$entradaFav;
-
-
-        // array_push($favoritos,$favoritoLista);
-        // array_push($favoritos,50);
-
-        // $listaFavoritos->favoritos = $favoritos;
-
-        // $listaFavoritos->save();
-
-        // $existe = "no se encuentra";
-
-        // foreach($favoritos as $fav){
-        //     if($fav == $request->favorito){
-        //         $existe = "Se encuentra";
-        //     }
-        // }
-
-
-        // dd($listaFavoritos->favoritos);
-    
-
-
-
-        return view('home');
+        return back();
     }
 
     public function registroEE(SubirSubastaRequest $request){
@@ -227,4 +218,3 @@ class HomeController extends Controller
 
 
 }
-

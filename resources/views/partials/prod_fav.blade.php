@@ -53,15 +53,5 @@
         </table>
     </div>
     
-    {{ $casa }}
-
-    @foreach ($productos as $producto)
-        @foreach ($favoritos as $favorito)
-
-            @if ($favorito == $producto->id)
-                <p>{{ $producto->nombre_producto }}</p>
-                <p>{{ $producto->id }}</p>
-            @endif
-
-        @endforeach
-    @endforeach
+    
+    

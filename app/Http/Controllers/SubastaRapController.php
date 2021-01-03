@@ -80,6 +80,36 @@ class SubastaRapController extends Controller
 
     }
 
+    public function productosFavoritos(){
+
+        $productos = Producto::all();
+
+        $nombre = "mNUAEL";
+
+        $listaFavoritos = User::where('id','=',auth()->id())->first();
+
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        $favoritos = explode(',',$listaFin);
+
+        $tamanio = sizeof($favoritos);
+
+        //Convertir a entero
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
+
+        // dd($favoritos);
+
+        return view('edson')->with('casa', $nombre)->with('productos', $productos)->with('favoritos', $favoritos);
+    }
+
 
 
     public function sumarVendedor(Request $request){

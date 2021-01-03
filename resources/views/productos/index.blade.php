@@ -20,7 +20,6 @@
 
 @section('contenido')
     <br>
-    <br>
     <main class="sub-rapida-main-content py-4">
         <div class="container sub-rapida-principal">
 
@@ -47,11 +46,19 @@
                             <i class="fa fa-search"></i>
                             <span class="font-weight-bold small text-uppercase">Mis productos registrados</span>
                         </a>
+
                         <a class="nav-link mb-3 p-3 shadow" id="v-pills-subasta-his" data-toggle="pill"
                             href="#pills-pro-gan" role="tab" aria-controls="v-pills-messages" aria-selected="false"
                             onclick="tablasOpc = 2;">
                             <i class="fa fa-search"></i>
                             <span class="font-weight-bold small text-uppercase">Mis subastas ganadas</span>
+                        </a>
+
+                        <a class="nav-link mb-3 p-3 shadow" id="v-pills-subasta-his" data-toggle="pill"
+                            href="#pills-prod-fav" role="tab" aria-controls="v-pills-messages" aria-selected="false"
+                            onclick="tablasOpc = 4;">
+                            <i class="fa fa-search"></i>
+                            <span class="font-weight-bold small text-uppercase">Mis productos favoritos</span>
                         </a>
 
                     </div>
@@ -104,6 +111,27 @@
                             </div>
                         </div>
 
+                        <div class="tab-pane fade " id="pills-prod-fav" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <section class="py-0">
+                                <div class="container">
+                                    <h3 class="font-weight-bold font-popin">Mis productos favoritos</h3>
+                                    <h4 class="font-weight-bold font-popin"> </h4>
+                                    <div class="card-body card-contenido-cuerpo-2">
+                                        <div class="table-responsive font-popin" id="historial_prod_sub">
+                                            @include('partials/prod_fav')
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <div class="container">
+                                <div class="row justify-content-center" id="">
+
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="tab-pane fade " id="pills-sub-his" role="tabpanel" aria-labelledby="pills-profile-tab">
                             <section class="py-0">
                                 <div class="container">
@@ -144,7 +172,7 @@
                             </div>
                         </div>
 
-
+                        
                     </div>
                 </div>
             </div>
