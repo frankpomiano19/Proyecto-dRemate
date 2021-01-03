@@ -108,29 +108,70 @@ class HomeController extends Controller
         return back();
     }
 
-     /*
-    public function registroE(Request $request){
+    public function agregarFavorito(Request $request){
+
+        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        $listaFin = str_replace("]", "", $listaInicio);
+
+
+
+        $favoritos = explode(',',$listaFin);
+
+        // $nombre = "Manuel";
+
+        dd($favoritos);
+
+        //Convierte a lista
         
-        $datosProducto = new App\Models\Producto;
+
+        // dd($favoritos);
+
+        // dd($nombre);
+
+        $tamanio = sizeof($favoritos);
+
         
-            $datosProducto->nombre_producto = $request->nombre;
-            $datosProducto->descripcion = $request->message;
-            $datosProducto->categoria_id = $request->categoria;
-            $datosProducto->estado = $request->inlineRadioOptions;
-            $datosProducto->condicion = $request->condicion;
-            $file = $request->file('imagen');
-            $nameimage = $file->getClientOriginalName();
-            $file->move(public_path("img/productimages/"),$nameimage);
-            $datosProducto->imagen = $nameimage;
-            $datosProducto->garantia = $request->garantia;
-            $datosProducto->user_id = auth()->id();
-        
+
+        $sinCo = substr($favoritos[$tamanio-1], -3, -1);
+
+        $favoritos[$tamanio-1] = $sinCo;
+
+
+        // $entradaFav = $request->favorito;
+
+        dd($favoritos);
+
+        // $favoritoLista = (int)$entradaFav;
+
+
+        // array_push($favoritos,$favoritoLista);
+        // array_push($favoritos,50);
+
+        // $listaFavoritos->favoritos = $favoritos;
+
+        // $listaFavoritos->save();
+
+        // $existe = "no se encuentra";
+
+        // foreach($favoritos as $fav){
+        //     if($fav == $request->favorito){
+        //         $existe = "Se encuentra";
+        //     }
+        // }
+
+
+        // dd($listaFavoritos->favoritos);
     
-        $datosProducto -> save();
-        
-        // return view('registroSubasta')->with('datosProducto',$request);
-        
-    }*/
+
+
+
+        return view('home');
+    }
 
     public function registroEE(SubirSubastaRequest $request){
 
@@ -158,7 +199,32 @@ class HomeController extends Controller
 
 
     return back();
-} 
+    } 
+    
+     /*
+    public function registroE(Request $request){
+        
+        $datosProducto = new App\Models\Producto;
+        
+            $datosProducto->nombre_producto = $request->nombre;
+            $datosProducto->descripcion = $request->message;
+            $datosProducto->categoria_id = $request->categoria;
+            $datosProducto->estado = $request->inlineRadioOptions;
+            $datosProducto->condicion = $request->condicion;
+            $file = $request->file('imagen');
+            $nameimage = $file->getClientOriginalName();
+            $file->move(public_path("img/productimages/"),$nameimage);
+            $datosProducto->imagen = $nameimage;
+            $datosProducto->garantia = $request->garantia;
+            $datosProducto->user_id = auth()->id();
+        
+    
+        $datosProducto -> save();
+        
+        // return view('registroSubasta')->with('datosProducto',$request);
+        
+    }*/
+
 
 }
 

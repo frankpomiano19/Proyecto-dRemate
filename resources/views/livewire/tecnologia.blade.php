@@ -119,11 +119,17 @@
                     <div class="texto"> 
                         <div class="titulo">          
                             <h3>{{$producto->nombre_producto}}</h3>
-                            <i class="fa fa-heart cora"></i>                                
+                            <form method="POST" enctype="multipart/form-data"
+                            action="{{ route('producto.favorito') }}">
+                                {{ csrf_field() }}
+                                @csrf
+                                <input type="hidden" name="favorito" value={{ $producto->id }}>
+                                <button type="submit">Favorito</button>
+                            </form>                              
                         </div>
                         <h5>Precio inicial: S/ {{$producto->precio_inicial}}</h5>
                         <p class="texto-descripcion">
-                            {{$producto->descripcion}}
+                            {{$producto->descripcion}}, {{ $producto->id }}
                         </p>
                         <div class="ubicacion">
                             <h6>{{$producto->ubicacion}}, {{$producto->distrito}}</h6>

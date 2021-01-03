@@ -137,6 +137,9 @@ Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.bu
 
 //Controlador pago vendedor
 Route::post('/', [SubastaRapController::class,'sumarVendedor'])->name('pago.vendedor');
+
+Route::post('/', [HomeController::class,'agregarFavorito'])->name('producto.favorito');
+
 //GET
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
