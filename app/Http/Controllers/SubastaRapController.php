@@ -105,9 +105,10 @@ class SubastaRapController extends Controller
             $favoritos[$i] = $temp;
         }
 
+        $i = 0;
         // dd($favoritos);
 
-        return view('edson')->with('casa', $nombre)->with('productos', $productos)->with('favoritos', $favoritos);
+        return view('edson')->with('casa', $nombre)->with('productos', $productos)->with('favoritos', $favoritos)->with('i', $i);
     }
 
 

@@ -119,13 +119,27 @@
                     <div class="texto"> 
                         <div class="titulo">          
                             <h3>{{$producto->nombre_producto}}</h3>
+
                             <form method="POST" enctype="multipart/form-data"
                             action="{{ route('producto.favorito') }}">
                                 {{ csrf_field() }}
                                 @csrf
-                                <input type="hidden" name="favorito" value={{ $producto->id }}>
-                                <button type="submit">Favorito</button>
-                            </form>                              
+                                {{-- <input type="text" name="favorito" value={{ $producto->id }}> --}}
+
+                                    @foreach ($favs as $fav)
+
+                                        @if ($fav == $producto->id)
+                                            <button type="submit" class="btn btn-success">FAV</button>
+                                        @else
+
+                                        @endif
+
+                                    @endforeach
+                                    
+
+
+                            </form>    
+
                         </div>
                         <h5>Precio inicial: S/ {{$producto->precio_inicial}}</h5>
                         <p class="texto-descripcion">
@@ -133,7 +147,6 @@
                         </p>
                         <div class="ubicacion">
                             <h6>{{$producto->ubicacion}}, {{$producto->distrito}}</h6>
-                            
                         </div> 
                     </div>  
                     
