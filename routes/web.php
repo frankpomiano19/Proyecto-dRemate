@@ -134,12 +134,14 @@ Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioPro
 
 Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
 
+
 //Controlador pago vendedor
 Route::post('/', [SubastaRapController::class,'sumarVendedor'])->name('pago.vendedor');
 //GET
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
+
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');
