@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Mensaje;
 class userController extends Controller
 {
     public function __construct()
@@ -61,4 +63,39 @@ class userController extends Controller
         return view('usuarioOpc.partialsUser.datosDine');
 
     }
+    public function responderMensaje(Request $request){
+
+        $camposCreate = [
+            'recipientMensajeResponder'=>'required',
+            'recipientAsuntoRespuestaModal'=>'required',
+            'recipientIdModal'=>'required',
+            'recipientIdProductoModal'=>'required'
+        ];
+
+        $mensajesError=[
+            'recipientMensajeResponder.required' =>'El campo de mensaje es requerido',
+            'recipientAsuntoRespuestaModal.required' =>'El campo de asunto es requerido',
+        ];
+        $validacion = Validator::make($request->all(),$camposCreate,$mensajesError);
+
+        if($validacion->fails()){
+            return redirect('/home/perfil/enviar-mensaje/create')->withErrors($validacion,'respuesta')->withInput();
+        }
+        Auth::user()->userMensajeEmisor()->create([
+            'men_mensaje'=>$request->recipientMensajeResponder,
+            'men_asunto'=>$request->recipientAsuntoRespuestaModal,
+            'use_id_receptor'=>(int)$request->recipientIdModal,
+            'pro_id'=>(int)$request->recipientIdProductoModal
+        ]);
+        $mensaje_s= Mensaje::where('use_id_receptor','=',Auth::user()->id)->paginate(10,['*'],'pagination-men');
+        $mensajeEnviado_s= Mensaje::where('use_id_emisor','=',Auth::user()->id)->paginate(10,['*'],'pagination-men-env');        
+        return view('partials.men_perfil',compact('mensaje_s','mensajeEnviado_s'));
+     }
+
+     public function messageCreate(){
+        $mensaje_s= Mensaje::where('use_id_receptor','=',Auth::user()->id)->paginate(10,['*'],'pagination-men');
+        $mensajeEnviado_s= Mensaje::where('use_id_emisor','=',Auth::user()->id)->paginate(10,['*'],'pagination-men-env');        
+        return view('partials.men_perfil',compact('mensaje_s','mensajeEnviado_s'));
+
+     }
 }

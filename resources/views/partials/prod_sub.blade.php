@@ -31,7 +31,6 @@
                 <th>Descripcion</th>
                 <th>Inicio de subasta</th>
                 <th>Fin de subasta</th>
-                <th>Accion</th>
             </tr>
     </thead>
 
@@ -43,7 +42,6 @@
                <td>{{ $productosSub->precio_inicial }}</td>
                <td>{{ $productosSub->inicio_subasta }}</td>
                <td>{{ $productosSub->final_subasta }}</td>
-               <td><a href="" class="btn btn-dark">Subastar</a></td>
         </tr>
             @endforeach
 

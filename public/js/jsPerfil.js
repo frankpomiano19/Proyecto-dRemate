@@ -1,3 +1,5 @@
+// const { default: Swal } = require("sweetalert2");
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //Obtiene el token 										csrf
@@ -140,3 +142,52 @@ $(document).on('click', '#historial_prod_sub .pagination a', function (event) {
     })
 });
 
+
+
+// Colocar valores en el popup form de mensajeria
+$(document).on('click','.element-td-now',function(event){
+    $('#modalMensajeMostrar #recipientMensajeModal').val($(this).find('.cMensajeProducto').val());
+    $('#modalMensajeMostrar #recipientReceptorModal').val($(this).find('.cMensajeEmisor').val());
+    $('#modalMensajeMostrar #recipientIdModal').val($(this).find('.cMensajeId').val());
+    $('#modalMensajeMostrar #recipientAsuntoModal').val($(this).find('.cMensajeAsunto').val());
+    $('#modalMensajeMostrar #recipientMensajeEmisor').val($(this).find('.cMensajeTexto').val());
+    $('#modalMensajeMostrar #recipientIdProductoModal').val($(this).find('.cMensajeIdProducto').val());
+        
+});
+// Colocar valores en el popup de mostrar en mensajeria
+$(document).on('click','.element-td-enviados-now',function(){
+    $('#modalMensajeEnviadoMostrar #recipientMensajeModal2').val($(this).find('.cMensajeProducto').val());
+    $('#modalMensajeEnviadoMostrar #recipientReceptorModal2').val($(this).find('.cMensajeEmisor').val());
+    $('#modalMensajeEnviadoMostrar #recipientAsuntoModal2').val($(this).find('.cMensajeAsunto').val());
+    $('#modalMensajeEnviadoMostrar #recipientMensajeEmisor2').val($(this).find('.cMensajeTexto').val()); 
+});
+
+
+// Enviar form
+$('#enviarRespuestaNow').click(function() {
+    var datosForm2 = $('#formResponderMensaje').serialize();
+     $.ajax({
+        url: "/home/perfil/enviar-mensaje", //URL DE LA RUTA
+        type: 'POST',
+        data: datosForm2,
+        success: function(response) {
+            Swal.close();            
+            $('#mensajeria-perfil').html(response);
+            $("#mensajeria-perfil").removeClass('div-disabled');
+        },
+        beforeSend: function(thisXHR) {
+            Swal.fire('Enviando . . .');
+            Swal.showLoading();
+            $("#mensajeria-perfil").addClass('div-disabled');
+        },
+
+        statusCode: {
+            404: function() {
+                alert("pagina no encontrada mascota");
+            }
+        },
+        error: function(jqXHR, status, error) {
+            alert("Error al cargar");
+        }
+    });
+});

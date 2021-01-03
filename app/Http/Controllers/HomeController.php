@@ -108,58 +108,11 @@ class HomeController extends Controller
         $producto->save();
         return back();
     }
-
-     /*
-    public function registroE(Request $request){
-        
-        $datosProducto = new App\Models\Producto;
-        
-            $datosProducto->nombre_producto = $request->nombre;
-            $datosProducto->descripcion = $request->message;
-            $datosProducto->categoria_id = $request->categoria;
-            $datosProducto->estado = $request->inlineRadioOptions;
-            $datosProducto->condicion = $request->condicion;
-            $file = $request->file('imagen');
-            $nameimage = $file->getClientOriginalName();
-            $file->move(public_path("img/productimages/"),$nameimage);
-            $datosProducto->imagen = $nameimage;
-            $datosProducto->garantia = $request->garantia;
-            $datosProducto->user_id = auth()->id();
-        
-    
-        $datosProducto -> save();
-        
-        // return view('registroSubasta')->with('datosProducto',$request);
-        
-    }*/
-
     public function registroEE(SubirSubastaRequest $request){
 
-        // dd($request);
-
         return view('paginaProducto')->with('datospro',$request);
-    
-
-
-        // dd($request);
-
-        //-----------------------------------------------------
-        // $datospro = new App\Models\Producto;
-        //-----------------------------------------------------
-
-        // $datospro = App\Models\Producto::findOrFail($request->id);
-        // dd($datospro->id);
-        // $datospro->id = $request->id;
-
-        //-----------------------------------------------------
-        // $datospro->precio_inicial = $request->precio_inicial;
-        // $datospro->inicio_subasta = $request->inicio_subasta;
-        // $datospro->final_subasta = $request->final_subasta;
-        //-----------------------------------------------------
-
-
-    return back();
-} 
+        // return back();
+    } 
 
 }
 

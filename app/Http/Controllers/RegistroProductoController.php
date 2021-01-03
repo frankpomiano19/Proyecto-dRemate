@@ -137,10 +137,13 @@ class RegistroProductoController extends Controller
         ->get();
 
         $i = 0;
+        
+        $mensaje_s= App\Models\Mensaje::where('use_id_receptor','=',Auth::user()->id)->paginate(10,['*'],'pagination-men');
+        $mensajeEnviado_s= App\Models\Mensaje::where('use_id_emisor','=',Auth::user()->id)->paginate(10,['*'],'pagination-men-env');
         $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
 
         $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
-        return view('productos.index',compact('productos','productosSub_s','productosGanados','i'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('productos.index',compact('productos','productosSub_s','productosGanados','i','mensaje_s','mensajeEnviado_s'))->with('i', (request()->input('page', 1) - 1) * 5);
         
 
         
