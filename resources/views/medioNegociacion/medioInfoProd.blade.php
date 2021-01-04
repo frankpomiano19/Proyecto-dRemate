@@ -46,12 +46,11 @@
             
             <div class="row col-md-12 py-2 d-flex justify-content-around">
                 @if(Auth::user()->id != $usuarioPerfil->id)
-                <button class="btn btn-danger btn-rojo-comu">Establecer comunicacion</button>
+                <a class="btn btn-danger btn-rojo-comu" href="{{route('chat-real-time',$producto->id)}}">Establecer comunicacion</a>
                 <button class="btn btn-primary btn-rojo-mens" data-toggle="modal" data-target="#modalMensaje" data-whatever="@mdo">Enviar mensaje al vendedor</button>
                 @else
-                <button class="btn btn-primary btn-rojo-mens" style="cursor: not-allowed" disabled >Enviar mensaje al vendedor</button>
-                <button class="btn btn-danger btn-rojo-comu" style="cursor: not-allowed" disabled>Establecer comunicacion</button>
-                
+                <a class="btn btn-danger btn-rojo-comu" style="cursor: not-allowed" disabled>Establecer comunicacion</a>
+                <button class="btn btn-primary btn-rojo-mens" style="cursor: not-allowed" disabled >Enviar mensaje al vendedor</button>                
                 @endif
             </div>
         </section>
@@ -188,4 +187,5 @@
 @section('contenidoJSabajo')
 
 <script src="{{asset('js/jsMedioContacto.js')}}" ></script>
+
 @endsection
