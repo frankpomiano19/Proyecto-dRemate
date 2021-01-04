@@ -14,6 +14,9 @@
 @section('contenidoCSS')
     <!-- Colocar css-->
     <link rel="stylesheet" href="css/styleProduct.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        
 @endsection
 
 
@@ -100,7 +103,7 @@
                   
                   <div class="precio_inicial_producto p-2">
                     <h5>Precio inicial: S/. {{$prod->precio_inicial}}</h5>
-                  </div>
+                  </div>                  
                   <div class="comienzosubasta" id="presubasta">
                     <h5>Subasta inicia en:<div id="comienzosubasta"></div></h5>
                   </div>
@@ -179,53 +182,52 @@
   <!-- fin de la Información del producto -->
   <br>
 
-
-  <div class="container3">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#descripcion">Descripción</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#opiniones">Opiniones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#estadisticas">Estadísticas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#similares">Subastas similares</a>
-      </li>
-    </ul>
-    
-    
-    <div class="tab-content">
-      <div class="tab-pane container active" id="descripcion">
-        <h5 class="tilulo_producto my-2">{{$prod->nombre_producto}}</h5>
-        <p style='font-family: "Times New Roman", Times, serif;'> {{$prod->descripcion}} </p>
-        <!--
-        <h5>Caracteristicas</h5>
-          <ul style='font-family: "Times New Roman", Times, serif;'>
-            <li>lorem</li>
-            <li>lorem</li>
-            <li>lorem</li>
-            
-            <li>
-               
-            </li>
-            
-          </ul>
-            -->
-      </div>
-      <div class="tab-pane container fade" id="opiniones">
-        <p>Ninguna opinion encontrada</p>
-      </div>
-      <div class="tab-pane container fade" id="estadisticas">
-        <p>Estadisticas no calculadas</p>
-      </div>
-      <div class="tab-pane container fade" id="similares">
-        <p>Area en mantenimiento</p>
+  <div id="detalles" style="min-height: 450px;">
+    <div id="descri">
+      <div class="container3">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#descripcion">Descripción</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#opiniones">Opiniones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#estadisticas">Estadísticas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#similares">Subastas similares</a>
+          </li>
+        </ul>
+        
+        <div class="tab-content">
+          <div class="tab-pane container active" id="descripcion">
+            <h5 class="tilulo_producto my-2">{{$prod->nombre_producto}}</h5>
+            <p style='font-family: "Times New Roman", Times, serif;'> {{$prod->descripcion}} </p>
+          </div>
+          <div class="tab-pane container fade" id="opiniones">
+            <p>Ninguna opinion encontrada</p>
+          </div>
+          <div class="tab-pane container fade" id="estadisticas">
+            <p>Estadisticas no calculadas</p>
+          </div>
+          <div class="tab-pane container fade" id="similares">
+            <p>Area en mantenimiento</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div><br><br>
+    
+    <div id="ubicacion">
+      <h3>Ubicación</h3>
+      <div id="mapa" style="height: 400px;"></div>
+    </div>
+  </div>
+  
+  
+  <div id="fixed"></div>
+  
+  <br><br>
 </div>
   
 @endsection
@@ -307,6 +309,19 @@
     countUp: false
 });
   </script>
+  <script>
+    var mymap = L.map('mapa').setView([-12.0557992,-77.041157], 13);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXlzdGljYWx0dXJ0bGUiLCJhIjoiY2tpeHVnajEyMHI4ODJxbXk0MHk2dW41biJ9.3j9sAGykKUhTh5pN81XD9w', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+    L.marker([-12.0557992,-77.041157]).addTo(mymap);
+    
+</script>
 
     <!-- Colocar js abajo-->
 @endsection
