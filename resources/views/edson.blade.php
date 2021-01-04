@@ -12,7 +12,7 @@
                 <p>Departamento: {{ $producto->ubicacion }}</p>
                 <p>Fecha fin subasta: {{ $producto->fina_subasta }}</p>
                 <p>Precio: {{ $producto->precio_inicial }}</p>
-                <button>IR</button>
+                <a href=" {{ route('producto.detalles',$producto->id) }} ">ir</a>
                 <p>---------------------------------------</p>
 
                 

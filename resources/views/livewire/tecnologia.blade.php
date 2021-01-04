@@ -108,6 +108,7 @@
 
                 {{-- <div style="clear: both"></div> --}}
             </div>
+
             @if($productos->count())
                 @foreach ($productos as $producto)
 
@@ -124,20 +125,30 @@
                             action="{{ route('producto.favorito') }}">
                                 {{ csrf_field() }}
                                 @csrf
-                                {{-- <input type="text" name="favorito" value={{ $producto->id }}> --}}
+                                <input type="hidden" name="favorito" value={{ $producto->id }}>
 
                                     @foreach ($favs as $fav)
 
                                         @if ($fav == $producto->id)
-                                            <button type="submit" class="btn btn-success">FAV</button>
+                                            {{-- <button type="submit" class="btn btn-danger">quitar</button> --}}
+                                            <?php
+                                                $favoritoL = 1;
+                                            ?>
+                                            @break
                                         @else
-
+                                            <?php
+                                                $favoritoL = 0;
+                                            ?>
                                         @endif
 
                                     @endforeach
-                                    
 
-
+                                    @if($favoritoL == 1)
+                                        <button type="submit" class="btn btn-danger">quit</button>
+                                        
+                                    @else
+                                        <button type="submit" class="btn btn-success">aGG</button>
+                                    @endif
                             </form>    
 
                         </div>

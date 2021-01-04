@@ -157,7 +157,7 @@ class HomeController extends Controller
 
         // dd($favoritos);
 
-        $productos = App\Models\Producto::all();
+        // $productos = App\Models\Producto::all();
 
         // dd($productos);
 
