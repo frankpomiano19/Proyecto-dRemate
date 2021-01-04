@@ -171,12 +171,7 @@
                     <img class="img-fluid my-3 animate__animated  animate__flash" src="{{ asset('img/undraw_Taken_re_yn20.svg') }}" style="width: 30%; heigth: 30%;" alt="insertar SVG con la etiqueta image">
                 </div>
             @endif
-                
             </div>
-                  
         </div>
     </div>
 </div>
-
-
-
