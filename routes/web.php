@@ -151,12 +151,12 @@ Route::get('/producto/chatTimeReal-{productUser}',[MedioNegoController::class,'l
 
 //Broadcast para mensaje en tiempo real
 
-Route::get('message', function () {
-    $message['user'] = "Juan Perez";
-    $message['message'] =  "Prueba mensaje desde Pusher";
-    $success = event(new App\Events\EventMessageRealTime($message));
-    return $success;
-})->name("sendMessageNow");
+// Route::get('message', function () {
+//     $message['user'] = "Juan Perez";
+//     $message['message'] =  "Prueba mensaje desde Pusher";
+//     $success = event(new App\Events\EventMessageRealTime($message));
+//     return $success;
+// })->name("sendMessageNow");
 ////////////////////////// +++++++++++++++++++ Fin de Medio de negociacion +++++++++++++++++++++++++++++ /////////////////////////
 
 //Usuario

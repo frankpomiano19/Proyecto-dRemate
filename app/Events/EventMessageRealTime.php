@@ -19,10 +19,14 @@ class EventMessageRealTime implements ShouldBroadcast
      *
      * @return void
      */
-    public $data;
-    public function __construct($data)
+    // public $data;
+    public $usuario;
+    public $mensaje;
+    public function __construct($usuario,$mensaje)
     {
-        $this->data = $data;
+        // $this->data = $data;
+        $this->usuario=$usuario;
+        $this->mensaje= $mensaje;
     }
 
 

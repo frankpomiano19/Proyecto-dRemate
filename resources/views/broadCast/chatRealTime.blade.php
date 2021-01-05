@@ -14,6 +14,7 @@
 @endsection
 
 @section('contenidoCSS')
+    @livewireStyles
 
     <link rel="stylesheet" href="{{asset('css/styleChatRealTime.css')}}">
 @endsection
@@ -23,12 +24,12 @@
     <br>
     <br>
     <br>
-    <h1>Pusher</h1>
+    {{-- <h1>Pusher</h1> --}}
 
 
-    <ul id="myList">
+    {{-- <ul id="myList">
         <li>Primer mensaje</li>
-    </ul>
+    </ul> --}}
     <h3 class=" text-center">Mensajes</h3>
     <div class="row">
         <div class="col-md-6">
@@ -51,10 +52,6 @@
             <div class="row col-md-12">
             </div>
             
-            <div class="row col-md-12 py-2 d-flex justify-content-around">
-                <button class="btn btn-danger btn-rojo-comu">Establecer comunicacion</button>
-                <button class="btn btn-primary btn-rojo-mens" data-toggle="modal" data-target="#modalMensaje" data-whatever="@mdo">Enviar mensaje al vendedor</button>
-            </div>
 
             <div class="row container">
                 <div class="col-md-6">
@@ -228,7 +225,15 @@
                     <br>
                     <br>
                     @livewire("chat-form")
+                    <br>
+                    <br>
+                    @livewire("chat-list")
+
                 </div>
+            </div>
+            <div class="row col-md-12 py-2 d-flex justify-content-around">
+                <button class="btn btn-danger btn-rojo-comu">Terminar Conversacion</button>
+                <button class="btn btn-primary btn-rojo-mens">Enviar mensaje al vendedor</button>
             </div>
 
         </div>
@@ -241,7 +246,9 @@
 
 @section('contenidoJSabajo')
 
-<script>
+
+@livewireScripts
+{{-- <script>
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
     var pusher = new Pusher('3bac7671fc18cafa7fe4', {
@@ -263,7 +270,7 @@
 
     });
 
-</script>
+</script> --}}
 
 {{-- Para enviar mensaje --}}
 
