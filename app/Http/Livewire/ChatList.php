@@ -7,11 +7,13 @@ use Livewire\Component;
 class ChatList extends Component
 {
 
+    public $nombreProducto;
     public $mensajes;
     protected $listeners = ["mensajeRecibido"];
 
-    public function mount(){
+    public function mount($nombreProducto){
         $this->mensajes=[];
+        $this->nombreProducto=$nombreProducto;
     }
 
     public function mensajeRecibido($mensaje){

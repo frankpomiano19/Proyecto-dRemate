@@ -1,15 +1,32 @@
-<div class="mt-3">
-
-    <h3><strong>Últimos 5 mensajes</strong></h3>    
-
+<div>
+    {{Auth::user()->id}}
     @foreach($mensajes as $mensaje)
-        <li class="alert alert-warning">{{$mensaje['mensaje']}} - {{$mensaje['usuario']}}</li>
+
+    @if($nombreProducto->user_id == Auth::user()->id)
+    <div class="outgoing_msg">
+        <div class="sent_msg">
+            <p>{{$mensaje['mensaje']}}</p>
+            <span class="time_date"> 11:01 AM | Junio 9</span>
+        </div>
+    </div>
+    @else
+    <div class="incoming_msg">
+        <div class="incoming_msg_img"> <img src="{{asset('img/assets/antique-1125467_1920.jpg')}}"
+                alt="sunil"> </div>
+        <div class="received_msg">
+            <div class="received_withd_msg">
+                <p>{{$mensaje['mensaje']}}</p>
+                <span class="time_date"> 11:01 AM | Junio 9</span>
+            </div>
+        </div>
+    </div>
+    @endif
+
+
+
+
     @endforeach
 
-    <div class="card">        
-        <div class="card-body">
-        </div>
-    </div>    
 
     <script>
         // Enable pusher logging - don't include this in production

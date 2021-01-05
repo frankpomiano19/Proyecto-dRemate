@@ -18,13 +18,13 @@ class ChatForm extends Component
 
     public function updated($field){
         $this->validateOnly($field,[
-            "name"=>"required|min:3",
+            // "name"=>"required|min:3",
             "message"=>"required"
         ]);
     }
     public function sendMessage(){
         $this->validate([
-            "name"=>"required|min:3",
+            // "name"=>"required|min:3",
             "message"=>"required"
         ]);
 
