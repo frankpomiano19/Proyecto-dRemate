@@ -38,7 +38,7 @@
                         <div class="texto"> 
                             <div class="titulo">          
                                 <h3>{{$producto->nombre_producto}}</h3>
-                                <i class="fa fa-heart cora"></i>                                
+                                                         
                             </div>
                             <h5>Precio inicial: S/ {{$producto->precio_inicial}}</h5>
                             <p class="texto-descripcion">

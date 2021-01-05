@@ -215,6 +215,9 @@
                                 <a class="dropdown-item" href="{{ route('productos.index') }}">
                                     Mi perfil
                                 </a>
+                                <a class="dropdown-item" href="{{ route('productos.favoritos') }}">
+                                    Mis productos favoritos
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

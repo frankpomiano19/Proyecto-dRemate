@@ -12,7 +12,7 @@ class Tecnologia extends Component
     public $precioMax = 999;
     public $condicion = "Nuevo";
     public $departamento = "Lima";
-    public $verdadero = true;
+    // public $verdadero = true;
 
     public $tipo;
 

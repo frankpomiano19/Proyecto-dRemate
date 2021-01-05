@@ -38,6 +38,25 @@ class HomeController extends Controller
     }
     
     public function viewproduct($idpro){
+
+        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        $favoritos = explode(',',$listaFin);
+
+        $tamanio = sizeof($favoritos);
+
+        //Convertir a entero
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
         
         $prod = App\Models\Producto::findOrFail($idpro);
         $vendedor = App\Models\User::findOrFail($prod->user_id);
@@ -54,17 +73,46 @@ class HomeController extends Controller
             $ultimoprecio = $ultimapuja->valor_puja;
         }
 
+        // dd($favoritos);
+
         // dd($productosRelac);
 
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac'));
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos'));
     }
  
     public function buscaProducto(Request $request){
 
+
+        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+
+        //Campo favorito del usuario
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        //Inicio de text
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        //Final de text
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        //Conversion a array
+        $favoritos = explode(',',$listaFin);
+
+        //Tamanio de array
+        $tamanio = sizeof($favoritos);
+
+        //Convertir a entero
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
+
+        // dd($favoritos);
+
         return view('vistaLive',[
             'productos' => App\Models\Producto::where('nombre_producto','LIKE',"%{$request->bproducto}%")
             ->get()
-        ],['nombreProducto'=>$request->bproducto]);
+        ],['nombreProducto'=>$request->bproducto],['favoritos' => $favoritos]);
     }
 
 

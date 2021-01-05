@@ -122,8 +122,8 @@ Route::get('categorias/electrodomesticos', function () {
     return view('categorias/electrodomesticos');
 });
 
-Route::get('edson', function () {
-    return view('edson');
+Route::get('favoritos', function () {
+    return view('favoritos');
 });
 
 
@@ -142,7 +142,7 @@ Route::post('/', [HomeController::class,'agregarFavorito'])->name('producto.favo
 //GET
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
-Route::get('/edson',[SubastaRapController::class,'productosFavoritos']);
+Route::get('/favoritos',[SubastaRapController::class,'productosFavoritos'])->name('productos.favoritos');
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
 

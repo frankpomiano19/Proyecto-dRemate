@@ -118,38 +118,44 @@
                     </div>
                     
                     <div class="texto"> 
-                        <div class="titulo">          
-                            <h3>{{$producto->nombre_producto}}</h3>
-
-                            <form method="POST" enctype="multipart/form-data"
-                            action="{{ route('producto.favorito') }}">
+                        <div class="titulo">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3>{{$producto->nombre_producto}}</h3>
+                                </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-2">
+                                    <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
                                 {{ csrf_field() }}
-                                @csrf
-                                <input type="hidden" name="favorito" value={{ $producto->id }}>
+                                        @csrf
+                                        <input type="hidden" name="favorito" value={{ $producto->id }}>
 
-                                    @foreach ($favs as $fav)
+                                            @foreach ($favs as $fav)
 
-                                        @if ($fav == $producto->id)
-                                            {{-- <button type="submit" class="btn btn-danger">quitar</button> --}}
-                                            <?php
-                                                $favoritoL = 1;
-                                            ?>
-                                            @break
-                                        @else
-                                            <?php
-                                                $favoritoL = 0;
-                                            ?>
-                                        @endif
+                                                @if ($fav == $producto->id)
+                                                    <?php
+                                                        $favoritoL = 1;
+                                                    ?>
+                                                    @break
+                                                @else
+                                                    <?php
+                                                        $favoritoL = 0;
+                                                    ?>
+                                                @endif
 
-                                    @endforeach
+                                            @endforeach
 
-                                    @if($favoritoL == 1)
-                                        <button type="submit" class="btn btn-danger">quit</button>
-                                        
-                                    @else
-                                        <button type="submit" class="btn btn-success">aGG</button>
-                                    @endif
-                            </form>    
+                                            @if($favoritoL == 1)
+                                                
+                                                <button type="submit" class="btn"><img src="{{asset('img/assets/corazon-roto.png')}}"></button>
+                                                
+                                            @else
+                                                <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                                            @endif
+                                    </form>  
+                                </div>
+                            </div>          
+                              
 
                         </div>
                         <h5>Precio inicial: S/ {{$producto->precio_inicial}}</h5>
