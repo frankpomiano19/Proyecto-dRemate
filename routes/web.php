@@ -145,6 +145,8 @@ Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear'
 //Medio de negociacion
 
 Route::get('/producto/{productUser}/{usuarioPerfil}',[MedioNegoController::class,'index'])->name('infoProducto');
+Route::post('/producto/storeMessage',[MedioNegoController::class,'store']);
+Route::get('/producto/createMessage',[MedioNegoController::class,'create']);
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');

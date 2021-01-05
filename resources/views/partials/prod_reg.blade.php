@@ -19,7 +19,7 @@
 <a class="btn btn-success" href="{{ route('producto.registroe') }}" role="button" class="btn btn-info">Registrar nuevo Producto
 
 </a>
-    
+    <h1>ACA TOR</h1>
 
     <table class="table table-hover table-striped">
         <thead class="thead-dark">
@@ -44,11 +44,11 @@
                    <td>{{ $producto->precio_inicial }}</td>
                    <td>{{ $producto->ubicacion }}</td>
                    <td>
-                    <a href="" class="btn btn-dark">Subastar</a>
+                    {{-- <a href="" class="btn btn-dark">Subastar</a> --}}
 
                     <form action="{{ route('productos.destroy', $producto->id) }}" method="POST">
                   
-                        <a href="{{ route('productos.show', $producto->id) }}" title="show">
+                        <a href="{{ route('infoProducto', [$producto->id,$producto->user_id]) }}" title="show">
                             <i class="fa fa-eye text-success  fa-lg"></i>
                         </a>
                         <a href="{{ route('productos.edit', $producto->id) }}" >

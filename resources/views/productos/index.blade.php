@@ -8,9 +8,10 @@
 @section('contenidoJS')
     <!-- Colocar js-->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-
+    <script src="{{asset('js/vue.js')}}"></script>
+    <script src="{{asset("js/axios.js")}}"></script>
+    
 @endsection
 
 @section('contenidoCSS')
@@ -251,25 +252,24 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Producto :</label>
-                    <input type="text" class="form-control" id="recipientMensajeModal" name="recipientMensajeModal"
+                    <input type="text" class="form-control" id="recipientMensajeModal2" name="recipientMensajeModal"
                         disabled>
                 </div>
                 <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Usuario destino :</label>
-                    <input type="text" class="form-control" id="recipientReceptorModal" name="recipientReceptorModal"
+                    <label for="recipient-name" class="col-form-label">Usuario emisor :</label>
+                    <input type="text" class="form-control" id="recipientReceptorModal2" name="recipientReceptorModal"
                         disabled>
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Asunto :</label>
-                    <input type="text" class="form-control" id="recipientAsuntoModal" placeholder="inserte el asunto"
+                    <input type="text" class="form-control" id="recipientAsuntoModal2" placeholder="inserte el asunto"
                         disabled>
                 </div>
                 <div class="form-group">
                     <label for="message-text" class="col-form-label">Mensaje:</label>
-                    <textarea class="form-control" id="recipientMensajeEmisor" disabled></textarea>
+                    <textarea class="form-control" id="recipientMensajeEmisor2" disabled></textarea>
                 </div>
 
-                <h5 class="modal-title" id="modalMensajeMostrarLabel2">Responder</h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -282,14 +282,6 @@
 
 @endsection
 @section('contenidoJSabajo')
-<script src="{{asset("js/vue.js")}}"></script>
-<script src="{{asset("js/axios.js")}}"></script>
 <script src="{{asset('js/jsPerfil.js')}}"></script>
 
 @endsection
-@push('ajax_crud')
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="{{asset('js/ajax.js')}}"></script>
-
-@endpush 
