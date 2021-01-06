@@ -112,7 +112,17 @@ class HomeController extends Controller
 
         return view('paginaProducto')->with('datospro',$request);
         // return back();
-    } 
+    }
+    
+    public function product_calendar(Request $request){
+        $prodcalendar = new App\Models\calendario_de_producto;
+        $prodcalendar->user_id = auth()->id();
+        $prodcalendar->producto_id = $request->productoid;
+        $prodcalendar->save();
+        return back();
+    }
+
+
 
 }
 
