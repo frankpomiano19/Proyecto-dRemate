@@ -41,15 +41,21 @@
                 <!--<div class="alert alert-success" role="alert">Carga Completa</div>-->
                 <div class="sub-rapida-icono">
 
-                    <form action="{{route('producto_calendar')}}" method="POST">
-                        @csrf
-                        <input type="number" id="userid" name="userid" style="display: none" value="{{auth()->user()->id}}" readonly>
-                        <input type="number" id="productoid" name="productoid" style="display: none" value="{{$su_dispo->id}}" readonly>
-                        <button type="submit" class="navbar-toggler">
-                        <i class="fa fa-calendar fa-sm"></i>
-                        </button>
-                    </form>
+                    @auth
+                        <form action="{{route('producto_calendar')}}" method="POST">
+                            @csrf
+                            <input type="number" id="productoid" name="productoid" style="display: none" value="{{$su_dispo->id}}" readonly>
+                            <button type="submit" class="navbar-toggler">
+                            <i class="fa fa-calendar fa-sm"></i>
+                            </button>
+                        </form>
+                    @endauth
                     
+                    @guest
+                        <button type="submit" class="navbar-toggler">
+                            <i class="fa fa-calendar fa-sm"></i>
+                        </button>
+                    @endguest
 
                     <button type="button" class="navbar-toggler">
                         <i class="fa fa-bell fa-sm"></i>
