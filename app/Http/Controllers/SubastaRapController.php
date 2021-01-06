@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App;
 use App\Models\Producto;
 use App\Models\Puja;
 use App\Models\User;
+use App\Models\calendario_de_producto;
 
 use DB;
 
@@ -155,6 +157,9 @@ class SubastaRapController extends Controller
         $su_hist_s = Producto::where('final_subasta','<',$valorN)->orderBy('final_subasta','ASC')->paginate(10);
         return view('partials.sub_rap_his',compact('su_hist_s'));    
     }
+
+   
+
 
 
 }

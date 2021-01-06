@@ -87,4 +87,8 @@ class User extends Authenticatable
         return $this->hasMany(Mensaje::class,'use_id_receptor');
     }
 
+    public function userProductoCalendar(){
+        return $this->belongsToMany(Producto::class, 'calendario_de_productos', 'user_id', 'producto_id');
+    }
+
 }

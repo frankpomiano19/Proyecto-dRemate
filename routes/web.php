@@ -60,6 +60,11 @@ Route::get('/subastaRapida/fetch_data',[SubastaRapController::class,'fetch_data'
 Route::get('/subastaRapida/fetch_data1',[SubastaRapController::class,'fetch_data1']);
 Route::get('/subastaRapida/fetch_data2',[SubastaRapController::class,'fetch_data2']);
 
+//guardar producto en calendario
+Route::post('/subastaRapida/calendar',[HomeController::class,'product_calendar'])->name("producto_calendar");
+
+
+
 Route::get('/vistaLive', function () {
     return view('vistaLive');
 });
