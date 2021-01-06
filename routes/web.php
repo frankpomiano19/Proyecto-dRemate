@@ -77,12 +77,12 @@ Route::get('/subirProducto', function () {
 
 
 
-Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
+Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->middleware('auth')->name("producto.detalles");
 
 
 
 // Route::post('/','HomeController@registro')->name('producto.registro');
-Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
+Route::post('/prueba', [HomeController::class,'registro'])->middleware('auth')->name('producto.registro');
 
 //Menú de subasta, hay dos opciones: 1 Registrar producto, 2 Registrar y subastar producto
 Route::get('/menuSubasta', function () {
@@ -128,21 +128,21 @@ Route::get('favoritos', function () {
 
 
 //Envío de datos del registro producto y subasta
-Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
-Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
+Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->middleware('auth')->name('producto.registroe');
+Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->middleware('auth')->name('producto.registroee');
 
 Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
 
 
 //Controlador pago vendedor
-Route::post('/', [SubastaRapController::class,'sumarVendedor'])->name('pago.vendedor');
+Route::post('/', [SubastaRapController::class,'sumarVendedor'])->middleware('auth')->name('pago.vendedor');
 
-Route::post('/', [HomeController::class,'agregarFavorito'])->name('producto.favorito');
+Route::post('/', [HomeController::class,'agregarFavorito'])->middleware('auth')->name('producto.favorito');
 
 //GET
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
-Route::get('/favoritos',[SubastaRapController::class,'productosFavoritos'])->name('productos.favoritos');
+Route::get('/favoritos',[SubastaRapController::class,'productosFavoritos'])->middleware('auth')->name('productos.favoritos');
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
 

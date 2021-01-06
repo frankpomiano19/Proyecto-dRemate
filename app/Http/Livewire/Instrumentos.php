@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Producto;
+use App\Models\User;
 
 class Instrumentos extends Component
 {
@@ -11,7 +12,7 @@ class Instrumentos extends Component
     public $precioMax = 999;
     public $condicion = "Nuevo";
     public $departamento = "Lima";
-    public $verdadero = true;
+    // public $verdadero = true;
 
     public $tipo;
 
@@ -41,6 +42,27 @@ class Instrumentos extends Component
 
     public function render()
     {
+        $listaFavoritos = User::where('id','=',auth()->id())->first();
+
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        $favoritos = explode(',',$listaFin);
+
+        $tamanio = sizeof($favoritos);
+
+        //Convertir a entero
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
+
+        $i = 0;
+
         return view('livewire.instrumentos',[
             'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
                 ->where("precio_inicial",">=", $this->precioMin)
@@ -48,6 +70,8 @@ class Instrumentos extends Component
                 ->where('categoria_id',5)
                 ->where('condicion','=',"$this->condicion")
                 ->get()
+        ],[
+            'favs'=> $favoritos
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Producto;
+use App\Models\User;
 
 class Hogar extends Component
 {
@@ -11,7 +12,7 @@ class Hogar extends Component
     public $precioMax = 999;
     public $condicion = "Nuevo";
     public $departamento = "Lima";
-    public $verdadero = true;
+    // public $verdadero = true;
 
     public $tipo;
 
@@ -41,14 +42,26 @@ class Hogar extends Component
 
     public function render()
     {
-        // return view('livewire.hogar',[
-        //     'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
-        //         ->where("precio_inicial",">=", $this->precioMin)
-        //         ->where('ubicacion','=',"$this->departamento")
-        //         ->where('categoria_id',2)
-        //         ->where('condicion','=',"$this->condicion")
-        //         ->get()
-        // ]);
+        $listaFavoritos = User::where('id','=',auth()->id())->first();
+
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        $favoritos = explode(',',$listaFin);
+
+        $tamanio = sizeof($favoritos);
+
+        //Convertir a entero
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
+
+        $i = 0;
 
         return view('livewire.hogar',[
             'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
@@ -57,6 +70,8 @@ class Hogar extends Component
                 ->where('categoria_id',2)
                 ->where('condicion','=',"$this->condicion")
                 ->get()
+        ],[
+            'favs'=> $favoritos
         ]);
     }
 }

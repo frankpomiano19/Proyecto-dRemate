@@ -147,7 +147,7 @@
 
                                             @if($favoritoL == 1)
                                                 
-                                                <button type="submit" class="btn"><img src="{{asset('img/assets/corazon-roto.png')}}"></button>
+                                                <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
                                                 
                                             @else
                                                 <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>

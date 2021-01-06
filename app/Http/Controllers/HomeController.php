@@ -109,10 +109,12 @@ class HomeController extends Controller
 
         // dd($favoritos);
 
+        $casas = "adnof";
+
         return view('vistaLive',[
             'productos' => App\Models\Producto::where('nombre_producto','LIKE',"%{$request->bproducto}%")
             ->get()
-        ],['nombreProducto'=>$request->bproducto],['favoritos' => $favoritos]);
+        ],['nombreProducto'=>$request->bproducto]);
     }
 
 
@@ -187,14 +189,25 @@ class HomeController extends Controller
         $favNuevo = (int)$request->favorito;
 
         
-        array_push($favoritos,$favNuevo);
+        // array_push($favoritos,$favNuevo);
         
         for($i = 0; $i<$tamanio;$i++){
 
             if($favoritos[$i] == $favNuevo){
                 $favoritos[$i] = 0;
-                $favoritos[$i+1] = 0;
+                // $favoritos[$i+1] = 0;
+                $existe = 1;
+                break;
+            }else{
+                $existe = 0;
             }
+
+        }
+
+        if($existe == 1){
+            
+        }else{
+            array_push($favoritos,$favNuevo);
         }
 
         // $favUsuario = array_unique($favoritos);
