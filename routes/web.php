@@ -141,12 +141,23 @@ Route::post('/', [SubastaRapController::class,'sumarVendedor'])->name('pago.vend
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
-
+////////////////////////// +++++++++++++++++++ Medio de negociacion +++++++++++++++++++++++++++++ /////////////////////////
 //Medio de negociacion
 
 Route::get('/producto/{productUser}/{usuarioPerfil}',[MedioNegoController::class,'index'])->name('infoProducto');
 Route::post('/producto/storeMessage',[MedioNegoController::class,'store']);
 Route::get('/producto/createMessage',[MedioNegoController::class,'create']);
+Route::get('/producto/chatTimeReal-{productUser}',[MedioNegoController::class,'loadChatRealTime'])->name('chat-real-time');
+
+//Broadcast para mensaje en tiempo real
+
+// Route::get('message', function () {
+//     $message['user'] = "Juan Perez";
+//     $message['message'] =  "Prueba mensaje desde Pusher";
+//     $success = event(new App\Events\EventMessageRealTime($message));
+//     return $success;
+// })->name("sendMessageNow");
+////////////////////////// +++++++++++++++++++ Fin de Medio de negociacion +++++++++++++++++++++++++++++ /////////////////////////
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');
@@ -168,3 +179,4 @@ Route::get('/producto/pagination_data_prod_sub',[RegistroProductoController::cla
 // Mensajeria
 Route::post('/home/perfil/enviar-mensaje',[userController::class,'responderMensaje'])->name('responder-mensaje');
 Route::get('/home/perfil/enviar-mensaje/create',[userController::class,'messageCreate']);
+

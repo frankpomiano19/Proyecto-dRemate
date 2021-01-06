@@ -55,4 +55,9 @@ class MedioNegoController extends Controller
         // return response()->json(['enviado'=>false]);
     }
 
+    public function loadChatRealTime($productUser){
+        $producto = Producto::where('id','=',$productUser)->first();
+        return view('broadcast.chatRealTime',compact('producto'));
+    }
+
 }
