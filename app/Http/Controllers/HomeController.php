@@ -38,6 +38,25 @@ class HomeController extends Controller
     }
     
     public function viewproduct($idpro){
+
+        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        $favoritos = explode(',',$listaFin);
+
+        $tamanio = sizeof($favoritos);
+
+        //Convertir a entero
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
         
         $prod = App\Models\Producto::findOrFail($idpro);
         $vendedor = App\Models\User::findOrFail($prod->user_id);
@@ -54,12 +73,43 @@ class HomeController extends Controller
             $ultimoprecio = $ultimapuja->valor_puja;
         }
 
+        // dd($favoritos);
+
         // dd($productosRelac);
 
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac'));
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos'));
     }
  
     public function buscaProducto(Request $request){
+
+
+        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+
+        //Campo favorito del usuario
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        //Inicio de text
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        //Final de text
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        //Conversion a array
+        $favoritos = explode(',',$listaFin);
+
+        //Tamanio de array
+        $tamanio = sizeof($favoritos);
+
+        //Convertir a entero
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
+
+        // dd($favoritos);
+
+        $casas = "adnof";
 
         return view('vistaLive',[
             'productos' => App\Models\Producto::where('nombre_producto','LIKE',"%{$request->bproducto}%")
@@ -108,6 +158,74 @@ class HomeController extends Controller
         $producto->save();
         return back();
     }
+
+    public function agregarFavorito(Request $request){
+
+        //Fila de usuario
+        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+
+        //Campo favorito del usuario
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        //Inicio de text
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        //Final de text
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        //Conversion a array
+        $favoritos = explode(',',$listaFin);
+
+        //Tamanio de array
+        $tamanio = sizeof($favoritos);
+
+        //Convertir a entero
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
+
+        //Convierte a int el id que llega
+        $favNuevo = (int)$request->favorito;
+
+        
+        // array_push($favoritos,$favNuevo);
+        
+        for($i = 0; $i<$tamanio;$i++){
+
+            if($favoritos[$i] == $favNuevo){
+                $favoritos[$i] = 0;
+                // $favoritos[$i+1] = 0;
+                $existe = 1;
+                break;
+            }else{
+                $existe = 0;
+            }
+
+        }
+
+        if($existe == 1){
+            
+        }else{
+            array_push($favoritos,$favNuevo);
+        }
+
+        // $favUsuario = array_unique($favoritos);
+
+        $listaFavoritos->favoritos = $favoritos;
+
+        $listaFavoritos->save();
+
+        // dd($favoritos);
+
+        // $productos = App\Models\Producto::all();
+
+        // dd($productos);
+
+        return back();
+    }
+
     public function registroEE(SubirSubastaRequest $request){
 
         return view('paginaProducto')->with('datospro',$request);
@@ -122,7 +240,4 @@ class HomeController extends Controller
         return back();
     }
 
-
-
 }
-
