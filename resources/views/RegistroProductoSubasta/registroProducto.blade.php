@@ -167,8 +167,9 @@
                 <h3>Ubicación</h3>
                 <small>Seleccione una ubicación en el mapa</small>
                 <div id="inputmapa" style="height: 300px; width:100%;"></div>
-                <input type="text" class="form-control" id="latitud" style="display: none;">
-                <input type="text" class="form-control" id="longitud" style="display: none;">
+                <input type="text" class="form-control" id="latitud" style="">
+                <input type="text" class="form-control" id="longitud" style="">
+                
             </div>
 
             <div>
