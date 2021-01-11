@@ -191,3 +191,5 @@ Route::get('/producto/pagination_data_prod_sub',[RegistroProductoController::cla
 Route::post('/home/perfil/enviar-mensaje',[userController::class,'responderMensaje'])->name('responder-mensaje');
 Route::get('/home/perfil/enviar-mensaje/create',[userController::class,'messageCreate']);
 
+//Reportar Usuario
+Route::post('/infoUser',[userController::class,'reportarUser'] )->name('report-usuario');
