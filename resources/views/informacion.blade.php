@@ -19,6 +19,7 @@
 
 
 @section('contenido')
+
 <section class="cabecera">
     <header>
         <div class="container">

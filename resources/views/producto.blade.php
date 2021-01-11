@@ -64,8 +64,41 @@
   <br>
   <!-- Información del producto -->
   <div class="container2">
-    <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">{{$cat->nombre_categoria}}</a>  </h5>
-    <h3 class="product-title">{{$prod->nombre_producto}}</h3>
+    <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">{{$cat->nombre_categoria}}</a></h5>
+    <div class="row">
+
+      <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
+        {{ csrf_field() }}
+        @csrf
+        <input type="hidden" name="favorito" value={{ $prod->id }}>
+
+          @foreach ($favoritos as $fav)
+
+            @if ($fav == $prod->id)
+              <?php
+                $favoritoL = 1;
+              ?>
+              @break
+            @else
+              <?php
+                $favoritoL = 0;
+              ?>
+            @endif
+
+          @endforeach
+
+          @if($favoritoL == 1)
+                                                    
+            <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
+            
+          @else
+            <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+          @endif      
+          
+        </form>
+
+      <div class="col-md-4"><h3 class="product-title">{{$prod->nombre_producto}}</h3></div>
+    </div>
     <div class="row mb-2">
         <div class="col-md-5">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">

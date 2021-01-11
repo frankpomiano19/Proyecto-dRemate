@@ -31,9 +31,39 @@
                     data-setbg="img/trending/trend-1.jpg"
                     style="background-image: url('{{ $su_curso->image_name1 }}');background-size:100% 100%;">
                     <div class="ep">Precio base : ${{ $su_curso->precio_inicial }} </div>
-                    <div class="comment"><i class="fa fa-comments"></i> {{ rand(1, 200) }}
+                    <div class="comment">
+                        <button type="submit" class="btn"><img src="{{asset('img/assets/comentario.png')}}"></button>
                     </div>
-                    <div class="view"><i class="fa fa-heart"></i> {{ rand(1, 50) }}</div>
+                    <div class="view">
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
+                            {{ csrf_field() }}
+                                    @csrf
+                                    <input type="hidden" name="favorito" value={{ $su_curso->id }}>
+
+                                        @foreach ($favoritos as $fav)
+
+                                            @if ($fav == $su_curso->id)
+                                                <?php
+                                                    $favoritoL = 1;
+                                                ?>
+                                                @break
+                                            @else
+                                                <?php
+                                                    $favoritoL = 0;
+                                                ?>
+                                            @endif
+
+                                        @endforeach
+
+                                        @if($favoritoL == 1)
+                                            
+                                            <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
+                                            
+                                        @else
+                                            <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                                        @endif
+                        </form>
+                    </div>
                 </div>
             </div>
             <div class="card-contenido-cuerpo-1">
