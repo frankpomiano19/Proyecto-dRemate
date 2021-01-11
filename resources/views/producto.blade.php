@@ -345,7 +345,7 @@
   </script>
 
   <script>
-    var mymap = L.map('mapa').setView([-12.0557992,-75.041160], 13);
+    var mymap = L.map('mapa').setView([{{$prod->latitud}},{{$prod->longitud}}], 13);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXlzdGljYWx0dXJ0bGUiLCJhIjoiY2tpeHVnajEyMHI4ODJxbXk0MHk2dW41biJ9.3j9sAGykKUhTh5pN81XD9w', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -354,7 +354,7 @@
         zoomOffset: -1,
         accessToken: 'your.mapbox.access.token'
     }).addTo(mymap);
-    L.marker([-12.0557992,-75.041160]).addTo(mymap);
+    L.marker([{{$prod->latitud}},{{$prod->longitud}}]).addTo(mymap);
     
 </script>
 
