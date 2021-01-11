@@ -91,4 +91,7 @@ class User extends Authenticatable
         return $this->belongsToMany(Producto::class, 'calendario_de_productos', 'user_id', 'producto_id');
     }
 
+    public function userReportUser(){
+        return $this->hasMany(Report_user::class,'user_denunc_id');
+    }
 }

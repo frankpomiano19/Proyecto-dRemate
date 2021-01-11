@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use App;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Mensaje;
@@ -98,4 +99,13 @@ class userController extends Controller
         return view('partials.men_perfil',compact('mensaje_s','mensajeEnviado_s'));
 
      }
+
+     public function reportarUser(Request $request){
+         $denuncia = new App\Models\Report_user;
+         $denuncia->user_denunc_id = $request->id_denunc;
+         $denuncia->descrip = $request->denuncia;
+         $denuncia->save();
+         return back()->with('message','Gracias por informarnos')->with('typealert','success');
+     }
+
 }
