@@ -31,7 +31,7 @@
         <li>Primer mensaje</li>
     </ul> --}}
     <h3 class=" text-center">Mensajes</h3>
-    <div class="row">
+    <div class="row left-side">
         <div class="col-md-6">
             <div class="row col-md-12 d-flex justify-content-center">
                 <img src="{{ $producto->image_name1 }}" class="img-formated" alt="">
