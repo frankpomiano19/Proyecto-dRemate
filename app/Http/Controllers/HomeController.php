@@ -226,11 +226,35 @@ class HomeController extends Controller
         return back();
     }
 
-    public function registroEE(SubirSubastaRequest $request){
+    public function registroEE(Request $request){
 
-        return view('paginaProducto')->with('datospro',$request);
-        // return back();
+        $datospro = App\Models\Producto::where('id','=',$request->id)->first();
+
+        // dd($datospro);
+
+        return view('RegistroProductoSubasta.subastarProducto')->with('datosProducto', $datospro);
+
     }
+
+    // public function registroEEE(Request $request){
+
+    //     // dd($request);
+
+    //     $request->validate([
+    //         'precio_inicial'=>'required|numeric|min:10|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
+    //         'inicio_subasta'=>'required',
+    //         'final_subasta'=>'required'
+    //     ]);
+
+    //     dd($request->final_subasta);
+
+    //     // $datospro = App\Models\Producto::where('id','=',$request->id)->first();
+
+    //     // dd($datospro);
+
+    //     // return view('RegistroProductoSubasta.subastarProducto')->with('datosProducto', $datospro);
+
+    // }
     
     public function product_calendar(Request $request){
         $prodcalendar = new App\Models\calendario_de_producto;

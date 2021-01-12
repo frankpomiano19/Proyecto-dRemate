@@ -9,8 +9,6 @@
 
 @section('contenidoJS')
     <!-- Colocar js-->
-    <script src="js/jquery-3.5.1.js"></script>
-    
 @endsection
 
 @section('contenidoCSS')
@@ -64,26 +62,6 @@
     @endphp
 
 
-
-  
-  <!-- Modal de usuario bloqueado-->
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">El usuario {{$usuarioPerfil->usuario}} ha sido bloqueado</h5>
-           
-        </div>
-        <div class="modal-body">
-          Este usuario ha sido reportado por infringir las normas de la página. Le recomendamos volver a Subasta Rápida.
-        </div>
-        <div class="modal-footer">
-          
-          <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
     <main class="container">
@@ -218,49 +196,7 @@
             </form>
 
         @else
-            <div class="row d-flex justify-content-center py-4" id="Denunciar-perfil-usuario">
-                <!-- Boton del modal de denunciar usuario -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                        Reportar Usuario
-                    </button>
-                    
-                    <!-- Modal de denunciar usuario -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                        <form action="{{route('report-usuario')}}" method="POST">
-                            @csrf
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Reportar a este usuario</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                            <div class="modal-body">
-                                
-                                    <input type="number" id="id_denunc" name="id_denunc" style="display: none" value="{{$usuarioPerfil->id}}" readonly><br>
-                                    <input type="radio" id="denuncia1" name="denuncia" value="Contenido inapropiado" checked>
-                                    <label for="denuncia1">Contenido inapropiado</label><br>
-                                    <input type="radio" id="denuncia2" name="denuncia" value="Comentarios spam">
-                                    <label for="denuncia2">Comentarios spam</label><br>
-                                    <input type="radio" id="denuncia3" name="denuncia" value="Comentarios que incitan al odio">
-                                    <label for="denuncia3">Comentarios que incitan al odio</label><br>
-                                    <input type="radio" id="denuncia4" name="denuncia" value="Contenido engañoso">
-                                    <label for="denuncia4">Contenido engañoso</label><br>
-                                    <input type="radio" id="denuncia5" name="denuncia" value="Contenido peligroso">
-                                    <label for="denuncia5">Contenido peligroso</label><br>
-                                
-                                
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Reportar</button>
-                            </div>
-                        </div>
-                        </form>
-                        </div>
-                    </div>
-            </div>
+
             <div class="row py-4" id="cuadro-texto-comentario">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
@@ -401,16 +337,5 @@
     <script src="../js/vue.js"></script>
     <script src="../js/axios.js"></script>
     <script src="../js/jsComentario.js"></script>
-    @if ($usuarioPerfil->userReportUser->count() >= 30)
-        <script>  
-            $(function(){
-                $('#staticBackdrop').modal({
-                    backdrop:'static',
-                });
-            });
-        </script>
-    @endif
-    
-
     <!-- Colocar js abajo-->
 @endsection
