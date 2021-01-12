@@ -56,13 +56,15 @@ class RegistroSubastaController extends Controller
         $datospro->image_name3 = $image_url3;
         $datospro->image_name4 = $image_url4;
 
+        $datospro->latitud = $request->latitud;
+        $datospro->longitud = $request->longitud;
         $datospro->nombre_producto = $request->nombre_producto;
         $datospro->descripcion = $request->descripcion;
         $datospro->categoria_id = $request->categoria_id;
         $datospro->estado = $request->estado;
         $datospro->condicion = $request->condicion;
         $datospro->ubicacion = $request->selectDepartamento;
-        $datospro->distrito = $request->selectProvincia;
+        $datospro->distrito = $request->distrito;
         $datospro->garantia = $request->garantia;
         $datospro->precio_inicial = $request->precio_inicial;
         $datospro->inicio_subasta = $request->inicio_subasta;

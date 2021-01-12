@@ -56,7 +56,7 @@
                     </div>
                     <div class="col-md-4">
                         <h5 class="font-weight-bold">Ubicación:</h5>
-                        <p>{{$datosProducto->ubicacion}}</p>
+                        <p>{{$datosProducto->selectDepartamento}}</p>
                     </div>
                 </div>
                 

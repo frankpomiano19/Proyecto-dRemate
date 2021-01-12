@@ -15,36 +15,48 @@ use DB;
 class SubastaRapController extends Controller
 {
     public function index(){
+
         $ab = date_default_timezone_get();  //Obtiene la fecha actual
         date_default_timezone_set('America/Lima');  //Obtiene la fecha de Lima Peru
         $valorN = date('Y-m-d H:i:s');//Sale el formato 2020-10-29 15:29:12
-
-        $listaFavoritos = User::where('id','=',auth()->id())->first();
-
-        $listaUsuario = $listaFavoritos->favoritos;
-
-        $listaInicio = str_replace("[", "", $listaUsuario);
-
-        $listaFin = str_replace("]", "", $listaInicio);
-
-        $favoritos = explode(',',$listaFin);
-
-        $tamanio = sizeof($favoritos);
-
-        //Convertir a entero
-        for($i = 0; $i<$tamanio;$i++){
-
-            $temp = (int)$favoritos[$i];
-            $favoritos[$i] = $temp;
-        }
-
-        $i = 0;
         
         $su_curso_s = Producto::where('inicio_subasta','<',$valorN)->where('final_subasta','>',$valorN)->orderBy('final_subasta','ASC')->paginate(6);
         $su_dispo_s = Producto::where('inicio_subasta','>',$valorN)->orderBy('inicio_subasta','ASC')->paginate(6);
         $su_hist_s = Producto::where('final_subasta','<',$valorN)->orderBy('final_subasta','ASC')->paginate(10);
 
-        return view('subastaRapida',compact('su_curso_s','su_dispo_s','su_hist_s','favoritos'));
+
+        if(auth()->id()!=null){
+
+
+
+            $listaFavoritos = User::where('id','=',auth()->id())->first();
+
+            $listaUsuario = $listaFavoritos->favoritos;
+    
+            $listaInicio = str_replace("[", "", $listaUsuario);
+    
+            $listaFin = str_replace("]", "", $listaInicio);
+    
+            $favoritos = explode(',',$listaFin);
+    
+            $tamanio = sizeof($favoritos);
+
+            for($i = 0; $i<$tamanio;$i++){
+    
+                $temp = (int)$favoritos[$i];
+                $favoritos[$i] = $temp;
+            }
+    
+            $i = 0;
+    
+            return view('subastaRapida',compact('su_curso_s','su_dispo_s','su_hist_s','favoritos'));
+        }else{
+            
+
+            return view('subastaRapida',compact('su_curso_s','su_dispo_s','su_hist_s'));
+        }
+
+        
     }
 
     public function filtroProc(Request $request){      
@@ -255,10 +267,5 @@ class SubastaRapController extends Controller
         $su_hist_s = Producto::where('final_subasta','<',$valorN)->orderBy('final_subasta','ASC')->paginate(10);
         return view('partials.sub_rap_his',compact('su_hist_s'));    
     }
-
-   
-
-
-
 }
 
