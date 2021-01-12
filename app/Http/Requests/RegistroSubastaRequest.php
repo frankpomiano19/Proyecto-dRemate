@@ -30,7 +30,7 @@ class RegistroSubastaRequest extends FormRequest
             'estado'=>'required',
             'condicion'=>'required',
             'selectDepartamento'=>'required',
-            'selectProvincia'=>'required',
+            'distrito'=>'required',
             'image_name1'=>'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
             'image_name2'=>'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
             'image_name3'=>'required|mimes:jpeg,bmp,jpg,png|between:1, 6000',
@@ -38,7 +38,9 @@ class RegistroSubastaRequest extends FormRequest
             'garantia'=>['required','min:8'],
             'precio_inicial'=>'required|numeric|min:10|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
             'inicio_subasta'=>'required|date',
-            'final_subasta'=>'required|date|after:inicio_subasta'
+            'final_subasta'=>'required|date|after:inicio_subasta',
+            'latitud'=>'required',
+            'longitud'=>'required',
         ];
     }
 }

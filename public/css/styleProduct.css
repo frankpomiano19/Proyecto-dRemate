@@ -14,6 +14,12 @@ body{
     border: 1px solid #000000;
 }
 
+#product::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
 .container1{
     background-color: #336B87;
 }
@@ -32,6 +38,19 @@ body{
     margin: auto;
     width: 90%;
 }
+#descri{
+    width: 55%;
+    float: left;
+}
+
+
+#ubicacion{
+    width: 30%;
+    height: 200px;
+    float: left;
+    margin-left: 5%;
+}
+
 
 .container2 .categories-product, .container2 .product-title{
     font-family: 'Libre Baskerville', serif;
