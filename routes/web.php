@@ -193,3 +193,6 @@ Route::get('/home/perfil/enviar-mensaje/create',[userController::class,'messageC
 
 //Reportar Usuario
 Route::post('/infoUser',[userController::class,'reportarUser'] )->name('report-usuario');
+Route::get('/informenos', function () {
+    return view('user_reported');
+})->name('user_reported');

@@ -63,6 +63,7 @@ class LoginController extends Controller
                 //return back()->with('message','Su cuenta ha sido baneada')->with('typealert', 'danger');
                 //Si tiene más de 30 denuncias es redirigido al login
                 Auth::logout();
+                return redirect()->route('user_reported');
            } else {
                 return redirect()->route('subastaRapida');
            }
