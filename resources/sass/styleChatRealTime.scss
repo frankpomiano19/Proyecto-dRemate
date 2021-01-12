@@ -1,9 +1,10 @@
 @import 'variables';
-
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 // .container{
 //     max-width:50%;
 //     margin:auto;
 // }
+
 img{ max-width:100%;}
 .inbox_people {
   background: #f8f8f8 none repeat scroll 0 0;
@@ -145,4 +146,11 @@ img{ max-width:100%;}
 .msg_history {
   height: 516px;
   overflow-y: auto;
+}
+
+.cuadro-1{
+  border-color: $blackBorder;
+  border-width: 0.5px;
+  border-style: solid;
+  font-family: "Nunito";
 }

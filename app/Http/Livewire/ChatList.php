@@ -9,6 +9,7 @@ class ChatList extends Component
 
     public $nombreProducto;
     public $mensajes;
+    public $idUsuario;
     protected $listeners = ["mensajeRecibido"];
 
     public function mount($nombreProducto){

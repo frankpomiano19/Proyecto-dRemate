@@ -248,6 +248,26 @@
                               
                             </div>
                           </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                              <i class="fa fa-envelope-o"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                <span class="dropdown-header" >Mensajes</span>
+                                <a href=""><span class="ml-3 pull-right text-muted text-sm">El usuario Perrovaca quiere establecer comunicacion
+                                    <button class="btn btn-danger">Cancelar</button>
+                                    <button class="btn btn-success">Aceptar</button>
+                                    <p class="text-center">25 seg</p>
+                                    </span></a>
+                                  <div class="dropdown-divider"></div>
+                                  
+                                {{-- <span class="ml-3 pull-right text-muted text-sm">Sin notificaciones por leer </span> --}}
+                                <div class="dropdown-divider"></div>
+                                
+                            </div>
+                          </li>
+
+
                     @endguest
             </ul>
             <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center" style="margin-right: 50px;margin-left: 50px;">
@@ -367,6 +387,8 @@
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
     <script src="{{asset('sweetalert2/dist/sweetalert2.js')}}"></script>
+    <script defer>
+    </script>
     @yield('contenidoJSabajo')
 
 </body>

@@ -1,7 +1,8 @@
 <div class="type_msg">
     <div class="input_msg_write">
-        <input type="text" class="write_msg" name="messageForm" wire:model="message" placeholder="Inserte su mensaje" />
-        <button class="msg_send_btn" type="button" wire:click="sendMessage"><i class="fa fa-paper-plane-o"
+        <input type="text" class="write_msg" name="messageForm" wire:model="message" placeholder="Inserte su mensaje">
+
+        <button class="msg_send_btn" type="button" wire:click="sendMessage" wire:loading.attr="disabled" wire:offline.attr="disabled"><i class="fa fa-paper-plane-o"
                 aria-hidden="true"></i></button>
                 @error('message')
                 <small class="text-danger">{{$message}}</small>
@@ -10,7 +11,7 @@
     </div>
 </div>
 
-
+{{-- <input type="text" name="idUsuarioForm" wire:model="idUsuario" value="{{ Auth::user()->id }}" placeholder="id"> --}}
 
 <div>
     <div class="form-group" style="display: none;">
