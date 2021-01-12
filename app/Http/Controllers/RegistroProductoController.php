@@ -236,7 +236,7 @@ class RegistroProductoController extends Controller
         $producto->update($request->all());
 
         return redirect()->route('productos.index')
-            ->with('success', 'Project updated successfully');
+            ->with('success', 'Acción realizada exitosamente');
     }
     /**
      * Remove the specified resource from storage.

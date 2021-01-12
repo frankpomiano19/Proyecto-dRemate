@@ -9,8 +9,11 @@
     </div>
 
     @if ($message = Session::get('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             <p>{{ $message }}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
 
@@ -54,7 +57,6 @@
                         </a>
                         <a href="{{ route('productos.edit', $producto->id) }}" >
                             <i class="fa fa-edit  fa-lg"></i>
-
                         </a>
 
                         @csrf
