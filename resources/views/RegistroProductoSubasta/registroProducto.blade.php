@@ -24,7 +24,7 @@
 
 <div class="container-md border rounded-lg cuerpo">
     <h1 class="text-center">Registrar Producto</h1>
-    <p id="parrafo">Revisa la información del producto y llena los campos de la subasta para empezar :)</p>
+    <p id="parrafo">Ingresa los datos del producto que luego podrás subastar :)</p>
     <div class="row">
 
 
@@ -141,7 +141,7 @@
         <div class="col-sm-12 col-md-6 colum">
             <br>
             <div>
-                <h3>Departamento y Provincia</h3>
+                <h3>Departamento</h3>
                 <select name="selectDepartamento" id="departamento" onchange="cambia()" class="form-control" required=""
                     data-parsley-error-message="Escoja su ubicación">
                     <option value="">Seleccione</option>
@@ -186,8 +186,8 @@
                         </div>
                 @enderror
                 <div id="inputmapa" style="height: 300px; width:100%;"></div>
-                <input type="number" class="form-control m-2" name="latitud" id="latitud" style="hidden;">
-                <input type="number" class="form-control m-2" name= "longitud" id="longitud" style="hidden;">
+                <input type="number" class="" name="latitud" id="latitud" style="display:none">
+                <input type="number" class="" name= "longitud" id="longitud" style="display:none">
                 @error('distrito')
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             Añade una dirección adicional
@@ -196,8 +196,7 @@
                             </button>
                         </div>
                 @enderror
-                <input type="text" name="distrito" value="{{ old('nombre_producto') }}" class="form-control mb-2" placeholder="Ubicación adicional">
-                
+                <input type="text" name="distrito" value="{{ old('distrito') }}" class="form-control m-2" placeholder="Ubicación adicional">
             </div>
 
 

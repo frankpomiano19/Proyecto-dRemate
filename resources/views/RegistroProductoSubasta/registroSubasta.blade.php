@@ -12,6 +12,8 @@
 
 @section('contenidoCSS')
     <link rel="stylesheet" href="{{ asset('css/registro.css') }}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 @endsection
 
 
@@ -19,7 +21,7 @@
 
 <div class="container-md border rounded-lg cuerpo">
     <h1 class="text-center">Registrar y subastar producto</h1>
-    <p id="parrafo">Revisa la información del producto y llena los campos de la subasta para empezar :)</p>
+    <p id="parrafo">Llena los datos del producto y subasta para empezar :)</p>
     <div class="row">
         
         <!-- Aquí va la información del producto -->
@@ -194,51 +196,56 @@
                 <div class="linea"></div>
             </div>
             
-            <div>
-                <label for="formGroupExampleInput"><h3>Fecha de inicio</h3></label><br>
-                @error('inicio_subasta')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Debes ingresar la fecha de inicio de subasta
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                @enderror
-                <input type="date" class="form-control" value="{{ old('inicio_subasta') }}" name="inicio_subasta" min="2020-11-02" id="fechaInicio" required>
-                <div class="invalid-feedback">
-                    Seleccione una fecha
-                </div>
-                <div class="valid-feedback">
-                    ¡Bien!
-                </div>
-                <br><br>
-                <div class="linea"></div>
-            </div>
-            
-            <div>
-                <label for="formGroupExampleInput"><h3>Fecha de fin de la subasta</h3></label><br>
-                @error('final_subasta')
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    La subasta debe durar mínimo 1 día
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            <div class="row">
+                
+                <div class="col-6">
+                    <div>
+                        <label for="formGroupExampleInput"><h3>Inicio subasta</h3></label><br>
+                        @error('inicio_subasta')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Fecha requerida
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        @enderror
+                        <input type="date" class="form-control" value="{{ old('inicio_subasta') }}" name="inicio_subasta" min="2020-11-02" id="fechaInicio" required>
+                        <div class="invalid-feedback">
+                            Seleccione una fecha
+                        </div>
+                        <div class="valid-feedback">
+                            ¡Bien!
+                        </div>
+                        <br>
+                        <div class="linea"></div>
                     </div>
-                @enderror
-                <input type="date" class="form-control" name="final_subasta" min="2020-11-02" value="{{ old('final_subasta') }}" id="fechaInicioF" required>
-                <div class="invalid-feedback">
-                    Seleccione una fecha
                 </div>
-                <div class="valid-feedback">
-                    ¡Bien!
+                <div class="col-6">
+                    <div>
+                        <label for="formGroupExampleInput"><h3>Fin subasta</h3></label><br>
+                        @error('final_subasta')
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Fecha de fin no valida
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                        @enderror
+                        <input type="date" class="form-control" name="final_subasta" min="2020-11-02" value="{{ old('final_subasta') }}" id="fechaInicioF" required>
+                        <div class="invalid-feedback">
+                            Seleccione una fecha
+                        </div>
+                        <div class="valid-feedback">
+                            ¡Bien!
+                        </div>
+                        <div class="linea"></div>
+                    </div>
                 </div>
-                <br><br>
-                <div class="linea"></div>
             </div>
     
             <div>
-                <h3>Ubicación</h3>
-                <select name="selectDepartamento" onchange="cambia()" class="form-control" required="">
+                <h3>Departamento</h3>
+                <select name="selectDepartamento" onchange="cambia()" id="departamento" class="form-control" required="">
                     <option value="">Seleccione</option>
                     <option value="Amazonas">Amazonas</option>
                     <option value="Ancash">Ancash</option>
@@ -267,23 +274,31 @@
                     <option value="Ucayali">Ucayali</option>
                 </select><br>
                 
-                <select class="form-control" name="selectProvincia" onchange="cambiaDistrito()" required="">
-                    <option>Seleccione la Provincia</option>
-                </select>
-                
-                <div class="invalid-feedback">
-                    Complete los campos
-                </div>
-                <br>
-                <div class="linea"></div>
             </div>
 
-            <div class="ubicacion">                
-                <input type="text" class="form-control" id="latitud" style="display: none;">
-                <input type="text" class="form-control" id="longitud" style="display: none;">
-                <div id="inputmapa">
-                
-                </div>
+            <div>
+                <h3>Ubicación</h3>
+                <small>Marque una ubicación en el mapa</small>
+                @error('latitud')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Marca en el mapa alguna dirección
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                @enderror
+                <div id="inputmapa" style="height: 300px; width:100%;"></div>
+                <input type="number" class="" name="latitud" id="latitud" style="display:none">
+                <input type="number" class="" name= "longitud" id="longitud" style="display:none">
+                @error('distrito')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Añade una dirección adicional
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                @enderror
+                <input type="text" name="distrito" value="{{ old('distrito') }}" class="form-control m-2" placeholder="Ubicación adicional">
             </div>
 
             <div>
@@ -297,7 +312,7 @@
                 </div>
                 @enderror
                 <small class="form-text text-muted">Brinda detalles de tu garantía</small>
-                <textarea input id="validationCustom05" name="garantia" id="" class="form-control" cols="30" rows="4" placeholder="Detalla la garantía" required>{{ old('garantia') }}</textarea>
+                <textarea input id="validationCustom05" name="garantia" id="" class="form-control" cols="30" rows="3" placeholder="Detalla la garantía" required>{{ old('garantia') }}</textarea>
                 <br>
             </div>
     
@@ -321,5 +336,5 @@
 @section('contenidoJSabajo')
     <!-- Colocar js abajo-->
     <script src="{{ asset('js/producto.js') }}"></script>
-    <script src="/js/parsley.js"></script>
+    <script src="/js/mapa.js"></script>
 @endsection
