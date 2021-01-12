@@ -45,36 +45,48 @@ class BusquedaFiltro extends Component
 
     public function render()
     {
-        $listaFavoritos = User::where('id','=',auth()->id())->first();
+        if(auth()->id()!=null){
 
-        $listaUsuario = $listaFavoritos->favoritos;
+            $listaFavoritos = User::where('id','=',auth()->id())->first();
 
-        $listaInicio = str_replace("[", "", $listaUsuario);
+            $listaUsuario = $listaFavoritos->favoritos;
+    
+            $listaInicio = str_replace("[", "", $listaUsuario);
+    
+            $listaFin = str_replace("]", "", $listaInicio);
+    
+            $favoritos = explode(',',$listaFin);
+    
+            $tamanio = sizeof($favoritos);
+    
+            //Convertir a entero
+            for($i = 0; $i<$tamanio;$i++){
+    
+                $temp = (int)$favoritos[$i];
+                $favoritos[$i] = $temp;
+            }
+    
+            $i = 0;
 
-        $listaFin = str_replace("]", "", $listaInicio);
-
-        $favoritos = explode(',',$listaFin);
-
-        $tamanio = sizeof($favoritos);
-
-        //Convertir a entero
-        for($i = 0; $i<$tamanio;$i++){
-
-            $temp = (int)$favoritos[$i];
-            $favoritos[$i] = $temp;
+            return view('livewire.busqueda-filtro',[
+                'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
+                    ->where("precio_inicial",">=", $this->precioMin)
+                    ->where('ubicacion','=',"$this->departamento")
+                    ->where('categoria_id',$this->categoria)
+                    ->where('condicion','=',"$this->condicion")
+                    ->get()
+            ],[
+                'favs'=> $favoritos
+            ]);
+        }else{
+            return view('livewire.busqueda-filtro',[
+                'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
+                    ->where("precio_inicial",">=", $this->precioMin)
+                    ->where('ubicacion','=',"$this->departamento")
+                    ->where('categoria_id',$this->categoria)
+                    ->where('condicion','=',"$this->condicion")
+                    ->get()
+            ]);
         }
-
-        $i = 0;
-
-        return view('livewire.busqueda-filtro',[
-            'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
-                ->where("precio_inicial",">=", $this->precioMin)
-                ->where('ubicacion','=',"$this->departamento")
-                ->where('categoria_id',$this->categoria)
-                ->where('condicion','=',"$this->condicion")
-                ->get()
-        ],[
-            'favs'=> $favoritos
-        ]);
     }
 }

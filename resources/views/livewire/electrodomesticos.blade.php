@@ -124,34 +124,39 @@
                                 </div>
                                 <div class="col-md-4"></div>
                                 <div class="col-md-2">
+
+                                    @auth
                                     <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
-                                {{ csrf_field() }}
-                                        @csrf
-                                        <input type="hidden" name="favorito" value={{ $producto->id }}>
-
-                                            @foreach ($favs as $fav)
-
-                                                @if ($fav == $producto->id)
-                                                    <?php
-                                                        $favoritoL = 1;
-                                                    ?>
-                                                    @break
-                                                @else
-                                                    <?php
-                                                        $favoritoL = 0;
-                                                    ?>
-                                                @endif
-
-                                            @endforeach
-
-                                            @if($favoritoL == 1)
-                                                
-                                                <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
-                                                
-                                            @else
-                                                <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
-                                            @endif
-                                    </form>
+                                        {{ csrf_field() }}
+                                                @csrf
+                                                <input type="hidden" name="favorito" value={{ $producto->id }}>
+        
+                                                    @foreach ($favs as $fav)
+        
+                                                        @if ($fav == $producto->id)
+                                                            <?php
+                                                                $favoritoL = 1;
+                                                            ?>
+                                                            @break
+                                                        @else
+                                                            <?php
+                                                                $favoritoL = 0;
+                                                            ?>
+                                                        @endif
+        
+                                                    @endforeach
+        
+                                                    @if($favoritoL == 1)
+                                                        
+                                                        <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
+                                                        
+                                                    @else
+                                                        <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                                                    @endif
+                                        </form>
+                                    @else
+                                        <button type="" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                                    @endauth
                                 </div>
                             </div>                           
                         </div>

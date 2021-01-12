@@ -35,6 +35,7 @@
                         <button type="submit" class="btn"><img src="{{asset('img/assets/comentario.png')}}"></button>
                     </div>
                     <div class="view">
+                        @auth
                         <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
                             {{ csrf_field() }}
                                     @csrf
@@ -63,6 +64,9 @@
                                             <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
                                         @endif
                         </form>
+                        @else
+                            <button type="" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                        @endauth
                     </div>
                 </div>
             </div>
