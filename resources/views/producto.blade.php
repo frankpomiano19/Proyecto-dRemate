@@ -22,24 +22,6 @@
 
 @section('contenido')
 
-  <!-- Modal de usuario bloqueado-->
-  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">El producto {{$prod->nombre_producto}} ha sido bloqueado</h5>
-           
-        </div>
-        <div class="modal-body">
-          El producto del usuario {{$prod->productoUserPropietario->usuario}} ha sido bloqueado. Este usuario ha sido reportado por infringir las normas de la página. Le recomendamos volver a Subasta Rápida.
-        </div>
-        <div class="modal-footer">
-          
-          <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
-        </div>
-      </div>
-    </div>
-  </div>
     
   <div class="product">
     <br><br>
@@ -183,13 +165,10 @@
                   <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
                   <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
                   <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
-                  @if ($prod->productoUserPropietario->userReportUser->count() < 30)
-                      <div class="boton_puja my-2" id="botonpuja">
-                        <button  type="submit" class="btn btn-outline-primary">Realizar puja</button>
-                      </div>
-                      <div class="precio_directo my-2">
-                  @endif
-                  
+                  <div class="boton_puja my-2" id="botonpuja">
+                    <button  type="submit" class="btn btn-outline-primary">Realizar puja</button>
+                  </div>
+                  <div class="precio_directo my-2">
                     
 
                     
@@ -376,15 +355,6 @@
     L.marker([-12.0557992,-77.041157]).addTo(mymap);
     
 </script>
-@if ($prod->productoUserPropietario->userReportUser->count() >= 30)
-<script>  
-    $(function(){
-        $('#staticBackdrop').modal({
-            backdrop:'static',
-        });
-    });
-</script>
-@endif
 
     <!-- Colocar js abajo-->
 @endsection
