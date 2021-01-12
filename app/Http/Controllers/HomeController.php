@@ -226,17 +226,33 @@ class HomeController extends Controller
         return back();
     }
 
-    // public function registroEE(SubirSubastaRequest $request){
+    public function registroEE(Request $request){
 
-    //     $datospro = new App\Models\Producto::where('id','=',auth()->id());
+        $datospro = App\Models\Producto::where('id','=',$request->id)->first();
 
-    //     $datospro->precio_inicial = $request->precio_inicial;
-    //     $datospro->inicio_subasta = $request->inicio_subasta;
-    //     $datospro->final_subasta = $request->final_subasta;
+        // dd($datospro);
 
-    //     $datospro->save();
+        return view('RegistroProductoSubasta.subastarProducto')->with('datosProducto', $datospro);
 
-    //     return view('VistaPreviaRegistrado.productoRegistradoSubasta')->with('datosProducto', $datospro);
+    }
+
+    // public function registroEEE(Request $request){
+
+    //     // dd($request);
+
+    //     $request->validate([
+    //         'precio_inicial'=>'required|numeric|min:10|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
+    //         'inicio_subasta'=>'required',
+    //         'final_subasta'=>'required'
+    //     ]);
+
+    //     dd($request->final_subasta);
+
+    //     // $datospro = App\Models\Producto::where('id','=',$request->id)->first();
+
+    //     // dd($datospro);
+
+    //     // return view('RegistroProductoSubasta.subastarProducto')->with('datosProducto', $datospro);
 
     // }
     

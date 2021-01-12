@@ -8,6 +8,8 @@ use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
 use App\Http\Controllers\userGuest;
 use App\Http\Controllers\MedioNegoController;
+use Illuminate\Http\Request;
+
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -135,7 +137,13 @@ Route::get('favoritos', function () {
 
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->middleware('auth')->name('producto.registroe');
+
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->middleware('auth')->name('producto.registroee');
+
+Route::post('/subastarProducto', [HomeController::class,'registroEE'])->middleware('auth')->name('subastar.producto');
+
+// Route::post('/datosSubasta', [HomeController::class,'registroEEE'])->middleware('auth')->name('subastar.productoD');
+
 
 Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
 

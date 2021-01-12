@@ -207,7 +207,9 @@
                   @endforeach
                 </tbody>
               </table>
+
             </div>
+            
           </div>
         </div>
     </div>
@@ -252,12 +254,11 @@
     </div>
     
     <div id="ubicacion">
-      <h3>Ubicación</h3>
-      
-      <div id="mapa" style="height: 400px;"></div>
+      <h3>Ubicación: {{$prod->ubicacion}}</h3>
+      <p><b>Referencia:</b> {{$prod->distrito}}</p>
+      <div id="mapa" style="height: 390px;"></div>
     </div>
   </div>
-  
   
   <div id="fixed"></div>
   
@@ -345,7 +346,7 @@
   </script>
 
   <script>
-    var mymap = L.map('mapa').setView([{{$prod->latitud}},{{$prod->longitud}}], 13);
+    var mymap = L.map('mapa').setView([{{$prod->latitud}},{{$prod->longitud}}], 15);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXlzdGljYWx0dXJ0bGUiLCJhIjoiY2tpeHVnajEyMHI4ODJxbXk0MHk2dW41biJ9.3j9sAGykKUhTh5pN81XD9w', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,

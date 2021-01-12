@@ -36,8 +36,8 @@ class CreateProductosTable extends Migration
             $table->float('precio_inicial')->nullable();
             $table->float('ultima_puja')->nullable();
 
-            $table->float('latitud')->nullable();
-            $table->float('longitud')->nullable();
+            $table->double('latitud', 15, 8)->nullable();
+            $table->double('longitud', 15, 8)->nullable();
 
             $table->integer('indicador')->nullable();
 

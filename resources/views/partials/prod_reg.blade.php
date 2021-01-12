@@ -31,6 +31,7 @@
                      <th>Precio Inicial</th>
                      <th>Ubicacion</th>
                      <th width="280px">Action</th>
+                     <th width="280px">Subastar</th>
                   </tr>
         </thead>
 
@@ -63,6 +64,16 @@
                             <i class="fa fa-trash fa-lg text-danger"></i>
 
                         </button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="{{ route('subastar.producto') }}">
+                        
+                        {{csrf_field()}}
+                        @csrf
+                        <input type="text" style="display:none;" name="id" value="{{$producto->id}}">
+
+                        <button type="submit" class="btn btn-success">Ahora</button>
                     </form>
                 </td>
 
