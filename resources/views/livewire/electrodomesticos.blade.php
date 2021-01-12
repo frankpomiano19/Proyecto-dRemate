@@ -120,7 +120,7 @@
                         <div class="titulo">          
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h3>{{$producto->nombre_producto}}</h3>
+                                    <h3><a href="{{ route('producto.detalles',$producto->id) }}" style="color:black;">{{$producto->nombre_producto}}</a></h3>
                                 </div>
                                 <div class="col-md-4"></div>
                                 <div class="col-md-2">
