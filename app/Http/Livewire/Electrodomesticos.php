@@ -42,36 +42,49 @@ class Electrodomesticos extends Component
 
     public function render()
     {
-        $listaFavoritos = User::where('id','=',auth()->id())->first();
 
-        $listaUsuario = $listaFavoritos->favoritos;
+        if(auth()->id()!=null){
 
-        $listaInicio = str_replace("[", "", $listaUsuario);
+            $listaFavoritos = User::where('id','=',auth()->id())->first();
 
-        $listaFin = str_replace("]", "", $listaInicio);
+            $listaUsuario = $listaFavoritos->favoritos;
+    
+            $listaInicio = str_replace("[", "", $listaUsuario);
+    
+            $listaFin = str_replace("]", "", $listaInicio);
+    
+            $favoritos = explode(',',$listaFin);
+    
+            $tamanio = sizeof($favoritos);
+    
+            //Convertir a entero
+            for($i = 0; $i<$tamanio;$i++){
+    
+                $temp = (int)$favoritos[$i];
+                $favoritos[$i] = $temp;
+            }
+    
+            $i = 0;
 
-        $favoritos = explode(',',$listaFin);
-
-        $tamanio = sizeof($favoritos);
-
-        //Convertir a entero
-        for($i = 0; $i<$tamanio;$i++){
-
-            $temp = (int)$favoritos[$i];
-            $favoritos[$i] = $temp;
+            return view('livewire.electrodomesticos',[
+                'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
+                    ->where("precio_inicial",">=", $this->precioMin)
+                    ->where('ubicacion','=',"$this->departamento")
+                    ->where('categoria_id',3)
+                    ->where('condicion','=',"$this->condicion")
+                    ->get()
+            ],[
+                'favs'=> $favoritos
+            ]);
+        }else{
+            return view('livewire.electrodomesticos',[
+                'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
+                    ->where("precio_inicial",">=", $this->precioMin)
+                    ->where('ubicacion','=',"$this->departamento")
+                    ->where('categoria_id',3)
+                    ->where('condicion','=',"$this->condicion")
+                    ->get()
+            ]);
         }
-
-        $i = 0;
-
-        return view('livewire.electrodomesticos',[
-            'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
-                ->where("precio_inicial",">=", $this->precioMin)
-                ->where('ubicacion','=',"$this->departamento")
-                ->where('categoria_id',3)
-                ->where('condicion','=',"$this->condicion")
-                ->get()
-        ],[
-            'favs'=> $favoritos
-        ]);
     }
 }

@@ -21,7 +21,6 @@
 
 
 @section('contenido')
-
   <!-- Modal de usuario bloqueado-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -40,6 +39,7 @@
       </div>
     </div>
   </div>
+    
     
   <div class="product">
     <br><br>
@@ -183,13 +183,10 @@
                   <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
                   <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
                   <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
-                  @if ($prod->productoUserPropietario->userReportUser->count() < 30)
-                      <div class="boton_puja my-2" id="botonpuja">
-                        <button  type="submit" class="btn btn-outline-primary">Realizar puja</button>
-                      </div>
-                      <div class="precio_directo my-2">
-                  @endif
-                  
+                  <div class="boton_puja my-2" id="botonpuja">
+                    <button  type="submit" class="btn btn-outline-primary">Realizar puja</button>
+                  </div>
+                  <div class="precio_directo my-2">
                     
 
                     
@@ -274,6 +271,7 @@
     
     <div id="ubicacion">
       <h3>Ubicación</h3>
+      
       <div id="mapa" style="height: 400px;"></div>
     </div>
   </div>
@@ -363,8 +361,9 @@
     countUp: false
 });
   </script>
+
   <script>
-    var mymap = L.map('mapa').setView([-12.0557992,-77.041157], 13);
+    var mymap = L.map('mapa').setView([{{$prod->latitud}},{{$prod->longitud}}], 13);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXlzdGljYWx0dXJ0bGUiLCJhIjoiY2tpeHVnajEyMHI4ODJxbXk0MHk2dW41biJ9.3j9sAGykKUhTh5pN81XD9w', {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
@@ -373,9 +372,10 @@
         zoomOffset: -1,
         accessToken: 'your.mapbox.access.token'
     }).addTo(mymap);
-    L.marker([-12.0557992,-77.041157]).addTo(mymap);
+    L.marker([{{$prod->latitud}},{{$prod->longitud}}]).addTo(mymap);
     
 </script>
+
 @if ($prod->productoUserPropietario->userReportUser->count() >= 30)
 <script>  
     $(function(){

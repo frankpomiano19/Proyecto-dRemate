@@ -29,12 +29,16 @@ class CreateProductosTable extends Migration
             $table->string('image_name4')->nullable();
             $table->string('garantia')->nullable();
             $table->string('ubicacion');
-            $table->string('distrito');
+            $table->string('distrito')->nullable();
 
 
             //Segundo Formulario
             $table->float('precio_inicial')->nullable();
             $table->float('ultima_puja')->nullable();
+
+            $table->float('latitud')->nullable();
+            $table->float('longitud')->nullable();
+
             $table->integer('indicador')->nullable();
 
             $table->dateTime('inicio_subasta')->nullable();

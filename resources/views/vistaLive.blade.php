@@ -28,7 +28,7 @@
 
             @foreach ($productos as $producto)
 
-            <div class="col-md-5 mx-5">
+            <div class="col-md-5 mx-5" id="verproducto">
                 <a href=" {{ route('producto.detalles',$producto->id) }} " style="color:black">
                     <div class="producto fix">
                         <div class="contenedor-imagen">
@@ -49,8 +49,7 @@
                                   
                             </div>
                         </div>  
-                            
-                            
+             
                     </div>
                 </a>
                 <div class="abajo-producto"></div>

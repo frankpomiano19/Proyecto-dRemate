@@ -24,7 +24,7 @@
 
 <div class="container-md border rounded-lg cuerpo">
     <h1 class="text-center">Registrar Producto</h1>
-    <p id="parrafo">Revisa la información del producto y llena los campos de la subasta para empezar :)</p>
+    <p id="parrafo">Ingresa los datos del producto que luego podrás subastar :)</p>
     <div class="row">
 
 
@@ -120,13 +120,29 @@
                     <div class="linea"></div>
                 </div>
 
+                <div class="col-sm-12">
+                    <h3>Garantía</h3>
+                    @error('garantia')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Garantía de minimo 8 caracteres
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @enderror
+                    <small>Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
+                    <textarea input id="validationCustom05" name="garantia" id="" class="form-control" cols="30"
+                        rows="4" placeholder="Detalla la garantía" required>{{ old('garantia') }}</textarea>
+                    <br>
+                </div>
+
         </div>
 
         <div class="col-sm-12 col-md-6 colum">
             <br>
             <div>
-                <h3>Departamento y Provincia</h3>
-                <select name="selectDepartamento" onchange="cambia()" class="form-control" required=""
+                <h3>Departamento</h3>
+                <select name="selectDepartamento" id="departamento" onchange="cambia()" class="form-control" required=""
                     data-parsley-error-message="Escoja su ubicación">
                     <option value="">Seleccione</option>
                     <option value="Amazonas">Amazonas</option>
@@ -154,38 +170,35 @@
                     <option value="Tacna">Tacna</option>
                     <option value="Tumbes">Tumbes</option>
                     <option value="Ucayali">Ucayali</option>
-                </select><br>
-
-                <select class="form-control" name="selectProvincia" onchange="cambiaDistrito()" required="">
-                    <option>Seleccione la Provincia</option>
                 </select>
-                <br>
                 <div class="linea"></div>
             </div>
 
             <div>
                 <h3>Ubicación</h3>
-                <small>Seleccione una ubicación en el mapa</small>
+                <small>Marque una ubicación en el mapa</small>
+                @error('latitud')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Marca en el mapa alguna dirección
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                @enderror
                 <div id="inputmapa" style="height: 300px; width:100%;"></div>
-                <input type="text" class="form-control" id="latitud" style="display: none;">
-                <input type="text" class="form-control" id="longitud" style="display: none;">
+                <input type="number" class="" name="latitud" id="latitud" style="display:none">
+                <input type="number" class="" name= "longitud" id="longitud" style="display:none">
+                @error('distrito')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Añade una dirección adicional
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                @enderror
+                <input type="text" name="distrito" value="{{ old('distrito') }}" class="form-control m-2" placeholder="Ubicación adicional">
             </div>
 
-            <div>
-                <h3>Garantía</h3>
-                @error('garantia')
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Garantía de minimo 8 caracteres
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                @enderror
-                <small>Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
-                <textarea input id="validationCustom05" name="garantia" id="" class="form-control" cols="30"
-                    rows="4" placeholder="Detalla la garantía" required>{{ old('garantia') }}</textarea>
-                <br>
-            </div>
 
             <div class="col-sm-12">
                 <h3>Agregar fotos</h3>
