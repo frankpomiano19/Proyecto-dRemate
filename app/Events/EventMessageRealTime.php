@@ -22,11 +22,13 @@ class EventMessageRealTime implements ShouldBroadcast
     // public $data;
     public $usuario;
     public $mensaje;
-    public function __construct($usuario,$mensaje)
+    public $idUsuario;
+    public function __construct($usuario,$mensaje,$idUsuario)
     {
         // $this->data = $data;
-        $this->usuario=$usuario;
+       $this->usuario=$usuario;
         $this->mensaje= $mensaje;
+        $this->idUsuario=$idUsuario;
     }
 
 

@@ -1,8 +1,7 @@
 <div>
-    {{Auth::user()->id}}
     @foreach($mensajes as $mensaje)
 
-    @if($nombreProducto->user_id == Auth::user()->id)
+    @if($mensaje['idUsuario'] == Auth::user()->id)
     <div class="outgoing_msg">
         <div class="sent_msg">
             <p>{{$mensaje['mensaje']}}</p>
@@ -39,7 +38,7 @@
         
         var channel = pusher.subscribe('canal-chat');
         
-        channel.bind('my-event', function(data) {            
+        channel.bind('my-event', function(data) {
             window.livewire.emit('mensajeRecibido', data);
         });
         

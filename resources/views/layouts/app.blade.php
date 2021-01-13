@@ -132,7 +132,7 @@
 <!--barra navegación-->
 <div class="navbar-sticky bg-light fixed-top">
     <div class="navbar navbar-expand-lg navbar-light" style="background:#343a40!important;padding-top: 0px;padding-bottom: 0px;">
-        <div class="container" style="padding-left: 0px;margin-left: 25px;margin-right: 25px;"><a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="{{route("welcome")}}" style="min-width: 7rem;"><img width="142" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 55px;"></a><a class="navbar-brand d-sm-none mr-2" href="/" style="min-width: 4.625rem;"><img width="74" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 34px;min-width: 74px;"></a>
+        <div class="container" style="padding-left: 0px;margin-left: 25px;margin-right: 25px;"><a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="{{route("welcome")}}" style="min-width: 7rem;"><img width="142" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 55px;"></a><a class="navbar-brand d-sm-none mr-2" href="/" style="min-width: 4.625rem;"><img width="74" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 34px;min-width: 93px;"></a>
         <ul class="navbar-nav mega-nav d-none pr-lg-2 mr-lg-2" style="margin-left: 100px;">
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle pl-0" href="/category" data-toggle="dropdown"><i class="fa fa-th mr-2" style="color:#dee2e6;"></i>Categorías</a>
                 <ul class="dropdown-menu px-2 pl-0 pb-4">
@@ -251,6 +251,26 @@
                               
                             </div>
                           </li>
+                          <li class="nav-item dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                              <i class="fa fa-envelope-o"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                                <span class="dropdown-header" >Mensajes</span>
+                                <a href=""><span class="ml-3 pull-right text-muted text-sm">El usuario Perrovaca quiere establecer comunicacion
+                                    <button class="btn btn-danger">Cancelar</button>
+                                    <button class="btn btn-success">Aceptar</button>
+                                    <p class="text-center">25 seg</p>
+                                    </span></a>
+                                  <div class="dropdown-divider"></div>
+                                  
+                                {{-- <span class="ml-3 pull-right text-muted text-sm">Sin notificaciones por leer </span> --}}
+                                <div class="dropdown-divider"></div>
+                                
+                            </div>
+                          </li>
+
+
                     @endguest
             </ul>
             <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center" style="margin-right: 50px;margin-left: 50px;">
@@ -278,7 +298,7 @@
     </div>
     <div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2" style="padding-bottom: 0px!important;">
         <div class="container">
-        <a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="/" style="min-width: 7rem;"><img width="142" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 55px;"></a><!--<a class="navbar-brand d-sm-none mr-2" href="/" style="min-width: 4.625rem;"><img width="74" src="img/logo.png" alt="Cartzilla" style="height: 34px;min-width: 74px;"></a>-->
+        <a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="/" style="min-width: 7rem;"><img width="151" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 55px;"></a><!--<a class="navbar-brand d-sm-none mr-2" href="/" style="min-width: 4.625rem;"><img width="74" src="img/logo.png" alt="Cartzilla" style="height: 34px;min-width: 74px;"></a>-->
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="input-group-overlay d-lg-none my-3">
             <div class="input-group-prepend-overlay"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
@@ -370,6 +390,8 @@
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
     <script src="{{asset('sweetalert2/dist/sweetalert2.js')}}"></script>
+    <script defer>
+    </script>
     @yield('contenidoJSabajo')
 
 </body>

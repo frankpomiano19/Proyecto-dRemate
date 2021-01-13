@@ -33,7 +33,7 @@
                     @if ($favorito == $producto->id)
 
                         <div class="col-md-5 mx-5">
-                            <a href=" {{ route('producto.detalles',$producto->id) }} " style="color:black">
+                            <a href="{{ route('producto.detalles',$producto->id) }} " style="color:black">
                                 <div class="producto fix">
                                     <div class="contenedor-imagen">
                                         <img src="{{$producto->image_name1}}" alt="" class="imagen">
@@ -48,7 +48,7 @@
                                         {{$producto->descripcion}}
                                         </p>
                                         <div class="ubicacion" style="display:inline;">
-                                            <h6>{{$producto->ubicacion}}, {{$producto->distrito}}</h6>   
+                                            <h6>{{$producto->ubicacion}}</h6><p><b>{{$producto->distrito}}</b></p>
                                             
                                         </div>
                                     </div>  
