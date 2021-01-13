@@ -61,6 +61,28 @@
 
     @endphp
 
+<<<<<<< HEAD
+
+=======
+  <!-- Modal de usuario bloqueado-->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">El usuario {{$usuarioPerfil->usuario}} ha sido bloqueado</h5>
+           
+        </div>
+        <div class="modal-body">
+          Este usuario ha sido reportado por infringir las normas de la página. Le recomendamos volver a Subasta Rápida.
+        </div>
+        <div class="modal-footer">
+          
+          <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
+        </div>
+      </div>
+    </div>
+  </div>
+>>>>>>> frank
 
 
 
@@ -338,4 +360,16 @@
     <script src="../js/axios.js"></script>
     <script src="../js/jsComentario.js"></script>
     <!-- Colocar js abajo-->
+<<<<<<< HEAD
+=======
+    @if ($usuarioPerfil->userReportUser->count() >= 30)
+    <script>  
+        $(function(){
+            $('#staticBackdrop').modal({
+                backdrop:'static',
+            });
+        });
+    </script>
+@endif
+>>>>>>> frank
 @endsection
