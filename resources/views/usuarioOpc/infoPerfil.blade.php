@@ -360,8 +360,6 @@
     <script src="../js/axios.js"></script>
     <script src="../js/jsComentario.js"></script>
     <!-- Colocar js abajo-->
-<<<<<<< HEAD
-=======
     @if ($usuarioPerfil->userReportUser->count() >= 30)
     <script>  
         $(function(){
@@ -371,5 +369,4 @@
         });
     </script>
 @endif
->>>>>>> frank
 @endsection

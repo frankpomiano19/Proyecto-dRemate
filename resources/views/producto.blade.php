@@ -380,8 +380,6 @@
     
 </script>
 
-<<<<<<< HEAD
-=======
 @if ($prod->productoUserPropietario->userReportUser->count() >= 30)
 <script>  
     $(function(){
@@ -391,7 +389,6 @@
     });
 </script>
 @endif
->>>>>>> frank
 
     <!-- Colocar js abajo-->
 @endsection
