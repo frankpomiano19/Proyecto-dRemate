@@ -21,7 +21,25 @@
 
 
 @section('contenido')
-
+  <!-- Modal de usuario bloqueado-->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">El producto {{$prod->nombre_producto}} ha sido bloqueado</h5>
+           
+        </div>
+        <div class="modal-body">
+          El producto del usuario {{$prod->productoUserPropietario->usuario}} ha sido bloqueado. Este usuario ha sido reportado por infringir las normas de la página. Le recomendamos volver a Subasta Rápida.
+        </div>
+        <div class="modal-footer">
+          
+          <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    
     
   <div class="product">
     <br><br>
@@ -359,6 +377,15 @@
     
 </script>
 
+@if ($prod->productoUserPropietario->userReportUser->count() >= 30)
+<script>  
+    $(function(){
+        $('#staticBackdrop').modal({
+            backdrop:'static',
+        });
+    });
+</script>
+@endif
 
     <!-- Colocar js abajo-->
 @endsection

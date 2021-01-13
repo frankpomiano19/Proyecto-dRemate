@@ -72,7 +72,7 @@ class LoginController extends Controller
                 return redirect()->route('subastaRapida');
            }
            
-           
+        
         }
 
         return back()
