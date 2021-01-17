@@ -22,7 +22,31 @@
 
 @section('contenido')
 
-    
+  @if($muestra == 1)
+  <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h3>¡Producto enviado a subasta!</h3>
+            </div>
+            <div class="modal-body">
+                <h5>Datos Actualizados:</h5>
+                <b>Nombre producto:</b> {{$prod->nombre_producto}}<br>
+                <b>Inicio Subasta:</b> {{$prod->inicio_subasta}}<br>
+                <b>Final Subasta:</b> {{$prod->final_subasta}}<br>
+                <b>Precio inicial:</b> {{$prod->precio_inicial}}
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-dismiss="modal" class="btn btn-success">Aceptar</a>
+            </div>
+        </div>
+    </div>
+  </div>
+  @else
+  <p></p>
+  @endif    
+
+
   <div class="product">
     <br><br>
     <!--Contenedor de productos relacionados-->
@@ -357,6 +381,12 @@
     }).addTo(mymap);
     L.marker([{{$prod->latitud}},{{$prod->longitud}}]).addTo(mymap);
     
+</script>
+<script>
+  $(document).ready(function()
+  {
+     $("#mostrarmodal").modal("show");
+  });
 </script>
 
 

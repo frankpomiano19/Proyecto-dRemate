@@ -51,7 +51,6 @@ class HomeController extends Controller
 
         $tamanio = sizeof($favoritos);
 
-        //Convertir a entero
         for($i = 0; $i<$tamanio;$i++){
 
             $temp = (int)$favoritos[$i];
@@ -73,11 +72,10 @@ class HomeController extends Controller
             $ultimoprecio = $ultimapuja->valor_puja;
         }
 
-        // dd($favoritos);
+        $muestra = 0;
 
-        // dd($productosRelac);
 
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos'));
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','muestra'));
     }
  
     public function buscaProducto(Request $request){
@@ -238,15 +236,61 @@ class HomeController extends Controller
 
     public function enviarSubasta(Request $request){
 
-        dd($request);
-
         $request->validate([
             'precio_inicial'=>'required|numeric|min:10|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
-            'inicio_subasta'=>'required',
-            'final_subasta'=>'required'
+            'inicio_subasta'=>'required|date',
+            'final_subasta'=>'required|date|after:inicio_subasta'
         ]);
 
-        dd($request->final_subasta);
+        $id = $request->id;
+
+        $prod = App\Models\Producto::findOrFail($id);
+
+        $prod->precio_inicial = $request->precio_inicial;
+        $prod->final_subasta = $request->final_subasta;
+        $prod->inicio_subasta = $request->inicio_subasta;
+
+        $prod->save();
+
+        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        $favoritos = explode(',',$listaFin);
+
+        $tamanio = sizeof($favoritos);
+
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
+        
+        $prod = App\Models\Producto::findOrFail($id);
+        $vendedor = App\Models\User::findOrFail($prod->user_id);
+        $cat = App\Models\Categoria::findOrFail($prod->categoria_id);
+        $pujastotales = App\Models\Puja::all()->sortDesc();
+        $ultimapuja = $pujastotales->where('producto_id',$id)->first();
+        $usuarios = App\Models\User::all();
+        $iniciosubasta = new \Carbon\Carbon($prod->inicio_subasta);
+        $limitepuja = new \Carbon\Carbon($prod->final_subasta);
+        $productosRelac =  App\Models\Producto::where('categoria_id','=',$prod->categoria_id)->latest()->take(5)->get();
+        if ($ultimapuja === null) {
+            $ultimoprecio = $prod->precio_inicial;
+        } else {
+            $ultimoprecio = $ultimapuja->valor_puja;
+        }
+
+        $muestra = 1;
+
+
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','muestra'));
+
+        // dd($prod);
 
     }
     

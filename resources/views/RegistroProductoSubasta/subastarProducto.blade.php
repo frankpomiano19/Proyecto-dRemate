@@ -25,7 +25,7 @@
     <h1>
         {{ $datosProducto->nombre_producto}}
     </h1>
-    
+
 
     <div class="row">
 
@@ -45,8 +45,8 @@
             <div class="row my-2 justify-content-center align-items-center">
 
                 <div class="col-md-6">
-                    {{-- <form method="POST" action="{{ route('enviar.subasta') }}"> --}}
-                    <form>
+                    <form method="POST" action="{{ route('enviar.subasta') }}">
+                    {{-- <form> --}}
                         {{ csrf_field() }}
                         @csrf
                         @error('inicio_subasta')
@@ -85,13 +85,13 @@
                     </div>
                     @enderror
                     <h5 class="font-weight-bold">Precio Inicial:</h5>
-                    <input type="text" name="precio_inicial" value="{{ old('precio_inicial') }}" class="form-control" id="precioInicial" placeholder="Precio mínimo 10.00 - Precio máximo 999.99" required>
+                    <input type="text" name="precio_inicial" value="{{ old('precio_inicial') }}" class="form-control" id="precioInicial" placeholder="Min 10.00 - Max 999.99" required>
                 </div>
                 
             </div>
             <div class="row my-2">
                 <div class="col-md-6">
-
+                        <input type="hidden" name="id" value="{{ $datosProducto->id }}">
                         <button type="submit" class="btn btn-success btn-block mb-2">Subastar</button>
                     </form>
                 </div>
