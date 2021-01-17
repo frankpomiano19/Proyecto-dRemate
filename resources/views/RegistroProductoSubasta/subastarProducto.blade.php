@@ -45,7 +45,7 @@
             <div class="row my-2 justify-content-center align-items-center">
 
                 <div class="col-md-6">
-                    {{-- <form method="POST" action="{{ route('subastar.productoD') }}"> --}}
+                    {{-- <form method="POST" action="{{ route('enviar.subasta') }}"> --}}
                     <form>
                         {{ csrf_field() }}
                         @csrf

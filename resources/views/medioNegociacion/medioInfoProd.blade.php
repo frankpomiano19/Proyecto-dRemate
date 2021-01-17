@@ -12,6 +12,8 @@
 
 @section('contenidoCSS')
 <link rel="stylesheet" href="{{asset('css/infoProducto.css')}}">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 @endsection
 
 
@@ -118,10 +120,10 @@
             </div>
             <div class="row container">
                 <div class="col-md-6">
-                    <label for="" class="label-fuerte">Ubicacion :  </label><label>@empty($producto->ubicacion) <em>No encontrado</em>@else {{$producto->ubicacion}} @endempty</label>
+                    <label for="" class="label-fuerte">Ubicación :</label><br><label>@empty($producto->ubicacion) <em>No encontrado</em>@else {{$producto->ubicacion}} @endempty</label>
                 </div>
                 <div class="col-md-6">
-                    <label for="" class="label-fuerte">Twitch :  </label> <label>@empty($producto->distrito) <em>No encontrado</em>@else{{$producto->distrito}}@endempty</label>
+                    <label for="" class="label-fuerte">Referencia :</label><br> <label>@empty($producto->distrito) <em>No encontrado</em>@else{{$producto->distrito}}@endempty</label>
                 </div>
             </div>                    
             <hr class="linea-divisora-medio">
@@ -132,7 +134,7 @@
             </div>                    
             
             <div class="col-md-12 col-sm-12 col-lg-12">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d248.57175341142286!2d-75.74884872392501!3d4.567398762624254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2spe!4v1608588746432!5m2!1ses-419!2spe" width="100%" height="500" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <div id="mapa" style="height: 390px;"></div>
             </div>
         </section>
     </div>
@@ -187,5 +189,18 @@
 @section('contenidoJSabajo')
 
 <script src="{{asset('js/jsMedioContacto.js')}}" ></script>
+<script>
+    var mymap = L.map('mapa').setView([{{$producto->latitud}},{{$producto->longitud}}], 15);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXlzdGljYWx0dXJ0bGUiLCJhIjoiY2tpeHVnajEyMHI4ODJxbXk0MHk2dW41biJ9.3j9sAGykKUhTh5pN81XD9w', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+    L.marker([{{$producto->latitud}},{{$producto->longitud}}]).addTo(mymap);
+    
+</script>
 
 @endsection

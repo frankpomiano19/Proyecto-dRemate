@@ -236,25 +236,19 @@ class HomeController extends Controller
 
     }
 
-    // public function registroEEE(Request $request){
+    public function enviarSubasta(Request $request){
 
-    //     // dd($request);
+        dd($request);
 
-    //     $request->validate([
-    //         'precio_inicial'=>'required|numeric|min:10|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
-    //         'inicio_subasta'=>'required',
-    //         'final_subasta'=>'required'
-    //     ]);
+        $request->validate([
+            'precio_inicial'=>'required|numeric|min:10|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
+            'inicio_subasta'=>'required',
+            'final_subasta'=>'required'
+        ]);
 
-    //     dd($request->final_subasta);
+        dd($request->final_subasta);
 
-    //     // $datospro = App\Models\Producto::where('id','=',$request->id)->first();
-
-    //     // dd($datospro);
-
-    //     // return view('RegistroProductoSubasta.subastarProducto')->with('datosProducto', $datospro);
-
-    // }
+    }
     
     public function product_calendar(Request $request){
         $prodcalendar = new App\Models\calendario_de_producto;
@@ -262,6 +256,16 @@ class HomeController extends Controller
         $prodcalendar->producto_id = $request->productoid;
         $prodcalendar->save();
         return back();
+    }
+
+    public function vistaSubasta($idpro){
+
+        $prod = App\Models\Producto::findOrFail($idpro);
+
+
+        // dd($prod);
+
+        return view('RegistroProductoSubasta/subastarProducto')->with('datosProducto', $prod);
     }
 
 }

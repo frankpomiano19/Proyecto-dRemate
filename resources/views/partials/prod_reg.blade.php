@@ -69,14 +69,7 @@
                     </form>
                 </td>
                 <td>
-                    <form method="POST" action="{{ route('subastar.producto') }}">
-                        
-                        {{csrf_field()}}
-                        @csrf
-                        <input type="text" style="display:none;" name="id" value="{{$producto->id}}">
-
-                        <button type="submit" class="btn btn-success">Ahora</button>
-                    </form>
+                    <a href="{{ route('subastar.producto',$producto->id) }} " style="color:black">Subastar</a>
                 </td>
 
             </tr>

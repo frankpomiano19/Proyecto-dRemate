@@ -43,12 +43,14 @@ Route::post('/info-editar',[userGuest::class,'comentarEdit'])->middleware('auth'
 Route::get('/info/fetch_data_product-{idUser}',[userGuest::class,'paginacionProductAjax']);
 
 
+//////////////////////////////////////
 
-Route::get('/subastarProducto', function () {
-    return view('RegistroProductoSubasta/subastarProducto');
-});
+// Route::get('/subastarProducto', function () {
+//     return view('RegistroProductoSubasta/subastarProducto');
+// });
 
 //////////////////////////////////////
+
 Route::get('/category', function () {
     return view('categorias');
 });
@@ -140,9 +142,13 @@ Route::post('/registroProducto', [RegistroProductoController::class,'formularioP
 
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->middleware('auth')->name('producto.registroee');
 
-Route::post('/subastarProducto', [HomeController::class,'registroEE'])->middleware('auth')->name('subastar.producto');
+Route::get('/subastarProducto-{idpro}', [HomeController::class, 'vistaSubasta'])->middleware('auth')->name("subastar.producto");
 
-// Route::post('/datosSubasta', [HomeController::class,'registroEEE'])->middleware('auth')->name('subastar.productoD');
+
+
+// Route::post('/subastarProducto', [HomeController::class,'registroEE'])->middleware('auth')->name('subastar.producto');
+
+Route::post('/enviarSubasta', [HomeController::class,'enviarSubasta'])->middleware('auth')->name('enviar.subasta');
 
 
 Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
