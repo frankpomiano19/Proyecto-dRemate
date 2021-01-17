@@ -129,7 +129,7 @@
                     <div>
                         <div class="row col-md-12 py-2 d-flex justify-content-around">
                             <button class="btn btn-danger btn-rojo-comu">Terminar Conversacion</button>
-                            <button class="btn btn-primary btn-rojo-mens">Iniciar Negociacion</button>
+                            {{-- <button class="btn btn-primary btn-rojo-mens">Iniciar Negociacion</button> --}}
                         </div>
 
                     </div>

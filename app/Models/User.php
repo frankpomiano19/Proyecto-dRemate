@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\ChatList;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -91,4 +92,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Producto::class, 'calendario_de_productos', 'user_id', 'producto_id');
     }
 
+
+    public function userEnviaNotiChat(){
+        return $this->hasMany(ChatNotification::class,'us_envia');
+    }
+
+    public function userRecibeNotiChat(){
+        return $this->hasMany(ChatNotification::class,'us_recibe');
+    }
 }

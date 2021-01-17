@@ -57,6 +57,14 @@ class MedioNegoController extends Controller
 
     public function loadChatRealTime($productUser){
         $producto = Producto::where('id','=',$productUser)->first();
+        if(auth()->user()->id!=$producto->user_id){
+            Auth::user()->userEnviaNotiChat()->create([
+                'us_envia'=>auth()->user()->id,
+                'us_recibe'=>$producto->user_id,
+                'pro_id'=>$productUser,
+                'confirmed'=>false
+            ]);        
+        }
         return view('broadcast.chatRealTime',compact('producto'));
     }
 
