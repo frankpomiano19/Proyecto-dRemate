@@ -263,6 +263,100 @@
   <div id="fixed"></div>
   
   <br><br>
+  {{-- Etiquetas fijadas --}}
+  <section class="container">
+    <h2 class="text-center">Etiquetas fijadas</h2>
+
+    <div class="row justify-content-between">
+      <div class="col-md-3 bg-dark text-white">
+        <p>Garantia cambiada a 2 años por todas la unidades producidas</p>
+      </div>
+      <div class="col-md-3 bg-dark text-white">
+        <p>Solo se hacen envio hacia Lima no hacia otros departamentos </p>
+      </div>
+      <div class="col-md-3 bg-dark text-white">
+        <p>En total son 50 unidades que se van a vender, no hay mas disponibles</p>
+      </div>
+    </div>
+  </section>
+  {{-- Comentarios --}}
+  <style>
+    .borderahora{
+      border-width: 2px;
+      border-color: blue;
+      border-style: solid;
+    }
+  </style>
+  <section class="container">
+    <h2 class="text-center">Comentarios</h2>
+    
+    {{-- Mensaje con comentario --}}
+    @foreach($commentUsers as $commentUser)
+      
+    <div class="row borderahora">
+      <p><a href="{{ route('comentarios-now', $commentUser->menSubUserEmisor->id) }}">{{ $commentUser->menSubUserEmisor->usuario }}</a></p>
+      <div class="col-md-12">
+        <p>{{ $commentUser->men_sub_mensaje }}</p>    
+        <button class="btn btn-success">Responder</button>
+      </div>
+    </div>
+    @endforeach
+
+    {{ $commentUsers->links() }}
+
+
+
+    {{-- Formulario --}}
+    <div class="row borderahora">
+      <div class="col-md-12">
+        <form action="{{ route('enviarMensaje') }}" method="POST">
+          @csrf
+          <textarea name="mensajeEnviado" class="autoExpand" id="" cols="30" rows="10" placeholder="inserte el comentario"></textarea>
+          <input type="hidden" name="idProducto" value="{{ $prod->id }}">
+          @if($errors->any())
+            <div>
+              <ul>
+                @foreach($errors->all() as $error)
+                  <li class="text-danger">{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+          <button class="btn btn-success" type="submit">Comentar</button>
+        </form>
+      </div>
+    </div>
+
+    {{-- Fin formulario --}}
+    <div class="row py-2">
+      <div class="offset-4"></div>
+      <div class="col-md-8 borderahora">
+        <p>Este es una respuesta al comentario que se habia madnado</p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-success">Responder</button>
+        </div>    
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="offset-4"></div>
+      <div class="col-md-8 borderahora">
+        <p>Este es una respuesta al comentario que se habia madnado</p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-success">Responder</button>
+        </div>    
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="offset-4"></div>
+      <div class="col-md-8 borderahora">
+        <p>Este es una respuesta al comentario que se habia madnado</p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-success">Responder</button>
+        </div>    
+      </div>
+    </div>
+    {{-- Fin Mensaje con Comentario --}}
+  </section>
 </div>
   
 @endsection

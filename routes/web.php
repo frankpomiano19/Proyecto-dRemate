@@ -84,9 +84,12 @@ Route::get('/subirProducto', function () {
 //Route::get('/rutaNoValida', [HomeController::class, 'viewproduct'])->name("ErrorNoValid");
 
 
+// Subasta para pujar
 
-Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->middleware('auth')->name("producto.detalles");
-
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
+    Route::post('enviarMensaje',[HomeController::class,'sendCommentProduct'])->name('enviarMensaje');        
+});
 
 
 // Route::post('/','HomeController@registro')->name('producto.registro');

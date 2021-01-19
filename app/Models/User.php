@@ -100,4 +100,12 @@ class User extends Authenticatable
     public function userRecibeNotiChat(){
         return $this->hasMany(ChatNotification::class,'us_recibe');
     }
+
+    public function userReceptorMenSub(){
+        return $this->hasMany(mensajeSubasta::class,'us_receptor');
+    }
+
+    public function userEmisorMenSub(){
+        return $this->hasMany(mensajeSubasta::class,'us_emisor');
+    }
 }

@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Support\Facades\Storage;
 use App;
+use Auth;
+use Carbon\Carbon;
+use App\Models\Producto;
+use App\Models\mensajeSubasta;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\SubirProductoRequest;
 use App\Http\Requests\SubirSubastaRequest;
-use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -39,21 +43,15 @@ class HomeController extends Controller
     
     public function viewproduct($idpro){
 
+
         $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
-
         $listaUsuario = $listaFavoritos->favoritos;
-
         $listaInicio = str_replace("[", "", $listaUsuario);
-
         $listaFin = str_replace("]", "", $listaInicio);
-
         $favoritos = explode(',',$listaFin);
-
         $tamanio = sizeof($favoritos);
-
         //Convertir a entero
         for($i = 0; $i<$tamanio;$i++){
-
             $temp = (int)$favoritos[$i];
             $favoritos[$i] = $temp;
         }
@@ -67,17 +65,19 @@ class HomeController extends Controller
         $iniciosubasta = new \Carbon\Carbon($prod->inicio_subasta);
         $limitepuja = new \Carbon\Carbon($prod->final_subasta);
         $productosRelac =  App\Models\Producto::where('categoria_id','=',$prod->categoria_id)->latest()->take(5)->get();
+        // Comment
+        $commentUsers = mensajeSubasta::where('pro_id','=',$prod->id)->orderBy('created_at','DESC')->paginate(10);
+        //End comment
+
         if ($ultimapuja === null) {
             $ultimoprecio = $prod->precio_inicial;
         } else {
             $ultimoprecio = $ultimapuja->valor_puja;
         }
 
-        // dd($favoritos);
 
-        // dd($productosRelac);
-
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos'));
+        //End comentarios
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers'));
     }
  
     public function buscaProducto(Request $request){
@@ -235,26 +235,6 @@ class HomeController extends Controller
         return view('RegistroProductoSubasta.subastarProducto')->with('datosProducto', $datospro);
 
     }
-
-    // public function registroEEE(Request $request){
-
-    //     // dd($request);
-
-    //     $request->validate([
-    //         'precio_inicial'=>'required|numeric|min:10|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
-    //         'inicio_subasta'=>'required',
-    //         'final_subasta'=>'required'
-    //     ]);
-
-    //     dd($request->final_subasta);
-
-    //     // $datospro = App\Models\Producto::where('id','=',$request->id)->first();
-
-    //     // dd($datospro);
-
-    //     // return view('RegistroProductoSubasta.subastarProducto')->with('datosProducto', $datospro);
-
-    // }
     
     public function product_calendar(Request $request){
         $prodcalendar = new App\Models\calendario_de_producto;
@@ -262,6 +242,32 @@ class HomeController extends Controller
         $prodcalendar->producto_id = $request->productoid;
         $prodcalendar->save();
         return back();
+    }
+
+    public function sendCommentProduct(Request $request){
+
+        $fieldCreate= [
+            'mensajeEnviado'=> 'required',
+            'idProducto' =>'required',
+        ];
+        $messageError=[
+            'mensajeEnviado.required' =>'El campo de texto es obligatorio',
+            'idProducto.required' =>'Falta el identificador para el producto',
+        ];
+        $validacion = Validator::make($request->all(),$fieldCreate,$messageError);
+        if($validacion->fails()){
+            return back()->withErrors($validacion);
+        }
+
+        $userReceptor = Producto::where('id','=',$request->idProducto)->first();
+        Auth::user()->userEmisorMenSub()->create([
+            'men_sub_mensaje' => $request->mensajeEnviado,
+            'us_receptor'=>(int)$userReceptor->user_id,
+            'pro_id' =>(int)$request->idProducto
+        ]);
+
+        $ruta = '/producto-'.$request->idProducto;
+        return redirect($ruta);
     }
 
 }
