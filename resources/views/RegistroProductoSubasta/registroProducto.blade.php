@@ -248,6 +248,7 @@
             </form>
             <a href="{{ url('/menuSubasta') }}" class="btn btn-danger btn-block"
                 style="text-decoration: none; color:white;">Cancelar</a>
+             
         </div>
     </div>
 </div>

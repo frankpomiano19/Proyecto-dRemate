@@ -34,6 +34,11 @@ Route::get('/info', function () {
 });
 
 Route::get('/info/fetch_data_coment-{idUser}',[userGuest::class,'paginacionAjax']);
+//calificar
+Route::get('/infoa-{idUser}',[userGuest::class,'calificarNow'])->name('calificar-now');
+Route::post('/infoa-calificar',[userGuest::class,'calificarCreate'])->middleware('auth')->name('calificar-create');
+Route::post('/infoa-cal',[userGuest::class,'calificacionAjax'])->middleware('auth')->name('calif-ajax');
+// comentarios
 Route::get('/info-{idUser}',[userGuest::class,'comentarNow'])->name('comentarios-now');
 Route::post('/info-crear',[userGuest::class,'comentarCreate'])->middleware('auth')->name('comentarios-create');
 Route::post('/info-editar',[userGuest::class,'comentarEdit'])->middleware('auth')->name('comentarios-edit');
