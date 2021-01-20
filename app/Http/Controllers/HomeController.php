@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App;
 use App\Http\Requests\SubirProductoRequest;
 use App\Http\Requests\SubirSubastaRequest;
@@ -262,6 +263,15 @@ class HomeController extends Controller
         $prodcalendar->producto_id = $request->productoid;
         $prodcalendar->save();
         return back();
+    }
+
+
+    public function proximassubastas(){
+        $hoy = \Carbon\Carbon::now();
+        $proxsem = \Carbon\Carbon::now()->addWeeks(1);
+        $proxsub = App\Models\Producto::all()->where('inicio_subasta','<',$proxsem)
+                        ->where('inicio_subasta','>',$hoy)->sortBy('inicio_subasta');
+        return view("proxsubastas", compact('proxsub'));
     }
 
 }

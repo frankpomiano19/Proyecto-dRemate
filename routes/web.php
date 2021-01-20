@@ -204,3 +204,5 @@ Route::post('/infoUser',[userController::class,'reportarUser'] )->name('report-u
 Route::get('/informenos', function () {
     return view('user_reported');
 })->name('user_reported');
+
+Route::get('/proxsubastas',[HomeController::class,'proximassubastas'])->name('prosubastas');;
