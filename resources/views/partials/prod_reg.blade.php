@@ -69,7 +69,7 @@
                     </form>
                 </td>
                 <td>
-                    <a href="{{ route('subastar.producto',$producto->id) }} " style="color:black">Subastar</a>
+                    <a class="btn btn-success" href="{{ route('subastar.producto',$producto->id) }} " style="color:white">Editar</a>
                 </td>
 
             </tr>

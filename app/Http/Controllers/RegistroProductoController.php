@@ -156,7 +156,9 @@ class RegistroProductoController extends Controller
     }
 
     public function pagProReg(){
-        $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
+        $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)
+        ->where('final_subasta','=','NULL')
+        ->paginate(4,['*'],'pagination-prod-reg');
         return view('partials.prod_reg',compact('productos'))->with('i', (request()->input('page', 1) - 1) * 5);
         
     }
