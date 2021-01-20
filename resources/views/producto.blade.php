@@ -264,21 +264,6 @@
   
   <br><br>
   {{-- Etiquetas fijadas --}}
-  <section class="container">
-    <h2 class="text-center">Etiquetas fijadas</h2>
-
-    <div class="row justify-content-between">
-      <div class="col-md-3 bg-dark text-white">
-        <p>Garantia cambiada a 2 años por todas la unidades producidas</p>
-      </div>
-      <div class="col-md-3 bg-dark text-white">
-        <p>Solo se hacen envio hacia Lima no hacia otros departamentos </p>
-      </div>
-      <div class="col-md-3 bg-dark text-white">
-        <p>En total son 50 unidades que se van a vender, no hay mas disponibles</p>
-      </div>
-    </div>
-  </section>
   {{-- Comentarios --}}
   <style>
     .borderahora{
@@ -288,30 +273,50 @@
     }
   </style>
   <section class="container">
-    <h2 class="text-center">Comentarios</h2>
     
     {{-- Mensaje con comentario --}}
+    <div class="row">
+
+    <div class="col-md-8">
+      <h2 class="text-center">Preguntas y respuestas / Acordar .....</h2>
+
     @foreach($commentUsers as $commentUser)
       
     <div class="row borderahora">
-      <p><a href="{{ route('comentarios-now', $commentUser->menSubUserEmisor->id) }}">{{ $commentUser->menSubUserEmisor->usuario }}</a></p>
+      <p><a href="{{ route('comentarios-now', $commentUser->menSubUserEmisor->id) }}">{{ $commentUser->menSubUserEmisor->usuario }}</a>&nbsp;-&nbsp;Hoy</p>
       <div class="col-md-12">
         <p>{{ $commentUser->men_sub_mensaje }}</p>    
-        <button class="btn btn-success">Responder</button>
+
       </div>
     </div>
-    @endforeach
+    <div class="row py-2">
+      <div class="offset-4"></div>
+      <div class="col-md-8">
+        <p>Este es una respuesta al comentario que se habia madnado</p>
+        <div class="d-flex justify-content-end">
+        </div>    
+      </div>
+    </div>
 
+    <div class="row py-2">
+      <div class="offset-4"></div>
+      <div class="col-md-8">
+        <p>Este es una respuesta al comentario que se habia madnado</p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-success">Responder</button>
+        </div>    
+      </div>
+    </div>
+
+    @endforeach
     {{ $commentUsers->links() }}
 
-
-
     {{-- Formulario --}}
-    <div class="row borderahora">
+    <div class="row">
       <div class="col-md-12">
         <form action="{{ route('enviarMensaje') }}" method="POST">
           @csrf
-          <textarea name="mensajeEnviado" class="autoExpand" id="" cols="30" rows="10" placeholder="inserte el comentario"></textarea>
+          <textarea name="mensajeEnviado" class="autoExpand" id="" cols="90%" rows="4" placeholder="inserte el comentario"></textarea>
           <input type="hidden" name="idProducto" value="{{ $prod->id }}">
           @if($errors->any())
             <div>
@@ -327,35 +332,64 @@
       </div>
     </div>
 
+
     {{-- Fin formulario --}}
-    <div class="row py-2">
-      <div class="offset-4"></div>
-      <div class="col-md-8 borderahora">
-        <p>Este es una respuesta al comentario que se habia madnado</p>
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-success">Responder</button>
-        </div>    
+
+  </div>
+
+  <div class="col-md-4">
+    <section class="container">
+      <h2 class="text-center">Acuerdos Establecidos</h2>
+      @if ($prod->productoAgreement->count()!=null)
+      @else
+        @if (auth()->user()->id == $prod->user_id)
+            
+        @else
+        <h4 class="text-muted text-center text-danger">Ningun acuerdo establecido</h4>                      
+        @endif
+          
+      @endif
+      @if (auth()->user()->id == $prod->user_id)
+      <h4 style="font-size: 10px" class="text-center text-danger">* Solo se permite 6 acuerdos maximo, no podra ser editado ni eliminado</h4>
+       @if ($prod->productoAgreement->count()<6)
+       <form action="{{ route('setAgreement') }}" method="POST">
+        @csrf
+       <div class="row justify-content-center">
+        <button type="submit"><i class="fa fa-plus-square" aria-hidden="true">&nbsp; <strong>Agregar</strong></i></button>
+          <br>
+          <textarea name="agreementUser" class="auto-expand" id="" cols="100%" rows="2" placeholder="Insertar el acuerdo"></textarea>
+          <input type="hidden" name="idProductoNow" value="{{ $prod->id }}">
+        </div>        
+      </form>
+           
+       @else
+         <div class="row justify-content-center">
+          <h4 style="font-size: 12px" class="text-center text-danger">YA LLEGASTE AL LIMITE DE ACUERDOS</h4>
+         </div>        
+
+       @endif 
+
+    @else
+    @endif
+  
+    @foreach ($prod->productoAgreement as $agreement)
+    <br>
+    <div class="row justify-content-between">
+      <div class="col-md-12 bg-dark text-white">
+        <p>{{ $agreement->agre_message }} </p>
       </div>
     </div>
-    <div class="row py-2">
-      <div class="offset-4"></div>
-      <div class="col-md-8 borderahora">
-        <p>Este es una respuesta al comentario que se habia madnado</p>
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-success">Responder</button>
-        </div>    
-      </div>
-    </div>
-    <div class="row py-2">
-      <div class="offset-4"></div>
-      <div class="col-md-8 borderahora">
-        <p>Este es una respuesta al comentario que se habia madnado</p>
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-success">Responder</button>
-        </div>    
-      </div>
-    </div>
-    {{-- Fin Mensaje con Comentario --}}
+      
+    @endforeach
+    </section>
+  
+  </div>
+</div>
+
+
+    
+
+
   </section>
 </div>
   

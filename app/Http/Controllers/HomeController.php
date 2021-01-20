@@ -270,4 +270,32 @@ class HomeController extends Controller
         return redirect($ruta);
     }
 
+    public function setAgreement(Request $request){
+ 
+ 
+        $fieldCreate= [
+            'agreementUser'=> 'required',
+            'idProductoNow' =>'required',
+        ];
+        $messageError=[
+            'agreementUser.required' =>'El campo de texto es obligatorio',
+            'idProductoNow.required' =>'Falta el identificador para el producto',
+        ];
+        $validacion = Validator::make($request->all(),$fieldCreate,$messageError);
+        if($validacion->fails()){
+            return back()->withErrors($validacion);
+        }
+
+
+        $productoNow = Producto::where('id','=',$request->idProductoNow)->first();
+        if($productoNow->productoAgreement->count()<6){
+            $productoNow->productoAgreement()->create([
+                'agre_message' => $request->agreementUser,
+            ]);
+        }
+        $ruta = '/producto-'.$request->idProductoNow;
+        return redirect($ruta);
+ 
+    }
+
 }

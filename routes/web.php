@@ -87,8 +87,9 @@ Route::get('/subirProducto', function () {
 // Subasta para pujar
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
-    Route::post('enviarMensaje',[HomeController::class,'sendCommentProduct'])->name('enviarMensaje');        
+    Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");//Punto de entrada
+    Route::post('enviarMensaje',[HomeController::class,'sendCommentProduct'])->name('enviarMensaje');//Comentario
+    Route::post('setAgreement',[HomeController::class,'setAgreement'])->name('setAgreement');//Acuerdos
 });
 
 
