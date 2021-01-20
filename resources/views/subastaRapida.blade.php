@@ -48,6 +48,9 @@
             <h1 class="titulo-card-header-2">d'Remate</h1>
             <hr style="border-color: white">
             <hr style="border-color: white">
+            @auth
+            <h1 class="titulo-card-header-2">Bienvenido a la subasta rapida</h1>
+            @else
             <h1 class="titulo-card-header-2">Bienvenido a la subasta rapida</h1>
             <h2 style="font-size: 20px">Recuerda que para pujar, necesitas estar registrado</h2>
             <div class="btn-group py-4" role="group">
@@ -55,7 +58,8 @@
                         Registrarse</i></a>
                 <a href="{{ route('login') }}" role="button" class="btn btn-info"><i class="fa fa-user">
                         Iniciar sesion</i></a>
-            </div>
+                </div>
+            @endauth
             <h4 style="font-size: 20px">Puedes conocer productos por categorias</h4>
             <div class="btn-group py-4" role="group">
                 <a href="{{ route('register') }}" role="button" class="btn btn-info"><i class="fa fa-chevron-right">

@@ -33,29 +33,23 @@
         
         <div class="c-hero__feats">
             <a href="/subastaRapida" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/feat1.png">
+                <img src="http://imgfz.com/i/gVFiRSt.jpeg">
                     <h2>Subastas<br>
                         En vivo</h2>
                         <span>Conoce más</span>
             </a>
             <a href="/subastaRapida" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/results-2.png">
+                <img src="http://imgfz.com/i/P5uQzyi.png">
                     <h2>Resultados<br>
                         anteriores</h2>
                     <span>Conoce más</span>
             </a>
             <a href="/category" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/valuation-2.png">
+                <img src="http://imgfz.com/i/Rnp1gBz.jpeg">
                     <h2>Categorias<br>
                         Variadas</h2>
                         <span>Conoce más</span>
             </a>
-            <!--<a href="#" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/feat1.png">
-                     <h2>Subastas<br>
-                    En vivo</h2>
-                    <span>Conoce más</span>
-            </a>-->
         </div>
     </div>
 </div>
@@ -151,261 +145,6 @@
         </div>
     </div>
 </section>
-
-{{-- <section class="c-callout" style="background-color: #000000;;">
-    <div class="c-callout__wrap">
-        <span class="c-callout__icon" style="background-image:url(https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/newsletter-3.png);">
-        </span>
-        <div class="c-callout__message">
-            <p>
-                <strong>¿Quieres comprar ahora?</strong>
-            </p>
-        </div>
-        <a href="/subastaRapida" class="c-callout__btn">
-                Subastas
-        </a>
-    </div>
-</section> --}}
-
-
-{{-- <div class="deals_featured">
-    <div class="container">
-        <div class="row"><h2 style="background: #f3f6fd">Productos destacados</h2>
-            <div class="col d-flex flex-lg-row flex-column align-items-center justify-content-start">
-                <div class="deals">
-                    <div class="deals_title">Destacado</div>
-                    <div class="deals_slider_container">
-                    <div class="owl-carousel owl-theme deals_slider owl-loaded owl-drag">
-
-                    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s"  style="width: auto"><div class="owl-item active" style="margin-right: 30px;"><div class="owl-item deals_item">
-                    <div class="deals_image"><img src="https://preview.colorlib.com/theme/onetech/images/deals.png" alt=""></div>
-                    <div class="deals_content" style="margin-bottom:15px">
-                    <div class="deals_info_line d-flex flex-row justify-content-start">
-                    <div class="deals_item_category"><a href="#">Headphones</a></div>
-                    <div class="deals_item_price_a ml-auto">$300</div>
-                    </div>
-                    <div class="deals_info_line d-flex flex-row justify-content-start">
-                    <div class="deals_item_name">Beoplay H7</div>
-                    <div class="deals_item_price ml-auto">$225</div>
-                    </div>
-
-                    <div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-                    <div class="deals_timer_title_container">
-                    <div class="deals_timer_title">Oferta ahora</div>
-                    <div class="deals_timer_subtitle">Tiempo restante:</div>
-                    </div>
-                    <div class="deals_timer_content ml-auto">
-                    <div class="deals_timer_box clearfix" data-target-time="">
-                    <div class="deals_timer_unit">
-                    <div id="deals_timer1_hr" class="deals_timer_hr">47</div>
-                    <span>hours</span>
-                    </div>
-                    <div class="deals_timer_unit">
-                    <div id="deals_timer1_min" class="deals_timer_min">23</div>
-                    <span>mins</span>
-                    </div>
-                    <div class="deals_timer_unit">
-                    <div id="deals_timer1_sec" class="deals_timer_sec">05</div>
-                    <span>secs</span>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div></div></div></div></div>
-                    </div>
-                </div>
-                <div class="featured">
-                    <div class="tabbed_container">
-                        <div class="tabs">
-                            <ul class="clearfix">
-                                <li class="active">Ofertas de la semana</li>
-                            </ul>
-                            <div class="tabs_line"><span style="left: 0px; width: 175px;"></span></div>
-                        </div>
-                        <div class="product_panel panel active">
-                            <div class="featured_slider slider slick-initialized slick-slider slick-dotted">
-                                <div class="slick-list draggable">
-                                    <div class="slick-track" style="opacity: 1; width: 612px; transform: translate3d(0px, 0px, 0px);">
-                                        <div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 153px;" tabindex="0" role="tabpanel" id="slick-slide00" aria-describedby="slick-slide-control00">
-                                            <div>
-                                                <div class="featured_slider_item" style="width: 100%; display: inline-block;">
-                                                    <div class="border_active active"></div>
-                                                    <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_1.png" alt="" data-pagespeed-url-hash="2018603916"></div>
-                                                        <div class="product_content">
-                                                            <div class="product_price discount">$225<span>$300</span></div>
-                                                            <div class="product_name">
-                                                                <div>
-                                                                    <a href="product.html" tabindex="0">Huawei MediaPad...</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product_extras">
-                                                                <button class="product_cart_button" tabindex="0">Add to Cart</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="featured_slider_item" style="width: 100%; display: inline-block;">
-                                                    <div class="border_active active"></div>
-                                                    <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_2.png" alt="" data-pagespeed-url-hash="2313103837"></div>
-                                                        <div class="product_content">
-                                                            <div class="product_price">$379</div>
-                                                            <div class="product_name">
-                                                                <div>
-                                                                    <a href="product.html" tabindex="0">Apple iPod shuffle</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product_extras">
-                                                                <button class="product_cart_button active" tabindex="0">Add to Cart</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 153px;" tabindex="0" role="tabpanel" id="slick-slide01">
-                                            <div>
-                                                <div class="featured_slider_item" style="width: 100%; display: inline-block;">
-                                                    <div class="border_active active"></div>
-                                                    <div class="product_item d-flex flex-column align-items-center justify-content-center text-center">
-                                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_3.png" alt="" data-pagespeed-url-hash="2607603758"></div>
-                                                        <div class="product_content">
-                                                            <div class="product_price">$379</div>
-                                                            <div class="product_name">
-                                                                <div>
-                                                                    <a href="product.html" tabindex="0">Sony MDRZX310W</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product_extras">
-                                                                <button class="product_cart_button" tabindex="0">Add to Cart</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="featured_slider_item" style="width: 100%; display: inline-block;">
-                                                    <div class="border_active active"></div>
-                                                    <div class="product_item discount d-flex flex-column align-items-center justify-content-center text-center">
-                                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_4.png" alt="" data-pagespeed-url-hash="2902103679"></div>
-                                                        <div class="product_content">
-                                                            <div class="product_price discount">$225<span>$300</span></div>
-                                                            <div class="product_name">
-                                                                <div>
-                                                                    <a href="product.html" tabindex="0">LUNA Smartphone</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product_extras">
-                                                                <button class="product_cart_button" tabindex="0">Add to Cart</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 153px;" tabindex="0" role="tabpanel" id="slick-slide02">
-                                            <div>
-                                                <div class="featured_slider_item" style="width: 100%; display: inline-block;">
-                                                    <div class="border_active active"></div>
-                                                    <div class="product_item d-flex flex-column align-items-center justify-content-center text-center">
-                                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_5.png" alt="" data-pagespeed-url-hash="3196603600"></div>
-                                                        <div class="product_content">
-                                                            <div class="product_price">$225</div>
-                                                            <div class="product_name">
-                                                                <div>
-                                                                    <a href="product.html" tabindex="0">Canon STM Kit...</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product_extras">
-                                                                <button class="product_cart_button" tabindex="0">Add to Cart</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="featured_slider_item" style="width: 100%; display: inline-block;">
-                                                    <div class="border_active active"></div>
-                                                    <div class="product_item d-flex flex-column align-items-center justify-content-center text-center">
-                                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_6.png" alt="" data-pagespeed-url-hash="3491103521"></div>
-                                                        <div class="product_content">
-                                                            <div class="product_price">$379</div>
-                                                            <div class="product_name">
-                                                                <div>
-                                                                    <a href="product.html" tabindex="0">Samsung J330F...</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product_extras">
-                                                            <button class="product_cart_button" tabindex="0">Add to Cart</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 153px;" tabindex="0" role="tabpanel" id="slick-slide03">
-                                            <div>
-                                                <div class="featured_slider_item" style="width: 100%; display: inline-block;">
-                                                    <div class="border_active"></div>
-                                                    <div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-                                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_7.png" alt="" data-pagespeed-url-hash="3785603442"></div>
-                                                        <div class="product_content">
-                                                            <div class="product_price">$379</div>
-                                                            <div class="product_name">
-                                                                <div>
-                                                                    <a href="product.html" tabindex="0">Lenovo IdeaPad</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product_extras">
-                                                            <button class="product_cart_button" tabindex="0">Add to Cart</button>
-                                                            </div>
-                                                        </div>
-                                                        <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="featured_slider_item" style="width: 100%; display: inline-block;">
-                                                    <div class="border_active"></div>
-                                                    <div class="product_item d-flex flex-column align-items-center justify-content-center text-center">
-                                                        <div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="https://preview.colorlib.com/theme/onetech/images/featured_8.png" alt="" data-pagespeed-url-hash="4080103363"></div>
-                                                        <div class="product_content">
-                                                            <div class="product_price">$225</div>
-                                                            <div class="product_name">
-                                                                <div>
-                                                                    <a href="product.html" tabindex="0">Digitus EDNET...</a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="product_extras">
-                                                            <button class="product_cart_button" tabindex="0">Add to Cart</button>
-                                                            </div>
-                                                        </div>
-                                                    <div class="product_fav"><i class="fa fa-heart"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="featured_slider_dots_cover"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
-
 
 @endsection
 

@@ -18,7 +18,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-namespace App\Libreria\Mail;
+namespace App\Libreria;
 
 /**
  * PHPMailer - PHP email creation and transport class.

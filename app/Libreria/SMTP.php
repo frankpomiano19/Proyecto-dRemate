@@ -18,7 +18,7 @@
  * FITNESS FOR A PARTICULAR PURPOSE.
  */
 
-namespace App\Libreria\Mail;
+namespace App\Libreria;
 
 /**
  * PHPMailer RFC821 SMTP email transport class.

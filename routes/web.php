@@ -7,6 +7,7 @@ use App\Http\Controllers\userController ;
 use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
 use App\Http\Controllers\userGuest;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MedioNegoController;
 use Illuminate\Http\Request;
 
@@ -160,6 +161,8 @@ Route::post('/', [SubastaRapController::class,'sumarVendedor'])->middleware('aut
 Route::post('/', [HomeController::class,'agregarFavorito'])->middleware('auth')->name('producto.favorito');
 
 //GET
+Route::get('/enviarCorreo',[MailController::class,'enviar']);
+
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
 Route::get('/favoritos',[SubastaRapController::class,'productosFavoritos'])->middleware('auth')->name('productos.favoritos');
