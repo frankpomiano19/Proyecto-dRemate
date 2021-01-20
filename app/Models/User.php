@@ -108,4 +108,8 @@ class User extends Authenticatable
     public function userEmisorMenSub(){
         return $this->hasMany(mensajeSubasta::class,'us_emisor');
     }
+    public function userReportUser(){
+        return $this->hasMany(Report_user::class,'user_denunc_id');
+    }
+
 }
