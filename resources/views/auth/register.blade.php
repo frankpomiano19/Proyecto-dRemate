@@ -87,7 +87,6 @@
                                         @enderror
 
                                     </div>
-
                                     <!--<div class="form-label-group">
                                         <input type="text" id="inputTelef"
                                             class="form-control @error('Teléfono') is-invalid @enderror"
@@ -111,8 +110,6 @@
                                             </div>
                                         </div>
 
-
-
                                         <div class="form-group">
                                             <label >Fecha de nacimiento</label>
                                            <div class="input-group">
@@ -124,13 +121,6 @@
                                                   max="3000-12-31" class="form-control"  >                                                   
                                             </div>
                                         </div>
-
-
-
-
-
-
-
 
                                     <hr class="linea-negra" style="border-color: black;border-width:1px;border-radius:50%;">
 

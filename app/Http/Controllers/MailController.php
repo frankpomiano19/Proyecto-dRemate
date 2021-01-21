@@ -11,18 +11,30 @@ class MailController extends Controller
 {
     public function enviar(Request $request)
     {
-        // $asunto = $request->input('Suscripciòn a dRemate');
-        // $destinatario = $request->input('Correo registrado');
-        // $cuerpo = $request->input('Gracias por suscribirte a nuestra plataforma');
+        // $usuario = $request->usuario;
+        // $correo = $request->email;
 
-        $asunto = "Suscripcion dRemate";
+        // $cuerpo = "<div style='text-align:center; background-color:#FBEEE6; padding:2px;'>
+        // <h1 style='color:black;'>$usuario, Gracias por suscribirte.</h1>
+        // <h2 style='color:black;'>Recibirás información de las subastas que mas te interesen</h2>
+        // <img sytle='width:5px;height:5px;' src='http://imgfz.com/i/LiPHm9E.png'>
+        // <div>
+        // <button style='background-color:#58D68D; border:1px solid black;'><a style='text-align: center; text-decoration: none; color:black; display: inline-block; width: 100%;' href='http://dremate.herokuapp.com/subastaRapida'>Ir a D'REMATE</a></button>
+        // </div>
+        // </div>
+        // ";
+
+        $asunto = "Suscripción D'REMATE";
         $destinatario = "cruzmanuelar@gmail.com";
-        $cuerpo = "<h1>Gracias por suscribirte, recibirás informacion de las subastas que mas te interesen</h1>
-        <h4>Jjeje</h4>
-        <img src="{{asset('img/assets/img1.png')}}">
-        <img src="{{asset('img/assets/img2.png')}}">
-        <img src="{{asset('img/assets/img3.png')}}"";
-        
+        $cuerpo = "<div style='text-align:center; background-color:#FBEEE6; padding:2px;'>
+        <h1 style='color:black;'>Gracias por suscribirte.</h1>
+        <h2 style='color:black;'>Recibirás información de las subastas que mas te interesen</h2>
+        <img sytle='width:5px;height:5px;' src='http://imgfz.com/i/LiPHm9E.png'>
+        <div>
+        <button style='background-color:#58D68D; border:1px solid black;'><a style='text-align: center; text-decoration: none; color:black; display: inline-block; width: 100%;' href='http://dremate.herokuapp.com/subastaRapida'>Ir a D'REMATE</a></button>
+        </div>
+        </div>
+        ";
 
         $mail = new PHPMailer(true);
         $mail->CharSet = 'UTF-8';
