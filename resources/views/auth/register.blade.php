@@ -143,11 +143,14 @@
                                             autocomplete="new-password">
                                         <label for="inputConfirmPassword">Repetir Contreseña</label>
                                     </div>
-
+                                    <div class="form-inline mb-2">
+                                        <input class="mr-2" type="checkbox" name="suscripcion">
+                                        <label>Deseo suscribirme a D'REMATE</label>
+                                    </div>
 
                                     <button class="btn btn-lg btn-primary btn-block text-uppercase"
                                         type="submit">Registrarse</button>
-                                    <a class="d-block text-center mt-2 small" href="{{ route('login') }}">Login</a>
+                                    <a class="d-block text-center mt-2 small" href="{{ route('login') }}">Iniciar sesiòn</a>
                                     <hr class="my-4">
                                     <!--
                                                                                                                                                                                                                                                                             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i

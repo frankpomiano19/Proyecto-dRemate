@@ -14,6 +14,7 @@ class MailController extends Controller
         // $usuario = $request->usuario;
         // $correo = $request->email;
 
+    
         // $cuerpo = "<div style='text-align:center; background-color:#FBEEE6; padding:2px;'>
         // <h1 style='color:black;'>$usuario, Gracias por suscribirte.</h1>
         // <h2 style='color:black;'>Recibirás información de las subastas que mas te interesen</h2>

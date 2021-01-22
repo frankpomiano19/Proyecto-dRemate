@@ -19,10 +19,7 @@
 
 <div class="text-center text-white">
 <div class="text-center text-white">
-<a class="btn btn-success" href="{{ route('producto.registroe') }}" role="button" class="btn btn-info">Registrar nuevo Producto
-
-</a>
-    <h1>ACA TOR</h1>
+<a class="btn btn-success mb-2" href="{{ route('producto.registroe') }}" role="button" class="btn btn-info">Registrar nuevo Producto</a>
 
     <table class="table table-hover table-striped">
         <thead class="thead-dark">

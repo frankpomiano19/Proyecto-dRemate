@@ -18,9 +18,7 @@
 
 <div class="text-center text-white">
 <div class="text-center text-white">
-<a class="btn btn-success" href="{{ route('producto.registroee') }}" role="button" class="btn btn-info">Registrar y Subastar producto
-
-</a>
+<a class="btn btn-success mb-2" href="{{ route('producto.registroee') }}" role="button" class="btn btn-info">Registrar y Subastar producto</a>
 
 
 <table class="table table-hover table-striped">
