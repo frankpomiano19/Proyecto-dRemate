@@ -14,11 +14,32 @@
 @section('contenidoCSS')
     <!-- Colocar css-->
     <link rel="stylesheet" href="css/styleProduct.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+        
 @endsection
 
 
 @section('contenido')
-
+  <!-- Modal de usuario bloqueado-->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">El producto {{$prod->nombre_producto}} ha sido bloqueado</h5>
+           
+        </div>
+        <div class="modal-body">
+          El producto del usuario {{$prod->productoUserPropietario->usuario}} ha sido bloqueado. Este usuario ha sido reportado por infringir las normas de la página. Le recomendamos volver a Subasta Rápida.
+        </div>
+        <div class="modal-footer">
+          
+          <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    
     
   <div class="product">
     <br><br>
@@ -43,8 +64,41 @@
   <br>
   <!-- Información del producto -->
   <div class="container2">
-    <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">{{$cat->nombre_categoria}}</a>  </h5>
-    <h3 class="product-title">{{$prod->nombre_producto}}</h3>
+    <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">{{$cat->nombre_categoria}}</a></h5>
+    <div class="row">
+
+      <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
+        {{ csrf_field() }}
+        @csrf
+        <input type="hidden" name="favorito" value={{ $prod->id }}>
+
+          @foreach ($favoritos as $fav)
+
+            @if ($fav == $prod->id)
+              <?php
+                $favoritoL = 1;
+              ?>
+              @break
+            @else
+              <?php
+                $favoritoL = 0;
+              ?>
+            @endif
+
+          @endforeach
+
+          @if($favoritoL == 1)
+                                                    
+            <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
+            
+          @else
+            <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+          @endif      
+          
+        </form>
+
+      <div class="col-md-4"><h3 class="product-title">{{$prod->nombre_producto}}</h3></div>
+    </div>
     <div class="row mb-2">
         <div class="col-md-5">
             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -100,7 +154,7 @@
                   
                   <div class="precio_inicial_producto p-2">
                     <h5>Precio inicial: S/. {{$prod->precio_inicial}}</h5>
-                  </div>
+                  </div>                  
                   <div class="comienzosubasta" id="presubasta">
                     <h5>Subasta inicia en:<div id="comienzosubasta"></div></h5>
                   </div>
@@ -171,7 +225,9 @@
                   @endforeach
                 </tbody>
               </table>
+
             </div>
+            
           </div>
         </div>
     </div>
@@ -179,53 +235,180 @@
   <!-- fin de la Información del producto -->
   <br>
 
-
-  <div class="container3">
-    <ul class="nav nav-tabs">
-      <li class="nav-item">
-        <a class="nav-link active" data-toggle="tab" href="#descripcion">Descripción</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#opiniones">Opiniones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#estadisticas">Estadísticas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#similares">Subastas similares</a>
-      </li>
-    </ul>
-    
-    
-    <div class="tab-content">
-      <div class="tab-pane container active" id="descripcion">
-        <h5 class="tilulo_producto my-2">{{$prod->nombre_producto}}</h5>
-        <p style='font-family: "Times New Roman", Times, serif;'> {{$prod->descripcion}} </p>
-        <!--
-        <h5>Caracteristicas</h5>
-          <ul style='font-family: "Times New Roman", Times, serif;'>
-            <li>lorem</li>
-            <li>lorem</li>
-            <li>lorem</li>
-            
-            <li>
-               
-            </li>
-            
-          </ul>
-            -->
-      </div>
-      <div class="tab-pane container fade" id="opiniones">
-        <p>Ninguna opinion encontrada</p>
-      </div>
-      <div class="tab-pane container fade" id="estadisticas">
-        <p>Estadisticas no calculadas</p>
-      </div>
-      <div class="tab-pane container fade" id="similares">
-        <p>Area en mantenimiento</p>
+  <div id="detalles" style="min-height: 450px;">
+    <div id="descri">
+      <div class="container3">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#descripcion">Descripción</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#opiniones">Opiniones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#estadisticas">Estadísticas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#similares">Subastas similares</a>
+          </li>
+        </ul>
+        
+        <div class="tab-content">
+          <div class="tab-pane container active" id="descripcion">
+            <h5 class="tilulo_producto my-2">{{$prod->nombre_producto}}</h5>
+            <p style='font-family: "Times New Roman", Times, serif;'> {{$prod->descripcion}} </p>
+          </div>
+          <div class="tab-pane container fade" id="opiniones">
+            <p>Ninguna opinion encontrada</p>
+          </div>
+          <div class="tab-pane container fade" id="estadisticas">
+            <p>Estadisticas no calculadas</p>
+          </div>
+          <div class="tab-pane container fade" id="similares">
+            <p>Area en mantenimiento</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div><br><br>
+    
+    <div id="ubicacion">
+      <h3>Ubicación: {{$prod->ubicacion}}</h3>
+      <p><b>Referencia:</b> {{$prod->distrito}}</p>
+      <div id="mapa" style="height: 390px;"></div>
+    </div>
+  </div>
+  
+  <div id="fixed"></div>
+  
+  <br><br>
+  {{-- Etiquetas fijadas --}}
+  {{-- Comentarios --}}
+  <style>
+    .borderahora{
+      border-width: 2px;
+      border-color: blue;
+      border-style: solid;
+    }
+  </style>
+  <section class="container">
+    
+    {{-- Mensaje con comentario --}}
+    <div class="row">
+
+    <div class="col-md-8">
+      <h2 class="text-center">Preguntas y respuestas / Acordar .....</h2>
+
+    @foreach($commentUsers as $commentUser)
+      
+    <div class="row borderahora">
+      <p><a href="{{ route('comentarios-now', $commentUser->menSubUserEmisor->id) }}">{{ $commentUser->menSubUserEmisor->usuario }}</a>&nbsp;-&nbsp;Hoy</p>
+      <div class="col-md-12">
+        <p>{{ $commentUser->men_sub_mensaje }}</p>    
+
+      </div>
+    </div>
+    <div class="row py-2">
+      <div class="offset-4"></div>
+      <div class="col-md-8">
+        <p>Este es una respuesta al comentario que se habia madnado</p>
+        <div class="d-flex justify-content-end">
+        </div>    
+      </div>
+    </div>
+
+    <div class="row py-2">
+      <div class="offset-4"></div>
+      <div class="col-md-8">
+        <p>Este es una respuesta al comentario que se habia madnado</p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-success">Responder</button>
+        </div>    
+      </div>
+    </div>
+
+    @endforeach
+    {{ $commentUsers->links() }}
+
+    {{-- Formulario --}}
+    <div class="row">
+      <div class="col-md-12">
+        <form action="{{ route('enviarMensaje') }}" method="POST">
+          @csrf
+          <textarea name="mensajeEnviado" class="autoExpand" id="" cols="90%" rows="4" placeholder="inserte el comentario"></textarea>
+          <input type="hidden" name="idProducto" value="{{ $prod->id }}">
+          @if($errors->any())
+            <div>
+              <ul>
+                @foreach($errors->all() as $error)
+                  <li class="text-danger">{{ $error }}</li>
+                @endforeach
+              </ul>
+            </div>
+          @endif
+          <button class="btn btn-success" type="submit">Comentar</button>
+        </form>
+      </div>
+    </div>
+
+
+    {{-- Fin formulario --}}
+
+  </div>
+
+  <div class="col-md-4">
+    <section class="container">
+      <h2 class="text-center">Acuerdos Establecidos</h2>
+      @if ($prod->productoAgreement->count()!=null)
+      @else
+        @if (auth()->user()->id == $prod->user_id)
+            
+        @else
+        <h4 class="text-muted text-center text-danger">Ningun acuerdo establecido</h4>                      
+        @endif
+          
+      @endif
+      @if (auth()->user()->id == $prod->user_id)
+      <h4 style="font-size: 10px" class="text-center text-danger">* Solo se permite 6 acuerdos maximo, no podra ser editado ni eliminado</h4>
+       @if ($prod->productoAgreement->count()<6)
+       <form action="{{ route('setAgreement') }}" method="POST">
+        @csrf
+       <div class="row justify-content-center">
+        <button type="submit"><i class="fa fa-plus-square" aria-hidden="true">&nbsp; <strong>Agregar</strong></i></button>
+          <br>
+          <textarea name="agreementUser" class="auto-expand" id="" cols="100%" rows="2" placeholder="Insertar el acuerdo"></textarea>
+          <input type="hidden" name="idProductoNow" value="{{ $prod->id }}">
+        </div>        
+      </form>
+           
+       @else
+         <div class="row justify-content-center">
+          <h4 style="font-size: 12px" class="text-center text-danger">YA LLEGASTE AL LIMITE DE ACUERDOS</h4>
+         </div>        
+
+       @endif 
+
+    @else
+    @endif
+  
+    @foreach ($prod->productoAgreement as $agreement)
+    <br>
+    <div class="row justify-content-between">
+      <div class="col-md-12 bg-dark text-white">
+        <p>{{ $agreement->agre_message }} </p>
+      </div>
+    </div>
+      
+    @endforeach
+    </section>
+  
+  </div>
+</div>
+
+
+    
+
+
+  </section>
 </div>
   
 @endsection
@@ -307,6 +490,30 @@
     countUp: false
 });
   </script>
+
+  <script>
+    var mymap = L.map('mapa').setView([{{$prod->latitud}},{{$prod->longitud}}], 15);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibXlzdGljYWx0dXJ0bGUiLCJhIjoiY2tpeHVnajEyMHI4ODJxbXk0MHk2dW41biJ9.3j9sAGykKUhTh5pN81XD9w', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+    L.marker([{{$prod->latitud}},{{$prod->longitud}}]).addTo(mymap);
+    
+</script>
+
+@if ($prod->productoUserPropietario->userReportUser->count() >= 30)
+<script>  
+    $(function(){
+        $('#staticBackdrop').modal({
+            backdrop:'static',
+        });
+    });
+</script>
+@endif
 
     <!-- Colocar js abajo-->
 @endsection

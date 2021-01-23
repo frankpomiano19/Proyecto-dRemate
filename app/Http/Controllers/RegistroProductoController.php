@@ -17,7 +17,11 @@ class RegistroProductoController extends Controller
 {
     public function formularioProducto(SubirProductoRequest $request){
 
-        // dd($request);
+        // dd($request->latitud);
+
+        // dd($request->latitud,$request->longitud);
+
+
         $image1 = $request->file('image_name1');
         $image2 = $request->file('image_name2');
         $image3 = $request->file('image_name3');
@@ -63,13 +67,15 @@ class RegistroProductoController extends Controller
         $datospro->image_name3 = $image_url3;
         $datospro->image_name4 = $image_url4;
 
+        $datospro->latitud = $request->latitud;
+        $datospro->longitud = $request->longitud;
         $datospro->nombre_producto = $request->nombre_producto;
         $datospro->descripcion = $request->descripcion;
         $datospro->categoria_id = $request->categoria_id;
         $datospro->estado = $request->estado;
         $datospro->condicion = $request->condicion;
         $datospro->ubicacion = $request->selectDepartamento;
-        $datospro->distrito = $request->selectProvincia;
+        $datospro->distrito = $request->distrito;
         $datospro->garantia = $request->garantia;
         $datospro->user_id = auth()->id();
 
@@ -230,7 +236,7 @@ class RegistroProductoController extends Controller
         $producto->update($request->all());
 
         return redirect()->route('productos.index')
-            ->with('success', 'Project updated successfully');
+            ->with('success', 'Acción realizada exitosamente');
     }
     /**
      * Remove the specified resource from storage.

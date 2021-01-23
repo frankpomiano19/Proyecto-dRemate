@@ -4,10 +4,11 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
 window.Vue = require('vue');
 window.moment = require('moment');
+window.timeAgo = require('javascript-time-ago');
 // window.Sweet= require('sweetalert2');
 /**
  * The following block of code may be used to automatically register your

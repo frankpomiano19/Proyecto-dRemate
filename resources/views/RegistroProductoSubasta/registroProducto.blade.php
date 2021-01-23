@@ -13,12 +13,10 @@
 
 @section('contenidoCSS')
     <!--footer.css pal footer / barra.css pal navbar / no es necesario el fontawesome-->
-    <link rel="stylesheet" href="css/inicio.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/barra.css">
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/menuSubasta.css">
     <link rel="stylesheet" href="{{ asset('css/registro.css') }}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
 @endsection
 
 
@@ -26,7 +24,7 @@
 
 <div class="container-md border rounded-lg cuerpo">
     <h1 class="text-center">Registrar Producto</h1>
-    <p id="parrafo">Revisa la información del producto y llena los campos de la subasta para empezar :)</p>
+    <p id="parrafo">Ingresa los datos del producto que luego podrás subastar :)</p>
     <div class="row">
 
 
@@ -122,13 +120,29 @@
                     <div class="linea"></div>
                 </div>
 
+                <div class="col-sm-12">
+                    <h3>Garantía</h3>
+                    @error('garantia')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Garantía de minimo 8 caracteres
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @enderror
+                    <small>Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
+                    <textarea input id="validationCustom05" name="garantia" id="" class="form-control" cols="30"
+                        rows="4" placeholder="Detalla la garantía" required>{{ old('garantia') }}</textarea>
+                    <br>
+                </div>
+
         </div>
 
         <div class="col-sm-12 col-md-6 colum">
             <br>
             <div>
-                <h3>Departamento y Provincia</h3>
-                <select name="selectDepartamento" onchange="cambia()" class="form-control" required=""
+                <h3>Departamento</h3>
+                <select name="selectDepartamento" id="departamento" onchange="cambia()" class="form-control" required=""
                     data-parsley-error-message="Escoja su ubicación">
                     <option value="">Seleccione</option>
                     <option value="Amazonas">Amazonas</option>
@@ -156,30 +170,35 @@
                     <option value="Tacna">Tacna</option>
                     <option value="Tumbes">Tumbes</option>
                     <option value="Ucayali">Ucayali</option>
-                </select><br>
-
-                <select class="form-control" name="selectProvincia" onchange="cambiaDistrito()" required="">
-                    <option>Seleccione la Provincia</option>
                 </select>
-                <br>
                 <div class="linea"></div>
             </div>
 
             <div>
-                <h3>Garantía</h3>
-                @error('garantia')
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Garantía de minimo 8 caracteres
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+                <h3>Ubicación</h3>
+                <small>Marque una ubicación en el mapa</small>
+                @error('latitud')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Marca en el mapa alguna dirección
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                 @enderror
-                <small>Brinda detalles de tu garantía o déjalo en blanco si no ofreces ninguna</small>
-                <textarea input id="validationCustom05" name="garantia" id="" class="form-control" cols="30"
-                    rows="4" placeholder="Detalla la garantía" required>{{ old('garantia') }}</textarea>
-                <br>
+                <div id="inputmapa" style="height: 300px; width:100%;"></div>
+                <input type="number" class="" name="latitud" id="latitud" style="display:none">
+                <input type="number" class="" name= "longitud" id="longitud" style="display:none">
+                @error('distrito')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Añade una dirección adicional
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                @enderror
+                <input type="text" name="distrito" value="{{ old('distrito') }}" class="form-control m-2" placeholder="Ubicación adicional">
             </div>
+
 
             <div class="col-sm-12">
                 <h3>Agregar fotos</h3>
@@ -252,16 +271,15 @@
         </div>
     </div>
 </div>
+
+
         
 
 @endsection
 
 @section('contenidoJSabajo')
     <!-- Colocar js abajo-->
-    <script src="{{ asset(mix('js/app.js')) }}"></script>
-    <script src="{{ asset('js/fechaSubasta.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
-    </script>
     <script src="/js/parsley.js"></script>
     <script src="{{ asset('js/producto.js') }}"></script>
+    <script src="/js/mapa.js"></script>
 @endsection

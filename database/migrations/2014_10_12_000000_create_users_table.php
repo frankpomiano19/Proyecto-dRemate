@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('us_youtube',50)->nullable();
             $table->string('us_facebook',50)->nullable();
             $table->string('us_twitter',30)->nullable();
+            $table->text('favoritos')->nullable();
             $table->string('us_twitch')->nullable();
 
             $table->string('password');

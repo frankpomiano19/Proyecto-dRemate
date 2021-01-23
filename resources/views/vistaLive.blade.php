@@ -28,7 +28,7 @@
 
             @foreach ($productos as $producto)
 
-            <div class="col-md-5 mx-5">
+            <div class="col-md-5 mx-5" id="verproducto">
                 <a href=" {{ route('producto.detalles',$producto->id) }} " style="color:black">
                     <div class="producto fix">
                         <div class="contenedor-imagen">
@@ -38,7 +38,7 @@
                         <div class="texto"> 
                             <div class="titulo">          
                                 <h3>{{$producto->nombre_producto}}</h3>
-                                <i class="fa fa-heart cora"></i>                                
+                                                         
                             </div>
                             <h5>Precio inicial: S/ {{$producto->precio_inicial}}</h5>
                             <p class="texto-descripcion">
@@ -49,8 +49,7 @@
                                   
                             </div>
                         </div>  
-                            
-                            
+             
                     </div>
                 </a>
                 <div class="abajo-producto"></div>

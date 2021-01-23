@@ -8,6 +8,8 @@ use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
 use App\Http\Controllers\userGuest;
 use App\Http\Controllers\MedioNegoController;
+use Illuminate\Http\Request;
+
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Mail;
@@ -65,6 +67,11 @@ Route::get('/subastaRapida/fetch_data',[SubastaRapController::class,'fetch_data'
 Route::get('/subastaRapida/fetch_data1',[SubastaRapController::class,'fetch_data1']);
 Route::get('/subastaRapida/fetch_data2',[SubastaRapController::class,'fetch_data2']);
 
+//guardar producto en calendario
+Route::post('/subastaRapida/calendar',[HomeController::class,'product_calendar'])->name("producto_calendar");
+
+
+
 Route::get('/vistaLive', function () {
     return view('vistaLive');
 });
@@ -78,17 +85,17 @@ Route::get('/subirProducto', function () {
     return view('subirProducto');
 })->name('subirProducto-now');
 
-//Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
-//Route::get('/rutaNoValida', [HomeController::class, 'viewproduct'])->name("ErrorNoValid");
+// Subasta para pujar
 
-
-
-Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");
-
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");//Punto de entrada
+    Route::post('enviarMensaje',[HomeController::class,'sendCommentProduct'])->name('enviarMensaje');//Comentario
+    Route::post('setAgreement',[HomeController::class,'setAgreement'])->name('setAgreement');//Acuerdos
+});
 
 
 // Route::post('/','HomeController@registro')->name('producto.registro');
-Route::post('/prueba', [HomeController::class,'registro'])->name('producto.registro');
+Route::post('/prueba', [HomeController::class,'registro'])->middleware('auth')->name('producto.registro');
 
 //Menú de subasta, hay dos opciones: 1 Registrar producto, 2 Registrar y subastar producto
 Route::get('/menuSubasta', function () {
@@ -128,30 +135,41 @@ Route::get('categorias/electrodomesticos', function () {
     return view('categorias/electrodomesticos');
 });
 
-Route::get('edson', function () {
-    return view('edson');
+Route::get('favoritos', function () {
+    return view('favoritos');
 });
 
 
-
 //Envío de datos del registro producto y subasta
-Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->name('producto.registroe');
-Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->name('producto.registroee');
+Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->middleware('auth')->name('producto.registroe');
+
+Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->middleware('auth')->name('producto.registroee');
+
+Route::post('/subastarProducto', [HomeController::class,'registroEE'])->middleware('auth')->name('subastar.producto');
+
+Route::post('/datosSubasta', [HomeController::class,'registroEEE'])->middleware('auth')->name('subastar.productoD');
+
 
 Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
 
+
 //Controlador pago vendedor
-Route::post('/', [SubastaRapController::class,'sumarVendedor'])->name('pago.vendedor');
+Route::post('/sumaVendedor', [SubastaRapController::class,'sumarVendedor'])->middleware('auth')->name('pago.vendedor');
+Route::post('/', [HomeController::class,'agregarFavorito'])->middleware('auth')->name('producto.favorito');
+
 //GET
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
-Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
+Route::get('/favoritos',[SubastaRapController::class,'productosFavoritos'])->middleware('auth')->name('productos.favoritos');
 
+Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
+////////////////////////// +++++++++++++++++++ Medio de negociacion +++++++++++++++++++++++++++++ /////////////////////////
 //Medio de negociacion
 
 Route::get('/producto/{productUser}/{usuarioPerfil}',[MedioNegoController::class,'index'])->name('infoProducto');
 Route::post('/producto/storeMessage',[MedioNegoController::class,'store']);
 Route::get('/producto/createMessage',[MedioNegoController::class,'create']);
+Route::get('/producto/chatTimeReal-{productUser}',[MedioNegoController::class,'loadChatRealTime'])->name('chat-real-time');
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');
@@ -173,3 +191,11 @@ Route::get('/producto/pagination_data_prod_sub',[RegistroProductoController::cla
 // Mensajeria
 Route::post('/home/perfil/enviar-mensaje',[userController::class,'responderMensaje'])->name('responder-mensaje');
 Route::get('/home/perfil/enviar-mensaje/create',[userController::class,'messageCreate']);
+
+//Reportar Usuario
+Route::post('/infoUser',[userController::class,'reportarUser'] )->name('report-usuario');
+Route::get('/informenos', function () {
+    return view('user_reported');
+})->name('user_reported');
+
+Route::get('/proxsubastas',[HomeController::class,'proximassubastas'])->name('prosubastas');;

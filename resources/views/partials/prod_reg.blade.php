@@ -9,8 +9,11 @@
     </div>
 
     @if ($message = Session::get('success'))
-        <div class="alert alert-success">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             <p>{{ $message }}</p>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     @endif
 
@@ -31,6 +34,7 @@
                      <th>Precio Inicial</th>
                      <th>Ubicacion</th>
                      <th width="280px">Action</th>
+                     <th width="280px">Subastar</th>
                   </tr>
         </thead>
 
@@ -53,7 +57,6 @@
                         </a>
                         <a href="{{ route('productos.edit', $producto->id) }}" >
                             <i class="fa fa-edit  fa-lg"></i>
-
                         </a>
 
                         @csrf
@@ -63,6 +66,16 @@
                             <i class="fa fa-trash fa-lg text-danger"></i>
 
                         </button>
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="{{ route('subastar.producto') }}">
+                        
+                        {{csrf_field()}}
+                        @csrf
+                        <input type="text" style="display:none;" name="id" value="{{$producto->id}}">
+
+                        <button type="submit" class="btn btn-success">Ahora</button>
                     </form>
                 </td>
 
