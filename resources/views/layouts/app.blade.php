@@ -256,17 +256,39 @@
                           </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link" data-toggle="dropdown" href="#">
-                              <i class="fa fa-envelope-o"></i>
+                              @if (auth()->user()->userRecibeNotiChat->count()>0)
+                              {{-- <style>
+                                  .contador-notificacion{
+                                      position: relative;
+                                      border-radius: 50%;
+                                      background-color: crimson;
+                                      bottom: 50px;
+                                      color: #dee2e6;
+                                      font-size: 10px;
+                                      padding: 0px 5px 0px 5px;
+                                      height: 20px;
+
+                                  }
+                              </style> --}}
+                                  <i class="fa fa-envelope-o" ></i>                                  
+                                  
+                              @else
+                                  <i class="fa fa-envelope-o"></i>                                  
+                              @endif  
                             </a>
                             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                                 <span class="dropdown-header" >Mensajes</span>
-                                <a href=""><span class="ml-3 pull-right text-muted text-sm">El usuario Perrovaca quiere establecer comunicacion
-                                    <button class="btn btn-danger">Cancelar</button>
-                                    <button class="btn btn-success">Aceptar</button>
-                                    <p class="text-center">25 seg</p>
-                                    </span></a>
-                                  <div class="dropdown-divider"></div>
-                                  
+                                @forelse(auth()->user()->userRecibeNotiChat as $notiChat)
+                                    
+                                <span class="ml-3 pull-right text-muted text-sm">El usuario {{ $notiChat->notiChatUserEnvia->usuario }} quiere establecer comunicacion
+
+                                    </span>
+                                    <a href="{{ url('producto/chatTimeReal-2') }}" class="btn btn-primary d-flex justify-content-center" style="background-color: royalblue;">Ir al chat</a>
+                                  <div class="dropdown-divider" style="background-color: #343a40;color: #343a40;width: 100%;height: 2px;"></div>
+                                @empty
+                                <span class="dropdown-header" >Sin mensajes</span>
+                                    
+                                @endforelse                                  
                                 {{-- <span class="ml-3 pull-right text-muted text-sm">Sin notificaciones por leer </span> --}}
                                 <div class="dropdown-divider"></div>
                                 

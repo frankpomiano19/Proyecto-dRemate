@@ -32,4 +32,12 @@ class Producto extends Model
     public function productoMensaje(){
         return $this->hasMany(Mensaje::class,'pro_id');
     }
+
+    public function productoChatNoti(){
+        return $this->hasOne(ChatNotification::class,'pro_id');
+    }
+
+    public function productoAgreement(){
+        return $this->hasMany(AgreementUser::class,'pro_id');
+    }
 }

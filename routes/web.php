@@ -80,13 +80,13 @@ Route::get('/subirProducto', function () {
     return view('subirProducto');
 })->name('subirProducto-now');
 
-//Route::get('/producto', [HomeController::class, 'viewproduct'])->name("producto");
-//Route::get('/rutaNoValida', [HomeController::class, 'viewproduct'])->name("ErrorNoValid");
+// Subasta para pujar
 
-
-
-Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->middleware('auth')->name("producto.detalles");
-
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");//Punto de entrada
+    Route::post('enviarMensaje',[HomeController::class,'sendCommentProduct'])->name('enviarMensaje');//Comentario
+    Route::post('setAgreement',[HomeController::class,'setAgreement'])->name('setAgreement');//Acuerdos
+});
 
 
 // Route::post('/','HomeController@registro')->name('producto.registro');
@@ -142,15 +142,14 @@ Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioPro
 
 Route::post('/subastarProducto', [HomeController::class,'registroEE'])->middleware('auth')->name('subastar.producto');
 
-// Route::post('/datosSubasta', [HomeController::class,'registroEEE'])->middleware('auth')->name('subastar.productoD');
+Route::post('/datosSubasta', [HomeController::class,'registroEEE'])->middleware('auth')->name('subastar.productoD');
 
 
 Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
 
 
 //Controlador pago vendedor
-Route::post('/', [SubastaRapController::class,'sumarVendedor'])->middleware('auth')->name('pago.vendedor');
-
+Route::post('/sumaVendedor', [SubastaRapController::class,'sumarVendedor'])->middleware('auth')->name('pago.vendedor');
 Route::post('/', [HomeController::class,'agregarFavorito'])->middleware('auth')->name('producto.favorito');
 
 //GET
@@ -166,17 +165,6 @@ Route::get('/producto/{productUser}/{usuarioPerfil}',[MedioNegoController::class
 Route::post('/producto/storeMessage',[MedioNegoController::class,'store']);
 Route::get('/producto/createMessage',[MedioNegoController::class,'create']);
 Route::get('/producto/chatTimeReal-{productUser}',[MedioNegoController::class,'loadChatRealTime'])->name('chat-real-time');
-
-//Broadcast para mensaje en tiempo real
-
-// Route::get('message', function () {
-//     $message['user'] = "Juan Perez";
-//     $message['message'] =  "Prueba mensaje desde Pusher";
-//     $success = event(new App\Events\EventMessageRealTime($message));
-//     return $success;
-// })->name("sendMessageNow");
-////////////////////////// +++++++++++++++++++ Fin de Medio de negociacion +++++++++++++++++++++++++++++ /////////////////////////
-
 
 //Usuario
 Route::get('/home/perfil',[userController::class,'perfilGo'])->name('perfil_us');

@@ -213,3 +213,12 @@
   font-family: "Nunito";
 }
 
+.left-side {
+  border-color: rgba(0, 0, 0, 0.3);
+  border-width: 0.5px;
+  border-style: solid;
+  font-family: "Nunito";
+  width: 80%;
+  margin: auto;
+}
+

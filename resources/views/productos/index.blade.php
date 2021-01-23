@@ -42,7 +42,7 @@
     <div id="abajo">
         <aside id="sidebar" class="nano">
             <div class="nano-content">
-                <div class="logo-container"><img src="img/avatar-mujer.png" alt="foto-usuario" id="foto-usuario" class="rounded-circle"></div><a class="compose-button">Nombre</a>
+                <div class="logo-container"><img src="img/avatar-mujer.png" alt="foto-usuario" id="foto-usuario" class="rounded-circle"></div><a class="compose-button">{{ Auth::user()->usuario }}</a>
                 <div class="separator"></div>
                 <menu class="menu-segment">
                     <div class=" columna-barra-lateral nano-content">
@@ -117,7 +117,7 @@
 
         <div class="overlay"></div>
         <header class="header">
-            <h1 class="page-title"><a class="sidebar-toggle-btn trigger-toggle-sidebar"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line line-angle1"></span><span class="line line-angle2"></span></a>Inbox<a><span class="icon glyphicon glyphicon-chevron-down"></span></a></h1>
+            <h1 class="page-title"><a class="sidebar-toggle-btn trigger-toggle-sidebar"><span class="line"></span><span class="line"></span><span class="line"></span><span class="line line-angle1"></span><span class="line line-angle2"></span></a><a><span class="icon glyphicon glyphicon-chevron-down"></span></a></h1>
         </header>
   
         

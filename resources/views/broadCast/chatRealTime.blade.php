@@ -31,7 +31,7 @@
         <li>Primer mensaje</li>
     </ul> --}}
     <h3 class=" text-center">Mensajes</h3>
-    <div class="row">
+    <div class="row left-side">
         <div class="col-md-6">
             <div class="row col-md-12 d-flex justify-content-center">
                 <img src="{{ $producto->image_name1 }}" class="img-formated" alt="">
@@ -129,7 +129,7 @@
                     <div>
                         <div class="row col-md-12 py-2 d-flex justify-content-around">
                             <button class="btn btn-danger btn-rojo-comu">Terminar Conversacion</button>
-                            <button class="btn btn-primary btn-rojo-mens">Iniciar Negociacion</button>
+                            {{-- <button class="btn btn-primary btn-rojo-mens">Iniciar Negociacion</button> --}}
                         </div>
 
                     </div>
