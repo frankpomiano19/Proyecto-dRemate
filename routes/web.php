@@ -139,6 +139,10 @@ Route::get('favoritos', function () {
     return view('favoritos');
 });
 
+Route::get('edson2/', function () {
+    return view('edson2');
+});
+
 
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->middleware('auth')->name('producto.registroe');
