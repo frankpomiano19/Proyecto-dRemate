@@ -58,6 +58,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials))
        {
+           $nombre = "casasa";
             $status = Auth::user()->userReportUser->count();
            if ($status >= 30) {
                 //return back()->with('message','Su cuenta ha sido baneada')->with('typealert', 'danger');
@@ -65,6 +66,7 @@ class LoginController extends Controller
                 Auth::logout();
                 return redirect()->route('user_reported');
            } else {
+
                 return redirect()->route('subastaRapida');
            }
            

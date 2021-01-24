@@ -27,7 +27,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $nombre="casa";
+        return view('home')->with('nombre', $nombre);
     }
     public function valores(){
         return view("paginaNT");

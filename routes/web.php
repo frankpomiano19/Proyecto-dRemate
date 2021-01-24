@@ -6,6 +6,7 @@ use App\Http\Controllers\SubastaRapController;
 use App\Http\Controllers\userController ;
 use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
+use App\Http\Controllers\SuscripcionController;
 use App\Http\Controllers\userGuest;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MedioNegoController;
@@ -146,7 +147,9 @@ Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioPro
 Route::get('/subastarProducto-{idpro}', [HomeController::class, 'vistaSubasta'])->middleware('auth')->name("subastar.producto");
 
 
+Route::post('/suscripcionUsuario', [SuscripcionController::class,'suscripcion'])->middleware('auth')->name('suscripcion.usuario');
 
+Route::post('/productoCorreo', [SuscripcionController::class,'enviarCorreo'])->middleware('auth')->name('enviar.correo');
 // Route::post('/subastarProducto', [HomeController::class,'registroEE'])->middleware('auth')->name('subastar.producto');
 
 Route::post('/enviarSubasta', [HomeController::class,'enviarSubasta'])->middleware('auth')->name('enviar.subasta');
