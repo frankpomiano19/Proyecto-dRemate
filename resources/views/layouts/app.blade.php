@@ -213,8 +213,18 @@
                             <label id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->usuario }}
                             </label>
-
+{{-- "badge badge-danger"
+dropdown-item bg-danger --}}
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item bg-danger text-white text-center" href="{{ route('productos.index') }}">
+                                    Anular suscripción
+                                </a>
+                                <a class="dropdown-item" href="{{ route('productos.index') }}">
+                                    Mi perfil <span class="badge badge-success mr-0">Suscrito</span>
+                                </a>
+                                <a class="dropdown-item bg-success text-white text-center" href="{{ route('productos.index') }}">
+                                    Suscribirse
+                                </a>
                                 <a class="dropdown-item" href="{{ route('productos.index') }}">
                                     Mi perfil
                                 </a>

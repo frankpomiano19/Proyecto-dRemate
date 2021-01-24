@@ -42,7 +42,7 @@ class MailController extends Controller
         $mail->SMTPDebug = 2;
         $mail->isSMTP();                    
         $mail->Host       = 'smtp.gmail.com';             
-        $mail->SMTPAuth   = true;                               
+        $mail->SMTPAuth = true;                               
         $mail->Username   = 'subastas.dRemate@gmail.com';
         $mail->Password   = "drematecontra";
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;        

@@ -95,10 +95,10 @@
 
           @if($favoritoL == 1)
                                                     
-            <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
+            <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
             
           @else
-            <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+            <button type="submit" class="btn"><img src="{{asset('img/assets/corazonR.png')}}"></button>
           @endif      
           
         </form>

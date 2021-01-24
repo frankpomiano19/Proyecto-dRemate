@@ -33,29 +33,37 @@
                     @if ($favorito == $producto->id)
 
                         <div class="col-md-5 mx-5">
-                            <a href="{{ route('producto.detalles',$producto->id) }} " style="color:black">
+                            {{-- <a href="{{ route('producto.detalles',$producto->id) }} " style="color:black"> --}}
                                 <div class="producto fix">
                                     <div class="contenedor-imagen">
-                                        <img src="{{$producto->image_name1}}" alt="" class="imagen">
+                                        <a class="text-dark" href="{{ route('producto.detalles',$producto->id) }} "><img src="{{$producto->image_name1}}" alt="" class="imagen"></a>
+                                        
                                     </div>
                                         
                                     <div class="texto"> 
-                                        <div class="titulo">          
-                                            <h3>{{$producto->nombre_producto}}</h3>                          
+                                        <div class="titulo row ">          
+                                            <div class="col"><h3><a class="text-dark" href="{{ route('producto.detalles',$producto->id) }} ">{{$producto->nombre_producto}}</a></h3></div>
+                                            <div class="col">
+                                                <form>
+                                                    <a class="btn float-right"><img src="{{asset('img/assets/corazon.png')}}"></a>
+                                                </form>
+                                                <form>
+                                                    <button type="submit" class="btn"><img src="{{asset('img/assets/email.png')}}"></button>
+                                                </form>
+                                            </div>
                                         </div>
                                         <h5>Precio inicial: S/ {{$producto->precio_inicial}}</h5>
                                         <p>
                                         {{$producto->descripcion}}
                                         </p>
-                                        <div class="ubicacion" style="display:inline;">
-                                            <h6>{{$producto->ubicacion}}</h6><p><b>{{$producto->distrito}}</b></p>
-                                            
+                                        <div class="row">
+                                            <div class="col"><h6>Departamento:{{$producto->ubicacion}}</h6><p>{{$producto->distrito}}</></p></div>
                                         </div>
                                     </div>  
                                         
                                         
                                 </div>
-                            </a>
+                            {{-- </a> --}}
                             <div class="abajo-producto"></div>
                         </div>
                     @endif

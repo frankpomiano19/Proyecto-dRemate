@@ -144,7 +144,8 @@
                                         <label for="inputConfirmPassword">Repetir Contreseña</label>
                                     </div>
                                     <div class="form-inline mb-2">
-                                        <input class="mr-2" type="checkbox" name="suscripcion">
+                                        <input class="mr-2" type="checkbox" value="1" name="suscripcion">
+                                        {{-- <input class="mr-2" type="checkbox" value="0" name="suscripcion" checked> --}}
                                         <label>Deseo suscribirme a D'REMATE</label>
                                     </div>
 
