@@ -22,8 +22,12 @@
 
 
 @section('contenido')
+{{-- Configuracion de variables --}}
+@php
 
-
+  \Carbon\Carbon::setLocale('es');  
+@endphp
+{{-- Fin  --}}
   <!-- Modal de usuario bloqueado-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -45,11 +49,8 @@
     
 
 
-
-
-
   {{-- <h2 style="display: none">Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2> --}}
-
+ 
 
 {{-- Informacion del producto --}}
 <div class="container-lg" style="margin-top: 20px;">
@@ -368,7 +369,12 @@
                                       <div class="comment-box">
                                           <div class="comment-head">
                                               <h6 class="comment-name @if($commentUser->menSubUserEmisor->id==$prod->user_id ) by-author @else @endif "><a href="{{ route('comentarios-now', $commentUser->menSubUserEmisor->id) }}">{{ $commentUser->menSubUserEmisor->usuario }}</a></h6>
-                                              <span>hace 20 minutos <-- No terminado</span>
+                                            {{-- Fecha --}}
+                                              <span>
+                                                @php
+                                                 echo \Carbon\Carbon::parse($commentUser->created_at)->diffForHumans();   
+                                                 @endphp
+                                              </span>
                                               {{-- <i class="fa fa-reply"></i>
                                               <i class="fa fa-heart"></i> --}}
                                           </div>
@@ -437,7 +443,11 @@
                                           <div class="comment-box">
                                               <div class="comment-head">
                                                   <h6 class="comment-name @if($respuesta->us_response==$prod->user_id ) by-author @else @endif"><a href="#">{{ $respuesta->menSubRespUserResponse->usuario }}</a></h6>
-                                                  <span>hace 10 minutos <-- Falta</span>
+                                                  <span>
+                                                    @php
+                                                    echo \Carbon\Carbon::parse($respuesta->created_at)->diffForHumans();   
+                                                    @endphp
+                                                    </span>
                                                   {{-- <i class="fa fa-reply"></i>
                                                   <i class="fa fa-heart"></i> --}}
                                               </div>
@@ -858,8 +868,11 @@ $("#show-responder").click(function() {
 });
 </script>
 
-
 @endif
-
+<script>
+  moment.locale('es'); 
+  console.log(moment("20111031", "YYYYMMDD").fromNow());
+  
+</script>
     <!-- Colocar js abajo-->
 @endsection
