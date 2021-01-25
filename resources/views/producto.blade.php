@@ -806,7 +806,7 @@ $("#show-responder").click(function() {
 
 
 
-@if ($prod->productoUserPropietario->userReportUser->count() >= 1)
+@if ($prod->productoUserPropietario->userReportUser->count() >= 30)
 <script>  
     $(function(){
         $('#staticBackdrop').modal({
