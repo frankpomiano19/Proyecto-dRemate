@@ -91,6 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/producto-{idpro}', [HomeController::class, 'viewproduct'])->name("producto.detalles");//Punto de entrada
     Route::post('enviarMensaje',[HomeController::class,'sendCommentProduct'])->name('enviarMensaje');//Comentario
     Route::post('setAgreement',[HomeController::class,'setAgreement'])->name('setAgreement');//Acuerdos
+    Route::post('sendCommentResponse',[HomeController::class,'sendCommentResponse'])->name('sendCommentResponse');
 });
 
 
@@ -121,19 +122,19 @@ Route::get('/busquedaFiltro', function () {
 });
 Route::get('categorias/joyas', function () {
     return view('categorias/joyas');
-});
+})->name('Joyas');
 Route::get('categorias/tecnologia', function () {
     return view('categorias/tecnologia');
-});
+})->name('Tecnología');
 Route::get('categorias/hogar', function () {
     return view('categorias/hogar');
-});
+})->name('Hogar');
 Route::get('categorias/instrumentos', function () {
     return view('categorias/instrumentos');
-});
+})->name('Instrumento musical');
 Route::get('categorias/electrodomesticos', function () {
     return view('categorias/electrodomesticos');
-});
+})->name('Electrodomésticos');
 
 Route::get('favoritos', function () {
     return view('favoritos');
@@ -203,3 +204,10 @@ Route::get('/informenos', function () {
 })->name('user_reported');
 
 Route::get('/proxsubastas',[HomeController::class,'proximassubastas'])->name('prosubastas');;
+
+
+//Borrar al finalizar 
+
+Route::get('borrar2',function (){
+    return view('edson2');
+});

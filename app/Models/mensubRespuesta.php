@@ -11,11 +11,15 @@ class mensubRespuesta extends Model
     protected $table = 'mensub_respuestas';
 
     protected $fillable = [
-        'mensub_resp'
+        'mensub_resp','mensub_resp_texto','us_response'
     ];
 
     public function menSubRespMenSub(){
         return $this->belongsTo(mensajeSubasta::class,'mensub_resp');
+    }
+
+    public function menSubRespUserResponse(){
+        return $this->belongsTo(User::class,'us_response');
     }
 
 

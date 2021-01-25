@@ -16,11 +16,14 @@
     <link rel="stylesheet" href="css/styleProduct.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
         
 @endsection
 
 
 @section('contenido')
+
+
   <!-- Modal de usuario bloqueado-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -40,168 +43,110 @@
     </div>
   </div>
     
-    
-  <div class="product">
-    <br><br>
-    <!--Contenedor de productos relacionados-->
-    <div class ="container1">
-        <div class="row">
-          @foreach ($productosRelac as $prodRelac)
-          <div class="col-md">
-                <div class="card">
-                    <img class="card-img-top" src="@if($prodRelac->imagen!=null){{ $prodRelac->imagen }} @else {{ $prodRelac->image_name1 }} @endif" alt="Card image cap">
-                    <a href="{{ route('producto.detalles', $prodRelac->id) }}"><div class="card-body text-center">
-                    <h5 class="card-title"> {{$prodRelac->nombre_producto}} </h5>
-                    <p class="card-text"><small class="text">Last updated {{Carbon\Carbon::now()->diffForHumans($prodRelac->updated_at)}} </small></p>
-                    </div></a>
-                </div>
-            </div>
-            @endforeach
 
-      </div>
-    </div>
-    <!--fin del Contenedor de productos relacionados-->
-  <br>
-  <!-- Información del producto -->
-  <div class="container2">
-    <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">{{$cat->nombre_categoria}}</a></h5>
-    <div class="row">
 
-      <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
-        {{ csrf_field() }}
-        @csrf
-        <input type="hidden" name="favorito" value={{ $prod->id }}>
 
-          @foreach ($favoritos as $fav)
 
-            @if ($fav == $prod->id)
-              <?php
-                $favoritoL = 1;
-              ?>
-              @break
-            @else
-              <?php
-                $favoritoL = 0;
-              ?>
-            @endif
 
-          @endforeach
+  {{-- <h2 style="display: none">Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2> --}}
 
-          @if($favoritoL == 1)
-                                                    
-            <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
-            
-          @else
-            <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
-          @endif      
-          
-        </form>
 
-      <div class="col-md-4"><h3 class="product-title">{{$prod->nombre_producto}}</h3></div>
-    </div>
-    <div class="row mb-2">
-        <div class="col-md-5">
-            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name1 }} @endif" alt="Primera imagen">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name2 }} @endif" alt="Segunda Imagen">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name3 }} @endif" alt="Tercera imagen">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="d-block w-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name4 }} @endif" alt="Tercera imagen">
-                  </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
-                </a>
+{{-- Informacion del producto --}}
+<div class="container-lg" style="margin-top: 20px;">
+  <div class="row">
+      <div class="panel-sup col-lg-8 col-md-7 col-12">
+          <div id="panel-1" class="panel">
+              <div style="width: 80%; float: left;">
+                  <h6>Categorías > <a href="{{ route($cat->nombre_categoria) }}"> {{$cat->nombre_categoria}}</a></h6>
+                  <h3>{{ $prod->nombre_producto }}</h3>
               </div>
-              
-              <h2 style="display: none">Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2>
-        </div>
-        <div class="col">
-          <div class="row mb-2">
+              <div id="iconos" style="float: right; bottom: auto;">
+                  <i class="fa fa-share"></i> <i class="fas fa-heart"></i>
 
-            <form action=" {{route('puja.crear')}} " method="POST">
-              @csrf
-              
-              @error('valorpuja')
-                  <div class="alert alert-danger" role="alert">
-                    Valor no aceptado o insuficiente
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-              @enderror
-              @error('saldousuario')
-                  <div class="alert alert-danger" role="alert">
-                    Saldo insuficiente
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-              @enderror
-                <div class="container text-center p-2">
-                  
-                  <div class="precio_inicial_producto p-2">
-                    <h5>Precio inicial: S/. {{$prod->precio_inicial}}</h5>
-                  </div>                  
-                  <div class="comienzosubasta" id="presubasta">
-                    <h5>Subasta inicia en:<div id="comienzosubasta"></div></h5>
-                  </div>
-                  <div class="tiempo_producto" id="tiemposubasta">
-                    <h5>Subasta finaliza en:<div id="tiempopuja"></div></h5>
-                  </div>
-                  <div class="finalsubasta" id="finalsubasta">
-                    <h5>La subasta ha finalizado</h5>
-                  </div>
-                  <div class="ganador" id="ganador">
-                    @if ($ultimapuja === null)
-                        <h4>No hay ganadores</h4>
-                    @else
-                        <h4>El ganador es:<br>{{$usuarios[($ultimapuja->user_id) - 1]->usuario}} </h4>
-                    @endif
-                  </div>
-                  <br>
-                  <div class="cant_puja" id="cantpuja">
-                    
-                        <input class="form-control" type="text" name="valorpuja" placeholder="Min:S/.{{$ultimoprecio +1}}.00">    
-                    
-                    
-                  </div>
-                  <!-- id del producto, es invisible para que no se vea mal el cuadro y saque el id del producto para crar la puja --> 
-                  <input type="number" id="productoid" name="productoid" style="display: none" value="{{$prod->id}}" readonly><br>
-                  <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
-                  <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
-                  <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
-                  <div class="boton_puja my-2" id="botonpuja">
-                    <button  type="submit" class="btn btn-outline-primary">Realizar puja</button>
-                  </div>
-                  <div class="precio_directo my-2">
-                    
+                  <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
+                    {{ csrf_field() }}
+                    @csrf
+                    <input type="hidden" name="favorito" value={{ $prod->id }}>
+            
+                      @foreach ($favoritos as $fav)
+            
+                        @if ($fav == $prod->id)
+                          <?php
+                            $favoritoL = 1;
+                          ?>
+                          @break
+                        @else
+                          <?php
+                            $favoritoL = 0;
+                          ?>
+                        @endif
+            
+                      @endforeach
+            
+                      @if($favoritoL == 1)
+                                                                
+                        <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
+                        
+                      @else
+                        <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                      @endif      
+                      
+                    </form>
+            
 
-                    
-                      <h5>Precio actual: S/.{{$ultimoprecio}}</h5>
-                    
-                  </div>
-                  
-                  <div class="boton_compra my-2" style="display: none" id="boton_compra">
-                    <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
-                    <button type="button" class="btn btn-outline-primary">Compra</button>
-                  </div>
-                </div>
-              
-          </form>
+              </div>
 
+
+              
+              <!-- Swiper -->
+              <div style="height: 500px; width: 100%; background-color: black; clear: both;">
+                  <div class="swiper-container gallery-top">
+                      <div class="swiper-wrapper">
+                          <div class="swiper-slide flex"><img src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name1 }} @endif" alt="" class="img-ajustada"></div>
+                          <div class="swiper-slide flex"><img src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name2 }} @endif" alt="" class="img-ajustada"></div>
+                          <div class="swiper-slide flex"><img src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name3 }} @endif" alt="" class="img-ajustada"></div>
+                          <div class="swiper-slide flex"><img src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name4 }} @endif" alt="" class="img-ajustada"></div>
+                      </div>
+                      <div class="swiper-button-next swiper-button-white"></div>
+                      <div class="swiper-button-prev swiper-button-white"></div>
+                  </div>
+                  <div class="swiper-container gallery-thumbs">
+                      <div class="swiper-wrapper">
+                          <div class="swiper-slide" style="background-image:url(@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name1 }} @endif)"></div>
+                          <div class="swiper-slide" style="background-image:url(@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name2 }} @endif)"></div>
+                          <div class="swiper-slide" style="background-image:url(@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name3 }} @endif)"></div>
+                          <div class="swiper-slide" style="background-image:url(@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name4 }} @endif)"></div>
+                      </div>
+                  </div>
+              </div>
+              <div id="vendedor">
+                  Ofrecido por <span><a href="{{ route('comentarios-now', $prod->productoUserPropietario->id) }}">{{ $prod->productoUserPropietario->usuario }}</a></span>
+              </div>
+          </div>
+      </div>
+      {{-- Fin informacion del producto --}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {{-- Puja --}}
+      <div class="panel-sup col-lg-4 col-md-5 col-12" id="info-prod" style="padding-top: 0px;">
+          <div id="panel-2" class="panel" style="padding: 40px;">
+
+
+            {{-- Historial de pujas --}}
             <div class="tablas_pujas">
 
               <table class="table table-sm table-bordered">
@@ -225,191 +170,503 @@
                   @endforeach
                 </tbody>
               </table>
+  
+            </div>
+  
+            {{-- Fin historial de pujas --}}
+            
+              <div class="separador"></div>
+
+
+
+            {{-- En caso de no haber iniciado --}}
+            <div class="comienzosubasta" id="presubasta">
+
+              <div>
+                  <h6>Precio inicial</h6>
+                  <h1 class="text-center">S/<span>{{$prod->precio_inicial}}</span></h1>
+                  <h6 class="text-right"><small>Ver historial de pujas</small></h6>
+              </div>
+              <div class="separador"></div>
+
+
+              <div>
+                <h6>Subasta inicia en</h6>
+                <h1 class="text-center"><div id="comienzosubasta" style="font-size: 20px"></div></h1>
+              </div>  
+            </div>
+            <div class="finalsubasta" id="finalsubasta">
+
+              <h6>La subasta ha finalizado</h6>
+            </div>
+            <div class="ganador" id="ganador">
+              @if ($ultimapuja === null)
+                <h1 class="text-center"><span>No hay ganadores</span></h1>
+              @else
+                <h6>Ganador es</h6>
+                <h1 class="text-center"><span>{{$usuarios[($ultimapuja->user_id) - 1]->usuario}}</span></h1>
+              @endif
+            </div>
+
+          {{--Fin en caso de no haber iniciado --}}
+
+
+            <div id="botonpuja">
+              <div class="tiempo_producto"  id="tiemposubasta">                
+                <div>
+                    <h6>Oferta más alta</h6>
+                    <h1 class="text-center">S/<span>{{$ultimoprecio}}</span></h1>
+                    <h6 class="text-right"><small>Ver historial de pujas</small></h6>
+                </div>
+                <div class="separador" style="width: 100%"></div>
+
+                <div>
+                  <h6>Tiempo restante</h6>
+                  <h1 class="text-center"><div id="tiempopuja" style="font-size: 20px"></div></h1>
+
+                  <h6 class="text-right"><small>La subasta finaliza el {{ $prod->final_subasta }}</small></h6>
+                </div>
+                <div class="separador"></div>
+
+              </div>
+              <div>
+                  <h6>Realizar una oferta</h6>                  
+                  <div class="flex cont-coin" style="width: 100%;">
+                      <div class="flex cont-coin">
+                          <img class="coin" id="coin-5" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name1 }} @endif" alt="coin-5">
+                      </div>
+                      <div class="flex cont-coin">
+                          <img class="coin" id="coin-20" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name2 }} @endif" alt="coin-20">
+                      </div>
+                      <div class="flex cont-coin">
+                          <img class="coin" id="coin-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name3 }} @endif" alt="coin-100">
+                      </div>
+                  </div>
+              </div>
+                  <form action=" {{route('puja.crear')}} " method="POST">
+                    @csrf  
+                    <div class="flex" class="cant_puja" id="cantpuja">
+                          <span style="font-size: 1.8rem;">S/</span>
+                          <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+
+                       </div>
+                        @error('valorpuja')
+                        <div class="alert alert-danger" style="font-size:0.9em" role="alert">
+                          Valor no aceptado o insuficiente
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                    @enderror
+                    @error('saldousuario')
+                        <div class="alert alert-danger" style="font-size:0.9em" role="alert">
+                          Saldo insuficiente
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                    @enderror
+
+                      <small>Min. oferta: S/{{$ultimoprecio +1}}.00</small><br>
+    
+                      <!-- id del producto, es invisible para que no se vea mal el cuadro y saque el id del producto para crar la puja --> 
+                      <input type="number" id="productoid" name="productoid" style="display: none" value="{{$prod->id}}" readonly><br>
+                      <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
+                      <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
+                      <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
+
+
+                      <div class="flex">
+                          <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
+                      </div>
+                      
+                      <div class="boton_compra my-2" style="display: none" id="boton_compra">
+                        <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
+                        <button type="button" class="btn btn-outline-primary">Compra</button>
+                      </div>
+                  </form>
+              <div class="separador"></div>
+            </div>
 
             </div>
-            
-          </div>
-        </div>
-    </div>
-  </div>
-  <!-- fin de la Información del producto -->
-  <br>
-
-  <div id="detalles" style="min-height: 450px;">
-    <div id="descri">
-      <div class="container3">
-        <ul class="nav nav-tabs">
-          <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#descripcion">Descripción</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#opiniones">Opiniones</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#estadisticas">Estadísticas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#similares">Subastas similares</a>
-          </li>
-        </ul>
-        
-        <div class="tab-content">
-          <div class="tab-pane container active" id="descripcion">
-            <h5 class="tilulo_producto my-2">{{$prod->nombre_producto}}</h5>
-            <p style='font-family: "Times New Roman", Times, serif;'> {{$prod->descripcion}} </p>
-          </div>
-          <div class="tab-pane container fade" id="opiniones">
-            <p>Ninguna opinion encontrada</p>
-          </div>
-          <div class="tab-pane container fade" id="estadisticas">
-            <p>Estadisticas no calculadas</p>
-          </div>
-          <div class="tab-pane container fade" id="similares">
-            <p>Area en mantenimiento</p>
-          </div>
-        </div>
       </div>
-    </div>
-    
-    <div id="ubicacion">
-      <h3>Ubicación: {{$prod->ubicacion}}</h3>
-      <p><b>Referencia:</b> {{$prod->distrito}}</p>
-      <div id="mapa" style="height: 390px;"></div>
-    </div>
-  </div>
-  
-  <div id="fixed"></div>
-  
-  <br><br>
-  {{-- Etiquetas fijadas --}}
-  {{-- Comentarios --}}
-  <style>
-    .borderahora{
-      border-width: 2px;
-      border-color: blue;
-      border-style: solid;
-    }
-  </style>
-  <section class="container">
-    
-    {{-- Mensaje con comentario --}}
-    <div class="row">
+      {{-- Fin Puja --}}
 
-    <div class="col-md-8">
-      <h2 class="text-center">Preguntas y respuestas / Acordar .....</h2>
+      {{-- Informacion --}}
+      <div class="panel-sup col-md-8 col-sm-12">
+          <div id="panel-3" class="panel" style="min-height: 500px;">
+              <ul class="tabs" role="tablist">
+                  <li>
+                      <input type="radio" name="tabs" id="tab1" checked />
+                      <label for="tab1" role="tab" aria-selected="true" aria-controls="panel1" tabindex="0">Descripción</label>
+                      <div id="tab-content1" class="tab-content" role="tabpanel" aria-labelledby="description" aria-hidden="false">
+                          <p>{{$prod->descripcion}}
+                          </p>
+                      </div>
+                  </li>
 
-    @foreach($commentUsers as $commentUser)
-      
-    <div class="row borderahora">
-      <p><a href="{{ route('comentarios-now', $commentUser->menSubUserEmisor->id) }}">{{ $commentUser->menSubUserEmisor->usuario }}</a>&nbsp;-&nbsp;Hoy</p>
-      <div class="col-md-12">
-        <p>{{ $commentUser->men_sub_mensaje }}</p>    
 
-      </div>
-    </div>
-    <div class="row py-2">
-      <div class="offset-4"></div>
-      <div class="col-md-8">
-        <p>Este es una respuesta al comentario que se habia madnado</p>
-        <div class="d-flex justify-content-end">
-        </div>    
-      </div>
-    </div>
+                  {{-- <li>
+                      <input type="radio" name="tabs" id="tab2" />
+                      <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Opiniones</label>
+                      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="comentarios" aria-hidden="true">
+                          <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
+                              enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                              consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
+                              nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla?</p>
+                      </div>
+                  </li> --}}
 
-    <div class="row py-2">
-      <div class="offset-4"></div>
-      <div class="col-md-8">
-        <p>Este es una respuesta al comentario que se habia madnado</p>
-        <div class="d-flex justify-content-end">
-          <button class="btn btn-success">Responder</button>
-        </div>    
-      </div>
-    </div>
-
-    @endforeach
-    {{ $commentUsers->links() }}
-
-    {{-- Formulario --}}
-    <div class="row">
-      <div class="col-md-12">
-        <form action="{{ route('enviarMensaje') }}" method="POST">
-          @csrf
-          <textarea name="mensajeEnviado" class="autoExpand" id="" cols="90%" rows="4" placeholder="inserte el comentario"></textarea>
-          <input type="hidden" name="idProducto" value="{{ $prod->id }}">
-          @if($errors->any())
-            <div>
-              <ul>
-                @foreach($errors->all() as $error)
-                  <li class="text-danger">{{ $error }}</li>
-                @endforeach
+                  <li>
+                      <input type="radio" name="tabs" id="tab3" />
+                      <label for="tab3" role="tab" aria-selected="false" aria-controls="panel3" tabindex="0">Garantía</label>
+                      <div id="tab-content3" class="tab-content" role="tabpanel" aria-labelledby="specification" aria-hidden="false">
+                          <p>{{$prod->garantia}}</p>
+                      </div>
+                  </li>
+                  <div style="clear: both;"></div>
               </ul>
-            </div>
-          @endif
-          <button class="btn btn-success" type="submit">Comentar</button>
-        </form>
+
+
+              <br>
+          </div>
       </div>
-    </div>
-
-
-    {{-- Fin formulario --}}
-
-  </div>
-
-  <div class="col-md-4">
-    <section class="container">
-      <h2 class="text-center">Acuerdos Establecidos</h2>
-      @if ($prod->productoAgreement->count()!=null)
-      @else
-        @if (auth()->user()->id == $prod->user_id)
-            
-        @else
-        <h4 class="text-muted text-center text-danger">Ningun acuerdo establecido</h4>                      
-        @endif
-          
-      @endif
-      @if (auth()->user()->id == $prod->user_id)
-      <h4 style="font-size: 10px" class="text-center text-danger">* Solo se permite 6 acuerdos maximo, no podra ser editado ni eliminado</h4>
-       @if ($prod->productoAgreement->count()<6)
-       <form action="{{ route('setAgreement') }}" method="POST">
-        @csrf
-       <div class="row justify-content-center">
-        <button type="submit"><i class="fa fa-plus-square" aria-hidden="true">&nbsp; <strong>Agregar</strong></i></button>
-          <br>
-          <textarea name="agreementUser" class="auto-expand" id="" cols="100%" rows="2" placeholder="Insertar el acuerdo"></textarea>
-          <input type="hidden" name="idProductoNow" value="{{ $prod->id }}">
-        </div>        
-      </form>
-           
-       @else
-         <div class="row justify-content-center">
-          <h4 style="font-size: 12px" class="text-center text-danger">YA LLEGASTE AL LIMITE DE ACUERDOS</h4>
-         </div>        
-
-       @endif 
-
-    @else
-    @endif
-  
-    @foreach ($prod->productoAgreement as $agreement)
-    <br>
-    <div class="row justify-content-between">
-      <div class="col-md-12 bg-dark text-white">
-        <p>{{ $agreement->agre_message }} </p>
+      {{-- Fin informacion --}}
+      {{-- Ubicacion --}}
+      <div class="panel-sup col-md-4 col-sm-12">
+          <div id="panel-4" class="panel">
+              <h2>Ubicación: {{$prod->ubicacion}}</h2>
+              <p><b>Referencia: </b>{{$prod->distrito}} </p>
+              <div id="ubicacion">
+                <div id="mapa" style="height: 390px;width:23em;" ></div>
+              </div>
+          </div>
       </div>
-    </div>
-      
-    @endforeach
-    </section>
+
+
   
-  </div>
-</div>
+      {{-- Fin ubicacion --}}
+      <div class="panel-sup col-md-8 col-sm-12" style="min-height: 600px">
+          <div id="panel-5" class="panel">
+              <!-- Contenedor Principal -->
+              <div class="comments-container">
+                  <h1>Negociación de acuerdos</h1>
 
 
+                  <ul id="comments-list" class="comments-list">
+                    {{-- Inicio de comentario respuesta y preguntas --}}
+                    @if($commentUsers->count()<=0)
+                    <h2>No hay ninguna pregunta. Se el primero</h2>
+                    @endif
+                    @foreach($commentUsers as $commentUser)
+
+                      <li>
+                          <div class="comment-main-level">
+                              <div class="wrapright">
+                                  <div class="right">
+                                      <!-- Contenedor del Comentario -->
+                                      <div class="comment-box">
+                                          <div class="comment-head">
+                                              <h6 class="comment-name @if($commentUser->menSubUserEmisor->id==$prod->user_id ) by-author @else @endif "><a href="{{ route('comentarios-now', $commentUser->menSubUserEmisor->id) }}">{{ $commentUser->menSubUserEmisor->usuario }}</a></h6>
+                                              <span>hace 20 minutos <-- No terminado</span>
+                                              {{-- <i class="fa fa-reply"></i>
+                                              <i class="fa fa-heart"></i> --}}
+                                          </div>
+                                          <div class="comment-content">
+                                            {{ $commentUser->men_sub_mensaje }}
+                                          </div>
+                                          <small id="show-responder">Responder</small>
+                                          {{-- Formulario de responser --}}
+
+
+
+                                          <br>
+                                          <div>
+                                              {{-- <div id="rpta-nivel-2" style="clear: right; border: none;" class="hide"> --}}
+                                              <div style="clear: right; border: none;" >
+                                                <form action="{{ route('sendCommentResponse') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="idComentarioR" value="{{ $commentUser->id }}">
+
+                                                      <div style="float:left; width:100%; height: 38px;">
+                                                          <div class="flex" style="margin-right: 90px;height: 38px; padding: 0 10px;">
+                                                              <input type="text" name="textComentarioR" class="message-input form__field" style="width: 100%; " placeholder="Escribe un mensaje...">
+                
+                                                          </div>
+                                                          {{-- Error en entrada respuesta --}}
+                                                          @if($errors->responseFormError->any())
+                                                          <div>
+                                                            <ul>
+                                                              @foreach($errors->responseFormError->all() as $error)
+                                                                <li class="text-danger">{{ $error }}</li>
+                                                              @endforeach
+                                                            </ul>
+                                                          </div>
+                                                        @endif
+                                                        {{-- Fin --}}
     
+                                                      </div>
+
+                                                      <br>
+                                                      <div class="flex" style="float: right; width: 80px; margin-left: -80px; height: 38px;">
+                                                          <button class="enviar-mensaje" type="submit">Enviar</button>
+                                                      </div>
+                                                  </form>
+                                              </div>
+                                          </div>
+                                          {{--Fin  Formulario de responser --}}
 
 
-  </section>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="left">
+                                  <!-- Avatar -->
+                                  <div class="comment-avatar" style="float: ;"><img src="@if($commentUser->menSubUserEmisor->id==$prod->user_id ) {{ asset('img/assets/usuarioOP.png') }} @else {{ asset('img/assets/usuarioAnonimo.png') }} @endif" alt=""></div>
+
+                              </div>
+                          </div>
+                          <!-- Respuestas de los comentarios -->
+                          <ul class="comments-list reply-list">
+
+                            @foreach ($commentUser->menSubRespuesta as $respuesta)  
+                              <li>
+                                  <div class="wrapright">
+                                      <div class="right">
+                                          <!-- Contenedor del Comentario -->
+                                          <div class="comment-box">
+                                              <div class="comment-head">
+                                                  <h6 class="comment-name @if($respuesta->us_response==$prod->user_id ) by-author @else @endif"><a href="#">{{ $respuesta->menSubRespUserResponse->usuario }}</a></h6>
+                                                  <span>hace 10 minutos <-- Falta</span>
+                                                  {{-- <i class="fa fa-reply"></i>
+                                                  <i class="fa fa-heart"></i> --}}
+                                              </div>
+                                              <div class="comment-content">
+                                                {{ $respuesta->mensub_resp_texto }}
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="left">
+                                      <!-- Avatar -->
+                                      <div class="comment-avatar"><img src=" @if($respuesta->us_response==$prod->user_id ) {{ asset('img/assets/usuarioOP.png') }} @else {{ asset('img/assets/usuarioAnonimo.png') }} @endif " alt=""></div>
+
+                                  </div>
+                              </li>
+                              @endforeach
+                          </ul>
+                      </li>
+                      @endforeach
+                      {{ $commentUsers->links() }}
+
+                      {{-- Fin modelo comentario y respuesta --}}
+
+
+
+
+
+                  </ul>
+                  <div style="width: 100%;" class="flex">
+                      <div class="contenedor-mensaje">
+                          <form action="{{ route('enviarMensaje') }}" method="POST">
+                            @csrf
+                            <div style="float:left; width:100%; height: 48px;">
+                                  <div class="flex" style="margin-right: 90px;height: 48px; padding: 0 10px;">
+                                      <input type="text" name="mensajeEnviado" class="message-input form__field" style="width: 100%; " placeholder="Hacer una pregunta...">
+                                      <input type="hidden" name="idProducto" value="{{ $prod->id }}">
+            
+
+                                  </div>
+                                  @if($errors->commentFormError->any())
+                                  <div>
+                                    <ul>
+                                      @foreach($errors->commentFormError->all() as $error)
+                                        <li class="text-danger" >{{ $error }}</li>
+                                      @endforeach
+                                    </ul>
+                                  </div>
+                                @endif
+
+                              </div>
+                              <div class="flex" style="float: right; width: 80px; margin-left: -80px; height: 48px;">
+                                  <button class="enviar-mensaje">Enviar</button>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="panel-sup col-md-4 col-sm-12">
+          <div id="panel-6" class="panel">
+              <h2>Acuerdos Fijados</h2><br><br><br>
+
+
+              @if (auth()->user()->id == $prod->user_id)
+              <h4 style="font-size: 10px" class="text-center text-danger">* Solo se permite 6 acuerdos maximo, no podra ser editado ni eliminado</h4>
+
+              <div class="acuerdo flex" id="nuevo-acuerdo">
+                     @if ($prod->productoAgreement->count()<6)
+                     <span id="texto-nuevo-acuerdo">Agregar un acuerdo</span>
+                     <form action="{{ route('setAgreement') }}" style="display: none;" id="inputAcuerdo" method="POST">
+                      @csrf
+                     <div class="row justify-content-center">
+                      <button type="submit"><i class="fa fa-plus-square" aria-hidden="true">&nbsp; <strong>Agregar</strong></i></button>
+                        <br>
+                        <textarea name="agreementUser" class="auto-expand" id=""  placeholder="Insertar el acuerdo"></textarea>
+                        <input type="hidden" name="idProductoNow" value="{{ $prod->id }}">
+                        @if($errors->agreementError->any())
+                          <div>
+                            <ul>
+                              @foreach($errors->agreementError->all() as $error)
+                                <li class="text-danger">{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          </div>
+                        @endif
+              
+              
+                      </div>        
+                    </form>
+                         
+                     @else
+                       <div class="row justify-content-center">
+                        <h4 style="font-size: 18px" class="text-center text-danger">YA LLEGASTE AL LIMITE DE ACUERDOS</h4>
+                       </div>        
+              
+                     @endif 
+              
+              </div>
+              @else
+              @endif
+
+
+
+
+
+
+
+              {{-- Muestra si no hay acuerdos establecidos --}}
+              @if ($prod->productoAgreement->count()!=null)
+              @else
+                @if (auth()->user()->id == $prod->user_id)
+                    
+                @else
+                <h4 class="text-muted text-center text-danger">Ningun acuerdo establecido</h4>                      
+                @endif
+                  
+              @endif
+              {{-- Fin ---------- --}}
+
+
+
+              @foreach ($prod->productoAgreement as $agreement)
+                <div class="acuerdo flex">
+                  &quot{{ $agreement->agre_message }}&quot
+                </div>
+
+              @endforeach
+          </div>
+      </div>
+      
+        <!--Contenedor de productos relacionados-->
+
+      <div class="panel-sup col-12 ">
+          <div id="panel-7 " class="panel " style="width: 100%; padding: 0 30px; overflow: hidden; ">
+              <h2>Ofertas destacadas</h2>
+              <div class="row">
+                @foreach ($productosRelac as $prodRelac)
+                  <div style="padding: 10px;">
+                      <div class="card" style="width: 14rem; margin: 10px;">
+                          <a href="#"><img class="card-img-top" src="@if($prodRelac->imagen!=null){{ $prodRelac->imagen }} @else {{ $prodRelac->image_name1 }} @endif" alt="coin02.png"></a>
+
+                          <div class="card-body">
+                              <a href="{{ route('producto.detalles', $prodRelac->id) }}">
+                                  <h5 class="card-title">{{$prodRelac->nombre_producto}}</h5>
+                              </a>
+                              <p class="card-text">{{ $prodRelac->descripcion }}</p>
+                              <small>{{$prodRelac->distrito}}, {{$prodRelac->ubicacion}}</small>
+                          </div>
+                      </div>
+                  </div>
+                  @endforeach
+
+              </div>
+
+              <!-- 
+              <div class="row ">
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 400px; padding: 10px; background-color: blue; border: blueviolet solid 2px; ">
+                      <div class="carta">
+                          <div class="cont-cart-img ">
+                              <img class="img-ajustada " src="coin02.png" alt="coin02.png">
+                          </div>
+
+                      </div>
+                      <div>
+                          Título y otras cosas
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">
+                      <div class="card" style="width: 18rem;">
+                          <img class="card-img-top" src="coin02.png" alt="coin02.png">
+                          <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
+                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
+                  <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
+                      <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                  </div>
+              </div> -->
+
+          </div>
+      </div>
+        <!--Fin de productos relacionados-->
+
+  </div>
+  <br><br><br><br>
+
 </div>
+
+
+
+
+{{-- Fin nuevo Diseño --}}
   
 @endsection
 
@@ -505,7 +762,51 @@
     
 </script>
 
-@if ($prod->productoUserPropietario->userReportUser->count() >= 30)
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+<script>
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+spaceBetween: 10,
+slidesPerView: 4,
+loop: true,
+freeMode: true,
+loopedSlides: 5, //looped slides should be the same
+watchSlidesVisibility: true,
+watchSlidesProgress: true,
+});
+var galleryTop = new Swiper('.gallery-top', {
+spaceBetween: 10,
+loop: true,
+loopedSlides: 5, //looped slides should be the same
+navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+},
+thumbs: {
+    swiper: galleryThumbs,
+},
+});
+
+$(document).on('dragstart', 'img', function(evt) {
+evt.preventDefault();
+});
+$(document).ready(function() {
+$("#nuevo-acuerdo").click(function() {
+    $('#texto-nuevo-acuerdo').hide(1);
+    $('#inputAcuerdo').show(1);
+
+});
+$("#show-responder").click(function() {
+    $("#rpta-nivel-2").toggleClass("hide");
+
+});
+
+});
+</script>
+{{-- Comentario javascript --}}
+
+
+
+@if ($prod->productoUserPropietario->userReportUser->count() >= 1)
 <script>  
     $(function(){
         $('#staticBackdrop').modal({
@@ -513,6 +814,51 @@
         });
     });
 </script>
+
+{{-- Nuevo diseño --}}
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
+<script>
+    var galleryThumbs = new Swiper('.gallery-thumbs', {
+spaceBetween: 10,
+slidesPerView: 4,
+loop: true,
+freeMode: true,
+loopedSlides: 5, //looped slides should be the same
+watchSlidesVisibility: true,
+watchSlidesProgress: true,
+});
+var galleryTop = new Swiper('.gallery-top', {
+spaceBetween: 10,
+loop: true,
+loopedSlides: 5, //looped slides should be the same
+navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+},
+thumbs: {
+    swiper: galleryThumbs,
+},
+});
+
+$(document).on('dragstart', 'img', function(evt) {
+evt.preventDefault();
+});
+$(document).ready(function() {
+$("#nuevo-acuerdo").click(function() {
+    $('#texto-nuevo-acuerdo').hide(1);
+    $('#inputAcuerdo').show(1);
+
+});
+$("#show-responder").click(function() {
+    $("#rpta-nivel-2").toggleClass("hide");
+
+});
+
+});
+</script>
+
+
 @endif
 
     <!-- Colocar js abajo-->

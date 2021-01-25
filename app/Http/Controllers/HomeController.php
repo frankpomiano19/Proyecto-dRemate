@@ -73,7 +73,7 @@ class HomeController extends Controller
         $usuarios = App\Models\User::all();
         $iniciosubasta = new \Carbon\Carbon($prod->inicio_subasta);
         $limitepuja = new \Carbon\Carbon($prod->final_subasta);
-        $productosRelac =  App\Models\Producto::where('categoria_id','=',$prod->categoria_id)->latest()->take(5)->get();
+        $productosRelac =  App\Models\Producto::where('categoria_id','=',$prod->categoria_id)->latest()->take(4)->get();
         // Comment
         $commentUsers = mensajeSubasta::where('pro_id','=',$prod->id)->orderBy('created_at','DESC')->paginate(10);
         //End comment
@@ -297,7 +297,7 @@ class HomeController extends Controller
         ];
         $validacion = Validator::make($request->all(),$fieldCreate,$messageError);
         if($validacion->fails()){
-            return back()->withErrors($validacion);
+            return back()->withErrors($validacion,'commentFormError');
         }
 
         $userReceptor = Producto::where('id','=',$request->idProducto)->first();
@@ -324,7 +324,7 @@ class HomeController extends Controller
         ];
         $validacion = Validator::make($request->all(),$fieldCreate,$messageError);
         if($validacion->fails()){
-            return back()->withErrors($validacion);
+            return back()->withErrors($validacion,'agreementError');
         }
 
 
@@ -337,6 +337,31 @@ class HomeController extends Controller
         $ruta = '/producto-'.$request->idProductoNow;
         return redirect($ruta);
  
+    }
+    public function sendCommentResponse(Request $request){
+
+        $fieldCreate= [
+            'idComentarioR'=> 'required',
+            'textComentarioR' =>'required',
+        ];
+        $messageError=[
+            'textComentarioR.required' =>'El campo de texto es obligatorio',
+            'idComentarioR.required' =>'Falta el identificador para el ID',
+        ];
+        $validacion = Validator::make($request->all(),$fieldCreate,$messageError);
+        if($validacion->fails()){
+            return back()->withErrors($validacion,'responseFormError');
+        }
+        $commentResponse = mensajeSubasta::where('id','=',$request->idComentarioR)->first();
+        $idProductoUser = $commentResponse->pro_id;  
+
+        $commentResponse->menSubRespuesta()->create([
+            'mensub_resp_texto'=>$request->textComentarioR,
+            'us_response'=>auth()->user()->id
+        ]);
+        $ruta = '/producto-'.$idProductoUser;
+        return redirect($ruta);
+
     }
 
 }
