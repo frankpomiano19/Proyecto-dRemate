@@ -133,6 +133,12 @@
                             <i class="fa fa-table mr-2"></i>
                             <span class="font-weight-bold small text-uppercase">Historial</span></a>
 
+                        <a class="nav-link mb-3 p-3 shadow" id="v-pills-subasta-pop" data-toggle="pill"
+                            href="#pills-sub-pop" role="tab" aria-controls="v-pills-popular" aria-selected="false"
+                            onclick="tablasOpc = 3;">
+                            <i class="fa fa-table mr-2"></i>
+                            <span class="font-weight-bold small text-uppercase">Subastadores populares</span></a>
+
                     </div>
                 </div>
                 <div class="col-lg-10 contenido-dinamico-lateral">
@@ -220,6 +226,20 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade " id="pills-sub-pop" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            {{-- <section class="py-0">
+                                <div class="container">
+                                </div>
+                            </section> --}}
+
+                            <div class="container" style="margin-top: 1rem;">                                
+                                <h3 class="font-weight-bold font-popin">Subastadores populares</h3><br>
+                                <div class="row justify-content-center" id="id_subasta_programada">
+                                    @include('partials/sub_rap_popu')
                                 </div>
                             </div>
                         </div>
