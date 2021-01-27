@@ -134,10 +134,18 @@ Route::get('categorias/electrodomesticos', function () {
     return view('categorias/electrodomesticos');
 });
 
+Route::get('categorias/productoPopular', function () {
+    return view('categorias/productoPopular');
+});
+
+
 Route::get('favoritos', function () {
     return view('favoritos');
 });
 
+
+
+Route::get('/productosPopulares',[SuscripcionController::class,'productosPopulares']);
 
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->middleware('auth')->name('producto.registroe');

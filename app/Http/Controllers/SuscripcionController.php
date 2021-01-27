@@ -11,6 +11,19 @@ use App\Models\Producto;
 
 class SuscripcionController extends Controller
 {
+    public function productosPopulares(){
+
+        $variable = "casa";
+
+        $productos = Producto::where('favorito','!=',0)->orderBy('favorito', 'desc')->get();
+        
+        // dd($producto);
+
+
+        return view('productosPopulares')->with('variable', $variable)->with('productos', $productos);
+
+    }
+
     public function suscripcion(Request $request){
 
         $idUsuario = $request->idUsuario;
