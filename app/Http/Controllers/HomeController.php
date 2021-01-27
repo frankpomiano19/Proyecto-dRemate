@@ -163,6 +163,13 @@ class HomeController extends Controller
         //Fila de usuario
         $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
 
+        $productoFavorito = App\Models\Producto::where('id','=',$request->favorito)->first();
+
+        // dd($request->fav);
+
+
+
+
         //Campo favorito del usuario
         $listaUsuario = $listaFavoritos->favoritos;
 
@@ -195,13 +202,25 @@ class HomeController extends Controller
 
             if($favoritos[$i] == $favNuevo){
                 $favoritos[$i] = 0;
-                // $favoritos[$i+1] = 0;
                 $existe = 1;
                 break;
             }else{
                 $existe = 0;
             }
 
+        }
+
+        if($request->fav=="1"){
+            $productoFavorito->favorito = $productoFavorito->favorito + 1;
+            $productoFavorito->save();
+        }else{
+            $productoFavorito->favorito = $productoFavorito->favorito - 1;
+            $productoFavorito->save();
+        }
+
+        if($request->indice=="0"){
+            $productoFavorito->favorito = $productoFavorito->favorito - 1;
+            $productoFavorito->save();
         }
 
         if($existe == 1){

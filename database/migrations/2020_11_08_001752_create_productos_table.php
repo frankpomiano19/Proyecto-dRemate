@@ -40,6 +40,7 @@ class CreateProductosTable extends Migration
             $table->double('longitud', 15, 8)->nullable();
 
             $table->integer('indicador')->nullable();
+            $table->integer('favorito')->nullable()->default(0);
 
             $table->dateTime('inicio_subasta')->nullable();
             $table->dateTime('final_subasta')->nullable();
