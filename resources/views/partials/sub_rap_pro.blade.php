@@ -32,7 +32,7 @@
                     style="background-image: url('{{ $su_curso->image_name1 }}');background-size:100% 100%;">
                     <div class="ep">Precio base : ${{ $su_curso->precio_inicial }} </div>
                     <div class="comment">
-                        <button type="submit" class="btn"><img src="{{asset('img/assets/comentario.png')}}"></button>
+                        <a href="{{ route('producto.detalles', $su_curso->id) }}" class="btn"><img src="{{asset('img/assets/comentario.png')}}"></a>
                     </div>
                     <div class="view">
                         @auth
@@ -72,7 +72,12 @@
             </div>
             <div class="card-contenido-cuerpo-1">
                 <div class="card-footer">
+                    @if ($su_curso->productoPuja->count()>0) 
+                    
                     Puja mas alta : S/ {{ $su_curso->precio_inicial + rand(1, 200) }}
+                    @else
+                    Todavia no hay ninguna puja                        
+                    @endif
                 </div>
                 <div class="text-center">Tiempo restante</div>
                 <div class="defaultCountdown"> </div>

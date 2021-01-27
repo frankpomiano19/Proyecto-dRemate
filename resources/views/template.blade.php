@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 
+@section('share-content')
+    <meta property="og:url" content="https://huamanangel.github.io/pruebaBorrar/" />
+    <meta property="og:type" content="dreamte " />
+    <meta property="og:title" content="Caminante no hay camino" />
+    <meta property="og:description" content="Empresa encargada de hacer varios gaa" />
+    <meta property="og:image" content="https://data.pixiz.com/output/user/frame/preview/400x400/9/0/0/7/2917009_563ba.jpg" /> --}}
+@endsection
+
+
 @section('cont_cabe')
     <title>Subtitulo - dRemate</title>
 
