@@ -40,7 +40,6 @@
                             {{ csrf_field() }}
                                     @csrf
                                     <input type="hidden" name="favorito" value={{ $su_curso->id }}>
-
                                         @foreach ($favoritos as $fav)
 
                                             @if ($fav == $su_curso->id)
@@ -65,7 +64,7 @@
                                         @endif
                         </form>
                         @else
-                            <button type="" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                            <a href="{{ url('login') }}" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></a>
                         @endauth
                     </div>
                 </div>
@@ -74,7 +73,7 @@
                 <div class="card-footer">
                     @if ($su_curso->productoPuja->count()>0) 
                     
-                    Puja mas alta : S/ {{ $su_curso->precio_inicial + rand(1, 200) }}
+                    Puja mas alta : S/ {{ $su_curso->productoPuja->last()->valor_puja}}
                     @else
                     Todavia no hay ninguna puja                        
                     @endif

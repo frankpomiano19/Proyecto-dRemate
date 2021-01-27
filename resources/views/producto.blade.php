@@ -25,7 +25,7 @@
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
       js = d.createElement(s); js.id = id;
-      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+      js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0";
       fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
       </script>
@@ -117,17 +117,19 @@
                   @else
                   <a href=" {{ url('login') }}  "><img src="{{asset('img/assets/corazon.png')}}"></a>
                   @endauth
+                    <!-- Your share button code -->
+                    <div style="display: inline" class="fb-share-button" 
+                    data-href="http://dremate.herokuapp.com/producto-{{ $prod->id }}" 
+                    data-layout="button" data-size="small">
+                    </div>
+
+                    <a class="btn btn-social-icon btn-sm btn-twitter" href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
+                      <span class="fa fa-twitter"></span>
+                    </a>
               </div>
 
-                    <!-- Your share button code -->
-                    <div class="fb-share-button" 
-                    data-href="http://dremate.herokuapp.com/producto-{{ $prod->id }}" 
-                    data-layout="button_count">
-                    </div>
-                    {{-- <div class="fb-share-button" 
-                    data-href="https://huamanangel.github.io/pruebaBorrar/" 
-                    data-layout="button_count">
-                    </div> --}}
+  
+
                 
               <!-- Swiper -->
               <div style="height: 500px; width: 100%; background-color: black; clear: both;">
