@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 
+@section('share-content')
+    <meta property="og:url" content="http://dremate.herokuapp.com/info-{{ $usuarioPerfil->id }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Perfil : {{ $usuarioPerfil->usuario }}" />
+    <meta property="og:description" content="Perfil de usuario " />
+    <meta property="og:image" content="{{ asset('img/assets/usuarioAnonimo.png') }}" />
+@endsection
+
+
 @section('cont_cabe')
     <title>Informacion - dRemate</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -9,6 +18,18 @@
 
 @section('contenidoJS')
     <!-- Colocar js-->
+
+    <script>
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+  
+
 @endsection
 
 @section('contenidoCSS')
@@ -22,6 +43,10 @@
 
 
 @section('contenido')
+@php
+
+  \Carbon\Carbon::setLocale('es');  
+@endphp
     <script>
         let contadorComentario = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
         let identificadorComentario = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -144,7 +169,10 @@
                                     <li><b>CORREO PERSONAL: </b>{{ $usuarioPerfil->email }}</li>
                                     <li><b>FECHA DE REGISTRO: </b>
                                         @if ($usuarioPerfil->created_at != null)
-                                            {{ $usuarioPerfil->created_at }}
+
+                                            @php
+                                            echo \Carbon\Carbon::parse($usuarioPerfil->created_at)->diffForHumans();   
+                                            @endphp
                                         @else
                                             No se registro fecha de creacion
                                         @endif
@@ -164,6 +192,24 @@
                                                 class="fa fa-youtube"></span></a></li>
                                     <br>
                                 </ul>
+                                {{-- Compartir perfil --}}
+                                <h3 class="text-center m-auto p-4">Comparte mi perfil</h3> 
+
+                                <ul class="social-icons" style="padding-left: 0px;margin-bottom: 0px;">
+                                    <li>
+                                        <a class="btn btn-social-icon btn-twitter" style="width:100px;font-size:10px" href="https://twitter.com/intent/tweet?text=Perfil de usuario&url=http://dremate.herokuapp.com/info-{{ $usuarioPerfil->id }}&hashtags=dRemate-perfil,dRemate">
+                                            <span class="fa fa-twitter">&nbsp;Compartir</span>
+                                        </a>        
+                                    </li>
+                                    <li>
+                                        <div class=" fb-share-button " 
+                                        data-href="http://dremate.herokuapp.com/info-{{ $usuarioPerfil->id }}" 
+                                        data-layout="button_count" data-size="large">
+                                        </div>        
+                                    </li>
+                                </ul>
+                                {{-- Fin --}}
+
                             </div><!-- intro -->
                         </div><!-- col-sm-8 -->
                     </div><!-- row -->
@@ -365,7 +411,11 @@
                             <div class="ajustar-label-1">
                                 <a href="#"
                                     class="nombre-url">{{ $comentariosGustado->comentUserPerteneciente->usuario }}</a>
-                                <label class="">Hace 3 dias</label>
+                                <label class="">
+                                    @php
+                                    echo \Carbon\Carbon::parse($comentariosGustado->created_at)->diffForHumans();   
+                                    @endphp
+                                </label>
                             </div>
                             @if ($comentariosGustado->comentUserPerteneciente->userProductoCompradorDestacado->count() >= 2)
                                 <div class="ajustar-label-2">

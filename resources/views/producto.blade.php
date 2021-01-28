@@ -123,8 +123,8 @@
                     data-layout="button" data-size="small">
                     </div>
 
-                    <a class="btn btn-social-icon btn-sm btn-twitter" href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
-                      <span class="fa fa-twitter"></span>
+                    <a class="btn btn-social-icon btn-sm btn-twitter" style="width:100px;font-size:10px"  href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
+                      <span class="fa fa-twitter" >&nbsp; Compartir</span>
                     </a>
               </div>
 
