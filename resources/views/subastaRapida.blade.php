@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('share-content')
+    <meta property="og:url" content="http://dremate.herokuapp.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="dRemate" />
+    <meta property="og:description" content="Pagina de subasta online para cualquier tipo de persona" />
+    <meta property="og:image" content="{{ asset('img/assets/subasta4.jpg') }}" />
+@endsection
+
 
 @section('cont_cabe')
     <title>Subasta rapida - dRemate</title>
@@ -11,7 +19,16 @@
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
-
+    <script>
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
 @endsection
 
 @section('contenidoCSS')
@@ -51,32 +68,37 @@
             <h1 class="titulo-card-header-2">Bienvenido a la subasta rapida</h1>
             <h2 style="font-size: 20px">Recuerda que para pujar, necesitas estar registrado</h2>
             <div class="btn-group py-4" role="group">
-                <a href="" role="button" class="btn btn-info"><i class="fa fa-book">
-                        Registrarse</i></a>
-                <a href="{{ route('login') }}" role="button" class="btn btn-info"><i class="fa fa-user">
-                        Iniciar sesion</i></a>
+
+                @guest
+                <a href="{{ url('login') }}" role="button" class="btn btn-info"><i class="fa fa-book">
+                    Registrarse</i></a>
+                <a href="{{ url('login') }}" role="button" class="btn btn-info"><i class="fa fa-user">
+                    Iniciar sesion</i></a>
+                @else
+                    Bienvenido {{ auth()->user()->usuario }}
+                @endguest
             </div>
             <h4 style="font-size: 20px">Puedes conocer productos por categorias</h4>
             <div class="btn-group py-4" role="group">
-                <a href="{{ route('register') }}" role="button" class="btn btn-info"><i class="fa fa-chevron-right">
-                        Conocer
-                        mas</i></a>
+                <a href="{{ url('busquedaFiltro') }}" role="button" class="btn btn-info"><i class="fa fa-chevron-right">
+                        Buscar mas productos</i></a>
             </div>
 
             <hr style="border-color: white">
             <hr style="border-color: white">
 
             <div>
-                <a class="btn btn-social-icon btn-twitter">
+                {{-- <a class="btn btn-social-icon btn-twitter">
                     <span class="fa fa-instagram"></span>
-                </a>
-                <a class="btn btn-social-icon btn-twitter">
+                </a> --}}
+                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/intent/tweet?text=Pagina%20de%20subasta%20online%20para%20cualquier%20tipo%20de%20persona&url=http%3A%2F%2Fdremate.herokuapp.com/&via=dRemate&hashtags=programación,html">
                     <span class="fa fa-twitter"></span>
                 </a>
-                <a class="btn btn-social-icon btn-twitter">
-                    <span class="fa fa-facebook"></span>
-                </a>
-
+                <div class="fb-share-button " 
+                data-href="http://dremate.herokuapp.com/" 
+                data-layout="button_count" data-size="large">
+                </div>
+        
             </div>
         </div>
     </header>
@@ -110,6 +132,12 @@
                             onclick="tablasOpc = 2;">
                             <i class="fa fa-table mr-2"></i>
                             <span class="font-weight-bold small text-uppercase">Historial</span></a>
+
+                        <a class="nav-link mb-3 p-3 shadow" id="v-pills-subasta-pop" data-toggle="pill"
+                            href="#pills-sub-pop" role="tab" aria-controls="v-pills-popular" aria-selected="false"
+                            onclick="tablasOpc = 3;">
+                            <i class="fa fa-table mr-2"></i>
+                            <span class="font-weight-bold small text-uppercase">Subastadores populares</span></a>
 
                     </div>
                 </div>
@@ -198,6 +226,20 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade " id="pills-sub-pop" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            {{-- <section class="py-0">
+                                <div class="container">
+                                </div>
+                            </section> --}}
+
+                            <div class="container" style="margin-top: 1rem;">                                
+                                <h3 class="font-weight-bold font-popin">Subastadores populares</h3><br>
+                                <div class="row justify-content-center" id="id_subasta_programada">
+                                    @include('partials/sub_rap_popu')
                                 </div>
                             </div>
                         </div>

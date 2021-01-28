@@ -15,8 +15,11 @@ class CreateMensubRespuestasTable extends Migration
     {
         Schema::create('mensub_respuestas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('mensub_resp');
+            $table->unsignedBigInteger('mensub_resp')->nullable();
+            $table->text('mensub_resp_texto')->nullable();
+            $table->unsignedBigInteger('us_response')->nullable();
             $table->foreign('mensub_resp')->references('id')->on('mensaje_subastas')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('us_response')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

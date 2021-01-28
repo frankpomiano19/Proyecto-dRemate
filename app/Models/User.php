@@ -112,4 +112,7 @@ class User extends Authenticatable
         return $this->hasMany(Report_user::class,'user_denunc_id');
     }
 
+    public function userMessageResponseSubasta(){
+        return $this->hasOne(mensubRespuesta::class,'us_response');
+    }
 }

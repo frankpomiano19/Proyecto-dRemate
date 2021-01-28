@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -44,26 +44,39 @@ class HomeController extends Controller
     {
         return view("subastaRapida");
     }
+    public function viewProductGuest(){
+
+        return "vacas";
+    }
 
     public function viewproduct($idpro)
     {
 
-        $listaFavoritos = App\Models\User::where('id', '=', auth()->id())->first();
+        // if(auth()->user() ==null){
+        //     return redirect()->route('guestPuja',['idpro'=>]);
+        // }
+        if(auth()->user()==null){
 
-        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
-        $listaUsuario = $listaFavoritos->favoritos;
-        $listaInicio = str_replace("[", "", $listaUsuario);
-        $listaFin = str_replace("]", "", $listaInicio);
+        }else{
+            $listaFavoritos = App\Models\User::where('id', '=', auth()->id())->first();
 
-        $favoritos = explode(',', $listaFin);
-
-        $tamanio = sizeof($favoritos);
-        //Convertir a entero
-        for ($i = 0; $i < $tamanio; $i++) {
-
-            $temp = (int)$favoritos[$i];
-            $favoritos[$i] = $temp;
+            $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+            $listaUsuario = $listaFavoritos->favoritos;
+            $listaInicio = str_replace("[", "", $listaUsuario);
+            $listaFin = str_replace("]", "", $listaInicio);
+    
+            $favoritos = explode(',', $listaFin);
+    
+            $tamanio = sizeof($favoritos);
+            //Convertir a entero
+            for ($i = 0; $i < $tamanio; $i++) {
+    
+                $temp = (int)$favoritos[$i];
+                $favoritos[$i] = $temp;
+            }
+    
         }
+
 
         $prod = App\Models\Producto::findOrFail($idpro);
         $vendedor = App\Models\User::findOrFail($prod->user_id);
@@ -73,7 +86,7 @@ class HomeController extends Controller
         $usuarios = App\Models\User::all();
         $iniciosubasta = new \Carbon\Carbon($prod->inicio_subasta);
         $limitepuja = new \Carbon\Carbon($prod->final_subasta);
-        $productosRelac =  App\Models\Producto::where('categoria_id','=',$prod->categoria_id)->latest()->take(5)->get();
+        $productosRelac =  App\Models\Producto::where('categoria_id','=',$prod->categoria_id)->latest()->take(4)->get();
         // Comment
         $commentUsers = mensajeSubasta::where('pro_id','=',$prod->id)->orderBy('created_at','DESC')->paginate(10);
         //End comment
@@ -85,8 +98,13 @@ class HomeController extends Controller
         }
 
 
+        if(auth()->user()==null){
+            return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','commentUsers'));
+
+        }else{
+            return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers'));
+        }
         //End comentarios
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers'));
     }
 
     public function buscaProducto(Request $request)
@@ -297,7 +315,7 @@ class HomeController extends Controller
         ];
         $validacion = Validator::make($request->all(),$fieldCreate,$messageError);
         if($validacion->fails()){
-            return back()->withErrors($validacion);
+            return back()->withErrors($validacion,'commentFormError');
         }
 
         $userReceptor = Producto::where('id','=',$request->idProducto)->first();
@@ -324,7 +342,7 @@ class HomeController extends Controller
         ];
         $validacion = Validator::make($request->all(),$fieldCreate,$messageError);
         if($validacion->fails()){
-            return back()->withErrors($validacion);
+            return back()->withErrors($validacion,'agreementError');
         }
 
 
@@ -337,6 +355,31 @@ class HomeController extends Controller
         $ruta = '/producto-'.$request->idProductoNow;
         return redirect($ruta);
  
+    }
+    public function sendCommentResponse(Request $request){
+
+        $fieldCreate= [
+            'idComentarioR'=> 'required',
+            'textComentarioR' =>'required',
+        ];
+        $messageError=[
+            'textComentarioR.required' =>'El campo de texto es obligatorio',
+            'idComentarioR.required' =>'Falta el identificador para el ID',
+        ];
+        $validacion = Validator::make($request->all(),$fieldCreate,$messageError);
+        if($validacion->fails()){
+            return back()->withErrors($validacion,'responseFormError');
+        }
+        $commentResponse = mensajeSubasta::where('id','=',$request->idComentarioR)->first();
+        $idProductoUser = $commentResponse->pro_id;  
+
+        $commentResponse->menSubRespuesta()->create([
+            'mensub_resp_texto'=>$request->textComentarioR,
+            'us_response'=>auth()->user()->id
+        ]);
+        $ruta = '/producto-'.$idProductoUser;
+        return redirect($ruta);
+
     }
 
 }

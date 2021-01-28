@@ -170,6 +170,41 @@
                 </div><!-- container -->
             </section>
 
+
+
+            <form method="POST" id="form-calificar"
+                            action="{{ route('calificar-create')}}">  
+                           {{ csrf_field()}}
+                           
+                            
+                            
+                                  <div class="rating-group">
+                                  <input disabled checked class="rating__input rating__input--none" name="score" id="rating3-none" value="0" type="radio">
+                                  <label aria-label="1 star" class="rating__label" for="rating3-1">
+                                  <i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-1" value="1" type="radio" required>
+                                  <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-2" value="2" type="radio" >
+                                  <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-3" value="3" type="radio">
+                                  <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-4" value="4" type="radio" >
+                                  <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-5" value="5" type="radio" >
+                                  </div>
+                                  <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                        type="submit" id="calificar-button">Enviar</button>
+                                  <input type="hidden" value="{{ $idPerfil }}" name="idUserPerfil" id="hidden-id-user">
+                               </form>
+                               (
+                            {{isset($cantidad)?$cantidad:'Aún no hay votos'}}
+                           
+                                      <span class="num-ratings"> </span>
+                                        <label class="">votos, promedio</label>
+                                     
+                             {{isset($promedio)?$promedio:'Aún no hay votos'}}
+                             )
+                             
             <section class="about-section section">
                 <div class="container">
                     <div class="row">
@@ -276,6 +311,12 @@
                                 <label class="etiqueta-destacado">Subastador<br>destacada</label>
                             </div>
                         @endif
+
+
+
+
+
+
 
                         <div class="row py-2 evitar-float">
                             <div class="col-md-12 color-input">

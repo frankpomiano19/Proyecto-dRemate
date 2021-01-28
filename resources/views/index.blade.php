@@ -72,12 +72,6 @@
 
                                 </div>
                             </section>
-                            <div id="subasta_proc_filtro_include" class="row">
-
-
-
-                            </div>
-
                             <div class="row justify-content-center">
                                 <div class="col-md-2">
 
@@ -100,12 +94,6 @@
                                     <h3 class="font-weight-bold font-popin">Mis productos en subasta</h3>
                                 </div>
                             </section>
-
-                            <div class="container">
-                                <div class="row justify-content-center" id="id_subasta_programada">
-
-                                </div>
-                            </div>
                         </div>
 
 
