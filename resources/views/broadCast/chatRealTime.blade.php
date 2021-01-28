@@ -15,7 +15,8 @@
 
 @section('contenidoCSS')
 
-    <link rel="stylesheet" href="{{asset('css/styleChatRealTime.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/styleChatRealTime.css') }}">
+
 @endsection
 
 
@@ -30,61 +31,59 @@
         <li>Primer mensaje</li>
     </ul> --}}
     <h3 class=" text-center">Mensajes</h3>
-    <div class="row">
+    <div class="row left-side">
         <div class="col-md-6">
-            <div class="row col-md-12 d-flex justify-content-center" >
-                <img src="{{$producto->image_name1}}" class="img-formated" alt="">
-                
+            <div class="row col-md-12 d-flex justify-content-center">
+                <img src="{{ $producto->image_name1 }}" class="img-formated" alt="">
+
             </div>
             <hr class="linea-divisora-medio">
             <div class="row col-md-12 py-3">
-                <p class="text-align-center" for="">Precio base de S/{{$producto->precio_inicial}}</p>
+                <p class="text-align-center" for="">Precio base de S/{{ $producto->precio_inicial }}</p>
             </div>
-            
-            <div class="row col-md-12">
-                <ul style="color: red; font-size:0.8em;">
-                    <li>Este producto permite ser negociado tomando como precio incial al precio base</li>
-                    <li>Cuando presiones el boton "Establecer comunicacion" se le mandara una notificacion al vendedor, para ir a un chat y negociar</li>
-                </ul>
-            </div>
-            
+
             <div class="row col-md-12">
             </div>
-            
+
+            <div class="row col-md-12">
+            </div>
+
 
             <div class="row container">
                 <div class="col-md-6">
-                    <label for="" class="label-fuerte">Producto :  </label> <label>{{$producto->nombre_producto}}</label>
+                    <label for="" class="label-fuerte">Producto : </label> <label>{{ $producto->nombre_producto }}</label>
                 </div>
                 <div class="col-md-6">
-                    <label for="" class="label-fuerte">Condicion :  </label> <label>{{$producto->condicion}}</label>    
+                    <label for="" class="label-fuerte">Condicion : </label> <label>{{ $producto->condicion }}</label>
                 </div>
             </div>
             <hr class="linea-divisora-medio">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="" class="label-fuerte">Garantia :  </label> <label>{{$producto->garantia}}</label>
+                    <label for="" class="label-fuerte">Garantia : </label> <label>{{ $producto->garantia }}</label>
                 </div>
                 <div class="col-md-6">
-                    <label for="" class="label-fuerte">Precio base :  </label> <label>{{$producto->precio_inicial}}</label>
+                    <label for="" class="label-fuerte">Precio base : </label> <label>{{ $producto->precio_inicial }}</label>
                 </div>
-            </div>                    
+            </div>
             <hr class="linea-divisora-medio">
             <div class="row ">
                 <div class="col-md-12 d-flex justify-content-center">
-                    <label for="" class="label-fuerte">Descripcion  </label>
-                </div>                    
+                    <label for="" class="label-fuerte">Descripcion </label>
+                </div>
             </div>
-            <p class="text-center">{{$producto->descripcion}}</p>
+            <p class="text-center">{{ $producto->descripcion }}</p>
         </div>
 
         <div class="col-md-6">
             <div class="inbox_msg">
                 <div class="mesgs">
                     <div class="msg_history">
+                        <div class="text-danger">Todos los mensajes en el chat NO SE GRABAN, se pierden cuando se actualiza
+                            o cierra la pagina</div>
                         {{-- mensaje recibido --}}
                         <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="{{asset('img/assets/antique-1125467_1920.jpg')}}"
+                            <div class="incoming_msg_img"> <img src="{{ asset('img/assets/antique-1125467_1920.jpg') }}"
                                     alt="sunil"> </div>
                             <div class="received_msg">
                                 <div class="received_withd_msg">
@@ -94,7 +93,7 @@
                             </div>
                         </div>
                         <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="{{asset('img/assets/antique-1125467_1920.jpg')}}"
+                            <div class="incoming_msg_img"> <img src="{{ asset('img/assets/antique-1125467_1920.jpg') }}"
                                     alt="sunil"> </div>
                             <div class="received_msg">
                                 <div class="received_withd_msg">
@@ -108,7 +107,7 @@
                         {{-- Mensaje enviado --}}
                         <div class="outgoing_msg">
                             <div class="sent_msg">
-                                <p>Mascoteando</p>
+                                <p>Por los clavos de cristo</p>
                                 <span class="time_date"> 11:01 AM | Junio 9</span>
                             </div>
                         </div>
@@ -119,17 +118,25 @@
                     </div>
                     {{-- Entrada de mensaje --}}
                     @livewire("chat-form")
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
                 </div>
             </div>
-            <div class="row col-md-12 py-2 d-flex justify-content-around">
-                <button class="btn btn-danger btn-rojo-comu">Terminar Conversacion</button>
-                <button class="btn btn-primary btn-rojo-mens">Enviar mensaje al vendedor</button>
+            <div class="cuadro-1">
+
+                <div class="row col-md-12 d-flex justify-content-around">
+                    <h2>Comandos</h2>
+                </div>
+                <div>
+                    <div>
+                        <div class="row col-md-12 py-2 d-flex justify-content-around">
+                            <button class="btn btn-danger btn-rojo-comu">Terminar Conversacion</button>
+                            {{-- <button class="btn btn-primary btn-rojo-mens">Iniciar Negociacion</button> --}}
+                        </div>
+
+                    </div>
+                </div>
             </div>
+
+
 
         </div>
     </div>
@@ -141,33 +148,33 @@
 @section('contenidoJSabajo')
 
 
-{{-- <script>
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-    var pusher = new Pusher('3bac7671fc18cafa7fe4', {
-        cluster: 'us2',
-        forceTLS: true
-    });
+    {{-- <script>
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+        var pusher = new Pusher('3bac7671fc18cafa7fe4', {
+            cluster: 'us2',
+            forceTLS: true
+        });
 
-    var channel = pusher.subscribe('canal-chat');
-    channel.bind('my-event', function(data) {
-        // alert(JSON.stringify(data));
-        // console.log(data.data)
-        //  alert(JSON.stringify(data));
-        const message = data.data
-        var node = document.createElement("li");
-        var textnode = document.createTextNode(message.user + "=>" + message.message);
-        node.appendChild(textnode);
-        // document.getElementById("myList").appendChild(node);
-        document.getElementsByClassName('msg_history')[0].appendChild(node);
+        var channel = pusher.subscribe('canal-chat');
+        channel.bind('my-event', function(data) {
+            // alert(JSON.stringify(data));
+            // console.log(data.data)
+            //  alert(JSON.stringify(data));
+            const message = data.data
+            var node = document.createElement("li");
+            var textnode = document.createTextNode(message.user + "=>" + message.message);
+            node.appendChild(textnode);
+            // document.getElementById("myList").appendChild(node);
+            document.getElementsByClassName('msg_history')[0].appendChild(node);
 
-    });
+        });
 
-</script> --}}
+    </script> --}}
 
-{{-- Para enviar mensaje --}}
+    {{-- Para enviar mensaje --}}
 
-<script>
-    
-</script>
+    <script>
+
+    </script>
 @endsection

@@ -1,4 +1,4 @@
-img {
+@import url(https://fonts.googleapis.com/css?family=Nunito);img {
   max-width: 100%;
 }
 
@@ -204,5 +204,21 @@ img {
 .msg_history {
   height: 516px;
   overflow-y: auto;
+}
+
+.cuadro-1 {
+  border-color: rgba(0, 0, 0, 0.3);
+  border-width: 0.5px;
+  border-style: solid;
+  font-family: "Nunito";
+}
+
+.left-side {
+  border-color: rgba(0, 0, 0, 0.3);
+  border-width: 0.5px;
+  border-style: solid;
+  font-family: "Nunito";
+  width: 80%;
+  margin: auto;
 }
 

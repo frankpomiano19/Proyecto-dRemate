@@ -47,10 +47,10 @@ class CreateProductosTable extends Migration
             
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('user_id_comprador')->nullable();
-    	    $table->foreign('categoria_id')->references('id')->on('categorias');	
+    	    $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade')->onUpdate('cascade');	
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('user_id_comprador')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('user_id_comprador')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

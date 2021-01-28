@@ -1,10 +1,22 @@
 @import 'variables';
-
+@import url('https://fonts.googleapis.com/css?family=Nunito');
 // .container{
 //     max-width:50%;
 //     margin:auto;
 // }
-img{ max-width:100%;}
+
+
+@mixin border-square($color, $familia) {
+  border-color: $color;
+  border-width: 0.5px;
+  border-style: solid;
+  font-family: $familia;  
+}
+
+
+img{ 
+  max-width:100%;
+}
 .inbox_people {
   background: #f8f8f8 none repeat scroll 0 0;
   float: left;
@@ -19,7 +31,10 @@ img{ max-width:100%;}
 .top_spac{ margin: 0px 0 0;}
 
 
-.recent_heading {float: left; width:40%;}
+.recent_heading {
+  float: left; 
+  width:40%;
+}
 .srch_bar {
   display: inline-block;
   text-align: right;
@@ -145,4 +160,17 @@ img{ max-width:100%;}
 .msg_history {
   height: 516px;
   overflow-y: auto;
+}
+
+// cuadro de chat
+.cuadro-1{
+  @include border-square($blackBorder,"Nunito");
+}
+
+// cuadro de los productos
+
+.left-side{
+  @include border-square($blackBorder,"Nunito");
+  width: 80%;
+  margin: auto;
 }
