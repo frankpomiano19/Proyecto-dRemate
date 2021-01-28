@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 
+
+@section('share-content')
+    <meta property="og:url" content="http://dremate.herokuapp.com/producto-{{ $prod->id }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ $prod->nombre_producto }}" />
+    <meta property="og:description" content="{{ $prod->descripcion }}" />
+    <meta property="og:image" content="{{ $prod->image_name1 }}" />
+@endsection
+
+
+
 @section('cont_cabe')
     <title>Product - dRemate</title>
 
@@ -8,7 +19,16 @@
 
 @section('contenidoJS')
     <!-- Colocar js-->
-    
+
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
 @endsection
 
 @section('contenidoCSS')
@@ -62,8 +82,8 @@
                   <h3>{{ $prod->nombre_producto }}</h3>
               </div>
               <div id="iconos" style="float: right; bottom: auto;">
-                  <i class="fa fa-share"></i> <i class="fas fa-heart"></i>
-
+                  {{-- <i class="fa fa-share"></i> <i class="fas fa-heart"></i> --}}
+                  @auth
                   <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
                     {{ csrf_field() }}
                     @csrf
@@ -93,12 +113,24 @@
                       @endif      
                       
                     </form>
-            
+                  
+                  @else
+                  <a href=" {{ url('login') }}  "><img src="{{asset('img/assets/corazon.png')}}"></a>
+                  @endauth
+                    <!-- Your share button code -->
+                    <div style="display: inline" class="fb-share-button" 
+                    data-href="http://dremate.herokuapp.com/producto-{{ $prod->id }}" 
+                    data-layout="button" data-size="small">
+                    </div>
 
+                    <a class="btn btn-social-icon btn-sm btn-twitter" href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
+                      <span class="fa fa-twitter"></span>
+                    </a>
               </div>
 
+  
 
-              
+                
               <!-- Swiper -->
               <div style="height: 500px; width: 100%; background-color: black; clear: both;">
                   <div class="swiper-container gallery-top">
@@ -230,6 +262,7 @@
                 <div class="separador"></div>
 
               </div>
+              
               <div>
                   <h6>Realizar una oferta</h6>                  
                   <div class="flex cont-coin" style="width: 100%;">
@@ -244,13 +277,19 @@
                       </div>
                   </div>
               </div>
+
                   <form action=" {{route('puja.crear')}} " method="POST">
                     @csrf  
                     <div class="flex" class="cant_puja" id="cantpuja">
-                          <span style="font-size: 1.8rem;">S/</span>
-                          <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+                      @auth
+                      <span style="font-size: 1.8rem;">S/</span>
+                      <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
 
-                       </div>
+                      @else
+                      Necesitar estar <a href="{{ url('login') }}">&nbsp; autenticado</a>                   
+                      @endauth
+                    </div>
+
                         @error('valorpuja')
                         <div class="alert alert-danger" style="font-size:0.9em" role="alert">
                           Valor no aceptado o insuficiente
@@ -270,16 +309,18 @@
 
                       <small>Min. oferta: S/{{$ultimoprecio +1}}.00</small><br>
     
+                      @auth
                       <!-- id del producto, es invisible para que no se vea mal el cuadro y saque el id del producto para crar la puja --> 
                       <input type="number" id="productoid" name="productoid" style="display: none" value="{{$prod->id}}" readonly><br>
                       <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
                       <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
                       <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
-
-
+                        
                       <div class="flex">
                           <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
                       </div>
+                      @endauth
+
                       
                       <div class="boton_compra my-2" style="display: none" id="boton_compra">
                         <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
@@ -287,6 +328,7 @@
                       </div>
                   </form>
               <div class="separador"></div>
+
             </div>
 
             </div>
@@ -512,7 +554,7 @@
           <div id="panel-6" class="panel">
               <h2>Acuerdos Fijados</h2><br><br><br>
 
-
+            @auth
               @if (auth()->user()->id == $prod->user_id)
               <h4 style="font-size: 10px" class="text-center text-danger">* Solo se permite 6 acuerdos maximo, no podra ser editado ni eliminado</h4>
 
@@ -550,6 +592,8 @@
               </div>
               @else
               @endif
+            @else
+            @endauth
 
 
 
@@ -560,8 +604,10 @@
               {{-- Muestra si no hay acuerdos establecidos --}}
               @if ($prod->productoAgreement->count()!=null)
               @else
-                @if (auth()->user()->id == $prod->user_id)
-                    
+                @if (auth()->user()!=null)
+                    @if (auth()->user()->id == $prod->user_id)
+                        
+                    @endif
                 @else
                 <h4 class="text-muted text-center text-danger">Ningun acuerdo establecido</h4>                      
                 @endif

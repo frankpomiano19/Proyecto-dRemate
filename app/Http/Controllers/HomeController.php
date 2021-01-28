@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -44,26 +44,39 @@ class HomeController extends Controller
     {
         return view("subastaRapida");
     }
+    public function viewProductGuest(){
+
+        return "vacas";
+    }
 
     public function viewproduct($idpro)
     {
 
-        $listaFavoritos = App\Models\User::where('id', '=', auth()->id())->first();
+        // if(auth()->user() ==null){
+        //     return redirect()->route('guestPuja',['idpro'=>]);
+        // }
+        if(auth()->user()==null){
 
-        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
-        $listaUsuario = $listaFavoritos->favoritos;
-        $listaInicio = str_replace("[", "", $listaUsuario);
-        $listaFin = str_replace("]", "", $listaInicio);
+        }else{
+            $listaFavoritos = App\Models\User::where('id', '=', auth()->id())->first();
 
-        $favoritos = explode(',', $listaFin);
-
-        $tamanio = sizeof($favoritos);
-        //Convertir a entero
-        for ($i = 0; $i < $tamanio; $i++) {
-
-            $temp = (int)$favoritos[$i];
-            $favoritos[$i] = $temp;
+            $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+            $listaUsuario = $listaFavoritos->favoritos;
+            $listaInicio = str_replace("[", "", $listaUsuario);
+            $listaFin = str_replace("]", "", $listaInicio);
+    
+            $favoritos = explode(',', $listaFin);
+    
+            $tamanio = sizeof($favoritos);
+            //Convertir a entero
+            for ($i = 0; $i < $tamanio; $i++) {
+    
+                $temp = (int)$favoritos[$i];
+                $favoritos[$i] = $temp;
+            }
+    
         }
+
 
         $prod = App\Models\Producto::findOrFail($idpro);
         $vendedor = App\Models\User::findOrFail($prod->user_id);
@@ -85,8 +98,13 @@ class HomeController extends Controller
         }
 
 
+        if(auth()->user()==null){
+            return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','commentUsers'));
+
+        }else{
+            return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers'));
+        }
         //End comentarios
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers'));
     }
 
     public function buscaProducto(Request $request)

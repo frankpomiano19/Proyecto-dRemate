@@ -2,11 +2,21 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    {{-- Data para compartir en facebook --}}
+
+    @yield('share-content')
+
+    {{-- Fin para compartir en facebook --}}
+
+
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="{{ asset('img/assets/subasta4.jpg') }}" />    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- Data para SEO --}}
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="img/logo4.ico" />
+    {{-- Fin Data para SEO --}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
