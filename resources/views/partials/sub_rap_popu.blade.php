@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="cont-sub-ima">
-                <img class="sub-ima" src="img/coin/coin1.png" alt="subastador-X">
+                <img class="sub-ima" src="img/avatar-hombre.png" alt="subastador-X">
             </div>
         </div> 
     </div>

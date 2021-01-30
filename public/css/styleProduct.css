@@ -66,15 +66,6 @@ body {
     font-size: 0.9em;
 }
 
-.tablas_pujas {
-    margin: auto;
-    width: 55%;
-    border: 1px solid #1548a8;
-    border-radius: 4px;
-    background-color: #353A40;
-    font-family: "Times New Roman", Times, serif;
-}
-
 .table.table-sm.table-bordered {
     color: white;
 }
@@ -785,4 +776,13 @@ input[type=number] {
 #ver-historial:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+#tablas_pujas {
+    margin: auto;
+    width: 55%;
+    border: 1px solid #1548a8;
+    border-radius: 4px;
+    background-color: #353A40;
+    font-family: "Times New Roman", Times, serif;
 }

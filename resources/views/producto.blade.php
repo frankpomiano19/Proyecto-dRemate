@@ -180,7 +180,7 @@
 
 
             {{-- Historial de pujas --}}
-            <div class="tablas_pujas">
+            <div id="tablas_pujas" class="hide">
 
               <table class="table table-sm table-bordered">
                 <thead>
@@ -218,7 +218,7 @@
               <div>
                   <h6>Precio inicial</h6>
                   <h1 class="text-center">S/<span>{{$prod->precio_inicial}}</span></h1>
-                  <h6 class="text-right"><small>Ver historial de pujas</small></h6>
+                  <h6 class="text-right"><small id="historialClick">Ver historial de pujas</small></h6>
               </div>
               <div class="separador"></div>
 
@@ -524,7 +524,7 @@
                             @csrf
                             <div style="float:left; width:100%; height: 48px;">
                                   <div class="flex" style="margin-right: 90px;height: 48px; padding: 0 10px;">
-                                      <input type="text" name="mensajeEnviado" class="message-input form__field" style="width: 100%; " placeholder="Hacer una pregunta...">
+                                      <input type="text" name="mensajeEnviado" class="message-input form__field" style="width: 100%; " autocomplete="off" placeholder="Hacer una pregunta..." >
                                       <input type="hidden" name="idProducto" value="{{ $prod->id }}">
             
 
@@ -541,7 +541,7 @@
 
                               </div>
                               <div class="flex" style="float: right; width: 80px; margin-left: -80px; height: 48px;">
-                                  <button class="enviar-mensaje">Enviar</button>
+                                <button class="enviar-mensaje">Enviar</button>
                               </div>
                           </form>
                       </div>

@@ -29,9 +29,5 @@ $(document).ready(function() {
         $('#inputAcuerdo').show(1);
 
     });
-    $("#show-responder").click(function() {
-        $("#rpta-nivel-2").toggleClass("hide");
-
-    });
 
 });

@@ -10,7 +10,7 @@
     border-color: black;
     border-width: 0px 0px 0px 0px;
     border-style: solid;
-    background-color: rgba(144, 203, 143, 0.3);
+    background-color: #cae4ff;
 }
 
 .columna-barra-lateral {
@@ -307,7 +307,7 @@
 
 .nav-pills .nav-link.active,
 .show>.nav-pills .nav-link {
-    background: rgba(23, 162, 184, 1) !important
+    background: #348aa7 !important
 }
 
 
@@ -375,7 +375,7 @@
     float: left;
     width: 50px;
     height: 100px;
-    background-color: rgba(144, 203, 143, 0.3);
+    background-color: #cae4ff;
 }
 
 .number {
@@ -429,6 +429,10 @@
     float: left;
 }
 
+input[type="text"] {
+    padding: 0 0 0 5px;
+}
+
 .cf:before,
 .cf:after {
     content: "";
@@ -448,7 +452,7 @@
 
 .form-wrapper {
     width: 20em;
-    padding: 2px;
+    padding: 0px;
     margin: 0 0 0 15px;
     background: #444;
     background: rgba(0, 0, 0, .2);
@@ -484,19 +488,16 @@
 .form-wrapper input::-webkit-input-placeholder {
     color: #999;
     font-weight: normal;
-    font-style: italic;
 }
 
 .form-wrapper input:-moz-placeholder {
     color: #999;
     font-weight: normal;
-    font-style: italic;
 }
 
 .form-wrapper input:-ms-input-placeholder {
     color: #999;
     font-weight: normal;
-    font-style: italic;
 }
 
 .form-wrapper button {
@@ -508,7 +509,7 @@
     cursor: pointer;
     height: 2em;
     width: 110px;
-    font: bold 1em 'lucida sans', 'trebuchet MS', 'Tahoma';
+    font: normal 1em 'lucida sans', 'trebuchet MS', 'Tahoma';
     color: #fff;
     text-transform: uppercase;
     background: #2c3e50;
@@ -518,15 +519,19 @@
     text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 }
 
+.form-wrapper input {
+    padding: 0 0 0 5px;
+}
+
+
+}
 .form-wrapper button:hover {
     background: #354a5f;
 }
-
 .form-wrapper button:active,
 .form-wrapper button:focus {
     background: #263646;
 }
-
 .form-wrapper button:before {
     content: '';
     position: absolute;
@@ -536,41 +541,32 @@
     top: 8px;
     left: -6px;
 }
-
 .form-wrapper button:hover:before {
     border-right-color: #354a5f;
 }
-
 .form-wrapper button:focus:before {
     border-right-color: #263646;
 }
-
 .form-wrapper button::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
 
-
 /* Ordenar por */
-
 #ordenar-por {
     float: right;
     width: 20rem;
 }
-
 #texto-ordenar-por {
     height: 2em;
     float: right;
     width: 100px;
 }
-
 #input-ordenar-por {
     float: right;
 }
 
-
 /* Select ordenar por */
-
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -583,16 +579,12 @@ select {
     background-image: none;
 }
 
-
 /* Remove IE arrow */
-
 select::-ms-expand {
     display: none;
 }
 
-
 /* Custom Select */
-
 .select {
     position: relative;
     display: flex;
@@ -603,7 +595,6 @@ select::-ms-expand {
     overflow: hidden;
     border-radius: .25em;
 }
-
 select {
     flex: 1;
     padding: 0 .5em;
@@ -611,9 +602,7 @@ select {
     cursor: pointer;
 }
 
-
 /* Arrow */
-
 .select::after {
     content: '\25BC';
     position: absolute;
@@ -628,21 +617,16 @@ select {
     transition: .25s all ease;
 }
 
-
 /* Transition */
-
 .select:hover::after {
     color: #f39c12;
 }
-
 #pag-sub {
     height: 60px;
 }
-
 #subastadores-superior {
     margin-bottom: 2rem;
 }
-
 @media only screen and (max-width: 766px) {
     #buscador {
         float: right;
