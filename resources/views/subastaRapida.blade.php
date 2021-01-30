@@ -34,7 +34,7 @@
 @section('contenidoCSS')
     <link rel="stylesheet" href="css/styleSubastaRapida.css">
     <link rel="stylesheet" href="js/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
-
+    <link rel="stylesheet" href="{{ asset('css/cssHelp.css') }}">
 @endsection
 
 
@@ -255,8 +255,28 @@
     $contador3=0;
     $contador4=0;
     @endphp
+
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_subasta_rapida;
+            $urlPagina = "deleteOneHelpSubRap";
+        @endphp
+    @include('includes/PopupHelp/SubRapHelpPopupHtml')
+    @endauth
+
+    {{-- Fin configuracion de ayuda --}}
+
 @endsection
 @section('contenidoJSabajo')
+
+
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
+
+
+
     <script src="js/jsSubastaRapida.js"></script>
     <script src="js/jquery.chrony.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
@@ -511,6 +531,6 @@
         });
 
     </script>
-
+    
 
 @endsection

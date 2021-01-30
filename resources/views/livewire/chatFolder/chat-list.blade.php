@@ -5,7 +5,7 @@
     <div class="outgoing_msg">
         <div class="sent_msg">
             <p>{{$mensaje['mensaje']}}</p>
-            <span class="time_date"> 11:01 AM | Junio 9</span>
+            {{-- <span class="time_date"></span> --}}
         </div>
     </div>
     @else
@@ -15,7 +15,7 @@
         <div class="received_msg">
             <div class="received_withd_msg">
                 <p>{{$mensaje['mensaje']}}</p>
-                <span class="time_date"> 11:01 AM | Junio 9</span>
+                {{-- <span class="time_date"> 11:01 AM | Junio 9</span> --}}
             </div>
         </div>
     </div>

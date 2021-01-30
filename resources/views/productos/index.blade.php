@@ -200,7 +200,7 @@
                                     <h3 class="font-weight-bold font-popin">Mis productos registrados</h3>
                                     <h4 class="font-weight-bold font-popin"> </h4>
                                     <div class="card-body card-contenido-cuerpo-2">
-                                        <div class="table-responsive font-popin" id="historial_prod_sub">
+                                        <div class="table-responsive font-popin" id="historial_prod_reg" >
                                             @include('partials/prod_reg')
                                         </div>
                                     </div>
@@ -262,7 +262,7 @@
                                             <h3 class="titulo-card-header-2">Subastas ganadas</h3>
                                         </div>
                                         <div class="card-body card-contenido-cuerpo-2">
-                                            <div class="table-responsive font-popin" id="historial_prod_reg">
+                                            <div class="table-responsive font-popin" id="historial_prod_sub">
                                                 @include('partials/sub_gan')
                                             </div>
                                         </div>
@@ -383,9 +383,26 @@
 </div>
 
 
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_infoPerfil;
+            $urlPagina = "deleteOneHelpInfoPerfil";
+        @endphp
+    @endauth
+    @include('includes/PopupHelp/InfoPerfilHelpPopupHtml')
+
+    {{-- Fin configuracion de ayuda --}}
+
+
 
 @endsection
 @section('contenidoJSabajo')
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
+
+<script src="{{ asset('js/axios.js') }}"></script>
 <script src="{{asset('js/jsPerfil.js')}}"></script>
 <script>
 

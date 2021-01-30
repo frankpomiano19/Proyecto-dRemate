@@ -480,11 +480,24 @@
         </div>
     </main>
 
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_comentariosPerfil;
+            $urlPagina = "deleteOneHelpCommentPefil";
+        @endphp
+    @endauth
+    @include('includes/PopupHelp/CommentHelpPopupHtml')
 
+    {{-- Fin configuracion de ayuda --}}
 
 @endsection
-
 @section('contenidoJSabajo')
+
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
+
     <script src="../js/vue.js"></script>
     <script src="../js/axios.js"></script>
     <script src="../js/jsComentario.js"></script>
@@ -497,5 +510,5 @@
             });
         });
     </script>
-@endif
+    @endif
 @endsection
