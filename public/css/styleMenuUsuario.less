@@ -47,6 +47,9 @@ a {
 		transition-duration: .05s;
 		text-decoration: none;
 	}
+	&.active{
+		
+	}
 }
 
 
@@ -148,6 +151,10 @@ a {
 
 				&:hover {
 					background: lighten(@sidebar-background, 2%);
+				}
+
+				&:active {
+					background: darken(#A3ADB2, 10%);
 				}
 			}
 
@@ -449,6 +456,10 @@ a {
 	}
 }
 
+
+a.active{
+	background-color: #2D3138;
+}
 
 
 

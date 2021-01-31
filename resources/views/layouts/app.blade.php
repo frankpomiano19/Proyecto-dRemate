@@ -15,6 +15,7 @@
     {{-- Data para SEO --}}
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="img/logo4.ico" />
     {{-- Fin Data para SEO --}}
 
     <!-- CSRF Token -->

@@ -247,7 +247,7 @@
                 <div>
                     <h6>Oferta más alta</h6>
                     <h1 class="text-center">S/<span>{{$ultimoprecio}}</span></h1>
-                    <h6 class="text-right"><small>Ver historial de pujas</small></h6>
+                    <h6 class="text-right"><small id="ver-historial">Ver historial de pujas</small></h6>
                 </div>
                 <div class="separador" style="width: 100%"></div>
 
@@ -265,13 +265,13 @@
                   <h6>Realizar una oferta</h6>                  
                   <div class="flex cont-coin" style="width: 100%;">
                       <div class="flex cont-coin">
-                          <img class="coin" id="coin-5" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name1 }} @endif" alt="coin-5">
+                          <img class="coin" id="coin-5" src="img/coin/coin1.png" alt="coin-5">
                       </div>
                       <div class="flex cont-coin">
-                          <img class="coin" id="coin-20" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name2 }} @endif" alt="coin-20">
+                          <img class="coin" id="coin-20" src="img/coin/coin2.png" alt="coin-20">
                       </div>
                       <div class="flex cont-coin">
-                          <img class="coin" id="coin-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name3 }} @endif" alt="coin-100">
+                          <img class="coin" id="coin-100" src="img/coin/coin3.png" alt="coin-100">
                       </div>
                   </div>
               </div>
@@ -387,7 +387,7 @@
                   <ul id="comments-list" class="comments-list">
                     {{-- Inicio de comentario respuesta y preguntas --}}
                     @if($commentUsers->count()<=0)
-                    <h2>No hay ninguna pregunta. Se el primero</h2>
+                    <br><h4>No hay ninguna pregunta. Sé el primero</h4><br>
                     @endif
                     @foreach($commentUsers as $commentUser)
 
@@ -754,45 +754,7 @@
 </script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
-<script>
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-spaceBetween: 10,
-slidesPerView: 4,
-loop: true,
-freeMode: true,
-loopedSlides: 5, //looped slides should be the same
-watchSlidesVisibility: true,
-watchSlidesProgress: true,
-});
-var galleryTop = new Swiper('.gallery-top', {
-spaceBetween: 10,
-loop: true,
-loopedSlides: 5, //looped slides should be the same
-navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-},
-thumbs: {
-    swiper: galleryThumbs,
-},
-});
-
-$(document).on('dragstart', 'img', function(evt) {
-evt.preventDefault();
-});
-$(document).ready(function() {
-$("#nuevo-acuerdo").click(function() {
-    $('#texto-nuevo-acuerdo').hide(1);
-    $('#inputAcuerdo').show(1);
-
-});
-$("#show-responder").click(function() {
-    $("#rpta-nivel-2").toggleClass("hide");
-
-});
-
-});
-</script>
+<script src="js/jsProducto.js"></script>
 {{-- Comentario javascript --}}
 
 

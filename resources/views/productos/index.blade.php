@@ -50,7 +50,7 @@
                             aria-orientation="vertical">
 
                             <li>
-                            <a class="nav-link shadow active" id="v-pills-perfil-tab" data-toggle="pill"
+                            <a class="active" id="v-pills-perfil-tab" data-toggle="pill"
                                 href="#v-pills-perfil" role="tab" aria-controls="v-pills-perfil" aria-selected="true"
                                 onclick="tablasOpc = 0;">
                                 <i class="fa fa-address-card"></i>
@@ -58,7 +58,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-subastas-tab" data-toggle="pill"
+                            <a class="" id="v-pills-subastas-tab" data-toggle="pill"
                                 href="#v-pills-subastas" role="tab" aria-controls="v-pills-subastas" aria-selected="false"
                                 onclick="tablasOpc = 1;">
                                 <i class="fa fa-search"></i>
@@ -66,7 +66,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-productos-tab" data-toggle="pill"
+                            <a class="" id="v-pills-productos-tab" data-toggle="pill"
                                 href="#v-pills-productos" role="tab" aria-controls="v-pills-productos" aria-selected="false"
                                 onclick="tablasOpc = 2;">
                                 <i class="fa fa-search"></i>
@@ -75,7 +75,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-ganadas-tab" data-toggle="pill"
+                            <a class="" id="v-pills-ganadas-tab" data-toggle="pill"
                                 href="#v-pills-ganadas" role="tab" aria-controls="v-pills-ganadas" aria-selected="false"
                                 onclick="tablasOpc = 3;">
                                 <i class="fa fa-search"></i>
@@ -84,7 +84,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-mensajes-tab" data-toggle="pill"
+                            <a class="" id="v-pills-mensajes-tab" data-toggle="pill"
                                 href="#v-pills-mensajes" role="tab" aria-controls="v-pills-mensajes" aria-selected="false"
                                 onclick="tablasOpc = 4;">
                                 <i class="fa fa-search"></i>
@@ -93,7 +93,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-calendario-tab" data-toggle="pill"
+                            <a class="" id="v-pills-calendario-tab" data-toggle="pill"
                                 href="#v-pills-calendario" role="tab" aria-controls="v-pills-calendario" aria-selected="false"
                                 onclick="tablasOpc = 5;">
                                 <i class="fa fa-calendar"></i>

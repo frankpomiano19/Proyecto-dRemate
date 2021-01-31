@@ -1,13 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Oswald&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-
-
-body{
-    background-color:#F5F5F5;
+body {
+    background-color: #F5F5F5;
 }
 
-.product{
+.product {
     margin: auto;
     width: 90%;
     background-color: rgb(255, 255, 255);
@@ -20,9 +18,10 @@ body{
     clear: both;
 }
 
-.container1{
+.container1 {
     background-color: #336B87;
 }
+
 .container1 .row .col-md .card {
     background-color: #00BCD4;
     font-family: 'Libre Baskerville', serif;
@@ -30,80 +29,91 @@ body{
     font-size: 13px;
 }
 
-.card-title{
+.card-title {
     font-size: 1.3em;
 }
 
-.container2 ,.container3{
+.container2,
+.container3 {
     margin: auto;
     width: 90%;
 }
-#descri{
+
+#descri {
     width: 55%;
     float: left;
 }
 
-
-#ubicacion{
+#ubicacion {
     width: 30%;
     height: 200px;
     float: left;
     margin-left: 5%;
 }
 
-
-.container2 .categories-product, .container2 .product-title{
+.container2 .categories-product,
+.container2 .product-title {
     font-family: 'Libre Baskerville', serif;
 }
 
-.carousel-inner{
+.carousel-inner {
     border-radius: 5px;
     border: 3px solid #1548a8;
 }
 
-.container3{
+.container3 {
     font-family: 'Libre Baskerville', serif;
     font-size: 0.9em;
 }
 
-.tablas_pujas{
+.tablas_pujas {
     margin: auto;
     width: 55%;
     border: 1px solid #1548a8;
     border-radius: 4px;
     background-color: #353A40;
     font-family: "Times New Roman", Times, serif;
-    
 }
-.table.table-sm.table-bordered{
+
+.table.table-sm.table-bordered {
     color: white;
 }
 
-
-.container.text-center.p-2{
+.container.text-center.p-2 {
     background-color: rgb(255, 255, 255);
     border-radius: 4px;
     border: 1px solid #444444;
 }
 
-#tiempopuja, #comienzosubasta{
-    display:flex;
+#tiempopuja,
+#comienzosubasta {
+    display: flex;
     justify-content: center;
     margin-bottom: 10px;
 }
 
-.tiempo_producto, .cant_puja, #botonpuja,#ocultarGanadorNew, .finalsubasta, #ganador{
+.tiempo_producto,
+.cant_puja,
+#botonpuja,
+#ocultarGanadorNew,
+.finalsubasta,
+#ganador {
     display: none;
 }
-.tiempo_producto.revelado, .cant_puja.revelado, #botonpuja.revelado, .finalsubasta.revelado, #ganador.revelado,#ocultarGanadorNew.revelado{
+
+.tiempo_producto.revelado,
+.cant_puja.revelado,
+#botonpuja.revelado,
+.finalsubasta.revelado,
+#ganador.revelado,
+#ocultarGanadorNew.revelado {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    align-items:center;
+    align-items: center;
 }
 
-
-.simply-section{
+.simply-section {
     background: #fff;
     margin: 0 6px;
     border-radius: 1px;
@@ -112,40 +122,54 @@ body{
     justify-content: center;
 }
 
-.simply-amount{
+.simply-amount {
     display: block;
     font-size: 25px;
     font-weight: 50;
 }
 
-.simply-word{
+.simply-word {
     font-weight: 100;
     font-weight: 10px;
     font-family: 'Oswald', serif;
 }
 
-.boton_puja.my-2.oculta, .cant_puja.oculta, .comienzosubasta.oculta,#botonpuja.revelado.oculta,#ocultarGanadorNew.revelado.oculta{
+.boton_puja.my-2.oculta,
+.cant_puja.oculta,
+.comienzosubasta.oculta,
+#botonpuja.revelado.oculta,
+#ocultarGanadorNew.revelado.oculta {
     display: none;
 }
 
-
-.btn.btn-outline-primary{
+.btn.btn-outline-primary {
     background-color: #90AFC5;
     border: #2A3132;
 }
 
 
-
-
 /* Nuevo diseño */
-/* ---------- */
-/* ---------- */
-/* ---------- */
-/* ---------- */
-/* ---------- */
-/* ---------- */
+
+
 /* ---------- */
 
+
+/* ---------- */
+
+
+/* ---------- */
+
+
+/* ---------- */
+
+
+/* ---------- */
+
+
+/* ---------- */
+
+
+/* ---------- */
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:300&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato");
@@ -725,39 +749,40 @@ input[type=number] {
 @media only screen and (max-width: 576px) {}
 
 
-
-
-
-
-
-
 /* Para el mapa */
-@media (min-width: 576px){
-    #mapa{
-      width: 500px !important; 
-      max-height: 150px !important;
+
+@media (min-width: 576px) {
+    #mapa {
+        width: 500px !important;
+        max-height: 150px !important;
     }
-  }
+}
 
-
-  @media (max-width: 576px){
-    #mapa{
-      width: 400px !important; 
-      max-height: 150px !important;
+@media (max-width: 576px) {
+    #mapa {
+        width: 400px !important;
+        max-height: 150px !important;
     }
-  }
+}
 
-  @media (min-width : 768px) and (max-width: 991px){
-    #mapa{
-      width: 175px !important; 
-      max-height: 300px !important;
-
+@media (min-width: 768px) and (max-width: 991px) {
+    #mapa {
+        width: 175px !important;
+        max-height: 300px !important;
     }
-  }
+}
 
-  @media (min-width: 991px){
-    #mapa{
-      width: 225px !important; 
-      max-height: 325px !important;
+@media (min-width: 991px) {
+    #mapa {
+        width: 225px !important;
+        max-height: 325px !important;
     }
-  }
+}
+
+
+/* Ver historial de pujas */
+
+#ver-historial:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
