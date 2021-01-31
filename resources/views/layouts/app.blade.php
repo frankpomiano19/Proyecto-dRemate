@@ -29,9 +29,6 @@
     @livewireStyles
     @yield('contenidoJS')
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -42,6 +39,7 @@
     <link rel="stylesheet" href="{{asset('css/barra.css')}}">
     <link rel="stylesheet" href="{{asset('animateCss/animate.css')}}">
     <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/cssHelp.css') }} ">
     <script src="{{asset('js/moment-2.29.1.js')}}"></script> 
     <script src="{{asset('js/app.js')}}"></script>
     @yield('contenidoCSS')
@@ -124,17 +122,14 @@
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropIndexHomeLabel" style="color: black">Se habilitara popup de ayuda en las diferentes paginas que entre</h5>
+              <h5 class="modal-title" id="staticBackdropIndexHomeLabel" style="color: black">¿Deseas activar la ayuda?</h5>
                
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6">
-                        Cava
+                    <div class="col-md-12">
+                        Se habilitara popup de ayuda en las diferentes paginas que entre
                     </div>
-                    <div class="col-md-6">
-                        Cava
-                    </div>     
                 </div>
             </div>
             <div class="modal-footer">
@@ -526,7 +521,7 @@
                         <ul>
                             <div class="copyright">
                                 
-                                <a href="#" data-toggle="modal" style="color: #dee2e6" data-target="#ventanaModalQuienes">¿Quiénes somos?</a>                            
+                                <a href="#" data-toggle="modal" style="color: #dee2e6" data-target="#ventanaModalQuienes">¿Quiénes somos? (Version extendida)</a>                            
                             </div>
                                 {{-- <li><a href="#" data-toggle="modal" data-target="#ventanaModalPolitica">Política y privacidad</a></li> --}}
                             {{-- <li><a href="#" data-toggle="modal" data-target="#ventanaModalAtencion">Atención al cliente</a></li> --}}

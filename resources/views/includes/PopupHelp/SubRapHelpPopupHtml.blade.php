@@ -20,18 +20,43 @@
                   </div>
                   <div class="col-md-8 d-flex flex-wrap align-content-center">
                     <p class="text-center">  
-                      Aca puedes ver la subastas que estan programadas para una fecha determinada
+                      Aca puedes ver la subastas que estan programadas para una fecha determinada, se encuentra la informacion del producto 
                     </p>
                   </div>
                 </div>
-                <p class="text-center" style="font-weight: bold;">En esta misma seccion tambien puedes</p>
+                <br>
                 <div class="row">
                   <div class="col-md-4 d-flex justify-content-center">
-                    <img src="{{ asset('img/assets/imgHelp/SubRapHelp1.png') }}" class="img-thumbnail imagenes-help" alt="Subastar producto"> 
+                    <img src="{{ asset('img/assets/imgHelp/SubRapHelp8.png') }}" class="img-thumbnail imagenes-help" alt="Subastar producto"> 
                   </div>
                   <div class="col-md-8 d-flex flex-wrap align-content-center">
                     <p class="text-center">  
-                      Aca puedes ver la subastas que estan programadas para una fecha determinada
+                      Dando click en el nombre del producto, puedes entrar al espacio de la subasta para poder preguntar o fijar acuerdos con el subastador 
+                    </p>
+                  </div>
+                </div>
+
+
+                <p class="text-center" style="font-weight: bold;">En esta misma seccion tambien puedes recibir alertas cuando tu producto se va a subastar</p>
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-center">
+                    <img src="{{ asset('img/assets/imgHelp/SubRapHelp5.png') }}" class="img-thumbnail imagenes-help" alt="Notificacion"> 
+                  </div>
+                  <div class="col-md-8 d-flex flex-wrap align-content-center">
+                    <p class="text-center">  
+                      Con esta opcion reciben notificacion en la aplicacion y al correo sobre el producto
+                    </p>
+                  </div>
+                </div>
+
+                <br>
+                <div class="row">
+                  <div class="col-md-4 d-flex justify-content-center">
+                    <img src="{{ asset('img/assets/imgHelp/SubRapHelp6.png') }}" class="img-thumbnail imagenes-help" alt="Calendario de productp"> 
+                  </div>
+                  <div class="col-md-8 d-flex flex-wrap align-content-center">
+                    <p class="text-center">  
+                      Permite registrar el producto que te interesa en tu calendario, para ver el producto ir a <strong>Mi Perfil>>Calendario</strong> 
                     </p>
                   </div>
                 </div>
@@ -42,11 +67,11 @@
               <div class="tab-pane fade" id="pills-list2" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="row">
                   <div class="col-md-4 d-flex justify-content-center">
-                    <img src="{{ asset('img/assets/imgHelp/HomeHelp2.png') }}" class="img-thumbnail imagenes-help" alt="Subastar producto"> 
+                    <img src="{{ asset('img/assets/imgHelp/SubRapHelp2.png') }}" class="img-thumbnail imagenes-help" alt="Subastar producto"> 
                   </div>
                   <div class="col-md-8 d-flex flex-wrap align-content-center">
                     <p class="text-center">  
-                      Podemos ver productos que estan en subasta
+                      Aca estan las subastas que estan actualmente en curso
                     </p>
                   </div>
                 </div>
@@ -55,11 +80,11 @@
 
                 <div class="row">
                   <div class="col-md-4 d-flex justify-content-center">
-                    <img src="{{ asset('img/assets/imgHelp/HomeHelp3.png') }}" class="img-thumbnail imagenes-help" alt="Subastar producto"> 
+                    <img src="{{ asset('img/assets/imgHelp/SubRapHelp3.png') }}" class="img-thumbnail imagenes-help" alt="Subastar producto"> 
                   </div>
                   <div class="col-md-8 d-flex flex-wrap align-content-center">
                     <p class="text-center">  
-                      Dinero con el que dispones actualmente
+                      Aca puedes ver el historial de productos subastados y entregados exitosamente, e incluso ver los perfiles de los usuarios
                     </p>
                   </div>
                 </div>
@@ -80,7 +105,7 @@
                       <a class="nav-link" style="font-weight: bold;" id="pills-profile-tab" data-toggle="pill" href="#pills-list2" role="tab" aria-controls="pills-profile" aria-selected="false">O</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" style="font-weight: bold;" id="pills-contact-tab" data-toggle="pill" href="#pills-list2" role="tab" aria-controls="pills-contact" aria-selected="false">O</a>
+                      <a class="nav-link" style="font-weight: bold;" id="pills-contact-tab" data-toggle="pill" href="#pills-list3" role="tab" aria-controls="pills-contact" aria-selected="false">O</a>
                     </li>
                   </ul>
   

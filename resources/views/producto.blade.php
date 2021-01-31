@@ -316,6 +316,8 @@
                         
                       <div class="flex">
                           <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
+                          <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Cuando ejecutes la puja, se quedara retenido en el sistema. Cuando ganes termine y ganes se te notificara">
+                          </i>
                       </div>
                       @endauth
 
@@ -538,7 +540,9 @@
 
       <div class="panel-sup col-md-4 col-sm-12">
           <div id="panel-6" class="panel">
-              <h2>Acuerdos Fijados</h2><br><br><br>
+              <h2>Acuerdos Fijados &nbsp;<i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Acuerdos que el subastar esta dispuesto a respetar"></i></h2>
+
+              <br><br><br>
 
             @auth
               @if (auth()->user()->id == $prod->user_id)
@@ -546,7 +550,8 @@
 
               <div class="acuerdo flex" id="nuevo-acuerdo">
                      @if ($prod->productoAgreement->count()<6)
-                     <span id="texto-nuevo-acuerdo">Agregar un acuerdo</span>
+                     <span id="texto-nuevo-acuerdo">Agregar un acuerdo</i> </span>
+                     
                      <form action="{{ route('setAgreement') }}" style="display: none;" id="inputAcuerdo" method="POST">
                       @csrf
                      <div class="row justify-content-center">

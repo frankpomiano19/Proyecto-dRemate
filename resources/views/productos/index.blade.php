@@ -216,7 +216,9 @@
                         <div class="tab-pane fade " id="v-pills-mensajes" role="tabpanel" aria-labelledby="v-pills-mensajes-tab">
                             <section class="py-0">
                                 <div class="container">
-                                    <h3 class="font-weight-bold font-popin">Mensajeria</h3>
+                                    <h3 class="font-weight-bold font-popin">Mensajeria
+                                        <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Solo se permite enviar mensajes referentes a productos registrados, para enviar un mensaje ir al perfil de usuario y buscar un producto en 'Registro'"></i>                    
+                                    </h3>
                                     <h4 class="font-weight-bold font-popin"> </h4>
                                     <div class="card-body" style="padding: 0px;">
                                         <div class="table-responsive font-popin" id="mensajeria-perfil">
@@ -259,7 +261,9 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 mb-12">
                                         <div class="card-header">
-                                            <h3 class="titulo-card-header-2">Subastas ganadas</h3>
+                                            <h3 class="titulo-card-header-2">Subastas ganadas
+                                                    <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Aca se mostraran las productos que ganaste la subasta, y se habilitara un boton para terminar la transaccion"></i>                    
+                                            </h3>
                                         </div>
                                         <div class="card-body card-contenido-cuerpo-2">
                                             <div class="table-responsive font-popin" id="historial_prod_sub">
