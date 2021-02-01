@@ -106,9 +106,9 @@
           @endif      
           
         </form>
-  {{-- // \Carbon\Carbon::setLocale('es');  ------------------------------------------------ --}}
-{{-- @endphp --}}
-{{-- Fin  --}}
+  {{-- \Carbon\Carbon::setLocale('es');
+@endphp --}}
+
   <!-- Modal de usuario bloqueado-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -167,10 +167,10 @@
             
                       @if($favoritoL == 1)
                                                                 
-                        <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
+                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><img src="{{asset('img/assets/corazon.png')}}"></button>
                         
                       @else
-                        <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><img src="{{asset('img/assets/corazonR.png')}}"></button>
                       @endif      
                       
                     </form>
@@ -208,22 +208,6 @@
       </div>
       {{-- Fin informacion del producto --}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {{-- Puja --}}
       <div class="panel-sup col-lg-4 col-md-5 col-12" id="info-prod" style="padding-top: 0px;">
           <div id="panel-2" class="panel" style="padding: 40px;">
 

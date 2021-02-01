@@ -4,6 +4,7 @@
 @section('cont_cabe')
     <title>Subasta rapida - dRemate</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @livewireStyles
 @endsection
 
 @section('contenidoJS')
@@ -221,7 +222,9 @@
                             <div class="container" style="margin-top: 1rem;">                                
                                 <h3 class="font-weight-bold font-popin">Subastadores populares</h3><br>
                                 <div class="row justify-content-center" id="id_subasta_programada">
-                                    @include('partials/sub_rap_popu')
+                                    {{-- @include('partials/sub_rap_popu') --}}
+                                    <livewire:subastador-popular />
+                                    {{-- @include('livewire/subastador-popular') --}}
                                 </div>
                             </div>
                         </div>
@@ -237,6 +240,7 @@
     $contador3=0;
     $contador4=0;
     @endphp
+    @livewireScripts
 @endsection
 @section('contenidoJSabajo')
     <script src="js/jsSubastaRapida.js"></script>

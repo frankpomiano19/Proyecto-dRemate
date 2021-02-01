@@ -324,12 +324,8 @@ class HomeController extends Controller
 
 
         return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','muestra'));
-
-        // dd($prod);
-
     }
     
-    public function product_calendar(Request $request){
     public function registroEEE(Request $request)
     {
 
@@ -369,18 +365,6 @@ class HomeController extends Controller
 
         return view('RegistroProductoSubasta/subastarProducto')->with('datosProducto', $prod);
     }
-
-}
-
-    public function proximassubastas(){
-        $hoy = \Carbon\Carbon::now();
-        $proxsem = \Carbon\Carbon::now()->addWeeks(1);
-        $proxsub = App\Models\Producto::all()->where('inicio_subasta','<',$proxsem)
-                        ->where('inicio_subasta','>',$hoy)->sortBy('inicio_subasta');
-        return view("proxsubastas", compact('proxsub'));
-    }
-
-
     public function sendCommentProduct(Request $request){
 
         $fieldCreate= [
@@ -458,6 +442,14 @@ class HomeController extends Controller
         $ruta = '/producto-'.$idProductoUser;
         return redirect($ruta);
 
+    }
+
+    public function proximassubastas(){
+        $hoy = \Carbon\Carbon::now();
+        $proxsem = \Carbon\Carbon::now()->addWeeks(1);
+        $proxsub = App\Models\Producto::all()->where('inicio_subasta','<',$proxsem)
+                        ->where('inicio_subasta','>',$hoy)->sortBy('inicio_subasta');
+        return view("proxsubastas", compact('proxsub'));
     }
 
 }
