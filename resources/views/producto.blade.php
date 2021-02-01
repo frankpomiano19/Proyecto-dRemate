@@ -94,11 +94,15 @@
   <div class="row">
       <div class="panel-sup col-lg-8 col-md-7 col-12">
           <div id="panel-1" class="panel">
-              <div style="width: 80%; float: left;">
+            <div style="width: 100%;">
+              <div style="width: 100%; float:left;">
+                <div style="margin-right: 160px;">
                   <h6>Categorías > <a href="{{ route($cat->nombre_categoria) }}"> {{$cat->nombre_categoria}}</a></h6>
                   <h3>{{ $prod->nombre_producto }}</h3>
+                </div>
               </div>
-              <div id="iconos" style="float: right; bottom: auto;">
+              <div style="width: 150px; float:left; margin-left:-150px;">
+                <div id="cora" style="width: 50px; height: 40px; float:right;">
                   {{-- <i class="fa fa-share"></i> <i class="fas fa-heart"></i> --}}
                   @auth
                   <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
@@ -134,16 +138,23 @@
                   @else
                   <a href=" {{ url('login') }}  "><img src="{{asset('img/assets/corazon.png')}}"></a>
                   @endauth
-                    <!-- Your share button code -->
-                    <div style="display: inline" class="fb-share-button" 
-                    data-href="http://dremate.herokuapp.com/producto-{{ $prod->id }}" 
-                    data-layout="button" data-size="small">
-                    </div>
+                   
+                </div>
+                <div>
+                   <!-- Your share button code -->
+                   <div style="display: inline" class="fb-share-button" 
+                   data-href="http://dremate.herokuapp.com/producto-{{ $prod->id }}" 
+                   data-layout="button" data-size="small">
+                   </div>
 
-                    <a class="btn btn-social-icon btn-sm btn-twitter" style="width:100px;font-size:10px"  href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
-                      <span class="fa fa-twitter" >&nbsp; Compartir</span>
-                    </a>
+                   <a class="btn btn-social-icon btn-sm btn-twitter" style="width:100px;font-size:10px"  href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
+                     <span class="fa fa-twitter" >&nbsp; Compartir</span>
+                   </a>
+                </div>
               </div>
+              <div style="clear: both"></div>
+            </div>
+              
 
   
 
@@ -197,31 +208,33 @@
 
 
             {{-- Historial de pujas --}}
-            <div id="tablas_pujas" class="hide">
-              <div #id="regresar"><small class="ver-historial">Regresar</small></div>
-              <table class="table table-sm table-bordered">
-                <thead>
-                  <tr>
-                    <td colspan="2">ULTIMAS PUJAS</td>
-                  </tr>
-                  <tr>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Puja</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($pujastotales as $puja)
-                  @if ($puja->producto_id==$prod->id)
-                  <tr>
-                    <td>{{$usuarios[($puja->user_id)-1]->usuario}}</td>
-                    <td>S/.{{$puja->valor_puja}}</td>
-                  </tr>
-                  @endif
-                  @endforeach
-                </tbody>
-              </table>
-
+            <div id="cont-hitorial-pujas" class="hide">
+              <div id="regresar"><small class="ver-historial">Regresar</small></div>
+              <div id="tablas_pujas">
+                <table class="table table-sm table-bordered">
+                  <thead>
+                    <tr>
+                      <td colspan="2">ULTIMAS PUJAS</td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Usuario</th>
+                      <th scope="col">Puja</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($pujastotales as $puja)
+                    @if ($puja->producto_id==$prod->id)
+                    <tr>
+                      <td>{{$usuarios[($puja->user_id)-1]->usuario}}</td>
+                      <td>S/.{{$puja->valor_puja}}</td>
+                    </tr>
+                    @endif
+                    @endforeach
+                  </tbody>
+                </table>  
+              </div>
             </div>
+            
   
             {{-- Fin historial de pujas --}}
             
@@ -299,7 +312,7 @@
                       
                         @if ($prodbloq == true)
                             <span id="simbolo-soles" class="flex">S/</span>
-                            <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+                            <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem;" min="{{$ultimoprecio +1}}">
 
                         @else
                             No puede ofertar este producto.
@@ -350,7 +363,6 @@
                         <button type="button" class="btn btn-outline-primary">Compra</button>
                       </div>
                   </form>
-              <div class="separador"></div>
 
             </div>
 
@@ -389,8 +401,9 @@
       {{-- Ubicacion --}}
       <div class="panel-sup col-md-4 col-sm-12">
           <div id="panel-4" class="panel">
-              <h2>Ubicación: {{$prod->ubicacion}}</h2>
-              <p><b>Referencia: </b>{{$prod->distrito}} </p>
+              <h2>Ubicación</h2>
+              <br>
+              <p style="font-weight: 600;">{{$prod->ubicacion}},&nbsp;{{$prod->distrito}} </p>
               <div id="ubicacion">
                 <div id="mapa" style="height: 390px;width:23em;" ></div>
               </div>
@@ -535,7 +548,7 @@
                             @csrf
                             <div style="float:left; width:100%; height: 48px;">
                                   <div class="flex" style="margin-right: 90px;height: 48px; padding: 0 10px;">
-                                      <input type="text" name="mensajeEnviado" class="message-input form__field" style="width: 100%; " autocomplete="off" placeholder="Hacer una pregunta..." >
+                                      <input type="text" name="mensajeEnviado" class="message-input form__field" style="width: 100%; " autocomplete="off" placeholder="Hacer una pregunta..." required>
                                       <input type="hidden" name="idProducto" value="{{ $prod->id }}">
             
 
@@ -864,23 +877,19 @@ var galleryTop = new Swiper('.gallery-top', {
 $("#nuevo-acuerdo").click(function() {
     $('#texto-nuevo-acuerdo').hide(1);
     $('#inputAcuerdo').show(1);    
-    $('#tablas_pujas').show(1);
 
 });
 $(".historialClick").click(function() {
-    $('#tablas_pujas').show(1);    
+    $('#cont-hitorial-pujas').show(1);    
     $('#botonpuja').hide(1);    
 });
 
 $("#regresar").click(function() {
-    $('#tablas_pujas').hide(1);    
+    $('#cont-hitorial-pujas').hide(1);    
     $('#botonpuja').show(1);    
 });
 
 </script>
-<<<<<<< HEAD
-<script src="js/jsProducto.js"></script>
-=======
 
 @auth
     @if ($prodbloq == false)
@@ -895,6 +904,5 @@ $("#regresar").click(function() {
 @endauth
 
 
->>>>>>> master
     <!-- Colocar js abajo-->
 @endsection

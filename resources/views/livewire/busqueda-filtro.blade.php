@@ -105,16 +105,10 @@
                 
                 <div class="row">
                     <div class="col-12">
-                        @if($categoria==1)
-                            <h5>Categoria: Tecnología > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
-                        @elseif($categoria==2)
-                            <h5>Categoria: Hogar > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
-                        @elseif($categoria==3)
-                            <h5>Categoria: Electrodomésticos > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
-                        @elseif($categoria==4)
-                            <h5>Categoria: Joyas > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
+                        @if(count($productos) == 1)
+                            <h5>Se encontró 1 producto</h5>                        
                         @else
-                            <h5>Categoria: Instrumento Musical > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
+                            <h5>Se encontraron {{ count($productos) }} productos</h5>
                         @endif
                     </div>
                 </div>
