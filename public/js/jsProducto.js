@@ -1,3 +1,4 @@
+alert("asdlñfkj");
 var galleryThumbs = new Swiper('.gallery-thumbs', {
     spaceBetween: 10,
     slidesPerView: 4,
@@ -23,11 +24,13 @@ var galleryTop = new Swiper('.gallery-top', {
 $(document).on('dragstart', 'img', function(evt) {
     evt.preventDefault();
 });
-$(document).ready(function() {
-    $("#nuevo-acuerdo").click(function() {
-        $('#texto-nuevo-acuerdo').hide(1);
-        $('#inputAcuerdo').show(1);
+$(fn) {
+$("#nuevo-acuerdo").click(function() {
+    $('#texto-nuevo-acuerdo').hide(1);
+    $('#inputAcuerdo').show(1);
 
-    });
-
+});
+$("#historialClick").click(function() {
+    $('#tablas_pujas').show(1);
+});
 });

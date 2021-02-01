@@ -2,7 +2,7 @@
     <div id="subastadores-superior">
         <div id="buscador">
             <form class="form-wrapper cf">
-                <input type="text" placeholder="Buscar subastadores" required>
+                <input type="text" placeholder="Nombre del subastador" required>
                 <button type="submit">Buscar</button>
             </form>
         </div>

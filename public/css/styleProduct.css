@@ -5,6 +5,22 @@ body {
     background-color: #F5F5F5;
 }
 
+
+button {
+  background: none;
+  border: 0;
+  color: inherit;
+  /* cursor: default; */
+  font: inherit;
+  line-height: normal;
+  overflow: visible;
+  padding: 0;
+  -webkit-user-select: none; /* for button */
+   -webkit-appearance: button; /* for input */
+     -moz-user-select: none;
+      -ms-user-select: none;
+}
+
 .product {
     margin: auto;
     width: 90%;
@@ -390,7 +406,7 @@ ul {
 }
 
 .reply-list {
-    padding-left: 88px;
+    padding-left: 47px;
     clear: both;
     margin-top: 15px;
 }
@@ -566,12 +582,12 @@ ul {
 .coin {
     width: 50px;
     height: 50px;
-    border: 30px
+    border: 30px;
+    border-radius: 50%;
 }
 
 .coin:hover {
     top: -10px;
-    border-radius: 50%;
     transform: translate(0, -8px);
     transition: all .3s ease-in-out;
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.8);
@@ -611,6 +627,16 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#simbolo-soles {
+    font-size: 1.8rem;
+    border: #767676 1px solid;
+    padding: 2px;
+    width: 45px;
+    height: 49px;
+    background-color: #e6e6e6;
+    border-bottom: 10px 5px 20px 1px;
 }
 
 #vendedor {
@@ -773,7 +799,7 @@ input[type=number] {
 
 /* Ver historial de pujas */
 
-#ver-historial:hover {
+.ver-historial:hover {
     text-decoration: underline;
     cursor: pointer;
 }

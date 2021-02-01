@@ -73,7 +73,7 @@
  
 
 {{-- Informacion del producto --}}
-<div class="container-lg" style="margin-top: 20px;">
+<div class="container-lg" style="margin-top: 40px;">
   <div class="row">
       <div class="panel-sup col-lg-8 col-md-7 col-12">
           <div id="panel-1" class="panel">
@@ -181,7 +181,7 @@
 
             {{-- Historial de pujas --}}
             <div id="tablas_pujas" class="hide">
-
+              <div #id="regresar"><small class="ver-historial">Regresar</small></div>
               <table class="table table-sm table-bordered">
                 <thead>
                   <tr>
@@ -203,14 +203,11 @@
                   @endforeach
                 </tbody>
               </table>
-  
+
             </div>
   
             {{-- Fin historial de pujas --}}
             
-              <div class="separador"></div>
-
-
 
             {{-- En caso de no haber iniciado --}}
             <div class="comienzosubasta" id="presubasta">
@@ -218,7 +215,7 @@
               <div>
                   <h6>Precio inicial</h6>
                   <h1 class="text-center">S/<span>{{$prod->precio_inicial}}</span></h1>
-                  <h6 class="text-right"><small id="historialClick">Ver historial de pujas</small></h6>
+                  <div class="historialClick"><h6 class="text-right"><small class="ver-historial">Ver historial de pujas</small></h6></div>
               </div>
               <div class="separador"></div>
 
@@ -246,13 +243,13 @@
 
             <div id="botonpuja">
               <div class="tiempo_producto"  id="tiemposubasta">                
-                <div>
+                <div style="width: 100%;">
                     <h6>Oferta más alta</h6>
                     <h1 class="text-center">S/<span>{{$ultimoprecio}}</span></h1>
-                    <h6 class="text-right"><small id="ver-historial">Ver historial de pujas</small></h6>
+                  <div class="historialClick">
+                    <h6 class="text-right"><small class="ver-historial">Ver historial de pujas</small></h6>
+                  </div>
                 </div>
-                <div class="separador" style="width: 100%"></div>
-
                 <div>
                   <h6>Tiempo restante</h6>
                   <h1 class="text-center"><div id="tiempopuja" style="font-size: 20px"></div></h1>
@@ -263,7 +260,7 @@
 
               </div>
               
-              <div>
+              <div style="width: 100%">
                   <h6>Realizar una oferta</h6>                  
                   <div class="flex cont-coin" style="width: 100%;">
                       <div class="flex cont-coin">
@@ -278,11 +275,11 @@
                   </div>
               </div>
 
-                  <form action=" {{route('puja.crear')}} " method="POST">
+                  <form action=" {{route('puja.crear')}} " method="POST" autocomplete="off">
                     @csrf  
                     <div class="flex" class="cant_puja" id="cantpuja">
                       @auth
-                      <span style="font-size: 1.8rem;">S/</span>
+                      <span id="simbolo-soles" class="flex">S/</span>
                       <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
 
                       @else
@@ -819,7 +816,6 @@
 </script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
-<script src="js/jsProducto.js"></script>
 {{-- Comentario javascript --}}
 
 
@@ -873,6 +869,8 @@ $("#show-responder").click(function() {
 
 });
 
+
+
 });
 </script>
 
@@ -880,7 +878,45 @@ $("#show-responder").click(function() {
 <script>
   moment.locale('es'); 
   console.log(moment("20111031", "YYYYMMDD").fromNow());
-  
+  var galleryThumbs = new Swiper('.gallery-thumbs', {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    loop: true,
+    freeMode: true,
+    loopedSlides: 5, //looped slides should be the same
+    watchSlidesVisibility: true,
+    watchSlidesProgress: true,
+});
+var galleryTop = new Swiper('.gallery-top', {
+    spaceBetween: 10,
+    loop: true,
+    loopedSlides: 5, //looped slides should be the same
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    thumbs: {
+        swiper: galleryThumbs,
+    },
+});
+
+$("#nuevo-acuerdo").click(function() {
+    $('#texto-nuevo-acuerdo').hide(1);
+    $('#inputAcuerdo').show(1);    
+    $('#tablas_pujas').show(1);
+
+});
+$(".historialClick").click(function() {
+    $('#tablas_pujas').show(1);    
+    $('#botonpuja').hide(1);    
+});
+
+$("#regresar").click(function() {
+    $('#tablas_pujas').hide(1);    
+    $('#botonpuja').show(1);    
+});
+
 </script>
+<script src="js/jsProducto.js"></script>
     <!-- Colocar js abajo-->
 @endsection
