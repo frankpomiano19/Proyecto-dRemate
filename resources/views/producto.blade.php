@@ -346,6 +346,7 @@
                             </i>
                           </div>
                         @endif
+                      @endauth
                       
                       <div class="boton_compra my-2" style="display: none" id="boton_compra">
                         <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
