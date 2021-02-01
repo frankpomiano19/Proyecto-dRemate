@@ -1,3 +1,9 @@
+@php
+
+  \Carbon\Carbon::setLocale('es');  
+@endphp
+
+
 @if ($comentariosPerfil_s->count() > 0)
     <script>
         contadorComentario = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
@@ -34,7 +40,11 @@
 
                     <div class="ajustar-label-1">
                         <a href="#" class="nombre-url">{{ $comentariosPerfil->comentUserPerteneciente->usuario }}</a>
-                        <label class="">Hace 10 dias</label>
+                        <label class="">
+                            @php
+                            echo \Carbon\Carbon::parse($comentariosPerfil->created_at)->diffForHumans();   
+                            @endphp
+                        </label>
                     </div>
                     @if ($comentariosPerfil->comentUserPerteneciente->userProductoCompradorDestacado->count() >= 2)
                         <div class="ajustar-label-2">

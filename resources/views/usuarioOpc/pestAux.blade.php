@@ -43,7 +43,7 @@
                 </div>
 
 
-                <div class="row text-center py-2">
+                {{-- <div class="row text-center py-2">
                     <div class="col-sm-12 col-md-12 col-lg-12  ">
                         <a href="{{ route('subirProducto-now') }}" class="btn boton-actualizar">Subir producto</a>
                     </div>
@@ -59,7 +59,7 @@
                         <a href="{{ route('registroSubasta-now') }}" class="btn boton-actualizar">Registrar producto y
                             subastar</a>
                     </div>
-                </div>
+                </div> --}}
 
                 <!--contenido abajo-->
 

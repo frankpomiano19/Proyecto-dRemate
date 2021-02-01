@@ -8,6 +8,7 @@ use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
 use App\Http\Controllers\userGuest;
 use App\Http\Controllers\MedioNegoController;
+use App\Http\Controllers\HelpController;
 use Illuminate\Http\Request;
 
 
@@ -215,4 +216,18 @@ Route::post('/productoBloq',[MedioNegoController::class,'BloquearProductUser'] )
 
 Route::get('borrar2',function (){
     return view('edson2');
+});
+
+
+// Ventana de ayuda
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/deleteAllHelps',[HelpController::class,'deleteAllHelps']);
+    Route::post('/deleteOneHelpHome',[HelpController::class,'deleteOneHelpHome']);    
+    Route::post('/deleteOneHelpSubRap',[HelpController::class,'deleteOneHelpSubRap']);    
+    Route::post('/deleteOneHelpInfoPerfil',[HelpController::class,'deleteOneHelpInfoPerfil']);    
+    Route::post('/deleteOneHelpCommentPefil',[HelpController::class,'deleteOneHelpCommentPefil']);    
+    Route::post('/deleteOneHelpSubPuj',[HelpController::class,'deleteOneHelpSubPuj']);        
+    Route::post('/addAllHelps',[HelpController::class,'addAllHelps'])->name('addAllHelps');
+
 });

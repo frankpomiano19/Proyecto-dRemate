@@ -26,7 +26,16 @@
                         @if($productUser->inicio_subasta !=null)
                         <a href="{{ route('producto.detalles', $productUser->id) }}" class="btn btn-primary d-flex justify-content-center" style="background-color: red;">Ver subasta</a>
                         @else
-                        <a href="{{ route('infoProducto', [$productUser->id,$productUser->user_id]) }}" class="btn btn-primary d-flex justify-content-center" style="background-color: #00BCD4;">Establecer comunicacion</a>
+                        <div class="d-flex justify-content-center ">
+                            <a href="{{ route('infoProducto', [$productUser->id,$productUser->user_id]) }}" class="btn btn-primary d-flex justify-content-center" style="background-color: #00BCD4;">Establecer comunicacion</a>
+                            &nbsp;
+                            <div  class="d-flex flex-wrap align-content-center">
+                                <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Al dar click, permite notificar al usuario para la comuncacion sincronica"></i>
+
+                            </div>
+    
+                        </div>
+
                         @endif
                     </div>
                 </div>

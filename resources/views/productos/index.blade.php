@@ -50,7 +50,7 @@
                             aria-orientation="vertical">
 
                             <li>
-                            <a class="nav-link shadow active" id="v-pills-perfil-tab" data-toggle="pill"
+                            <a class="active" id="v-pills-perfil-tab" data-toggle="pill"
                                 href="#v-pills-perfil" role="tab" aria-controls="v-pills-perfil" aria-selected="true"
                                 onclick="tablasOpc = 0;">
                                 <i class="fa fa-address-card"></i>
@@ -58,7 +58,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-subastas-tab" data-toggle="pill"
+                            <a class="" id="v-pills-subastas-tab" data-toggle="pill"
                                 href="#v-pills-subastas" role="tab" aria-controls="v-pills-subastas" aria-selected="false"
                                 onclick="tablasOpc = 1;">
                                 <i class="fa fa-search"></i>
@@ -66,7 +66,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-productos-tab" data-toggle="pill"
+                            <a class="" id="v-pills-productos-tab" data-toggle="pill"
                                 href="#v-pills-productos" role="tab" aria-controls="v-pills-productos" aria-selected="false"
                                 onclick="tablasOpc = 2;">
                                 <i class="fa fa-search"></i>
@@ -75,7 +75,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-ganadas-tab" data-toggle="pill"
+                            <a class="" id="v-pills-ganadas-tab" data-toggle="pill"
                                 href="#v-pills-ganadas" role="tab" aria-controls="v-pills-ganadas" aria-selected="false"
                                 onclick="tablasOpc = 3;">
                                 <i class="fa fa-search"></i>
@@ -84,7 +84,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-mensajes-tab" data-toggle="pill"
+                            <a class="" id="v-pills-mensajes-tab" data-toggle="pill"
                                 href="#v-pills-mensajes" role="tab" aria-controls="v-pills-mensajes" aria-selected="false"
                                 onclick="tablasOpc = 4;">
                                 <i class="fa fa-search"></i>
@@ -93,7 +93,7 @@
                             </li>
 
                             <li>
-                            <a class="nav-link shadow" id="v-pills-calendario-tab" data-toggle="pill"
+                            <a class="" id="v-pills-calendario-tab" data-toggle="pill"
                                 href="#v-pills-calendario" role="tab" aria-controls="v-pills-calendario" aria-selected="false"
                                 onclick="tablasOpc = 5;">
                                 <i class="fa fa-calendar"></i>
@@ -208,7 +208,7 @@
                                     <h3 class="font-weight-bold font-popin">Mis productos registrados</h3>
                                     <h4 class="font-weight-bold font-popin"> </h4>
                                     <div class="card-body card-contenido-cuerpo-2">
-                                        <div class="table-responsive font-popin" id="historial_prod_sub">
+                                        <div class="table-responsive font-popin" id="historial_prod_reg" >
                                             @include('partials/prod_reg')
                                         </div>
                                     </div>
@@ -224,7 +224,9 @@
                         <div class="tab-pane fade " id="v-pills-mensajes" role="tabpanel" aria-labelledby="v-pills-mensajes-tab">
                             <section class="py-0">
                                 <div class="container">
-                                    <h3 class="font-weight-bold font-popin">Mensajeria</h3>
+                                    <h3 class="font-weight-bold font-popin">Mensajeria
+                                        <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Solo se permite enviar mensajes referentes a productos registrados, para enviar un mensaje ir al perfil de usuario y buscar un producto en 'Registro'"></i>                    
+                                    </h3>
                                     <h4 class="font-weight-bold font-popin"> </h4>
                                     <div class="card-body" style="padding: 0px;">
                                         <div class="table-responsive font-popin" id="mensajeria-perfil">
@@ -285,10 +287,12 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 mb-12">
                                         <div class="card-header">
-                                            <h3 class="titulo-card-header-2">Subastas ganadas</h3>
+                                            <h3 class="titulo-card-header-2">Subastas ganadas
+                                                    <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Aca se mostraran las productos que ganaste la subasta, y se habilitara un boton para terminar la transaccion"></i>                    
+                                            </h3>
                                         </div>
                                         <div class="card-body card-contenido-cuerpo-2">
-                                            <div class="table-responsive font-popin" id="historial_prod_reg">
+                                            <div class="table-responsive font-popin" id="historial_prod_sub">
                                                 @include('partials/sub_gan')
                                             </div>
                                         </div>
@@ -409,9 +413,26 @@
 </div>
 
 
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_infoPerfil;
+            $urlPagina = "deleteOneHelpInfoPerfil";
+        @endphp
+    @endauth
+    @include('includes/PopupHelp/InfoPerfilHelpPopupHtml')
+
+    {{-- Fin configuracion de ayuda --}}
+
+
 
 @endsection
 @section('contenidoJSabajo')
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
+
+<script src="{{ asset('js/axios.js') }}"></script>
 <script src="{{asset('js/jsPerfil.js')}}"></script>
 <script>
 

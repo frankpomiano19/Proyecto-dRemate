@@ -28,12 +28,18 @@
     <br>
     <br>
     <br>
+
+            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+
     <div>
+
         <h1 class="animate__animated animate__backInDown">An animated element</h1>
     </div>
     <h2 class="animate__animated animate__bounceInLeft">Otro elemento animado</h2>
     <div class="animate__animated animate__bounce animate__delay-2s">Example</div>
-
+                
 @endsection
 
 @section('contenidoJSabajo')

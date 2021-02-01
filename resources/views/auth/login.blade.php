@@ -24,11 +24,11 @@
                                 <div class="card-body">
 
                                     <div style="text-align:center;">
-                                        <img class="rounded-circle"" style=" width: 50%;" src="img/assets/subasta_1.jpg"
+                                        <img class="rounded-circle" style="background-color:#FFF; width: 8rem; height: 8rem; object-fit:contain;" src="img/assets/subasta_1.jpg"
                                             alt="logo-dRemate">
 
 
-                                    </div>
+                                    </div><br>
                                     <h5 class="text-center titulo-1">Ingresar</h5>
                                     <form class="form-signin" method="POST" action="{{ route('login') }}">
                                         @csrf

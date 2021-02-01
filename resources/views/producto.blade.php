@@ -42,12 +42,11 @@
 
 
 @section('contenido')
-{{-- Configuracion de variables --}}
-@php
-
-  \Carbon\Carbon::setLocale('es');  
-@endphp
-{{-- Fin  --}}
+  {{-- Configuracion de variables --}}
+  @php
+    \Carbon\Carbon::setLocale('es');  
+  @endphp
+  {{-- Fin  --}}
   <!-- Modal de usuario bloqueado-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -88,7 +87,6 @@
   </div>
 </div>
 
-  {{-- <h2 style="display: none">Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2> --}}
  
 
 {{-- Informacion del producto --}}
@@ -142,8 +140,8 @@
                     data-layout="button" data-size="small">
                     </div>
 
-                    <a class="btn btn-social-icon btn-sm btn-twitter" href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
-                      <span class="fa fa-twitter"></span>
+                    <a class="btn btn-social-icon btn-sm btn-twitter" style="width:100px;font-size:10px"  href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
+                      <span class="fa fa-twitter" >&nbsp; Compartir</span>
                     </a>
               </div>
 
@@ -268,7 +266,7 @@
                 <div>
                     <h6>Oferta más alta</h6>
                     <h1 class="text-center">S/<span>{{$ultimoprecio}}</span></h1>
-                    <h6 class="text-right"><small>Ver historial de pujas</small></h6>
+                    <h6 class="text-right"><small id="ver-historial">Ver historial de pujas</small></h6>
                 </div>
                 <div class="separador" style="width: 100%"></div>
 
@@ -286,13 +284,13 @@
                   <h6>Realizar una oferta</h6>                  
                   <div class="flex cont-coin" style="width: 100%;">
                       <div class="flex cont-coin">
-                          <img class="coin" id="coin-5" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name1 }} @endif" alt="coin-5">
+                          <img class="coin" id="coin-5" src="img/coin/coin1.png" alt="coin-5">
                       </div>
                       <div class="flex cont-coin">
-                          <img class="coin" id="coin-20" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name2 }} @endif" alt="coin-20">
+                          <img class="coin" id="coin-20" src="img/coin/coin2.png" alt="coin-20">
                       </div>
                       <div class="flex cont-coin">
-                          <img class="coin" id="coin-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name3 }} @endif" alt="coin-100">
+                          <img class="coin" id="coin-100" src="img/coin/coin3.png" alt="coin-100">
                       </div>
                   </div>
               </div>
@@ -344,11 +342,10 @@
                         @if ($prodbloq == true)
                           <div class="flex">
                             <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
+                            <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Cuando ejecutes la puja, se quedara retenido en el sistema. Cuando ganes termine y ganes se te notificara">
+                            </i>
                           </div>
                         @endif
-                      
-                      @endauth
-
                       
                       <div class="boton_compra my-2" style="display: none" id="boton_compra">
                         <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
@@ -375,18 +372,6 @@
                           </p>
                       </div>
                   </li>
-
-
-                  {{-- <li>
-                      <input type="radio" name="tabs" id="tab2" />
-                      <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Opiniones</label>
-                      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="comentarios" aria-hidden="true">
-                          <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-                              enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                              consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-                              nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla?</p>
-                      </div>
-                  </li> --}}
 
                   <li>
                       <input type="radio" name="tabs" id="tab3" />
@@ -427,7 +412,7 @@
                   <ul id="comments-list" class="comments-list">
                     {{-- Inicio de comentario respuesta y preguntas --}}
                     @if($commentUsers->count()<=0)
-                    <h2>No hay ninguna pregunta. Se el primero</h2>
+                    <br><h4>No hay ninguna pregunta. Sé el primero</h4><br>
                     @endif
                     @foreach($commentUsers as $commentUser)
 
@@ -580,7 +565,9 @@
 
       <div class="panel-sup col-md-4 col-sm-12">
           <div id="panel-6" class="panel">
-              <h2>Acuerdos Fijados</h2><br><br><br>
+              <h2>Acuerdos Fijados &nbsp;<i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Acuerdos que el subastar esta dispuesto a respetar"></i></h2>
+
+              <br><br><br>
 
             @auth
               @if (auth()->user()->id == $prod->user_id)
@@ -588,7 +575,8 @@
 
               <div class="acuerdo flex" id="nuevo-acuerdo">
                      @if ($prod->productoAgreement->count()<6)
-                     <span id="texto-nuevo-acuerdo">Agregar un acuerdo</span>
+                     <span id="texto-nuevo-acuerdo">Agregar un acuerdo</i> </span>
+                     
                      <form action="{{ route('setAgreement') }}" style="display: none;" id="inputAcuerdo" method="POST">
                       @csrf
                      <div class="row justify-content-center">
@@ -641,7 +629,7 @@
                 @endif
                   
               @endif
-              {{-- Fin ---------- --}}
+              {{-- Fin --}}
 
 
 
@@ -677,88 +665,32 @@
                   @endforeach
 
               </div>
-
-              <!-- 
-              <div class="row ">
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 400px; padding: 10px; background-color: blue; border: blueviolet solid 2px; ">
-                      <div class="carta">
-                          <div class="cont-cart-img ">
-                              <img class="img-ajustada " src="coin02.png" alt="coin02.png">
-                          </div>
-
-                      </div>
-                      <div>
-                          Título y otras cosas
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">
-                      <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                          <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-              </div> -->
-
           </div>
-      </div>
-        <!--Fin de productos relacionados-->
+        </div>
+        
 
   </div>
   <br><br><br><br>
+  @auth
+    @php
+        $ayudaRuta = Auth::user()->userHelp->help_subastaPujas;
+        $urlPagina = "deleteOneHelpSubPuj";
+    @endphp
+  @endauth
+  @include('includes/PopupHelp/SubPujHelpPopupHtml')
 
 </div>
 
 
 
-
-{{-- Fin nuevo Diseño --}}
-  
 @endsection
 
 @section('contenidoJSabajo')
+
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
   <script src="js/simplyCountdown.min.js"></script>
-  <!-- 
-  <script src="js/countdown.js"></script>
-  -->
   <script>
     simplyCountdown('#tiempopuja', {
 
@@ -847,45 +779,7 @@
 </script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
-<script>
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-spaceBetween: 10,
-slidesPerView: 4,
-loop: true,
-freeMode: true,
-loopedSlides: 5, //looped slides should be the same
-watchSlidesVisibility: true,
-watchSlidesProgress: true,
-});
-var galleryTop = new Swiper('.gallery-top', {
-spaceBetween: 10,
-loop: true,
-loopedSlides: 5, //looped slides should be the same
-navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-},
-thumbs: {
-    swiper: galleryThumbs,
-},
-});
-
-$(document).on('dragstart', 'img', function(evt) {
-evt.preventDefault();
-});
-$(document).ready(function() {
-$("#nuevo-acuerdo").click(function() {
-    $('#texto-nuevo-acuerdo').hide(1);
-    $('#inputAcuerdo').show(1);
-
-});
-$("#show-responder").click(function() {
-    $("#rpta-nivel-2").toggleClass("hide");
-
-});
-
-});
-</script>
+<script src="js/jsProducto.js"></script>
 {{-- Comentario javascript --}}
 
 
@@ -943,6 +837,7 @@ $("#show-responder").click(function() {
 </script>
 
 @endif
+<<<<<<< HEAD
 <script>
   moment.locale('es'); 
   console.log(moment("20111031", "YYYYMMDD").fromNow());
@@ -962,5 +857,7 @@ $("#show-responder").click(function() {
 @endauth
 
 
+=======
+>>>>>>> origin/master
     <!-- Colocar js abajo-->
 @endsection
