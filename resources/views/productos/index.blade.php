@@ -100,6 +100,14 @@
                                 <span class="font-weight-bold small text-uppercase">Calendario</span>
                             </a>
                             </li>
+                            <li>
+                            <a class="nav-link shadow" id="v-pills-pujas-tab" data-toggle="pill"
+                                href="#v-pills-pujas" role="tab" aria-controls="v-pills-pujas" aria-selected="false"
+                                onclick="tablasOpc = 6;">
+                                <i class="fa fa-search"></i>
+                                <span class="font-weight-bold small text-uppercase">Mis pujas</span>
+                            </a>
+                            </li>
                         </ul>
                     </div>
 
@@ -235,7 +243,7 @@
                             </div>
                         </div>
                         
-                        <div class="tab-pane  " id="v-pills-calendario" role="tabpanel" aria-labelledby="v-pills-calendario-tab">
+                        <div class="tab-pane fade " id="v-pills-calendario" role="tabpanel" aria-labelledby="v-pills-calendario-tab">
                             <section class="py-0">
                                 <div class="container">
                                     <h3 class="font-weight-bold font-popin">Calendario</h3>
@@ -255,7 +263,25 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade " id="v-pills-pujas" role="tabpanel" aria-labelledby="v-pills-pujas-tab">
+                            <section class="py-0">
+                                <div class="container">
+                                    <h3 class="font-weight-bold font-popin">Historial de pujas</h3>
+                                    <h4 class="font-weight-bold font-popin"> </h4>
+                                    <div class="card-body" style="padding: 0px;">
+                                        <div class="table-responsive font-popin" id="historial_puj">
+                                            @include('partials.hist_pujas')
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
   
+                            <div class="container">
+                                <div class="row justify-content-center" id="">
+  
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-pane fade " id="v-pills-ganadas" role="tabpanel" aria-labelledby="v-pills-ganadas-tab">
                             <div class="container">
                                 <div class="row">

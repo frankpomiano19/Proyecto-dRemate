@@ -193,6 +193,10 @@ Route::get('/addproducto/{id}/edit',[HomeController::class,'update'])->name('upd
 
 Route::get('/producto/pagination_data_prod_reg',[RegistroProductoController::class,'pagProReg']);
 Route::get('/producto/pagination_data_prod_sub',[RegistroProductoController::class,'pagProSub']);
+
+//historial de pujas 
+Route::get('/producto/pagination_hist_pujas',[RegistroProductoController::class,'histPuj']);
+
 // Mensajeria
 Route::post('/home/perfil/enviar-mensaje',[userController::class,'responderMensaje'])->name('responder-mensaje');
 Route::get('/home/perfil/enviar-mensaje/create',[userController::class,'messageCreate']);
@@ -205,6 +209,8 @@ Route::get('/informenos', function () {
 
 Route::get('/proxsubastas',[HomeController::class,'proximassubastas'])->name('prosubastas');;
 
+//Bloquear producto a un usuario
+Route::post('/productoBloq',[MedioNegoController::class,'BloquearProductUser'] )->name('bloq-user-prod');
 
 //Borrar al finalizar 
 

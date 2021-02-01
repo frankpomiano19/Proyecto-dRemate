@@ -15,7 +15,7 @@ class Puja extends Model
     ];
 
     public function productosPujar(){
-        return $this->hasMany(Producto::class,'producto_id');
+        return $this->belongsTo(Producto::class,'producto_id');
     }    
 
     

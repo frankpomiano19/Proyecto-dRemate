@@ -16,6 +16,37 @@
 
 
 @section('contenido')
+<!-- Modal para bloqueo de producto a un usuario -->
+<div class="modal fade" id="BloqProdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="{{route('bloq-user-prod')}}" method="POST">
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Bloquear producto a un usuario</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" value="{{ $producto->id }}" name="idprod_bloq" id="idprod_bloq">
+                  Indique el usuario que no pueda ofertar este producto:
+                  <select name="user_bloq_id" class="form-control">
+                      @foreach ($users as $user)
+                        @if (Auth::user()->id != $user->id)
+                            <option value="{{$user->id}}">{{$user->usuario}}</option>
+                        @endif
+                      @endforeach
+                </select>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  <button type="submit" class="btn btn-primary">Bloquear usuario</button>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
     <br>
     <br>
     <br>
@@ -57,6 +88,12 @@
                             comunicacion</a>
                         <button class="btn btn-primary btn-rojo-mens" style="cursor: not-allowed" disabled>Enviar mensaje al
                             vendedor</button>
+                    @endif
+                    @if (Auth::user()->id == $usuarioPerfil->id)
+                        <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BloqProdModal">
+                                 Bloquear a un comprador
+                            </button>
                     @endif
                 </div>
             </section>

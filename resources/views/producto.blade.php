@@ -66,7 +66,26 @@
     </div>
   </div>
     
-
+<!-- Modal de bloqueo de producto-->
+<div class="modal fade" id="BloqueoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Usted no puede ofertar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        El propietario de la subasta le ha impedido ofertar este producto. Puede volver a Subasta Rápida.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
+      </div>
+    </div>
+  </div>
+</div>
 
  
 
@@ -280,8 +299,15 @@
                     @csrf  
                     <div class="flex" class="cant_puja" id="cantpuja">
                       @auth
-                      <span style="font-size: 1.8rem;">S/</span>
-                      <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+                      
+                        @if ($prodbloq == true)
+                            <span style="font-size: 1.8rem;">S/</span>
+                            <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+
+                        @else
+                            No puede ofertar este producto.
+                        @endif
+                      
 
                       @else
                       Necesitar estar <a href="{{ url('login') }}">&nbsp; autenticado</a>                   
@@ -313,14 +339,13 @@
                       <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
                       <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
                       <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
-                        
-                      <div class="flex">
-                          <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
-                          <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Cuando ejecutes la puja, se quedara retenido en el sistema. Cuando ganes termine y ganes se te notificara">
-                          </i>
-                      </div>
-                      @endauth
-
+                        @if ($prodbloq == true)
+                          <div class="flex">
+                            <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
+                            <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Cuando ejecutes la puja, se quedara retenido en el sistema. Cuando ganes termine y ganes se te notificara">
+                            </i>
+                          </div>
+                        @endif
                       
                       <div class="boton_compra my-2" style="display: none" id="boton_compra">
                         <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
@@ -812,5 +837,27 @@ $("#show-responder").click(function() {
 </script>
 
 @endif
+<<<<<<< HEAD
+<script>
+  moment.locale('es'); 
+  console.log(moment("20111031", "YYYYMMDD").fromNow());
+  
+</script>
+
+@auth
+    @if ($prodbloq == false)
+    <script>  
+      $(function(){
+          $('#BloqueoModal').modal({
+              backdrop:'static',
+          });
+      });
+    </script>
+    @endif
+@endauth
+
+
+=======
+>>>>>>> origin/master
     <!-- Colocar js abajo-->
 @endsection
