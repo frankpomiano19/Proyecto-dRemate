@@ -8,6 +8,7 @@ use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
 use App\Http\Controllers\userGuest;
 use App\Http\Controllers\MedioNegoController;
+use App\Http\Controllers\HelpController;
 use Illuminate\Http\Request;
 
 
@@ -196,6 +197,10 @@ Route::get('/addproducto/{id}/edit',[HomeController::class,'update'])->name('upd
 
 Route::get('/producto/pagination_data_prod_reg',[RegistroProductoController::class,'pagProReg']);
 Route::get('/producto/pagination_data_prod_sub',[RegistroProductoController::class,'pagProSub']);
+
+//historial de pujas 
+Route::get('/producto/pagination_hist_pujas',[RegistroProductoController::class,'histPuj']);
+
 // Mensajeria
 Route::post('/home/perfil/enviar-mensaje',[userController::class,'responderMensaje'])->name('responder-mensaje');
 Route::get('/home/perfil/enviar-mensaje/create',[userController::class,'messageCreate']);
@@ -208,9 +213,25 @@ Route::get('/informenos', function () {
 
 Route::get('/proxsubastas',[HomeController::class,'proximassubastas'])->name('prosubastas');;
 
+//Bloquear producto a un usuario
+Route::post('/productoBloq',[MedioNegoController::class,'BloquearProductUser'] )->name('bloq-user-prod');
 
 //Borrar al finalizar 
 
 Route::get('borrar2',function (){
     return view('edson2');
+});
+
+
+// Ventana de ayuda
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/deleteAllHelps',[HelpController::class,'deleteAllHelps']);
+    Route::post('/deleteOneHelpHome',[HelpController::class,'deleteOneHelpHome']);    
+    Route::post('/deleteOneHelpSubRap',[HelpController::class,'deleteOneHelpSubRap']);    
+    Route::post('/deleteOneHelpInfoPerfil',[HelpController::class,'deleteOneHelpInfoPerfil']);    
+    Route::post('/deleteOneHelpCommentPefil',[HelpController::class,'deleteOneHelpCommentPefil']);    
+    Route::post('/deleteOneHelpSubPuj',[HelpController::class,'deleteOneHelpSubPuj']);        
+    Route::post('/addAllHelps',[HelpController::class,'addAllHelps'])->name('addAllHelps');
+
 });

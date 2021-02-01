@@ -100,6 +100,14 @@
                                 <span class="font-weight-bold small text-uppercase">Calendario</span>
                             </a>
                             </li>
+                            <li>
+                            <a class="nav-link shadow" id="v-pills-pujas-tab" data-toggle="pill"
+                                href="#v-pills-pujas" role="tab" aria-controls="v-pills-pujas" aria-selected="false"
+                                onclick="tablasOpc = 6;">
+                                <i class="fa fa-search"></i>
+                                <span class="font-weight-bold small text-uppercase">Mis pujas</span>
+                            </a>
+                            </li>
                         </ul>
                     </div>
 
@@ -200,7 +208,7 @@
                                     <h3 class="font-weight-bold font-popin">Mis productos registrados</h3>
                                     <h4 class="font-weight-bold font-popin"> </h4>
                                     <div class="card-body card-contenido-cuerpo-2">
-                                        <div class="table-responsive font-popin" id="historial_prod_sub">
+                                        <div class="table-responsive font-popin" id="historial_prod_reg" >
                                             @include('partials/prod_reg')
                                         </div>
                                     </div>
@@ -216,7 +224,9 @@
                         <div class="tab-pane fade " id="v-pills-mensajes" role="tabpanel" aria-labelledby="v-pills-mensajes-tab">
                             <section class="py-0">
                                 <div class="container">
-                                    <h3 class="font-weight-bold font-popin">Mensajeria</h3>
+                                    <h3 class="font-weight-bold font-popin">Mensajeria
+                                        <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Solo se permite enviar mensajes referentes a productos registrados, para enviar un mensaje ir al perfil de usuario y buscar un producto en 'Registro'"></i>                    
+                                    </h3>
                                     <h4 class="font-weight-bold font-popin"> </h4>
                                     <div class="card-body" style="padding: 0px;">
                                         <div class="table-responsive font-popin" id="mensajeria-perfil">
@@ -233,7 +243,7 @@
                             </div>
                         </div>
                         
-                        <div class="tab-pane  " id="v-pills-calendario" role="tabpanel" aria-labelledby="v-pills-calendario-tab">
+                        <div class="tab-pane fade " id="v-pills-calendario" role="tabpanel" aria-labelledby="v-pills-calendario-tab">
                             <section class="py-0">
                                 <div class="container">
                                     <h3 class="font-weight-bold font-popin">Calendario</h3>
@@ -253,16 +263,36 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane fade " id="v-pills-pujas" role="tabpanel" aria-labelledby="v-pills-pujas-tab">
+                            <section class="py-0">
+                                <div class="container">
+                                    <h3 class="font-weight-bold font-popin">Historial de pujas</h3>
+                                    <h4 class="font-weight-bold font-popin"> </h4>
+                                    <div class="card-body" style="padding: 0px;">
+                                        <div class="table-responsive font-popin" id="historial_puj">
+                                            @include('partials.hist_pujas')
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
   
+                            <div class="container">
+                                <div class="row justify-content-center" id="">
+  
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-pane fade " id="v-pills-ganadas" role="tabpanel" aria-labelledby="v-pills-ganadas-tab">
                             <div class="container">
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 mb-12">
                                         <div class="card-header">
-                                            <h3 class="titulo-card-header-2">Subastas ganadas</h3>
+                                            <h3 class="titulo-card-header-2">Subastas ganadas
+                                                    <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Aca se mostraran las productos que ganaste la subasta, y se habilitara un boton para terminar la transaccion"></i>                    
+                                            </h3>
                                         </div>
                                         <div class="card-body card-contenido-cuerpo-2">
-                                            <div class="table-responsive font-popin" id="historial_prod_reg">
+                                            <div class="table-responsive font-popin" id="historial_prod_sub">
                                                 @include('partials/sub_gan')
                                             </div>
                                         </div>
@@ -383,9 +413,26 @@
 </div>
 
 
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_infoPerfil;
+            $urlPagina = "deleteOneHelpInfoPerfil";
+        @endphp
+    @endauth
+    @include('includes/PopupHelp/InfoPerfilHelpPopupHtml')
+
+    {{-- Fin configuracion de ayuda --}}
+
+
 
 @endsection
 @section('contenidoJSabajo')
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
+
+<script src="{{ asset('js/axios.js') }}"></script>
 <script src="{{asset('js/jsPerfil.js')}}"></script>
 <script>
 

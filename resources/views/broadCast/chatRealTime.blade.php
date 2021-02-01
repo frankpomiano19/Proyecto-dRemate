@@ -87,18 +87,8 @@
                                     alt="sunil"> </div>
                             <div class="received_msg">
                                 <div class="received_withd_msg">
-                                    <p>Hola 123 123</p>
-                                    <span class="time_date"> 11:01 AM | Junio 9</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="incoming_msg">
-                            <div class="incoming_msg_img"> <img src="{{ asset('img/assets/antique-1125467_1920.jpg') }}"
-                                    alt="sunil"> </div>
-                            <div class="received_msg">
-                                <div class="received_withd_msg">
-                                    <p>Gato con botitas</p>
-                                    <span class="time_date"> 11:01 AM | Junio 9</span>
+                                    <p class="text-muted">Inserte mensaje</p>
+                                    <span class="time_date"> Sistema</span>
                                 </div>
                             </div>
                         </div>
@@ -107,9 +97,9 @@
                         {{-- Mensaje enviado --}}
                         <div class="outgoing_msg">
                             <div class="sent_msg">
-                                <p>Por los clavos de cristo</p>
-                                <span class="time_date"> 11:01 AM | Junio 9</span>
-                            </div>
+                                <p>Inserte mensaje</p>
+                                <span class="time_date"> Sistema</span>
+                        </div>
                         </div>
 
                         @livewire("chat-list",['nombreProducto'=>$producto])
@@ -128,7 +118,7 @@
                 <div>
                     <div>
                         <div class="row col-md-12 py-2 d-flex justify-content-around">
-                            <button class="btn btn-danger btn-rojo-comu">Terminar Conversacion</button>
+                            <a href="{{ url('/') }}" class="btn btn-danger btn-rojo-comu">Terminar Conversacion</a>
                             {{-- <button class="btn btn-primary btn-rojo-mens">Iniciar Negociacion</button> --}}
                         </div>
 

@@ -2,8 +2,6 @@
 <div class="text-center text-white">
 <div class="">
     <h6 style="" class="bg-warning p-2 my-2 rounded text-dark">¡Importante! Para poder finalizar la transacción se necesita confirmar el pago, esto permitirá que el monto pagado llegue a la cuenta del vendedor.</h6><br>
-    
-
     <table class="table table-hover table-striped">
         <thead class="thead-dark">
                   <tr>

@@ -32,11 +32,13 @@
     <link rel="stylesheet" href="css/inicio.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/barra.css">
+    <link rel="stylesheet" href="css/cssHelp.css">
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 
 @section('contenido')
+
 
 <div class="c-hero" style="padding-top:21px;">
     <div class="c-hero__center">
@@ -94,8 +96,8 @@
         data-href="http://dremate.herokuapp.com/" 
         data-layout="button_count" data-size="large">
         </div>
-        <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/intent/tweet?text=Pagina%20de%20subasta%20online%20para%20cualquier%20tipo%20de%20persona&url=http%3A%2F%2Fdremate.herokuapp.com/&via=dRemate&hashtags=programación,html">
-            <span class="fa fa-twitter"></span>
+        <a class="btn btn-social-icon btn-twitter" style="width:100px;font-size:10px" href="https://twitter.com/intent/tweet?text=Pagina%20de%20subasta%20online%20para%20cualquier%20tipo%20de%20persona&url=http%3A%2F%2Fdremate.herokuapp.com/&via=dRemate&hashtags=programación,html">
+            <span class="fa fa-twitter">&nbsp;Compartir</span>
         </a>
     </div>
 </section>
@@ -430,12 +432,25 @@
         </div>
     </div>
 </div> --}}
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_home;
+            $urlPagina = "deleteOneHelpHome";
+        @endphp
+        <script>
 
+        </script>
+    @endauth
+    @include('includes/PopupHelp/HomeHelpPopupHtml')
 
+    {{-- Fin configuracion de ayuda --}}
 @endsection
 
 @section('contenidoJSabajo')
-    <!-- Colocar js abajo-->
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
     <script src="https://use.fontawesome.com/c9d7a705d9.js"></script>
     <script src="https://preview.colorlib.com/theme/onetech/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 @endsection

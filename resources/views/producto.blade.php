@@ -42,12 +42,11 @@
 
 
 @section('contenido')
-{{-- Configuracion de variables --}}
-@php
-
-  \Carbon\Carbon::setLocale('es');  
-@endphp
-{{-- Fin  --}}
+  {{-- Configuracion de variables --}}
+  @php
+    \Carbon\Carbon::setLocale('es');  
+  @endphp
+  {{-- Fin  --}}
   <!-- Modal de usuario bloqueado-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -67,9 +66,27 @@
     </div>
   </div>
     
+<!-- Modal de bloqueo de producto-->
+<div class="modal fade" id="BloqueoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Usted no puede ofertar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        El propietario de la subasta le ha impedido ofertar este producto. Puede volver a Subasta Rápida.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-  {{-- <h2 style="display: none">Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2> --}}
  
 
 {{-- Informacion del producto --}}
@@ -123,8 +140,8 @@
                     data-layout="button" data-size="small">
                     </div>
 
-                    <a class="btn btn-social-icon btn-sm btn-twitter" href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
-                      <span class="fa fa-twitter"></span>
+                    <a class="btn btn-social-icon btn-sm btn-twitter" style="width:100px;font-size:10px"  href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
+                      <span class="fa fa-twitter" >&nbsp; Compartir</span>
                     </a>
               </div>
 
@@ -279,8 +296,15 @@
                     @csrf  
                     <div class="flex" class="cant_puja" id="cantpuja">
                       @auth
-                      <span id="simbolo-soles" class="flex">S/</span>
-                      <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+                      
+                        @if ($prodbloq == true)
+                            <span id="simbolo-soles" class="flex">S/</span>
+                            <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+
+                        @else
+                            No puede ofertar este producto.
+                        @endif
+                      
 
                       @else
                       Necesitar estar <a href="{{ url('login') }}">&nbsp; autenticado</a>                   
@@ -312,12 +336,14 @@
                       <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
                       <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
                       <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
-                        
-                      <div class="flex">
-                          <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
-                      </div>
+                        @if ($prodbloq == true)
+                          <div class="flex">
+                            <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
+                            <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Cuando ejecutes la puja, se quedara retenido en el sistema. Cuando ganes termine y ganes se te notificara">
+                            </i>
+                          </div>
+                        @endif
                       @endauth
-
                       
                       <div class="boton_compra my-2" style="display: none" id="boton_compra">
                         <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
@@ -344,18 +370,6 @@
                           </p>
                       </div>
                   </li>
-
-
-                  {{-- <li>
-                      <input type="radio" name="tabs" id="tab2" />
-                      <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Opiniones</label>
-                      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="comentarios" aria-hidden="true">
-                          <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-                              enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                              consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-                              nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla?</p>
-                      </div>
-                  </li> --}}
 
                   <li>
                       <input type="radio" name="tabs" id="tab3" />
@@ -549,7 +563,9 @@
 
       <div class="panel-sup col-md-4 col-sm-12">
           <div id="panel-6" class="panel">
-              <h2>Acuerdos Fijados</h2><br><br><br>
+              <h2>Acuerdos Fijados &nbsp;<i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Acuerdos que el subastar esta dispuesto a respetar"></i></h2>
+
+              <br><br><br>
 
             @auth
               @if (auth()->user()->id == $prod->user_id)
@@ -557,7 +573,8 @@
 
               <div class="acuerdo flex" id="nuevo-acuerdo">
                      @if ($prod->productoAgreement->count()<6)
-                     <span id="texto-nuevo-acuerdo">Agregar un acuerdo</span>
+                     <span id="texto-nuevo-acuerdo">Agregar un acuerdo</i> </span>
+                     
                      <form action="{{ route('setAgreement') }}" style="display: none;" id="inputAcuerdo" method="POST">
                       @csrf
                      <div class="row justify-content-center">
@@ -610,7 +627,7 @@
                 @endif
                   
               @endif
-              {{-- Fin ---------- --}}
+              {{-- Fin --}}
 
 
 
@@ -646,88 +663,32 @@
                   @endforeach
 
               </div>
-
-              <!-- 
-              <div class="row ">
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 400px; padding: 10px; background-color: blue; border: blueviolet solid 2px; ">
-                      <div class="carta">
-                          <div class="cont-cart-img ">
-                              <img class="img-ajustada " src="coin02.png" alt="coin02.png">
-                          </div>
-
-                      </div>
-                      <div>
-                          Título y otras cosas
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">
-                      <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                          <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-              </div> -->
-
           </div>
-      </div>
-        <!--Fin de productos relacionados-->
+        </div>
+        
 
   </div>
   <br><br><br><br>
+  @auth
+    @php
+        $ayudaRuta = Auth::user()->userHelp->help_subastaPujas;
+        $urlPagina = "deleteOneHelpSubPuj";
+    @endphp
+  @endauth
+  @include('includes/PopupHelp/SubPujHelpPopupHtml')
 
 </div>
 
 
 
-
-{{-- Fin nuevo Diseño --}}
-  
 @endsection
 
 @section('contenidoJSabajo')
+
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
   <script src="js/simplyCountdown.min.js"></script>
-  <!-- 
-  <script src="js/countdown.js"></script>
-  -->
   <script>
     simplyCountdown('#tiempopuja', {
 
@@ -917,6 +878,23 @@ $("#regresar").click(function() {
 });
 
 </script>
+<<<<<<< HEAD
 <script src="js/jsProducto.js"></script>
+=======
+
+@auth
+    @if ($prodbloq == false)
+    <script>  
+      $(function(){
+          $('#BloqueoModal').modal({
+              backdrop:'static',
+          });
+      });
+    </script>
+    @endif
+@endauth
+
+
+>>>>>>> master
     <!-- Colocar js abajo-->
 @endsection

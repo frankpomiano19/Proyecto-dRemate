@@ -34,7 +34,7 @@
 @section('contenidoCSS')
     <link rel="stylesheet" href="css/styleSubastaRapida.css">
     <link rel="stylesheet" href="js/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
-
+    <link rel="stylesheet" href="{{ asset('css/cssHelp.css') }}">
 @endsection
 
 
@@ -91,8 +91,8 @@
                 {{-- <a class="btn btn-social-icon btn-twitter">
                     <span class="fa fa-instagram"></span>
                 </a> --}}
-                <a class="btn btn-social-icon btn-twitter" href="https://twitter.com/intent/tweet?text=Pagina%20de%20subasta%20online%20para%20cualquier%20tipo%20de%20persona&url=http%3A%2F%2Fdremate.herokuapp.com/&via=dRemate&hashtags=programación,html">
-                    <span class="fa fa-twitter"></span>
+                <a class="btn btn-social-icon btn-twitter" style="width:100px;font-size:10px" href="https://twitter.com/intent/tweet?text=Pagina%20de%20subasta%20online%20para%20cualquier%20tipo%20de%20persona&url=http%3A%2F%2Fdremate.herokuapp.com/&via=dRemate&hashtags=programación,html">
+                    <span class="fa fa-twitter">&nbsp; Compartir</span>
                 </a>
                 <div class="fb-share-button " 
                 data-href="http://dremate.herokuapp.com/" 
@@ -255,8 +255,28 @@
     $contador3=0;
     $contador4=0;
     @endphp
+
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_subasta_rapida;
+            $urlPagina = "deleteOneHelpSubRap";
+        @endphp
+    @include('includes/PopupHelp/SubRapHelpPopupHtml')
+    @endauth
+
+    {{-- Fin configuracion de ayuda --}}
+
 @endsection
 @section('contenidoJSabajo')
+
+
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
+
+
+
     <script src="js/jsSubastaRapida.js"></script>
     <script src="js/jquery.chrony.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
@@ -511,6 +531,6 @@
         });
 
     </script>
-
+    
 
 @endsection

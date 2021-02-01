@@ -74,6 +74,8 @@ class HomeController extends Controller
                 $temp = (int)$favoritos[$i];
                 $favoritos[$i] = $temp;
             }
+
+            $prodbloq = App\Models\BloqUserPro::where('user_id','=',auth()->id())->where('product_bloq_id','=',$idpro)->get()->isempty();
     
         }
 
@@ -102,7 +104,7 @@ class HomeController extends Controller
             return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','commentUsers'));
 
         }else{
-            return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers'));
+            return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers','prodbloq'));
         }
         //End comentarios
     }
