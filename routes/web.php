@@ -208,6 +208,8 @@ Route::get('/informenos', function () {
 
 Route::get('/proxsubastas',[HomeController::class,'proximassubastas'])->name('prosubastas');;
 
+//Bloquear producto a un usuario
+Route::post('/productoBloq',[MedioNegoController::class,'BloquearProductUser'] )->name('bloq-user-prod');
 
 //Borrar al finalizar 
 

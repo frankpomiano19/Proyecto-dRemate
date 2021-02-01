@@ -67,7 +67,26 @@
     </div>
   </div>
     
-
+<!-- Modal de bloqueo de producto-->
+<div class="modal fade" id="BloqueoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Usted no puede ofertar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        El propietario de la subasta le ha impedido ofertar este producto. Puede volver a Subasta Rápida.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
+      </div>
+    </div>
+  </div>
+</div>
 
   {{-- <h2 style="display: none">Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2> --}}
  
@@ -282,8 +301,15 @@
                     @csrf  
                     <div class="flex" class="cant_puja" id="cantpuja">
                       @auth
-                      <span style="font-size: 1.8rem;">S/</span>
-                      <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+                      
+                        @if ($prodbloq == true)
+                            <span style="font-size: 1.8rem;">S/</span>
+                            <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+
+                        @else
+                            No puede ofertar este producto.
+                        @endif
+                      
 
                       @else
                       Necesitar estar <a href="{{ url('login') }}">&nbsp; autenticado</a>                   
@@ -315,10 +341,12 @@
                       <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
                       <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
                       <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
-                        
-                      <div class="flex">
-                          <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
-                      </div>
+                        @if ($prodbloq == true)
+                          <div class="flex">
+                            <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
+                          </div>
+                        @endif
+                      
                       @endauth
 
                       
@@ -920,5 +948,19 @@ $("#show-responder").click(function() {
   console.log(moment("20111031", "YYYYMMDD").fromNow());
   
 </script>
+
+@auth
+    @if ($prodbloq == false)
+    <script>  
+      $(function(){
+          $('#BloqueoModal').modal({
+              backdrop:'static',
+          });
+      });
+    </script>
+    @endif
+@endauth
+
+
     <!-- Colocar js abajo-->
 @endsection

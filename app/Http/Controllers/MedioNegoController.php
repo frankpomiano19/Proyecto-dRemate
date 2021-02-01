@@ -6,6 +6,7 @@ use Auth;
 use App\Models\Producto;
 use App\Models\User;
 use App\Models\Mensaje;
+use App\Models\BloqUserPro;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -17,8 +18,9 @@ class MedioNegoController extends Controller
     {
         $producto = Producto::where('id','=',$productUser)->first();
         $usuarioPerfil = User::where('id','=',$usuarioPerfil)->first();
+        $users = User::all();
 
-        return view('medioNegociacion.medioInfoProd',compact('producto','usuarioPerfil'));
+        return view('medioNegociacion.medioInfoProd',compact('producto','usuarioPerfil','users'));
     }
 
     public function store(Request $request){
@@ -66,6 +68,15 @@ class MedioNegoController extends Controller
             ]);        
         }
         return view('broadcast.chatRealTime',compact('producto'));
+    }
+
+    public function BloquearProductUser(Request $request){
+        $bloq = new BloqUserPro;
+        $bloq->user_id = $request->user_bloq_id;
+        $bloq->product_bloq_id = $request->idprod_bloq;
+        $bloq->save();
+
+        return back();
     }
 
 }

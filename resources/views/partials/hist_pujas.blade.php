@@ -1,4 +1,4 @@
-<h4>Esta es la parte del historial de pujas</h4>
+
 
 
 <table class="table table-hover table-striped">
