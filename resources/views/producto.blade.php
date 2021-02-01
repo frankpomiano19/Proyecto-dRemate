@@ -838,7 +838,6 @@ $("#show-responder").click(function() {
 </script>
 
 @endif
-<<<<<<< HEAD
 <script>
   moment.locale('es'); 
   console.log(moment("20111031", "YYYYMMDD").fromNow());
@@ -858,7 +857,5 @@ $("#show-responder").click(function() {
 @endauth
 
 
-=======
->>>>>>> origin/master
     <!-- Colocar js abajo-->
 @endsection
