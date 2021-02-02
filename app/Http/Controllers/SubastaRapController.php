@@ -152,6 +152,8 @@ class SubastaRapController extends Controller
 
         $listaUsuario = $listaFavoritos->favoritos;
 
+        $suscrito = $listaFavoritos->suscripcion;
+
         $listaInicio = str_replace("[", "", $listaUsuario);
 
         $listaFin = str_replace("]", "", $listaInicio);
@@ -170,7 +172,8 @@ class SubastaRapController extends Controller
         $i = 0;
         // dd($favoritos);
 
-        return view('favoritos')->with('casa', $nombre)->with('productos', $productos)->with('favoritos', $favoritos)->with('i', $i);
+
+        return view('favoritos')->with('casa', $nombre)->with('productos', $productos)->with('favoritos', $favoritos)->with('i', $i)->with('suscrito', $suscrito);
     }
 
 

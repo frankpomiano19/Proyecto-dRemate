@@ -47,37 +47,33 @@
             ENCUENTRA TODO TIPO DE PRODUCTOS EN NUESTRA PÁGINA
         </h2>
         <hr style="margin-top: 25px;">
-        <h5><span class="uppercase">Registrate ahora y empieza</span></h5>
-
-        @guest
-        <a class="red button register" href="/register">REGISTRARSE</a>             
-        @endguest
+        @auth
+          <a class="red button register" href="{{ route('productosPopulares') }}">Productos populares</a>
+        @else
+          <h5><span class="uppercase">Registrate ahora y empieza</span></h5>
+          <a class="red button register" href="/register">REGISTRARSE</a> 
+        @endauth
+        
         
         <div class="c-hero__feats">
-            <a href=" {{ url('subastaRapida') }}" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/feat1.png">
+            <a href="/subastaRapida" class="c-hero__feat">
+                <img src="http://imgfz.com/i/gVFiRSt.jpeg">
                     <h2>Subastas<br>
                         En vivo</h2>
                         <span>Conoce más</span>
             </a>
             <a href="{{ url('subastaRapida') }}" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/results-2.png">
+                <img src="http://imgfz.com/i/Rnp1gBz.jpeg">
                     <h2>Resultados<br>
                         anteriores</h2>
                     <span>Conoce más</span>
             </a>
             <a href="{{ url('busquedaFiltro') }}" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/valuation-2.png">
+                <img src="http://imgfz.com/i/P5uQzyi.png">
                     <h2>Categorias<br>
                         Variadas</h2>
                         <span>Conoce más</span>
             </a>
-            <!--<a href="#" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/feat1.png">
-                     <h2>Subastas<br>
-                    En vivo</h2>
-                    <span>Conoce más</span>
-            </a>-->
         </div>
     </div>
 </div>

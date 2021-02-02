@@ -15,7 +15,6 @@
 @section('contenidoCSS')
     <link href="{{ asset('css/mostrarProductos.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/styleSubastaRapida.css')}}">
-
     
 @endsection
 

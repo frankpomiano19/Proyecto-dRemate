@@ -33,31 +33,85 @@
                     @if ($favorito == $producto->id)
 
                         <div class="col-md-5 mx-5">
-                            <a href="{{ route('producto.detalles',$producto->id) }} " style="color:black">
+                            {{-- <a href="{{ route('producto.detalles',$producto->id) }} " style="color:black"> --}}
                                 <div class="producto fix">
                                     <div class="contenedor-imagen">
-                                        <img src="{{$producto->image_name1}}" alt="" class="imagen">
+                                        <a class="text-dark" href="{{ route('producto.detalles',$producto->id) }} "><img src="{{$producto->image_name1}}" alt="" class="imagen"></a>
+                                        
                                     </div>
                                         
                                     <div class="texto"> 
-                                        <div class="titulo">          
-                                            <h3>{{$producto->nombre_producto}}</h3>                          
+                                        <div class="titulo row ">          
+                                            <div class="col"><h3><a class="text-dark" href="{{ route('producto.detalles',$producto->id) }} ">{{$producto->nombre_producto}}</a></h3></div>
+
+                                            <div class="col">
+                                                <form method="POST" action="{{ route('producto.favorito') }}">
+                                                    {{ csrf_field() }}
+                                                    @csrf
+                                                    <input type="hidden" name="favorito" value={{ $producto->id }}>
+                                                    <input type="hidden" name="indice" value=0>
+                                                    <button type="submit" class="btn float-right" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                                                </form>
+                                                @if($suscrito == "1")
+                                                    <form method="POST" action="{{ route('enviar.correo') }}">
+                                                        {{ csrf_field() }}
+                                                        @csrf
+                                                        <input type="hidden" name="productoCorreo" value={{ $producto->id }}>
+                                                        <input type="hidden" name="usuario" value={{ Auth::user()->usuario }}>
+                                                        <input type="hidden" name="email" value={{ Auth::user()->email }}>
+                                                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="top" title="Enviar a mi correo"><img src="{{asset('img/assets/email.png')}}"></button>
+
+
+                                                    </form>
+                                                @else
+                                                    <button type="button" class="btn" data-toggle="modal" data-placement="top" title="Enviar a mi correo" data-target="#exampleModal">
+                                                        <img src="{{asset('img/assets/email.png')}}">
+                                                    </button>
+                                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-center" id="exampleModalLabel">Necesitas estar suscrito</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <p>Debes estar suscrito para enviar la informacíon del producto a tu correo. Puedes hacerlo con el botón inferior "Suscribirme" o hacerlo en cualquier momento desde las pestaña "Mi perfil", tal como lo muestra la imagen. Es totalmente gratis.<br></p>
+                                                                    <img class="img-fluid" src="http://imgfz.com/i/BxFkYKs.png">
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                                                    <form method="POST" action="{{ route('suscripcion.usuario') }}">
+                                                                        {{ csrf_field() }}
+                                                                        @csrf
+                                                                        <input type="hidden" name="idUsuario" value={{ Auth::user()->id }}>
+                                                                        <input type="hidden" name="nameUser" value={{ Auth::user()->usuario }}>
+                                                                        <input type="hidden" name="email" value={{ Auth::user()->email }}>
+                                                                        <button type="submit" class="btn btn-success">Suscribirme</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            </div>
                                         </div>
                                         <h5>Precio inicial: S/ {{$producto->precio_inicial}}</h5>
                                         <p>
                                         {{$producto->descripcion}}
                                         </p>
-                                        <div class="ubicacion" style="display:inline;">
-                                            <h6>{{$producto->ubicacion}}</h6><p><b>{{$producto->distrito}}</b></p>
-                                            
+                                        <div class="row">
+                                            <div class="col"><h6>Departamento:{{$producto->ubicacion}}</h6><p>{{$producto->distrito}}</></p></div>
                                         </div>
                                     </div>  
                                         
                                         
                                 </div>
-                            </a>
+                            {{-- </a> --}}
                             <div class="abajo-producto"></div>
                         </div>
+
                     @endif
                 @endforeach
             @endforeach

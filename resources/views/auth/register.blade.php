@@ -87,7 +87,6 @@
                                         @enderror
 
                                     </div>
-
                                     <!--<div class="form-label-group">
                                         <input type="text" id="inputTelef"
                                             class="form-control @error('Teléfono') is-invalid @enderror"
@@ -111,8 +110,6 @@
                                             </div>
                                         </div>
 
-
-
                                         <div class="form-group">
                                             <label >Fecha de nacimiento</label>
                                            <div class="input-group">
@@ -124,13 +121,6 @@
                                                   max="3000-12-31" class="form-control"  >                                                   
                                             </div>
                                         </div>
-
-
-
-
-
-
-
 
                                     <hr class="linea-negra" style="border-color: black;border-width:1px;border-radius:50%;">
 
@@ -153,11 +143,15 @@
                                             autocomplete="new-password">
                                         <label for="inputConfirmPassword">Repetir Contreseña</label>
                                     </div>
-
+                                    <div class="form-inline mb-2">
+                                        <input class="mr-2" type="checkbox" value="1" name="suscripcion">
+                                        {{-- <input class="mr-2" type="checkbox" value="0" name="suscripcion" checked> --}}
+                                        <label>Deseo suscribirme a D'REMATE</label>
+                                    </div>
 
                                     <button class="btn btn-lg btn-primary btn-block text-uppercase"
                                         type="submit">Registrarse</button>
-                                    <a class="d-block text-center mt-2 small" href="{{ route('login') }}">Login</a>
+                                    <a class="d-block text-center mt-2 small" href="{{ route('login') }}">Iniciar sesiòn</a>
                                     <hr class="my-4">
                                     <!--
                                                                                                                                                                                                                                                                             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i

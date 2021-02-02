@@ -12,6 +12,7 @@
 @section('cont_cabe')
     <title>Subasta rapida - dRemate</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @livewireStyles
 @endsection
 
 @section('contenidoJS')
@@ -65,9 +66,13 @@
             <h1 class="titulo-card-header-2">d'Remate</h1>
             <hr style="border-color: white">
             <hr style="border-color: white">
+            @auth
+            <h1 class="titulo-card-header-2">Bienvenido a la subasta rapida</h1>
+            @else
             <h1 class="titulo-card-header-2">Bienvenido a la subasta rapida</h1>
             <h2 style="font-size: 20px">Recuerda que para pujar, necesitas estar registrado</h2>
             <div class="btn-group py-4" role="group">
+            @endauth
 
                 @guest
                 <a href="{{ url('login') }}" role="button" class="btn btn-info"><i class="fa fa-book">
@@ -78,7 +83,7 @@
                     Bienvenido {{ auth()->user()->usuario }}
                 @endguest
             </div>
-            <h4 style="font-size: 20px">Puedes conocer productos por categorias</h4>
+            <h4 style="font-size: 20px" class="text-white">Puedes conocer productos por categorias</h4>
             <div class="btn-group py-4" role="group">
                 <a href="{{ url('busquedaFiltro') }}" role="button" class="btn btn-info"><i class="fa fa-chevron-right">
                         Buscar mas productos</i></a>
@@ -188,12 +193,6 @@
 
                                 </div>
                             </div>
-
-
-                            <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </a>-->
-
                         </div>
 
                         <div class="tab-pane fade " id="pills-sub-pro" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -231,15 +230,13 @@
                         </div>
 
                         <div class="tab-pane fade " id="pills-sub-pop" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            {{-- <section class="py-0">
-                                <div class="container">
-                                </div>
-                            </section> --}}
 
                             <div class="container" style="margin-top: 1rem;">                                
                                 <h3 class="font-weight-bold font-popin">Subastadores populares</h3><br>
                                 <div class="row justify-content-center" id="id_subasta_programada">
-                                    @include('partials/sub_rap_popu')
+
+                                    <livewire:subastador-popular />
+
                                 </div>
                             </div>
                         </div>
@@ -255,6 +252,7 @@
     $contador3=0;
     $contador4=0;
     @endphp
+    @livewireScripts
 
     {{-- Configuracion de ayuda --}}
     @auth

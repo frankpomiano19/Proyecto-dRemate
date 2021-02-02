@@ -11,8 +11,8 @@
                 <form action="">
                     <div class="select">
                         <select name="slct" id="slct">
-                          <option value="0" selected >Más vistas</option>
-                          <option value="1">Más subastas</option>
+                          <option value="0" selected >Vistas</option>
+                          <option value="1">Subastas</option>
                         </select>
                       </div>
                 </form>
@@ -187,5 +187,4 @@
             123
         </div>
     </div>
-
 </div>

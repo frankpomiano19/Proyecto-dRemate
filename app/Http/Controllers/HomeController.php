@@ -33,7 +33,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $nombre="casa";
+        return view('home')->with('nombre', $nombre);
     }
     public function valores()
     {
@@ -98,6 +99,8 @@ class HomeController extends Controller
         } else {
             $ultimoprecio = $ultimapuja->valor_puja;
         }
+
+        $muestra = 0;
 
 
         if(auth()->user()==null){
@@ -195,6 +198,10 @@ class HomeController extends Controller
         //Fila de usuario
         $listaFavoritos = App\Models\User::where('id', '=', auth()->id())->first();
 
+        $productoFavorito = App\Models\Producto::where('id','=',$request->favorito)->first();
+
+        // dd($request->fav);
+
         //Campo favorito del usuario
         $listaUsuario = $listaFavoritos->favoritos;
 
@@ -227,7 +234,6 @@ class HomeController extends Controller
 
             if ($favoritos[$i] == $favNuevo) {
                 $favoritos[$i] = 0;
-                // $favoritos[$i+1] = 0;
                 $existe = 1;
                 break;
             } else {
@@ -235,22 +241,29 @@ class HomeController extends Controller
             }
         }
 
-        if ($existe == 1) {
-        } else {
-            array_push($favoritos, $favNuevo);
+        if($request->fav=="1"){
+            $productoFavorito->favorito = $productoFavorito->favorito + 1;
+            $productoFavorito->save();
+        }else{
+            $productoFavorito->favorito = $productoFavorito->favorito - 1;
+            $productoFavorito->save();
         }
 
-        // $favUsuario = array_unique($favoritos);
+        if($request->indice=="0"){
+            $productoFavorito->favorito = $productoFavorito->favorito - 1;
+            $productoFavorito->save();
+        }
+
+        if($existe == 1){
+            
+        }else{
+            array_push($favoritos,$favNuevo);
+        }
+
 
         $listaFavoritos->favoritos = $favoritos;
 
         $listaFavoritos->save();
-
-        // dd($favoritos);
-
-        // $productos = App\Models\Producto::all();
-
-        // dd($productos);
 
         return back();
     }
@@ -260,11 +273,66 @@ class HomeController extends Controller
 
         $datospro = App\Models\Producto::where('id', '=', $request->id)->first();
 
-        // dd($datospro);
-
         return view('RegistroProductoSubasta.subastarProducto')->with('datosProducto', $datospro);
     }
 
+    public function enviarSubasta(Request $request){
+
+        $request->validate([
+            'precio_inicial'=>'required|numeric|min:10|regex:/^[\d]{1,3}(\.[\d]{1,2})?$/',
+            'inicio_subasta'=>'required|date',
+            'final_subasta'=>'required|date|after:inicio_subasta'
+        ]);
+
+        $id = $request->id;
+
+        $prod = App\Models\Producto::findOrFail($id);
+
+        $prod->precio_inicial = $request->precio_inicial;
+        $prod->final_subasta = $request->final_subasta;
+        $prod->inicio_subasta = $request->inicio_subasta;
+
+        $prod->save();
+
+        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+
+        $listaUsuario = $listaFavoritos->favoritos;
+
+        $listaInicio = str_replace("[", "", $listaUsuario);
+
+        $listaFin = str_replace("]", "", $listaInicio);
+
+        $favoritos = explode(',',$listaFin);
+
+        $tamanio = sizeof($favoritos);
+
+        for($i = 0; $i<$tamanio;$i++){
+
+            $temp = (int)$favoritos[$i];
+            $favoritos[$i] = $temp;
+        }
+        
+        $prod = App\Models\Producto::findOrFail($id);
+        $vendedor = App\Models\User::findOrFail($prod->user_id);
+        $cat = App\Models\Categoria::findOrFail($prod->categoria_id);
+        $pujastotales = App\Models\Puja::all()->sortDesc();
+        $ultimapuja = $pujastotales->where('producto_id',$id)->first();
+        $usuarios = App\Models\User::all();
+        $iniciosubasta = new \Carbon\Carbon($prod->inicio_subasta);
+        $limitepuja = new \Carbon\Carbon($prod->final_subasta);
+        $productosRelac =  App\Models\Producto::where('categoria_id','=',$prod->categoria_id)->latest()->take(5)->get();
+        if ($ultimapuja === null) {
+            $ultimoprecio = $prod->precio_inicial;
+        } else {
+            $ultimoprecio = $ultimapuja->valor_puja;
+        }
+
+        $muestra = 1;
+
+
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','muestra'));
+    }
+    
     public function registroEEE(Request $request)
     {
 
@@ -295,16 +363,15 @@ class HomeController extends Controller
         return back();
     }
 
+    public function vistaSubasta($idpro){
 
-    public function proximassubastas(){
-        $hoy = \Carbon\Carbon::now();
-        $proxsem = \Carbon\Carbon::now()->addWeeks(1);
-        $proxsub = App\Models\Producto::all()->where('inicio_subasta','<',$proxsem)
-                        ->where('inicio_subasta','>',$hoy)->sortBy('inicio_subasta');
-        return view("proxsubastas", compact('proxsub'));
+        $prod = App\Models\Producto::findOrFail($idpro);
+
+
+        // dd($prod);
+
+        return view('RegistroProductoSubasta/subastarProducto')->with('datosProducto', $prod);
     }
-
-
     public function sendCommentProduct(Request $request){
 
         $fieldCreate= [
@@ -382,6 +449,14 @@ class HomeController extends Controller
         $ruta = '/producto-'.$idProductoUser;
         return redirect($ruta);
 
+    }
+
+    public function proximassubastas(){
+        $hoy = \Carbon\Carbon::now();
+        $proxsem = \Carbon\Carbon::now()->addWeeks(1);
+        $proxsub = App\Models\Producto::all()->where('inicio_subasta','<',$proxsem)
+                        ->where('inicio_subasta','>',$hoy)->sortBy('inicio_subasta');
+        return view("proxsubastas", compact('proxsub'));
     }
 
 }

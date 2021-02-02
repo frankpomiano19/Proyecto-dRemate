@@ -6,7 +6,9 @@ use App\Http\Controllers\SubastaRapController;
 use App\Http\Controllers\userController ;
 use App\Http\Controllers\RegistroProductoController;
 use App\Http\Controllers\RegistroSubastaController;
+use App\Http\Controllers\SuscripcionController;
 use App\Http\Controllers\userGuest;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MedioNegoController;
 use App\Http\Controllers\HelpController;
 use Illuminate\Http\Request;
@@ -49,12 +51,14 @@ Route::post('/info-editar',[userGuest::class,'comentarEdit'])->middleware('auth'
 Route::get('/info/fetch_data_product-{idUser}',[userGuest::class,'paginacionProductAjax']);
 
 
+//////////////////////////////////////
 
-Route::get('/subastarProducto', function () {
-    return view('RegistroProductoSubasta/subastarProducto');
-});
+// Route::get('/subastarProducto', function () {
+//     return view('RegistroProductoSubasta/subastarProducto');
+// });
 
 //////////////////////////////////////
+
 Route::get('/category', function () {
     return view('categorias');
 });
@@ -136,6 +140,11 @@ Route::get('categorias/electrodomesticos', function () {
     return view('categorias/electrodomesticos');
 })->name('Electrodomésticos');
 
+Route::get('categorias/productoPopular', function () {
+    return view('categorias/productoPopular');
+});
+
+
 Route::get('favoritos', function () {
     return view('favoritos');
 });
@@ -149,14 +158,23 @@ Route::get('productosPopulares/', function () {
 });
 
 
+
+Route::get('/productosPopulares',[SuscripcionController::class,'productosPopulares'])->name('productosPopulares');
+
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->middleware('auth')->name('producto.registroe');
 
 Route::post('/registroSubasta', [RegistroSubastaController::class,'formularioProducto'])->middleware('auth')->name('producto.registroee');
 
-Route::post('/subastarProducto', [HomeController::class,'registroEE'])->middleware('auth')->name('subastar.producto');
+Route::get('/subastarProducto-{idpro}', [HomeController::class, 'vistaSubasta'])->middleware('auth')->name("subastar.producto");
 
-Route::post('/datosSubasta', [HomeController::class,'registroEEE'])->middleware('auth')->name('subastar.productoD');
+
+Route::post('/suscripcionUsuario', [SuscripcionController::class,'suscripcion'])->middleware('auth')->name('suscripcion.usuario');
+
+Route::post('/productoCorreo', [SuscripcionController::class,'enviarCorreo'])->middleware('auth')->name('enviar.correo');
+// Route::post('/subastarProducto', [HomeController::class,'registroEE'])->middleware('auth')->name('subastar.producto');
+
+Route::post('/enviarSubasta', [HomeController::class,'enviarSubasta'])->middleware('auth')->name('enviar.subasta');
 
 
 Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.busquedaespecifica');
@@ -167,6 +185,8 @@ Route::post('/sumaVendedor', [SubastaRapController::class,'sumarVendedor'])->mid
 Route::post('/', [HomeController::class,'agregarFavorito'])->middleware('auth')->name('producto.favorito');
 
 //GET
+Route::get('/enviarCorreo',[MailController::class,'enviar']);
+
 Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
 Route::get('/favoritos',[SubastaRapController::class,'productosFavoritos'])->middleware('auth')->name('productos.favoritos');

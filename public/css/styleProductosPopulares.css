@@ -95,13 +95,11 @@ select {
     width: 100%;
     float: left;
 }
-
 .texto {
     float: right;
     margin-left: 200px;
     height: 80px;
 }
-
 .cont-imagen {
     width: 190px;
     height: 80px;
@@ -109,7 +107,6 @@ select {
     margin-left: -100%;
     background-color: rgb(43, 226, 186);
 }
-
 .producto {
     border: blueviolet 3px solid;
 } */

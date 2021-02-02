@@ -19,8 +19,10 @@ class userGuest extends Controller
         $comentariosGustado_s = Comentario::where('use_id',$idUser)->where('com_like','>',5)->orderBy('com_like','DESC')->take(2)->get();
         $idPerfil = $idUser;
         $usuarioPerfil =  User::where('id','=',$idPerfil)->first();       
-        $productUser_s = Producto::where('user_id','=',$idUser)->paginate(4);       
-        return view('usuarioOpc.infoPerfil',compact('comentariosPerfil_s','comentariosGustado_s','idPerfil','usuarioPerfil','productUser_s'));        
+        $productUser_s = Producto::where('user_id','=',$idUser)->paginate(4);
+        $usuarioPerfil->visita = $usuarioPerfil->visita + 1;
+        $usuarioPerfil->save();
+        return view('usuarioOpc.infoPerfil',compact('comentariosPerfil_s','comentariosGustado_s','idPerfil','usuarioPerfil','productUser_s'));
     }
 
     public function paginacionAjax(Request $request){

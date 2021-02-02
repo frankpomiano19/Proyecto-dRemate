@@ -69,6 +69,7 @@ class LoginController extends Controller
                 Auth::logout();
                 return redirect()->route('user_reported');
            } else {
+
                 return redirect()->route('subastaRapida');
            }
            

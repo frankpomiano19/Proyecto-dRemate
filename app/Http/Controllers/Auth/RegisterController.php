@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Libreria\PHPMailer;
 
 class RegisterController extends Controller
 {
@@ -65,6 +66,69 @@ class RegisterController extends Controller
     {
         $dinero = 15.0;
 
+        if(isset($data['suscripcion'])){
+
+            // dd($data['suscripcion']);
+
+            $asunto = "Suscripción D'REMATE";
+            $destinatario = $data['email'];
+            $cuerpo ="
+            <div style='text-align:center; background-color:#FDFEFE ; padding:2px;'>
+                <h1 style='color:black;'>¡Suscripción exitosa!</h1>
+                <h2 style='color:black;'>" .$data['usuario']. ", ¡Gracias por suscribirte!<br>Ahora recibirás información de las subastas que más te interesen.</h2>
+                <img sytle='width:5px;height:5px;' src='http://imgfz.com/i/LiPHm9E.png'>
+                <div>
+                    <button style='background-color:#119933; border-radius:20px; border:1px solid black; padding: 15px 32px;'><a style='text-align: center; text-decoration: none; color:black; display: inline-block; width: 100%;' href='http://dremate.herokuapp.com/subastaRapida'><b>Ir a D'REMATE</b></a></button>
+                </div>
+            </div>
+            ";
+
+            $mail = new PHPMailer(true);
+            $mail->CharSet = 'UTF-8';
+            $mail->SMTPDebug = 2;
+            $mail->isSMTP();                    
+            $mail->Host       = 'smtp.gmail.com';             
+            $mail->SMTPAuth = true;                               
+            $mail->Username   = 'subastas.dRemate@gmail.com';
+            $mail->Password   = "drematecontra";
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;        
+            $mail->Port = 587;          
+            $mail->setFrom('subastas.dRemate@gmail.com', "D'REMATE");
+            $mail->addAddress($destinatario);
+            $mail->isHTML(true);                                 
+            $mail->Subject = $asunto;
+            $mail->Body    = $cuerpo;
+            $mail->send();
+
+            return User::create([
+                'usuario' => $data['usuario'],
+                'us_din' => $dinero,
+                'us_descp'=> "Mi perfil",
+                'email' => $data['email'],
+                'Nombres' => $data['Nombres'],
+                'Apellidos' => $data['Apellidos'],
+                'telefono' => $data['telefono'],
+                'fechadenacimiento' => $data['fechadenacimiento'],
+                'password' => Hash::make($data['password']),
+                'suscripcion' => (string)$data['suscripcion']
+            ]);
+
+        }
+        else{
+            return User::create([
+                'usuario' => $data['usuario'],
+                'us_din' => $dinero,
+                'us_descp'=> "Mi perfil",
+                'email' => $data['email'],
+                'Nombres' => $data['Nombres'],
+                'Apellidos' => $data['Apellidos'],
+                'telefono' => $data['telefono'],
+                'fechadenacimiento' => $data['fechadenacimiento'],
+                'password' => Hash::make($data['password']),
+                'suscripcion' => "0"
+            ]);
+        }
+
         /*
         User::create([
             'usuario' => $data['usuario'],
@@ -76,16 +140,6 @@ class RegisterController extends Controller
 
 
         return view("template");*/
-        return User::create([
-            'usuario' => $data['usuario'],
-            'us_din' => $dinero,
-            'us_descp'=> "Mi perfil",
-            'email' => $data['email'],
-            'Nombres' => $data['Nombres'],
-            'Apellidos' => $data['Apellidos'],
-            'telefono' => $data['telefono'],
-            'fechadenacimiento' => $data['fechadenacimiento'],
-            'password' => Hash::make($data['password']),
-        ]);
+
     }
 }

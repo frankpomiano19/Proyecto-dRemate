@@ -42,11 +42,99 @@
 
 
 @section('contenido')
+{{-- Configuracion de variables --}}
+{{-- @php --}}
+
+  @if($muestra == 1)
+  <div class="modal fade" id="mostrarmodal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h3>¡Producto enviado a subasta!</h3>
+            </div>
+            <div class="modal-body">
+                <h5>Datos Actualizados:</h5>
+                <b>Nombre producto:</b> {{$prod->nombre_producto}}<br>
+                <b>Inicio Subasta:</b> {{$prod->inicio_subasta}}<br>
+                <b>Final Subasta:</b> {{$prod->final_subasta}}<br>
+                <b>Precio inicial:</b> {{$prod->precio_inicial}}
+            </div>
+            <div class="modal-footer">
+                <a href="#" data-dismiss="modal" class="btn btn-success">Aceptar</a>
+            </div>
+        </div>
+    </div>
+  </div>
+  @else
+  <p></p>
+  @endif    
+
+
+  <div class="product">
+    <br><br>
+    <!--Contenedor de productos relacionados-->
+    <div class ="container1">
+        <div class="row">
+          @foreach ($productosRelac as $prodRelac)
+          <div class="col-md">
+                <div class="card">
+                    <img class="card-img-top" src="@if($prodRelac->imagen!=null){{ $prodRelac->imagen }} @else {{ $prodRelac->image_name1 }} @endif" alt="Card image cap">
+                    <a href="{{ route('producto.detalles', $prodRelac->id) }}"><div class="card-body text-center">
+                    <h5 class="card-title"> {{$prodRelac->nombre_producto}} </h5>
+                    <p class="card-text"><small class="text">Last updated {{Carbon\Carbon::now()->diffForHumans($prodRelac->updated_at)}} </small></p>
+                    </div></a>
+                </div>
+            </div>
+            @endforeach
+
+      </div>
+    </div>
+    // <!--fin del Contenedor de productos relacionados-->
+  <br>
+  // <!-- Información del producto -->
+  <div class="container2">
+    <h5 class="categories-product"><a href="#">Categorias</a>  > <a href="#">{{$cat->nombre_categoria}}</a></h5>
+    <div class="row">
+
+      <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
+        {{ csrf_field() }}
+        @csrf
+        <input type="hidden" name="favorito" value={{ $prod->id }}>
+
+          @foreach ($favoritos as $fav)
+
+            @if ($fav == $prod->id)
+              <?php
+                $favoritoL = 1;
+              ?>
+              @break
+            @else
+              <?php
+                $favoritoL = 0;
+              ?>
+            @endif
+
+          @endforeach
+
+          @if($favoritoL == 1)
+            <input type="hidden" name="fav" value="0">                       
+            <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><img src="{{asset('img/assets/corazon.png')}}"></button>
+            
+          @else
+            <input type="hidden" name="fav" value="1">   
+            <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><img src="{{asset('img/assets/corazonR.png')}}"></button>
+          @endif      
+          
+        </form>
+  {{-- \Carbon\Carbon::setLocale('es');
+@endphp --}}
+
   {{-- Configuracion de variables --}}
   @php
     \Carbon\Carbon::setLocale('es');  
   @endphp
   {{-- Fin  --}}
+
   <!-- Modal de usuario bloqueado-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -127,10 +215,10 @@
             
                       @if($favoritoL == 1)
                                                                 
-                        <button type="submit" class="btn"><img src="{{asset('img/assets/corazonroto.png')}}"></button>
+                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><img src="{{asset('img/assets/corazon.png')}}"></button>
                         
                       @else
-                        <button type="submit" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><img src="{{asset('img/assets/corazonR.png')}}"></button>
                       @endif      
                       
                     </form>
@@ -187,22 +275,6 @@
       </div>
       {{-- Fin informacion del producto --}}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      {{-- Puja --}}
       <div class="panel-sup col-lg-4 col-md-5 col-12" id="info-prod" style="padding-top: 0px;">
           <div id="panel-2" class="panel" style="padding: 40px;">
 
@@ -622,12 +694,6 @@
             @else
             @endauth
 
-
-
-
-
-
-
               {{-- Muestra si no hay acuerdos establecidos --}}
               @if ($prod->productoAgreement->count()!=null)
               @else
@@ -676,6 +742,7 @@
                 @endforeach
 
               </div>
+
           </div>
         </div>
         
@@ -787,6 +854,12 @@
     }).addTo(mymap);
     L.marker([{{$prod->latitud}},{{$prod->longitud}}]).addTo(mymap);
     
+</script>
+<script>
+  $(document).ready(function()
+  {
+     $("#mostrarmodal").modal("show");
+  });
 </script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>

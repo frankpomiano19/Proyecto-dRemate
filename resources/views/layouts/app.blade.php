@@ -334,11 +334,31 @@
                             <label id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ Auth::user()->usuario }}
                             </label>
-
+{{-- "badge badge-danger"
+dropdown-item bg-danger --}}
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('productos.index') }}">
-                                    Mi perfil
-                                </a>
+                                <form method="POST" action="{{ route('suscripcion.usuario') }}">
+                                    {{ csrf_field() }}
+                                    @csrf
+                                @if(Auth::user()->suscripcion == "1")
+                                    
+                                    <input type="hidden" name="idUsuario" value={{Auth::user()->id}}>
+                                    <input type="hidden" name="nameUser" value={{Auth::user()->usuario}}>
+                                    <input type="hidden" name="email" value={{Auth::user()->email}}>
+                                    <button type="submit" class="dropdown-item bg-danger text-white text-center">Anular suscripción</button>
+                                    <a class="dropdown-item" href="{{ route('productos.index') }}">
+                                        Mi perfil <span class="badge badge-success mr-0">Suscrito</span>
+                                    </a>
+                                @else
+                                    <input type="hidden" name="idUsuario" value={{Auth::user()->id}}>
+                                    <input type="hidden" name="nameUser" value={{Auth::user()->usuario}}>
+                                    <input type="hidden" name="email" value={{Auth::user()->email}}>
+                                    <button type="submit" class="dropdown-item bg-success text-white text-center">Suscribirse</button>
+                                    <a class="dropdown-item" href="{{ route('productos.index') }}">
+                                        Mi perfil
+                                    </a>
+                                @endif
+                                </form>
                                 <a class="dropdown-item" href="{{ route('productos.favoritos') }}">
                                     Mis productos favoritos
                                 </a>

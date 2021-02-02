@@ -12,7 +12,7 @@ class Producto extends Model
     protected $table = 'productos';
 
     protected $fillable = [
-        'nombre_producto', 'descripcion','categoria_id', 'precio_inicial', 'imagen', 'estado','final_subasta'
+        'nombre_producto', 'descripcion','categoria_id', 'precio_inicial', 'imagen', 'estado','final_subasta','favorito'
     ];
 
     public function productoUserPropietario(){
@@ -41,4 +41,10 @@ class Producto extends Model
     public function productoAgreement(){
         return $this->hasMany(AgreementUser::class,'pro_id');
     }
+
+    public function id_subastador(){
+        return $this->belongsTo(Producto::class,'user_id');
+    }
+
+    
 }

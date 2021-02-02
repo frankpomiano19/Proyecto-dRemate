@@ -51,7 +51,7 @@
                                     <div class="form-label-group">
                                         <input type="password" id="inputConfirmPassword" class="form-control"
                                             placeholder="Password" required>
-                                        <label for="inputConfirmPassword">Repetir Contreseña</label>
+                                        <label for="inputConfirmPassword">Repetir Contreseñ</label>
                                     </div>
 
                                     <button class="btn btn-lg btn-primary btn-block text-uppercase"
