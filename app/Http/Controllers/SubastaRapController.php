@@ -48,8 +48,25 @@ class SubastaRapController extends Controller
             }
     
             $i = 0;
+            
+              $listaNotificaciones = $listaFavoritos->notificaciones;
+
+              $listaInicNotif = str_replace("[", "", $listaNotificaciones);
+
+             $listaFinNotif = str_replace("]", "", $listaInicNotif);
+
+            $notificaciones = explode(',', $listaFinNotif);
+
+              $tam = sizeof($notificaciones);
+            
+            for ($i = 0; $i < $tam; $i++) {
+
+                $temp = (int)$notificaciones[$i];
+                $notificaciones[$i] = $temp;
+            }
+
     
-            return view('subastaRapida',compact('su_curso_s','su_dispo_s','su_hist_s','favoritos'));
+            return view('subastaRapida',compact('su_curso_s','su_dispo_s','su_hist_s','favoritos','notificaciones'));
         }else{
             
 
@@ -168,6 +185,36 @@ class SubastaRapController extends Controller
         return view('favoritos')->with('casa', $nombre)->with('productos', $productos)->with('favoritos', $favoritos)->with('i', $i);
     }
 
+    public function productosNotif(){
+  
+
+        $productos = Producto::all();
+
+        $nombre = "mNUAEL";
+
+        $listaFavoritos = User::where('id','=',auth()->id())->first();
+
+        $listaNotificaciones = $listaFavoritos->notificaciones;
+
+        $listaInicNotif = str_replace("[", "", $listaNotificaciones);
+
+       $listaFinNotif = str_replace("]", "", $listaInicNotif);
+
+      $notificaciones = explode(',', $listaFinNotif);
+
+        $tam = sizeof($notificaciones);
+
+        //Convertir a entero
+        for ($i = 0; $i < $tam; $i++) {
+
+            $temp = (int)$notificaciones[$i];
+            $notificaciones[$i] = $temp;
+        }
+        $i = 0;
+        // dd($favoritos);
+
+        return view('notificaciones')->with('casa', $nombre)->with('productos', $productos)->with('notificaciones', $notificaciones)->with('i', $i);
+    }
 
 
     public function sumarVendedor(Request $request){

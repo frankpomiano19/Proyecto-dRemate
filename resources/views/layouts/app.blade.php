@@ -245,14 +245,27 @@
                                     <a href="{{ route('producto.detalles', $prodganado->id) }}"><span class="ml-3 pull-right text-muted text-sm">Ha ganado el producto {{$prodganado->nombre_producto}} </span></a>
                                 <div class="dropdown-divider"></div>
                                 @endif
-                                
+                            
+
+                      
+
+
                               @empty
                               <span class="ml-3 pull-right text-muted text-sm">Sin notificaciones por leer </span>
                               @endforelse
                               <div class="dropdown-divider"></div>
+                              <a href="{{ route('productos.notificaciones') }}">
+                                    Próximas subastas de mi interés
+                                </a>
+                                <div class="dropdown-divider"></div>
+
                               
+
+                               
+                                
+                            <div class="dropdown-divider"></div>
                               
-                            </div>
+                            
                           </li>
                           <li class="nav-item dropdown">
                             <a class="nav-link" data-toggle="dropdown" href="#">
