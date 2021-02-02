@@ -72,6 +72,7 @@
             <h1 class="titulo-card-header-2">Bienvenido a la subasta rapida</h1>
             <h2 style="font-size: 20px">Recuerda que para pujar, necesitas estar registrado</h2>
             <div class="btn-group py-4" role="group">
+            @endauth
 
                 @guest
                 <a href="{{ url('login') }}" role="button" class="btn btn-info"><i class="fa fa-book">
@@ -82,7 +83,7 @@
                     Bienvenido {{ auth()->user()->usuario }}
                 @endguest
             </div>
-            <h4 style="font-size: 20px">Puedes conocer productos por categorias</h4>
+            <h4 style="font-size: 20px" class="text-white">Puedes conocer productos por categorias</h4>
             <div class="btn-group py-4" role="group">
                 <a href="{{ url('busquedaFiltro') }}" role="button" class="btn btn-info"><i class="fa fa-chevron-right">
                         Buscar mas productos</i></a>
