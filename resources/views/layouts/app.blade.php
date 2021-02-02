@@ -639,14 +639,13 @@ dropdown-item bg-danger --}}
                     <div class="row">
                         <div class="col-sm-12 div-1-conocenos" style="text-align: center;">
                             <h2>d'Remate</h2>
-                            <h4>¿Quienes somos?</h4>
-                            <p style="font-family: sans-serif;">Somos un pequeño grupo de personas en Peru que tenemos por objetivo permitir que la
-                                persona comun pueda subastar el producto que desee. 
+                            <h4>¿Quiénes somos?</h4>
+                            <p style="font-family: sans-serif;">Somos un grupo de estudiantes sanmarquinos con el objetivo de permitir que todo el público pueda realizar subastas de manera sencilla a través de nuestra página web.
                                 <br>
                             </p>
-                            <h4>¿Como nacio la idea?</h4>
+                            <h4>¿Cómo nació la idea?</h4>
                             <p style="font-family: sans-serif;">
-                                Nadie despues de multiples reuniones donde se discutia como hacer que la persona sin conocimientos tecnicos
+                                Después de multiples reuniones donde se discutia como hacer que la persona sin conocimientos tecnicos
                                 pueda subastar un producto, sin tanto tramite y directamente
                             
                             </p>
@@ -662,7 +661,7 @@ dropdown-item bg-danger --}}
                                     </span>
                                     <hr class="linea-divide">
                                     <h4 class="label-1-title">Confiabilidad</h4>                                    
-                                    <p>Lo datos ingresados nunca lo revelaremos ante nadie</p>
+                                    <p>Nunca revelaremos tu información confidencial</p>
                                 </div>
                                 <div class="col-sm-4">
                                     <span class="fa-stack fa-lg">
@@ -705,7 +704,7 @@ dropdown-item bg-danger --}}
                             <ul style="list-style: none">
                                 <li style="font-family: sans-serif;;line-height : 1;">
                                     <span class="fa-stack fa-lg" style="float: left; color:rgba(255,0,0,0.8);"><i class="fa fa-bullseye fa-stack-2x"></i></span>
-                                    Permitir a la persona comun poder subastar su producto.
+                                    Permitir a la persona común poder subastar su producto.
                                 </li>
                                 <br>
                                 <li style="font-family: sans-serif;;line-height : 1;">

@@ -189,8 +189,8 @@
                   <h3>{{ $prod->nombre_producto }}</h3>
                 </div>
               </div>
-              <div style="width: 150px; float:left; margin-left:-150px;">
-                <div id="cora" style="width: 50px; height: 40px; float:right;">
+              <div style="width: 155px; float:left; margin-left:-155px;">
+                <div id="cora" style="width: 40px; height: 40px; float:right;" class="flex">
                   {{-- <i class="fa fa-share"></i> <i class="fas fa-heart"></i> --}}
                   @auth
                   <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
@@ -228,24 +228,30 @@
                   @endauth
                    
                 </div>
-                <div>
-                   <!-- Your share button code -->
-                   <div style="display: inline" class="fb-share-button" 
-                   data-href="http://dremate.herokuapp.com/producto-{{ $prod->id }}" 
-                   data-layout="button" data-size="small">
-                   </div>
 
-                   <a class="btn btn-social-icon btn-sm btn-twitter" style="width:100px;font-size:10px"  href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
-                     <span class="fa fa-twitter" >&nbsp; Compartir</span>
-                   </a>
-                </div>
+
+                <div style="float: right; margin-right: 3px; height: 40px; width: 70px;">
+                  <div style="float:right; height: 40px; width: 35px" class="flex">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=dremate.herokuapp.com/producto-{{ $prod->id }}" onclick="newWindow(this.href, 'popup', 800, 750, 1, 1, 0, 0, 0, 1, 0); return false;" target="_blank" class="flex">
+                      <div id="face-icon"></div>
+                    </a>
+                  </div>
+  
+                  <div style="float:right; height: 40px; width: 35px" class="flex">
+                    <a href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate" onclick="newWindow(this.href, 'popup', 800, 750, 1, 1, 0, 0, 0, 1, 0); return false;" target="_blank" class="flex">
+                      <div id="tuit-icon"></div>
+                    </a>
+                  </div>
+                  <div style="clear: both;"></div>
+                </div> 
+                
+                <div style="float: right; height: 40px; width: 40px;" class="flex">
+                  <div id="share" data-toggle="modal"></div>
+              </div>               
               </div>
               <div style="clear: both"></div>
             </div>
               
-
-  
-
                 
               <!-- Swiper -->
               <div style="height: 500px; width: 100%; background-color: black; clear: both;">
@@ -285,9 +291,6 @@
               <div id="tablas_pujas">
                 <table class="table table-sm table-bordered">
                   <thead>
-                    <tr>
-                      <td colspan="2">ULTIMAS PUJAS</td>
-                    </tr>
                     <tr>
                       <th scope="col">Usuario</th>
                       <th scope="col">Puja</th>
@@ -392,7 +395,10 @@
                       
 
                       @else
-                      Necesitar estar <a href="{{ url('login') }}">&nbsp; autenticado</a>                   
+                      <p>
+                        Para hacer una oferta debes&nbsp;<a href="{{ url('login') }}">Iniciar sesión</a>, o&nbsp;<a href="{{ url('register') }}">Regístrarte</a>
+
+                      </p>   
                       @endauth
                     </div>
 
@@ -840,6 +846,17 @@
     zeroPad: false,
     countUp: false
 });
+
+function newWindow(a_str_windowURL, a_str_windowName, a_int_windowWidth, a_int_windowHeight, a_bool_scrollbars, a_bool_resizable, a_bool_menubar, a_bool_toolbar, a_bool_addressbar, a_bool_statusbar, a_bool_fullscreen) {
+var int_windowLeft = (screen.width - a_int_windowWidth) / 2;
+var int_windowTop = (screen.height - a_int_windowHeight) / 2;
+var str_windowProperties = 'height=' + a_int_windowHeight + ',width=' + a_int_windowWidth + ',top=' + int_windowTop + ',left=' + int_windowLeft + ',scrollbars=' + a_bool_scrollbars + ',resizable=' + a_bool_resizable + ',menubar=' + a_bool_menubar + ',toolbar=' + a_bool_toolbar + ',location=' + a_bool_addressbar + ',statusbar=' + a_bool_statusbar + ',fullscreen=' + a_bool_fullscreen + '';
+var obj_window = window.open(a_str_windowURL, a_str_windowName, str_windowProperties)
+if (parseInt(navigator.appVersion) >= 4) {
+obj_window.window.focus();
+}
+}
+
   </script>
 
   <script>

@@ -20,7 +20,7 @@
                   </div>
                   <div class="col-md-8 d-flex flex-wrap align-content-center">
                     <p class="text-center">  
-                      Puedes hacer preguntas al subastador y quiza llegar a algun tipo de acuerdo
+                      Puedes hacer preguntas al subastador y quizá llegar a algún tipo de acuerdo
                     </p>
                   </div>
                 </div>
@@ -31,7 +31,7 @@
                   </div>
                   <div class="col-md-8 d-flex flex-wrap align-content-center">
                     <p class="text-center">  
-                        En esta parte puedes colocar a los acuerdos que llegaron y que se respetaran
+                        En esta parte puedes colocar los acuerdos que se respetarán
                     </p>
                   </div>
                 </div>

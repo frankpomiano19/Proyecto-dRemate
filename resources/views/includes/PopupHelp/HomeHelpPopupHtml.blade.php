@@ -15,7 +15,7 @@
                   </div>
                   <div class="col-md-8 d-flex flex-wrap align-content-center">
                     <p class="text-center">  
-                    En esta seccion permite subir el producto y a la misma vez poder subastarlo
+                    En esta sección puedes subir y subastar tu producto.
                   </p>
                   </div>
   
@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-md-8 d-flex flex-wrap align-content-center">
                   <p class="text-center">  
-                    Podemos ver productos que estan en subasta
+                    Aquí puedes ver lor productos en subasta
                   </p>
                 </div>
 
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-md-8 d-flex flex-wrap align-content-center">
                   <p class="text-center">  
-                    Serie de opciones que te permiten gestionar tus productos, se libre de investigar
+                    Serie de opciones para gestionar tus productos, siéntete libre de revisarlas
                   </p>
                 </div>
               </div>
@@ -58,8 +58,8 @@
 
           </div>
           <div class="modal-footer">
-              <button type="button" id="noShowOneHelp" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <a class="btn btn-success" id="noShowMoreHelps" data-dismiss="modal" role="button">No quiero mas ayuda</a>
+              <button type="button" id="noShowOneHelp" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            <a class="btn btn-success" id="noShowMoreHelps" data-dismiss="modal" role="button">No mostrar más ayuda</a>
           </div>
         </div>
       </div>

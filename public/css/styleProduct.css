@@ -5,20 +5,21 @@ body {
     background-color: #F5F5F5;
 }
 
-
 button {
-  background: none;
-  border: 0;
-  color: inherit;
-  /* cursor: default; */
-  font: inherit;
-  line-height: normal;
-  overflow: visible;
-  padding: 0;
-  -webkit-user-select: none; /* for button */
-   -webkit-appearance: button; /* for input */
-     -moz-user-select: none;
-      -ms-user-select: none;
+    background: none;
+    border: 0;
+    color: inherit;
+    /* cursor: default; */
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-user-select: none;
+    /* for button */
+    -webkit-appearance: button;
+    /* for input */
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .product {
@@ -812,3 +813,46 @@ input[type=number] {
     background-color: #353A40;
     font-family: "Times New Roman", Times, serif;
 }
+
+
+/* Iconos */
+
+#face-icon {
+    width: 25px;
+    height: 25px;
+    background-image: url(/img/facebook.png);
+    transition: 0.5s;
+}
+
+#face-icon:hover {
+    background-image: url(/img/facebook-hover.png);
+    cursor: pointer;
+}
+
+#tuit-icon {
+    width: 25px;
+    height: 25px;
+    background-image: url(/img/twitter.png);
+    transition: 0.5s;
+}
+
+#tuit-icon:hover {
+    background-image: url(/img/twitter-hover.png);
+    cursor: pointer;
+}
+
+#share {
+    background-image: url(/img/share.png);
+    /* background-color: #336B87; */
+    width: 25px;
+    height: 25px;
+    transition: background-image 0.3s;
+    cursor
+}
+
+button {
+    outline: none;
+}
+
+
+/* Share Facebook */
