@@ -29,7 +29,10 @@ class User extends Authenticatable
         'telefono',
         'fechadenacimiento',
         'password',
-        'suscripcion'
+        'suscripcion',
+        'departamento',
+        'distrito',
+        'subastas'
     ];
 
     /**

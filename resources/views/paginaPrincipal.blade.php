@@ -63,13 +63,13 @@
                         <span>Conoce más</span>
             </a>
             <a href="{{ url('subastaRapida') }}" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/results-2.png">
+                <img src="http://imgfz.com/i/Rnp1gBz.jpeg">
                     <h2>Resultados<br>
                         anteriores</h2>
                     <span>Conoce más</span>
             </a>
             <a href="{{ url('busquedaFiltro') }}" class="c-hero__feat">
-                <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/valuation-2.png">
+                <img src="http://imgfz.com/i/P5uQzyi.png">
                     <h2>Categorias<br>
                         Variadas</h2>
                         <span>Conoce más</span>
