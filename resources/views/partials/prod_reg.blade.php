@@ -16,7 +16,6 @@
             </button>
         </div>
     @endif
-
 <div class="text-center text-white">
 <div class="text-center text-white">
 <a class="btn btn-success mb-2" href="{{ route('producto.registroe') }}" role="button" class="btn btn-info">Registrar nuevo Producto</a>
