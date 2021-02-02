@@ -10,17 +10,15 @@
     </div>
 </div>
 
-@if ($message = Session::get('success'))
+{{-- @if ($message = Session::get('success'))
     <div class="alert alert-success">
         <p>{{ $message }}</p>
     </div>
-@endif
+@endif --}}
 
 <div class="text-center text-white">
 <div class="text-center text-white">
-<a class="btn btn-success" href="{{ route('producto.registroee') }}" role="button" class="btn btn-info">Registrar y Subastar producto
-
-</a>
+<a class="btn btn-success mb-2" href="{{ route('producto.registroee') }}" role="button" class="btn btn-info">Registrar y Subastar producto</a>
 
 
 <table class="table table-hover table-striped">
@@ -31,7 +29,6 @@
                 <th>Descripcion</th>
                 <th>Inicio de subasta</th>
                 <th>Fin de subasta</th>
-                <th>Accion</th>
             </tr>
     </thead>
 
@@ -43,10 +40,12 @@
                <td>{{ $productosSub->precio_inicial }}</td>
                <td>{{ $productosSub->inicio_subasta }}</td>
                <td>{{ $productosSub->final_subasta }}</td>
-               <td><a href="" class="btn btn-dark">Subastar</a></td>
         </tr>
             @endforeach
 
     </tbody>
 </table>
+<div class="d-flex justify-content-center">
 {!! $productosSub_s->links() !!}
+</div>
+

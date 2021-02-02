@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Producto;
+use App\Models\User;
 
 class BusquedaFiltro extends Component
 {
@@ -12,7 +13,7 @@ class BusquedaFiltro extends Component
     public $categoria = 1;
     public $condicion = "Nuevo";
     public $departamento = "Lima";
-    public $verdadero = true;
+    // public $verdadero = true;
 
     public $tipo;
 
@@ -44,13 +45,48 @@ class BusquedaFiltro extends Component
 
     public function render()
     {
-        return view('livewire.busqueda-filtro',[
-            'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
-                ->where("precio_inicial",">=", $this->precioMin)
-                ->where('ubicacion','=',"$this->departamento")
-                ->where('categoria_id',$this->categoria)
-                ->where('condicion','=',"$this->condicion")
-                ->get()
-        ]);
+        if(auth()->id()!=null){
+
+            $listaFavoritos = User::where('id','=',auth()->id())->first();
+
+            $listaUsuario = $listaFavoritos->favoritos;
+    
+            $listaInicio = str_replace("[", "", $listaUsuario);
+    
+            $listaFin = str_replace("]", "", $listaInicio);
+    
+            $favoritos = explode(',',$listaFin);
+    
+            $tamanio = sizeof($favoritos);
+    
+            //Convertir a entero
+            for($i = 0; $i<$tamanio;$i++){
+    
+                $temp = (int)$favoritos[$i];
+                $favoritos[$i] = $temp;
+            }
+    
+            $i = 0;
+
+            return view('livewire.busqueda-filtro',[
+                'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
+                    ->where("precio_inicial",">=", $this->precioMin)
+                    ->where('ubicacion','=',"$this->departamento")
+                    ->where('categoria_id',$this->categoria)
+                    ->where('condicion','=',"$this->condicion")
+                    ->get()
+            ],[
+                'favs'=> $favoritos
+            ]);
+        }else{
+            return view('livewire.busqueda-filtro',[
+                'productos' => Producto::where("precio_inicial","<=", $this->precioMax)
+                    ->where("precio_inicial",">=", $this->precioMin)
+                    ->where('ubicacion','=',"$this->departamento")
+                    ->where('categoria_id',$this->categoria)
+                    ->where('condicion','=',"$this->condicion")
+                    ->get()
+            ]);
+        }
     }
 }

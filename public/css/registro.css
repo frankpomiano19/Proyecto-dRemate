@@ -63,4 +63,8 @@ body{
     color:white;
     background: rgba(29,3,4);
     border: 1px solid white;
-  }
+ }
+
+#inputmapa:hover{
+    cursor:default;
+}

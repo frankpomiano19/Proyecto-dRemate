@@ -11,6 +11,8 @@
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
 @endsection
 
@@ -70,12 +72,6 @@
 
                                 </div>
                             </section>
-                            <div id="subasta_proc_filtro_include" class="row">
-
-
-
-                            </div>
-
                             <div class="row justify-content-center">
                                 <div class="col-md-2">
 
@@ -98,12 +94,6 @@
                                     <h3 class="font-weight-bold font-popin">Mis productos en subasta</h3>
                                 </div>
                             </section>
-
-                            <div class="container">
-                                <div class="row justify-content-center" id="id_subasta_programada">
-
-                                </div>
-                            </div>
                         </div>
 
 
@@ -143,6 +133,9 @@
     @endphp
 @endsection
 @section('contenidoJSabajo')
+    <script src="/js/parsley.js"></script>
+    <script src="{{ asset('js/producto.js') }}"></script>
+    <script src="/js/mapa.js"></script>
     <script src="js/jsSubastaRapida.js"></script>
     <script src="js/jquery.chrony.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>

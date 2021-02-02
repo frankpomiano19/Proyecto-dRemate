@@ -39,17 +39,31 @@
                 <div class="defaultCountdownPro" id="cronoContador-program"> </div>
 
                 <!--<div class="alert alert-success" role="alert">Carga Completa</div>-->
-                <div class="sub-rapida-icono">
 
-                    <button type="button" class="navbar-toggler">
-                        <i class="fa fa-calendar fa-sm"></i>
-                    </button>
+                <div class="sub-rapida-icono">
+                    @auth
+                        <form action="{{route('producto_calendar')}}" method="POST">
+                            @csrf
+                            <input type="number" id="productoid" name="productoid" style="display: none" value="{{$su_dispo->id}}" readonly>
+                            <button type="submit" class="navbar-toggler">
+                            <i class="fa fa-calendar fa-sm"></i>
+                            </button>
+                        </form>
+                    @endauth
+       
+                    @guest
+                        <button type="submit" class="navbar-toggler">
+                            <i class="fa fa-calendar fa-sm"></i>
+                        </button>
+                    @endguest
                     <button type="button" class="navbar-toggler">
                         <i class="fa fa-bell fa-sm"></i>
                     </button>
                     <button type="button" class="navbar-toggler">
                         <i class="fa fa-heart fa-sm"></i>
                     </button>
+                    <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Calendario : Registra en tu perfil el producto. Campana : Notifica por correo y de manera interna"></i>
+
 
                 </div>
 

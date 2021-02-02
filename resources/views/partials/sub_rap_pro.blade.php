@@ -31,14 +31,53 @@
                     data-setbg="img/trending/trend-1.jpg"
                     style="background-image: url('{{ $su_curso->image_name1 }}');background-size:100% 100%;">
                     <div class="ep">Precio base : ${{ $su_curso->precio_inicial }} </div>
-                    <div class="comment"><i class="fa fa-comments"></i> {{ rand(1, 200) }}
+                    <div class="comment">
+                        <a href="{{ route('producto.detalles', $su_curso->id) }}" class="btn"><img src="{{asset('img/assets/comentario.png')}}"></a>
                     </div>
-                    <div class="view"><i class="fa fa-heart"></i> {{ rand(1, 50) }}</div>
+                    <div class="view">
+                        @auth
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
+                            {{ csrf_field() }}
+                                    @csrf
+                                    <input type="hidden" name="favorito" value={{ $su_curso->id }}>
+                                        @foreach ($favoritos as $fav)
+
+                                            @if ($fav == $su_curso->id)
+                                                <?php
+                                                    $favoritoL = 1;
+                                                ?>
+                                                @break
+                                            @else
+                                                <?php
+                                                    $favoritoL = 0;
+                                                ?>
+                                            @endif
+
+                                        @endforeach
+
+                                        @if($favoritoL == 1)
+                                            <input type="hidden" name="fav" value="0"> 
+                                            <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                                            
+                                        @else
+                                            <input type="hidden" name="fav" value="1"> 
+                                            <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><img src="{{asset('img/assets/corazonR.png')}}"></button>
+                                        @endif
+                        </form>
+                        @else
+                            <a href="{{ url('login') }}" class="btn"><img src="{{asset('img/assets/corazon.png')}}"></a>
+                        @endauth
+                    </div>
                 </div>
             </div>
             <div class="card-contenido-cuerpo-1">
                 <div class="card-footer">
-                    Puja mas alta : S/ {{ $su_curso->precio_inicial + rand(1, 200) }}
+                    @if ($su_curso->productoPuja->count()>0) 
+                    
+                    Puja mas alta : S/ {{ $su_curso->productoPuja->last()->valor_puja}}
+                    @else
+                    Todavia no hay ninguna puja                        
+                    @endif
                 </div>
                 <div class="text-center">Tiempo restante</div>
                 <div class="defaultCountdown"> </div>

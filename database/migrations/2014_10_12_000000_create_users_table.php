@@ -24,7 +24,13 @@ class CreateUsersTable extends Migration
             $table->string('apellidos',50)->nullable();
             $table->string('telefono',30)->nullable();
             $table->date('fechadenacimiento')->nullable();
+            $table->string('suscripcion')->nullable();
+            $table->integer('visita')->nullable()->default(0);
 
+            $table->string('departamento')->nullable();
+            $table->string('distrito')->nullable();
+            $table->integer('subastas')->nullable()->default(0);
+            
             $table->string('us_youtube',50)->nullable();
             $table->string('us_facebook',50)->nullable();
             $table->string('us_twitter',30)->nullable();

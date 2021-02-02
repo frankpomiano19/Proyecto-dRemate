@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 
+@section('share-content')
+    <meta property="og:url" content="http://dremate.herokuapp.com/info-{{ $usuarioPerfil->id }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Perfil : {{ $usuarioPerfil->usuario }}" />
+    <meta property="og:description" content="Perfil de usuario " />
+    <meta property="og:image" content="{{ asset('img/assets/usuarioAnonimo.png') }}" />
+@endsection
+
+
 @section('cont_cabe')
     <title>Informacion - dRemate</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -9,6 +18,18 @@
 
 @section('contenidoJS')
     <!-- Colocar js-->
+
+    <script>
+        (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+  
+
 @endsection
 
 @section('contenidoCSS')
@@ -22,6 +43,10 @@
 
 
 @section('contenido')
+@php
+
+  \Carbon\Carbon::setLocale('es');  
+@endphp
     <script>
         let contadorComentario = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1];
         let identificadorComentario = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -61,6 +86,24 @@
 
     @endphp
 
+  <!-- Modal de usuario bloqueado-->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">El usuario {{$usuarioPerfil->usuario}} ha sido bloqueado</h5>
+           
+        </div>
+        <div class="modal-body">
+          Este usuario ha sido reportado por infringir las normas de la página. Le recomendamos volver a Subasta Rápida.
+        </div>
+        <div class="modal-footer">
+          
+          <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -126,7 +169,10 @@
                                     <li><b>CORREO PERSONAL: </b>{{ $usuarioPerfil->email }}</li>
                                     <li><b>FECHA DE REGISTRO: </b>
                                         @if ($usuarioPerfil->created_at != null)
-                                            {{ $usuarioPerfil->created_at }}
+
+                                            @php
+                                            echo \Carbon\Carbon::parse($usuarioPerfil->created_at)->diffForHumans();   
+                                            @endphp
                                         @else
                                             No se registro fecha de creacion
                                         @endif
@@ -146,12 +192,65 @@
                                                 class="fa fa-youtube"></span></a></li>
                                     <br>
                                 </ul>
+                                {{-- Compartir perfil --}}
+                                <h3 class="text-center m-auto p-4">Comparte mi perfil</h3> 
+
+                                <ul class="social-icons" style="padding-left: 0px;margin-bottom: 0px;">
+                                    <li>
+                                        <a class="btn btn-social-icon btn-twitter" style="width:100px;font-size:10px" href="https://twitter.com/intent/tweet?text=Perfil de usuario&url=http://dremate.herokuapp.com/info-{{ $usuarioPerfil->id }}&hashtags=dRemate-perfil,dRemate">
+                                            <span class="fa fa-twitter">&nbsp;Compartir</span>
+                                        </a>        
+                                    </li>
+                                    <li>
+                                        <div class=" fb-share-button " 
+                                        data-href="http://dremate.herokuapp.com/info-{{ $usuarioPerfil->id }}" 
+                                        data-layout="button_count" data-size="large">
+                                        </div>        
+                                    </li>
+                                </ul>
+                                {{-- Fin --}}
+
                             </div><!-- intro -->
                         </div><!-- col-sm-8 -->
                     </div><!-- row -->
                 </div><!-- container -->
             </section>
 
+
+
+            <form method="POST" id="form-calificar"
+                            action="{{ route('calificar-create')}}">  
+                           {{ csrf_field()}}
+                           
+                            
+                            
+                                  <div class="rating-group">
+                                  <input disabled checked class="rating__input rating__input--none" name="score" id="rating3-none" value="0" type="radio">
+                                  <label aria-label="1 star" class="rating__label" for="rating3-1">
+                                  <i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-1" value="1" type="radio" required>
+                                  <label aria-label="2 stars" class="rating__label" for="rating3-2"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-2" value="2" type="radio" >
+                                  <label aria-label="3 stars" class="rating__label" for="rating3-3"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-3" value="3" type="radio">
+                                  <label aria-label="4 stars" class="rating__label" for="rating3-4"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-4" value="4" type="radio" >
+                                  <label aria-label="5 stars" class="rating__label" for="rating3-5"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
+                                  <input class="rating__input" name="score" id="rating3-5" value="5" type="radio" >
+                                  </div>
+                                  <button class="btn btn-lg btn-primary btn-block text-uppercase"
+                                        type="submit" id="calificar-button">Enviar</button>
+                                  <input type="hidden" value="{{ $idPerfil }}" name="idUserPerfil" id="hidden-id-user">
+                               </form>
+                               (
+                            {{isset($cantidad)?$cantidad:'Aún no hay votos'}}
+                           
+                                      <span class="num-ratings"> </span>
+                                        <label class="">votos, promedio</label>
+                                     
+                             {{isset($promedio)?$promedio:'Aún no hay votos'}}
+                             )
+                             
             <section class="about-section section">
                 <div class="container">
                     <div class="row">
@@ -196,7 +295,49 @@
             </form>
 
         @else
-
+        <div class="row d-flex justify-content-center py-4" id="Denunciar-perfil-usuario">
+            <!-- Boton del modal de denunciar usuario -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Reportar Usuario
+                </button>
+                
+                <!-- Modal de denunciar usuario -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <form action="{{route('report-usuario')}}" method="POST">
+                        @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Reportar a este usuario</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            
+                                <input type="number" id="id_denunc" name="id_denunc" style="display: none" value="{{$usuarioPerfil->id}}" readonly><br>
+                                <input type="radio" id="denuncia1" name="denuncia" value="Contenido inapropiado" checked>
+                                <label for="denuncia1">Contenido inapropiado</label><br>
+                                <input type="radio" id="denuncia2" name="denuncia" value="Comentarios spam">
+                                <label for="denuncia2">Comentarios spam</label><br>
+                                <input type="radio" id="denuncia3" name="denuncia" value="Comentarios que incitan al odio">
+                                <label for="denuncia3">Comentarios que incitan al odio</label><br>
+                                <input type="radio" id="denuncia4" name="denuncia" value="Contenido engañoso">
+                                <label for="denuncia4">Contenido engañoso</label><br>
+                                <input type="radio" id="denuncia5" name="denuncia" value="Contenido peligroso">
+                                <label for="denuncia5">Contenido peligroso</label><br>
+                            
+                            
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Reportar</button>
+                        </div>
+                    </div>
+                    </form>
+                    </div>
+                </div>
+        </div>
             <div class="row py-4" id="cuadro-texto-comentario">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
@@ -216,6 +357,12 @@
                                 <label class="etiqueta-destacado">Subastador<br>destacada</label>
                             </div>
                         @endif
+
+
+
+
+
+
 
                         <div class="row py-2 evitar-float">
                             <div class="col-md-12 color-input">
@@ -264,7 +411,11 @@
                             <div class="ajustar-label-1">
                                 <a href="#"
                                     class="nombre-url">{{ $comentariosGustado->comentUserPerteneciente->usuario }}</a>
-                                <label class="">Hace 3 dias</label>
+                                <label class="">
+                                    @php
+                                    echo \Carbon\Carbon::parse($comentariosGustado->created_at)->diffForHumans();   
+                                    @endphp
+                                </label>
                             </div>
                             @if ($comentariosGustado->comentUserPerteneciente->userProductoCompradorDestacado->count() >= 2)
                                 <div class="ajustar-label-2">
@@ -329,13 +480,35 @@
         </div>
     </main>
 
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_comentariosPerfil;
+            $urlPagina = "deleteOneHelpCommentPefil";
+        @endphp
+    @endauth
+    @include('includes/PopupHelp/CommentHelpPopupHtml')
 
+    {{-- Fin configuracion de ayuda --}}
 
 @endsection
-
 @section('contenidoJSabajo')
+
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
+
     <script src="../js/vue.js"></script>
     <script src="../js/axios.js"></script>
     <script src="../js/jsComentario.js"></script>
     <!-- Colocar js abajo-->
+    @if ($usuarioPerfil->userReportUser->count() >= 30)
+    <script>  
+        $(function(){
+            $('#staticBackdrop').modal({
+                backdrop:'static',
+            });
+        });
+    </script>
+    @endif
 @endsection

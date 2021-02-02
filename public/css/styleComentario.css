@@ -127,7 +127,7 @@
 }
 
 .image-perso{
-    height: 200px;
+    height: 200px !important;
 }
 
 .line-separation-1{
@@ -140,3 +140,132 @@
     text-overflow: ellipsis;
     overflow: hidden;
 }
+
+
+.pro-registrado{
+    background-color: #D9534F !important;
+}
+
+
+.wSaTQd {
+    overflow: hidden;
+}
+.lSXt5d {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 16px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+.kq6fXc {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAXUlEQVR4AaXRwQ3AIAiF4Y7AKG70r8KojOAG1DYxcDB5Teq74RdRvFLkG3gWhhPkSuDYKnXAYJItk9EAVtuNWAHf5bfZJl4gjiAK5DkdnE5I3UJfUj9TD0qP+vdv3sq2BlCSAd3JAAAAAElFTkSuQmCC);
+    height: 16px;
+    width: 16px;
+}
+.X1PzMe {
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+    position: relative;
+    top: -2px;
+}
+h2 {
+    font-size: 2.2em;
+    line-height: 1.1;
+    font-family: 'Poppins', cursive;
+    font-weight: inherit;
+    margin: 0;
+    padding: 0;
+}
+.X43Kjb {
+    font-weight: 500;
+}
+.p2TkOb {
+    color: #aaa;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    margin-left: 2px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.star_content {
+    margin-bottom: 5px;
+    float: left;
+    width: 100%;
+}
+ 
+.star {
+    overflow: hidden;
+    float: left;
+    margin: 0 1px 0 0;
+    width: 16px;
+    height: 18px;
+    cursor: pointer;
+}
+ 
+.star a {
+    display: block;
+    width: 100%;
+    background-position: 0 0;
+}
+
+
+    /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+    .rating-group {
+      display: inline-flex;
+    }
+    
+    /* make hover effect work properly in IE */
+    .rating__icon {
+      pointer-events: none;
+    }
+    
+    /* hide radio inputs */
+    .rating__input {
+     position: absolute !important;
+     left: -9999px !important;
+    }
+    
+    /* hide 'none' input from screenreaders */
+    .rating__input--none {
+      display: none
+    }
+  
+    /* set icon padding and size */
+    .rating__label {
+      cursor: pointer;
+      padding: 0 0.1em;
+      font-size: 2rem;
+    }
+    
+    /* set default star color */
+    .rating__icon--star {
+      color: orange;
+    }
+  
+    /* if any input is checked, make its following siblings grey */
+    .rating__input:checked ~ .rating__label .rating__icon--star {
+      color: #ddd;
+    }
+    
+    /* make all stars orange on rating group hover */
+    .rating-group:hover .rating__label .rating__icon--star {
+      color: orange;
+    }
+  
+    /* make hovered input's following siblings grey on hover */
+    .rating__input:hover ~ .rating__label .rating__icon--star {
+      color: #ddd;
+    }
+  
+  
+  
+
+
+

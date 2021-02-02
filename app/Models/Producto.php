@@ -12,7 +12,7 @@ class Producto extends Model
     protected $table = 'productos';
 
     protected $fillable = [
-        'nombre_producto', 'descripcion','categoria_id', 'precio_inicial', 'imagen', 'estado','final_subasta'
+        'nombre_producto', 'descripcion','categoria_id', 'precio_inicial', 'imagen', 'estado','final_subasta','favorito'
     ];
 
     public function productoUserPropietario(){
@@ -21,17 +21,30 @@ class Producto extends Model
     public function productoUserComprador(){
         return $this->belongsTo(User::class,'user_id_comprador');
     }
-    /*public function productoPuja(){
-        //$products = App\Models\Producto::all();
-        
-        return $this->hasMany(Puja::class,'producto_id');
-    }*/
     public function categoriaRelacionado(){
         return $this->hasOne(Categoria::class,'categoria_id');
     }
 
     public function productoPuja(){
-        return $this->belongsToMany(Puja::class,'producto_id');
+        return $this->hasMany(Puja::class,'producto_id');
     }
+
+
+    public function productoMensaje(){
+        return $this->hasMany(Mensaje::class,'pro_id');
+    }
+
+    public function productoChatNoti(){
+        return $this->hasOne(ChatNotification::class,'pro_id');
+    }
+
+    public function productoAgreement(){
+        return $this->hasMany(AgreementUser::class,'pro_id');
+    }
+
+    public function id_subastador(){
+        return $this->belongsTo(Producto::class,'user_id');
+    }
+
     
 }

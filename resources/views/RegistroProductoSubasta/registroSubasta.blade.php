@@ -8,17 +8,12 @@
 
 @section('contenidoJS')
     <!-- Colocar js-->
-    <script src="parsley.min.js"></script>
 @endsection
 
 @section('contenidoCSS')
-    <!--footer.css pal footer / barra.css pal navbar / no es necesario el fontawesome-->
-    <link rel="stylesheet" href="css/inicio.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/barra.css">
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/menuSubasta.css">
     <link rel="stylesheet" href="{{ asset('css/registro.css') }}" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 @endsection
 
 
@@ -26,7 +21,7 @@
 
 <div class="container-md border rounded-lg cuerpo">
     <h1 class="text-center">Registrar y subastar producto</h1>
-    <p id="parrafo">Revisa la información del producto y llena los campos de la subasta para empezar :)</p>
+    <p id="parrafo">Llena los datos del producto y subasta para empezar :)</p>
     <div class="row">
         
         <!-- Aquí va la información del producto -->
@@ -201,51 +196,56 @@
                 <div class="linea"></div>
             </div>
             
-            <div>
-                <label for="formGroupExampleInput"><h3>Fecha de inicio</h3></label><br>
-                @error('inicio_subasta')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Debes ingresar la fecha de inicio de subasta
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                @enderror
-                <input type="date" class="form-control" value="{{ old('inicio_subasta') }}" name="inicio_subasta" min="2020-11-02" id="fechaInicio" required>
-                <div class="invalid-feedback">
-                    Seleccione una fecha
-                </div>
-                <div class="valid-feedback">
-                    ¡Bien!
-                </div>
-                <br><br>
-                <div class="linea"></div>
-            </div>
-            
-            <div>
-                <label for="formGroupExampleInput"><h3>Fecha de fin de la subasta</h3></label><br>
-                @error('final_subasta')
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    La subasta debe durar mínimo 1 día
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            <div class="row">
+                
+                <div class="col-6">
+                    <div>
+                        <label for="formGroupExampleInput"><h3>Inicio subasta</h3></label><br>
+                        @error('inicio_subasta')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Fecha requerida
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        @enderror
+                        <input type="date" class="form-control" value="{{ old('inicio_subasta') }}" name="inicio_subasta" min="2020-11-02" id="fechaInicio" required>
+                        <div class="invalid-feedback">
+                            Seleccione una fecha
+                        </div>
+                        <div class="valid-feedback">
+                            ¡Bien!
+                        </div>
+                        <br>
+                        <div class="linea"></div>
                     </div>
-                @enderror
-                <input type="date" class="form-control" name="final_subasta" min="2020-11-02" value="{{ old('final_subasta') }}" id="fechaInicioF" required>
-                <div class="invalid-feedback">
-                    Seleccione una fecha
                 </div>
-                <div class="valid-feedback">
-                    ¡Bien!
+                <div class="col-6">
+                    <div>
+                        <label for="formGroupExampleInput"><h3>Fin subasta</h3></label><br>
+                        @error('final_subasta')
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Fecha de fin no valida
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                        @enderror
+                        <input type="date" class="form-control" name="final_subasta" min="2020-11-02" value="{{ old('final_subasta') }}" id="fechaInicioF" required>
+                        <div class="invalid-feedback">
+                            Seleccione una fecha
+                        </div>
+                        <div class="valid-feedback">
+                            ¡Bien!
+                        </div>
+                        <div class="linea"></div>
+                    </div>
                 </div>
-                <br><br>
-                <div class="linea"></div>
             </div>
     
             <div>
-                <h3>Departamento y Provincia</h3>
-                <select name="selectDepartamento" onchange="cambia()" class="form-control" required="">
+                <h3>Departamento</h3>
+                <select name="selectDepartamento" onchange="cambia()" id="departamento" class="form-control" required="">
                     <option value="">Seleccione</option>
                     <option value="Amazonas">Amazonas</option>
                     <option value="Ancash">Ancash</option>
@@ -274,15 +274,31 @@
                     <option value="Ucayali">Ucayali</option>
                 </select><br>
                 
-                <select class="form-control" name="selectProvincia" onchange="cambiaDistrito()" required="">
-                    <option>Seleccione la Provincia</option>
-                </select>
-                
-                <div class="invalid-feedback">
-                    Complete los campos
-                </div>
-                <br>
-                <div class="linea"></div>
+            </div>
+
+            <div>
+                <h3>Ubicación</h3>
+                <small>Marque una ubicación en el mapa</small>
+                @error('latitud')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Marca en el mapa alguna dirección
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                @enderror
+                <div id="inputmapa" style="height: 300px; width:100%;"></div>
+                <input type="number" class="" name="latitud" id="latitud" style="display:none">
+                <input type="number" class="" name= "longitud" id="longitud" style="display:none">
+                @error('distrito')
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Añade una dirección adicional
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                @enderror
+                <input type="text" name="distrito" value="{{ old('distrito') }}" class="form-control m-2" placeholder="Ubicación adicional">
             </div>
 
             <div>
@@ -296,13 +312,12 @@
                 </div>
                 @enderror
                 <small class="form-text text-muted">Brinda detalles de tu garantía</small>
-                <textarea input id="validationCustom05" name="garantia" id="" class="form-control" cols="30" rows="4" placeholder="Detalla la garantía" required>{{ old('garantia') }}</textarea>
+                <textarea input id="validationCustom05" name="garantia" id="" class="form-control" cols="30" rows="3" placeholder="Detalla la garantía" required>{{ old('garantia') }}</textarea>
                 <br>
             </div>
     
             <div id="center">
             
-                <!--Remplazar el # por la vista a donde debería llevar-->
                 <div id="siguiente">
                     <button type="submit" class="btn btn-success btn-block">Registrar y Subastar Producto</button>
                 </div>
@@ -319,12 +334,7 @@
 @endsection
 
 @section('contenidoJSabajo')
-<script src="https://use.fontawesome.com/c9d7a705d9.js"></script>
     <!-- Colocar js abajo-->
-    <script src="{{ asset(mix('js/app.js')) }}"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/fechaSubasta.js') }}"></script>
     <script src="{{ asset('js/producto.js') }}"></script>
-    <script src="/js/parsley.js"></script>
+    <script src="/js/mapa.js"></script>
 @endsection

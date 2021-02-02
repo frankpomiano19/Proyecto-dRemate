@@ -118,8 +118,48 @@
                     
                     <div class="texto"> 
                         <div class="titulo">          
-                            <h3>{{$producto->nombre_producto}}</h3>
-                            <i class="fa fa-heart cora"></i>                                
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h3><a href="{{ route('producto.detalles',$producto->id) }}" style="color:black;">{{$producto->nombre_producto}}</a></h3>
+                                </div>
+                                <div class="col-md-4"></div>
+                                <div class="col-md-2">
+                                    @auth
+                                    <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
+                                        {{ csrf_field() }}
+                                                @csrf
+                                                <input type="hidden" name="favorito" value={{ $producto->id }}>
+        
+                                                    @foreach ($favs as $fav)
+        
+                                                        @if ($fav == $producto->id)
+                                                            <?php
+                                                                $favoritoL = 1;
+                                                            ?>
+                                                            @break
+                                                        @else
+                                                            <?php
+                                                                $favoritoL = 0;
+                                                            ?>
+                                                        @endif
+        
+                                                    @endforeach
+        
+                                                    @if($favoritoL == 1)
+                                                        <input type="hidden" name="fav" value="0"> 
+                                                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                                                        
+                                                    @else
+                                                        <input type="hidden" name="fav" value="1"> 
+                                                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><img src="{{asset('img/assets/corazonR.png')}}"></button>
+                                                    @endif
+                                        </form>
+                                    @else
+                                        <button type="" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar favorito"><img src="{{asset('img/assets/corazonR.png')}}"></button>
+                                    @endauth
+
+                                </div>
+                            </div>                              
                         </div>
                         <h5>Precio inicial: S/ {{$producto->precio_inicial}}</h5>
                         <p class="texto-descripcion">

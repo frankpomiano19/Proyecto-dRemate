@@ -17,7 +17,11 @@ class RegistroProductoController extends Controller
 {
     public function formularioProducto(SubirProductoRequest $request){
 
-        // dd($request);
+        // dd($request->latitud);
+
+        // dd($request->latitud,$request->longitud);
+
+
         $image1 = $request->file('image_name1');
         $image2 = $request->file('image_name2');
         $image3 = $request->file('image_name3');
@@ -63,13 +67,15 @@ class RegistroProductoController extends Controller
         $datospro->image_name3 = $image_url3;
         $datospro->image_name4 = $image_url4;
 
+        $datospro->latitud = $request->latitud;
+        $datospro->longitud = $request->longitud;
         $datospro->nombre_producto = $request->nombre_producto;
         $datospro->descripcion = $request->descripcion;
         $datospro->categoria_id = $request->categoria_id;
         $datospro->estado = $request->estado;
         $datospro->condicion = $request->condicion;
         $datospro->ubicacion = $request->selectDepartamento;
-        $datospro->distrito = $request->selectProvincia;
+        $datospro->distrito = $request->distrito;
         $datospro->garantia = $request->garantia;
         $datospro->user_id = auth()->id();
 
@@ -137,17 +143,23 @@ class RegistroProductoController extends Controller
         ->get();
 
         $i = 0;
+        
+        $mensaje_s= App\Models\Mensaje::where('use_id_receptor','=',Auth::user()->id)->paginate(10,['*'],'pagination-men');
+        $mensajeEnviado_s= App\Models\Mensaje::where('use_id_emisor','=',Auth::user()->id)->paginate(10,['*'],'pagination-men-env');
         $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
 
         $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
-        return view('productos.index',compact('productos','productosSub_s','productosGanados','i'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $pujas = App\Models\Puja::where('user_id', Auth::id())->orderBy('created_at','DESC')->paginate(6,['*'],'pagination-hist-puj');
+        return view('productos.index',compact('productos','productosSub_s','productosGanados','i','mensaje_s','mensajeEnviado_s','pujas'))->with('i', (request()->input('page', 1) - 1) * 5);
         
 
         
     }
 
     public function pagProReg(){
-        $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
+        $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)
+        ->where('final_subasta','=','NULL')
+        ->paginate(4,['*'],'pagination-prod-reg');
         return view('partials.prod_reg',compact('productos'))->with('i', (request()->input('page', 1) - 1) * 5);
         
     }
@@ -156,6 +168,11 @@ class RegistroProductoController extends Controller
         $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
         return view('partials.prod_sub',compact('productosSub_s'))->with('i', (request()->input('page', 1) - 1) * 5);
         
+    }
+
+    public function histPuj(){
+        $pujas = App\Models\Puja::where('user_id', Auth::id())->orderBy('created_at','DESC')->paginate(6,['*'],'pagination-hist-puj');
+        return view('partials.hist_pujas',compact('pujas'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
@@ -227,7 +244,7 @@ class RegistroProductoController extends Controller
         $producto->update($request->all());
 
         return redirect()->route('productos.index')
-            ->with('success', 'Project updated successfully');
+            ->with('success', 'Acción realizada exitosamente');
     }
     /**
      * Remove the specified resource from storage.
