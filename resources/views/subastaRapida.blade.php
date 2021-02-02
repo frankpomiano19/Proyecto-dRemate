@@ -1,5 +1,13 @@
 @extends('layouts.app')
 
+@section('share-content')
+    <meta property="og:url" content="http://dremate.herokuapp.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="dRemate" />
+    <meta property="og:description" content="Pagina de subasta online para cualquier tipo de persona" />
+    <meta property="og:image" content="{{ asset('img/assets/subasta4.jpg') }}" />
+@endsection
+
 
 @section('cont_cabe')
     <title>Subasta rapida - dRemate</title>
@@ -12,13 +20,22 @@
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
-
+    <script>
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+    
 @endsection
 
 @section('contenidoCSS')
     <link rel="stylesheet" href="css/styleSubastaRapida.css">
     <link rel="stylesheet" href="js/jquery.countdown.package-2.1.0/css/jquery.countdown.css">
-
+    <link rel="stylesheet" href="{{ asset('css/cssHelp.css') }}">
 @endsection
 
 
@@ -55,33 +72,37 @@
             <h1 class="titulo-card-header-2">Bienvenido a la subasta rapida</h1>
             <h2 style="font-size: 20px">Recuerda que para pujar, necesitas estar registrado</h2>
             <div class="btn-group py-4" role="group">
-                <a href="" role="button" class="btn btn-info"><i class="fa fa-book">
-                        Registrarse</i></a>
-                <a href="{{ route('login') }}" role="button" class="btn btn-info"><i class="fa fa-user">
-                        Iniciar sesion</i></a>
-                </div>
-            @endauth
+
+                @guest
+                <a href="{{ url('login') }}" role="button" class="btn btn-info"><i class="fa fa-book">
+                    Registrarse</i></a>
+                <a href="{{ url('login') }}" role="button" class="btn btn-info"><i class="fa fa-user">
+                    Iniciar sesion</i></a>
+                @else
+                    Bienvenido {{ auth()->user()->usuario }}
+                @endguest
+            </div>
             <h4 style="font-size: 20px">Puedes conocer productos por categorias</h4>
             <div class="btn-group py-4" role="group">
-                <a href="{{ route('register') }}" role="button" class="btn btn-info"><i class="fa fa-chevron-right">
-                        Conocer
-                        mas</i></a>
+                <a href="{{ url('busquedaFiltro') }}" role="button" class="btn btn-info"><i class="fa fa-chevron-right">
+                        Buscar mas productos</i></a>
             </div>
 
             <hr style="border-color: white">
             <hr style="border-color: white">
 
             <div>
-                <a class="btn btn-social-icon btn-twitter">
+                {{-- <a class="btn btn-social-icon btn-twitter">
                     <span class="fa fa-instagram"></span>
+                </a> --}}
+                <a class="btn btn-social-icon btn-twitter" style="width:100px;font-size:10px" href="https://twitter.com/intent/tweet?text=Pagina%20de%20subasta%20online%20para%20cualquier%20tipo%20de%20persona&url=http%3A%2F%2Fdremate.herokuapp.com/&via=dRemate&hashtags=programación,html">
+                    <span class="fa fa-twitter">&nbsp; Compartir</span>
                 </a>
-                <a class="btn btn-social-icon btn-twitter">
-                    <span class="fa fa-twitter"></span>
-                </a>
-                <a class="btn btn-social-icon btn-twitter">
-                    <span class="fa fa-facebook"></span>
-                </a>
-
+                <div class="fb-share-button " 
+                data-href="http://dremate.herokuapp.com/" 
+                data-layout="button_count" data-size="large">
+                </div>
+        
             </div>
         </div>
     </header>
@@ -231,8 +252,28 @@
     $contador4=0;
     @endphp
     @livewireScripts
+
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_subasta_rapida;
+            $urlPagina = "deleteOneHelpSubRap";
+        @endphp
+    @include('includes/PopupHelp/SubRapHelpPopupHtml')
+    @endauth
+
+    {{-- Fin configuracion de ayuda --}}
+
 @endsection
 @section('contenidoJSabajo')
+
+
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
+
+
+
     <script src="js/jsSubastaRapida.js"></script>
     <script src="js/jquery.chrony.js"></script>
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.plugin.min.js"></script>
@@ -487,6 +528,6 @@
         });
 
     </script>
-
+    
 
 @endsection

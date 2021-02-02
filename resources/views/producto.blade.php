@@ -1,6 +1,17 @@
 @extends('layouts.app')
 
 
+
+@section('share-content')
+    <meta property="og:url" content="http://dremate.herokuapp.com/producto-{{ $prod->id }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{ $prod->nombre_producto }}" />
+    <meta property="og:description" content="{{ $prod->descripcion }}" />
+    <meta property="og:image" content="{{ $prod->image_name1 }}" />
+@endsection
+
+
+
 @section('cont_cabe')
     <title>Product - dRemate</title>
 
@@ -8,7 +19,16 @@
 
 @section('contenidoJS')
     <!-- Colocar js-->
-    
+
+    <script>
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+      </script>
 @endsection
 
 @section('contenidoCSS')
@@ -109,6 +129,12 @@
   {{-- \Carbon\Carbon::setLocale('es');
 @endphp --}}
 
+  {{-- Configuracion de variables --}}
+  @php
+    \Carbon\Carbon::setLocale('es');  
+  @endphp
+  {{-- Fin  --}}
+
   <!-- Modal de usuario bloqueado-->
   <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -128,9 +154,27 @@
     </div>
   </div>
     
+<!-- Modal de bloqueo de producto-->
+<div class="modal fade" id="BloqueoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Usted no puede ofertar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        El propietario de la subasta le ha impedido ofertar este producto. Puede volver a Subasta Rápida.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a class="btn btn-success" href="{{ route('subastaRapida') }}" role="button">Subasta Rápida</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-  {{-- <h2 style="display: none">Saldo disponible: S/.{{auth()->user()->us_din}}.00 </h2> --}}
  
 
 {{-- Informacion del producto --}}
@@ -143,8 +187,8 @@
                   <h3>{{ $prod->nombre_producto }}</h3>
               </div>
               <div id="iconos" style="float: right; bottom: auto;">
-                  <i class="fa fa-share"></i> <i class="fas fa-heart"></i>
-
+                  {{-- <i class="fa fa-share"></i> <i class="fas fa-heart"></i> --}}
+                  @auth
                   <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
                     {{ csrf_field() }}
                     @csrf
@@ -174,12 +218,24 @@
                       @endif      
                       
                     </form>
-            
+                  
+                  @else
+                  <a href=" {{ url('login') }}  "><img src="{{asset('img/assets/corazon.png')}}"></a>
+                  @endauth
+                    <!-- Your share button code -->
+                    <div style="display: inline" class="fb-share-button" 
+                    data-href="http://dremate.herokuapp.com/producto-{{ $prod->id }}" 
+                    data-layout="button" data-size="small">
+                    </div>
 
+                    <a class="btn btn-social-icon btn-sm btn-twitter" style="width:100px;font-size:10px"  href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
+                      <span class="fa fa-twitter" >&nbsp; Compartir</span>
+                    </a>
               </div>
 
+  
 
-              
+                
               <!-- Swiper -->
               <div style="height: 500px; width: 100%; background-color: black; clear: both;">
                   <div class="swiper-container gallery-top">
@@ -282,7 +338,7 @@
                 <div>
                     <h6>Oferta más alta</h6>
                     <h1 class="text-center">S/<span>{{$ultimoprecio}}</span></h1>
-                    <h6 class="text-right"><small>Ver historial de pujas</small></h6>
+                    <h6 class="text-right"><small id="ver-historial">Ver historial de pujas</small></h6>
                 </div>
                 <div class="separador" style="width: 100%"></div>
 
@@ -295,27 +351,41 @@
                 <div class="separador"></div>
 
               </div>
+              
               <div>
                   <h6>Realizar una oferta</h6>                  
                   <div class="flex cont-coin" style="width: 100%;">
                       <div class="flex cont-coin">
-                          <img class="coin" id="coin-5" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name1 }} @endif" alt="coin-5">
+                          <img class="coin" id="coin-5" src="img/coin/coin1.png" alt="coin-5">
                       </div>
                       <div class="flex cont-coin">
-                          <img class="coin" id="coin-20" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name2 }} @endif" alt="coin-20">
+                          <img class="coin" id="coin-20" src="img/coin/coin2.png" alt="coin-20">
                       </div>
                       <div class="flex cont-coin">
-                          <img class="coin" id="coin-100" src="@if($prod->imagen!=null){{ $prod->imagen }} @else {{ $prod->image_name3 }} @endif" alt="coin-100">
+                          <img class="coin" id="coin-100" src="img/coin/coin3.png" alt="coin-100">
                       </div>
                   </div>
               </div>
+
                   <form action=" {{route('puja.crear')}} " method="POST">
                     @csrf  
                     <div class="flex" class="cant_puja" id="cantpuja">
-                          <span style="font-size: 1.8rem;">S/</span>
-                          <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+                      @auth
+                      
+                        @if ($prodbloq == true)
+                            <span style="font-size: 1.8rem;">S/</span>
+                            <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
 
-                       </div>
+                        @else
+                            No puede ofertar este producto.
+                        @endif
+                      
+
+                      @else
+                      Necesitar estar <a href="{{ url('login') }}">&nbsp; autenticado</a>                   
+                      @endauth
+                    </div>
+
                         @error('valorpuja')
                         <div class="alert alert-danger" style="font-size:0.9em" role="alert">
                           Valor no aceptado o insuficiente
@@ -335,16 +405,20 @@
 
                       <small>Min. oferta: S/{{$ultimoprecio +1}}.00</small><br>
     
+                      @auth
                       <!-- id del producto, es invisible para que no se vea mal el cuadro y saque el id del producto para crar la puja --> 
                       <input type="number" id="productoid" name="productoid" style="display: none" value="{{$prod->id}}" readonly><br>
                       <input type="number" id="ultimoprecio" name="ultimoprecio" style="display: none" value="{{$ultimoprecio}}" readonly>
                       <input type="number" id="saldousuario" name="saldousuario" style="display: none" value="{{auth()->user()->us_din}}" readonly>
                       <input type="number" id="idganador" name="idganador" style="display: none" value="{{auth()->user()->id}}" readonly>
-
-
-                      <div class="flex">
-                          <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
-                      </div>
+                        @if ($prodbloq == true)
+                          <div class="flex">
+                            <button class="boton_puja my-2" id="botonpuja2">Ofertar</button>
+                            <i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Cuando ejecutes la puja, se quedara retenido en el sistema. Cuando ganes termine y ganes se te notificara">
+                            </i>
+                          </div>
+                        @endif
+                      @endauth
                       
                       <div class="boton_compra my-2" style="display: none" id="boton_compra">
                         <h5>Compra rápida: S/.{{$prod->precio_inicial}}</h5>
@@ -352,6 +426,7 @@
                       </div>
                   </form>
               <div class="separador"></div>
+
             </div>
 
             </div>
@@ -410,7 +485,7 @@
                   <ul id="comments-list" class="comments-list">
                     {{-- Inicio de comentario respuesta y preguntas --}}
                     @if($commentUsers->count()<=0)
-                    <h2>No hay ninguna pregunta. Se el primero</h2>
+                    <br><h4>No hay ninguna pregunta. Sé el primero</h4><br>
                     @endif
                     @foreach($commentUsers as $commentUser)
 
@@ -563,15 +638,18 @@
 
       <div class="panel-sup col-md-4 col-sm-12">
           <div id="panel-6" class="panel">
-              <h2>Acuerdos Fijados</h2><br><br><br>
+              <h2>Acuerdos Fijados &nbsp;<i class="fa fa-question-circle-o" style="cursor: help;" aria-hidden="true" data-toggle="tooltip" data-html="true" title="Acuerdos que el subastar esta dispuesto a respetar"></i></h2>
 
+              <br><br><br>
 
+            @auth
               @if (auth()->user()->id == $prod->user_id)
               <h4 style="font-size: 10px" class="text-center text-danger">* Solo se permite 6 acuerdos maximo, no podra ser editado ni eliminado</h4>
 
               <div class="acuerdo flex" id="nuevo-acuerdo">
                      @if ($prod->productoAgreement->count()<6)
-                     <span id="texto-nuevo-acuerdo">Agregar un acuerdo</span>
+                     <span id="texto-nuevo-acuerdo">Agregar un acuerdo</i> </span>
+                     
                      <form action="{{ route('setAgreement') }}" style="display: none;" id="inputAcuerdo" method="POST">
                       @csrf
                      <div class="row justify-content-center">
@@ -603,18 +681,22 @@
               </div>
               @else
               @endif
+            @else
+            @endauth
 
               {{-- Muestra si no hay acuerdos establecidos --}}
               @if ($prod->productoAgreement->count()!=null)
               @else
-                @if (auth()->user()->id == $prod->user_id)
-                    
+                @if (auth()->user()!=null)
+                    @if (auth()->user()->id == $prod->user_id)
+                        
+                    @endif
                 @else
                 <h4 class="text-muted text-center text-danger">Ningun acuerdo establecido</h4>                      
                 @endif
                   
               @endif
-              {{-- Fin ---------- --}}
+              {{-- Fin --}}
 
 
 
@@ -652,26 +734,31 @@
               </div>
 
           </div>
-      </div>
-        <!--Fin de productos relacionados-->
+        </div>
+        
 
   </div>
   <br><br><br><br>
+  @auth
+    @php
+        $ayudaRuta = Auth::user()->userHelp->help_subastaPujas;
+        $urlPagina = "deleteOneHelpSubPuj";
+    @endphp
+  @endauth
+  @include('includes/PopupHelp/SubPujHelpPopupHtml')
 
 </div>
 
 
 
-
-{{-- Fin nuevo Diseño --}}
-  
 @endsection
 
 @section('contenidoJSabajo')
+
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
   <script src="js/simplyCountdown.min.js"></script>
-  <!-- 
-  <script src="js/countdown.js"></script>
-  -->
   <script>
     simplyCountdown('#tiempopuja', {
 
@@ -766,45 +853,7 @@
 </script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
-<script>
-    var galleryThumbs = new Swiper('.gallery-thumbs', {
-spaceBetween: 10,
-slidesPerView: 4,
-loop: true,
-freeMode: true,
-loopedSlides: 5, //looped slides should be the same
-watchSlidesVisibility: true,
-watchSlidesProgress: true,
-});
-var galleryTop = new Swiper('.gallery-top', {
-spaceBetween: 10,
-loop: true,
-loopedSlides: 5, //looped slides should be the same
-navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-},
-thumbs: {
-    swiper: galleryThumbs,
-},
-});
-
-$(document).on('dragstart', 'img', function(evt) {
-evt.preventDefault();
-});
-$(document).ready(function() {
-$("#nuevo-acuerdo").click(function() {
-    $('#texto-nuevo-acuerdo').hide(1);
-    $('#inputAcuerdo').show(1);
-
-});
-$("#show-responder").click(function() {
-    $("#rpta-nivel-2").toggleClass("hide");
-
-});
-
-});
-</script>
+<script src="js/jsProducto.js"></script>
 {{-- Comentario javascript --}}
 
 
@@ -867,5 +916,19 @@ $("#show-responder").click(function() {
   console.log(moment("20111031", "YYYYMMDD").fromNow());
   
 </script>
+
+@auth
+    @if ($prodbloq == false)
+    <script>  
+      $(function(){
+          $('#BloqueoModal').modal({
+              backdrop:'static',
+          });
+      });
+    </script>
+    @endif
+@endauth
+
+
     <!-- Colocar js abajo-->
 @endsection

@@ -26,8 +26,9 @@ class Producto extends Model
     }
 
     public function productoPuja(){
-        return $this->belongsToMany(Puja::class,'producto_id');
+        return $this->hasMany(Puja::class,'producto_id');
     }
+
 
     public function productoMensaje(){
         return $this->hasMany(Mensaje::class,'pro_id');

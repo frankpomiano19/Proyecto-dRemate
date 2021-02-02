@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -45,26 +45,41 @@ class HomeController extends Controller
     {
         return view("subastaRapida");
     }
+    public function viewProductGuest(){
+
+        return "vacas";
+    }
 
     public function viewproduct($idpro)
     {
 
-        $listaFavoritos = App\Models\User::where('id', '=', auth()->id())->first();
+        // if(auth()->user() ==null){
+        //     return redirect()->route('guestPuja',['idpro'=>]);
+        // }
+        if(auth()->user()==null){
 
-        $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
-        $listaUsuario = $listaFavoritos->favoritos;
-        $listaInicio = str_replace("[", "", $listaUsuario);
-        $listaFin = str_replace("]", "", $listaInicio);
+        }else{
+            $listaFavoritos = App\Models\User::where('id', '=', auth()->id())->first();
 
-        $favoritos = explode(',', $listaFin);
+            $listaFavoritos = App\Models\User::where('id','=',auth()->id())->first();
+            $listaUsuario = $listaFavoritos->favoritos;
+            $listaInicio = str_replace("[", "", $listaUsuario);
+            $listaFin = str_replace("]", "", $listaInicio);
+    
+            $favoritos = explode(',', $listaFin);
+    
+            $tamanio = sizeof($favoritos);
+            //Convertir a entero
+            for ($i = 0; $i < $tamanio; $i++) {
+    
+                $temp = (int)$favoritos[$i];
+                $favoritos[$i] = $temp;
+            }
 
-        $tamanio = sizeof($favoritos);
-        //Convertir a entero
-        for ($i = 0; $i < $tamanio; $i++) {
-
-            $temp = (int)$favoritos[$i];
-            $favoritos[$i] = $temp;
+            $prodbloq = App\Models\BloqUserPro::where('user_id','=',auth()->id())->where('product_bloq_id','=',$idpro)->get()->isempty();
+    
         }
+
 
         $prod = App\Models\Producto::findOrFail($idpro);
         $vendedor = App\Models\User::findOrFail($prod->user_id);
@@ -88,8 +103,13 @@ class HomeController extends Controller
         $muestra = 0;
 
 
+        if(auth()->user()==null){
+            return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','commentUsers'));
+
+        }else{
+            return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers','prodbloq'));
+        }
         //End comentarios
-        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers'));
     }
 
     public function buscaProducto(Request $request)
