@@ -71,11 +71,11 @@
             @else
             <h1 class="titulo-card-header-2">Bienvenido a la subasta rapida</h1>
             <h2 style="font-size: 20px">Recuerda que para pujar, necesitas estar registrado</h2>
-            <div class="btn-group py-4 d-flex text-center" role="group">
+            <div class="d-flex justify-content-center" role="group">
             @endauth
 
                 @guest
-                <a href="{{ url('login') }}" role="button" class="btn btn-info"><i class="fa fa-book">
+                <a href="{{ url('login') }}" role="button" class="btn btn-info" ><i class="fa fa-book">
                     Registrarse</i></a>
                 <a href="{{ url('login') }}" role="button" class="btn btn-info"><i class="fa fa-user">
                     Iniciar sesion</i></a>

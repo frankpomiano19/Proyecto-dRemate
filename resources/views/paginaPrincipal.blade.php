@@ -40,20 +40,18 @@
 @section('contenido')
 
 
-<div class="c-hero" style="padding-top:21px;">
+<div class="c-hero" style="padding-top:0px;">
     <div class="c-hero__center">
         <h1 class="c-hero__title">SUBASTAS ONLINE D'REMATE</h1>
         <h2 class="c-hero__subtitle">
             ENCUENTRA TODO TIPO DE PRODUCTOS EN NUESTRA PÁGINA
         </h2>
-        <hr style="margin-top: 25px;">
         @auth
           <a class="red button register" href="{{ route('productosPopulares') }}">Productos populares</a>
         @else
           <h5><span class="uppercase">Registrate ahora y empieza</span></h5>
           <a class="red button register" href="/register">REGISTRARSE</a> 
         @endauth
-        
         
         <div class="c-hero__feats">
             <a href="/subastaRapida" class="c-hero__feat">
@@ -77,7 +75,6 @@
         </div>
     </div>
 </div>
-
 <section class="c-callout" style="background-color: #000000;;">
     <div class="c-callout__wrap">
         <span class="c-callout__icon" style="background-image:url(https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/newsletter-3.png);">
