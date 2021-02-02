@@ -100,7 +100,7 @@ class RegisterController extends Controller
             $mail->Body    = $cuerpo;
             $mail->send();
 
-            return User::create([
+            $userRegisterAuth = User::create([
                 'usuario' => $data['usuario'],
                 'us_din' => $dinero,
                 'us_descp'=> "Mi perfil",
@@ -112,10 +112,13 @@ class RegisterController extends Controller
                 'password' => Hash::make($data['password']),
                 'suscripcion' => (string)$data['suscripcion']
             ]);
+            $userRegisterAuth->userHelp()->create([]);
+
+            return $userRegisterAuth;
 
         }
         else{
-            return User::create([
+            $userRegisterAuth = User::create([
                 'usuario' => $data['usuario'],
                 'us_din' => $dinero,
                 'us_descp'=> "Mi perfil",
@@ -127,6 +130,9 @@ class RegisterController extends Controller
                 'password' => Hash::make($data['password']),
                 'suscripcion' => "0"
             ]);
+            $userRegisterAuth->userHelp()->create([]);
+
+            return $userRegisterAuth;
         }
 
         /*
