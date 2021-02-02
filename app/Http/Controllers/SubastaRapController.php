@@ -25,7 +25,7 @@ class SubastaRapController extends Controller
         $su_hist_s = Producto::where('final_subasta','<',$valorN)->orderBy('final_subasta','ASC')->paginate(10);
 
 
-        if(auth()->id()!=null){
+        if(isset(auth()->user()->id)){
 
 
 
