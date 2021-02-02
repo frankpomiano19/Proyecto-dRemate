@@ -144,8 +144,8 @@ Route::get('edson2/', function () {
     return view('edson2');
 });
 
-Route::get('edson3/', function () {
-    return view('mostrarProductos');
+Route::get('productosPopulares/', function () {
+    return view('productosPopulares');
 });
 
 

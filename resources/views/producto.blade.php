@@ -245,7 +245,7 @@
               <div>
                   <h6>Precio inicial</h6>
                   <h1 class="text-center">S/<span>{{$prod->precio_inicial}}</span></h1>
-                  <div class="historialClick"><h6 class="text-right"><small class="ver-historial">Ver historial de pujas</small></h6></div>
+                  {{-- <div class="historialClick"><h6 class="text-right"><small class="ver-historial">Ver historial de pujas</small></h6></div> --}}
               </div>
               <div class="separador"></div>
 
@@ -673,7 +673,7 @@
                           </div>
                       </div>
                   </div>
-                  @endforeach
+                @endforeach
 
               </div>
           </div>
