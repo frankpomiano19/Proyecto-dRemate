@@ -116,4 +116,8 @@ class User extends Authenticatable
     public function userMessageResponseSubasta(){
         return $this->hasOne(mensubRespuesta::class,'us_response');
     }
+
+    public function idSubastador(){
+        return $this->belongsTo(Producto::class,'user_id');   
+    }
 }

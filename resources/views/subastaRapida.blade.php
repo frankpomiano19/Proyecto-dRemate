@@ -171,12 +171,6 @@
 
                                 </div>
                             </div>
-
-
-                            <!--<a href="#" class="btn btn-primary col-md-12" style="background-color:rgba(129, 149, 175, 1);">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div style="text-align: center;">Ver mas subastas</div>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </a>-->
-
                         </div>
 
                         <div class="tab-pane fade " id="pills-sub-pro" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -214,17 +208,13 @@
                         </div>
 
                         <div class="tab-pane fade " id="pills-sub-pop" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            {{-- <section class="py-0">
-                                <div class="container">
-                                </div>
-                            </section> --}}
 
                             <div class="container" style="margin-top: 1rem;">                                
                                 <h3 class="font-weight-bold font-popin">Subastadores populares</h3><br>
                                 <div class="row justify-content-center" id="id_subasta_programada">
-                                    {{-- @include('partials/sub_rap_popu') --}}
+
                                     <livewire:subastador-popular />
-                                    {{-- @include('livewire/subastador-popular') --}}
+
                                 </div>
                             </div>
                         </div>

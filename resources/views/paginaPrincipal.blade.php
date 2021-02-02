@@ -28,8 +28,13 @@
             ENCUENTRA TODO TIPO DE PRODUCTOS EN NUESTRA PÁGINA
         </h2>
         <hr style="margin-top: 25px;">
-        <h5><span class="uppercase">Registrate ahora y empieza</span></h5>
-        <a class="red button register" href="/register">REGISTRARSE</a> 
+        @auth
+          <a class="red button register" href="{{ route('productosPopulares') }}">Productos populares</a>
+        @else
+          <h5><span class="uppercase">Registrate ahora y empieza</span></h5>
+          <a class="red button register" href="/register">REGISTRARSE</a> 
+        @endauth
+        
         
         <div class="c-hero__feats">
             <a href="/subastaRapida" class="c-hero__feat">

@@ -87,7 +87,6 @@ class HomeController extends Controller
 
         $muestra = 0;
 
-        // return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','muestra'));
 
         //End comentarios
         return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers'));
@@ -183,9 +182,6 @@ class HomeController extends Controller
 
         // dd($request->fav);
 
-
-
-
         //Campo favorito del usuario
         $listaUsuario = $listaFavoritos->favoritos;
 
@@ -244,17 +240,10 @@ class HomeController extends Controller
             array_push($favoritos,$favNuevo);
         }
 
-        // $favUsuario = array_unique($favoritos);
 
         $listaFavoritos->favoritos = $favoritos;
 
         $listaFavoritos->save();
-
-        // dd($favoritos);
-
-        // $productos = App\Models\Producto::all();
-
-        // dd($productos);
 
         return back();
     }
@@ -263,8 +252,6 @@ class HomeController extends Controller
     {
 
         $datospro = App\Models\Producto::where('id', '=', $request->id)->first();
-
-        // dd($datospro);
 
         return view('RegistroProductoSubasta.subastarProducto')->with('datosProducto', $datospro);
     }

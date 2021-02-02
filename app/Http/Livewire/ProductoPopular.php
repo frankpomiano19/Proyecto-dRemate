@@ -70,19 +70,5 @@ class ProductoPopular extends Component
             }
         }
 
-        // if($this->categoria=="0"){
-        //     // dd("Muestra cero");
-        //     return view('livewire.producto-popular',[
-        //         'productos' => Producto::where('favorito','!=',0)->orderBy('favorito', $this->orden)
-        //         ->get()
-        //     ]);
-        // }else{
-        //     return view('livewire.producto-popular',[
-        //         'productos' => Producto::where('categoria_id',$this->categoria)
-        //         ->where('favorito','!=',0)->orderBy('favorito', $this->orden)
-        //         ->get()
-        //     ]);
-        // }
-
     }
 }

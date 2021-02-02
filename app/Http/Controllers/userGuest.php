@@ -22,7 +22,7 @@ class userGuest extends Controller
         $productUser_s = Producto::where('user_id','=',$idUser)->paginate(4);
         $usuarioPerfil->visita = $usuarioPerfil->visita + 1;
         $usuarioPerfil->save();
-        return view('usuarioOpc.infoPerfil',compact('comentariosPerfil_s','comentariosGustado_s','idPerfil','usuarioPerfil','productUser_s'));        
+        return view('usuarioOpc.infoPerfil',compact('comentariosPerfil_s','comentariosGustado_s','idPerfil','usuarioPerfil','productUser_s'));
     }
 
     public function paginacionAjax(Request $request){

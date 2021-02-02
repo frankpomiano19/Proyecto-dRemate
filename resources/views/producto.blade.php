@@ -371,18 +371,6 @@
                       </div>
                   </li>
 
-
-                  {{-- <li>
-                      <input type="radio" name="tabs" id="tab2" />
-                      <label for="tab2" role="tab" aria-selected="false" aria-controls="panel2" tabindex="0">Opiniones</label>
-                      <div id="tab-content2" class="tab-content" role="tabpanel" aria-labelledby="comentarios" aria-hidden="true">
-                          <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo
-                              enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
-                              consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam,
-                              nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla?</p>
-                      </div>
-                  </li> --}}
-
                   <li>
                       <input type="radio" name="tabs" id="tab3" />
                       <label for="tab3" role="tab" aria-selected="false" aria-controls="panel3" tabindex="0">Garantía</label>
@@ -616,12 +604,6 @@
               @else
               @endif
 
-
-
-
-
-
-
               {{-- Muestra si no hay acuerdos establecidos --}}
               @if ($prod->productoAgreement->count()!=null)
               @else
@@ -668,66 +650,6 @@
                   @endforeach
 
               </div>
-
-              <!-- 
-              <div class="row ">
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 400px; padding: 10px; background-color: blue; border: blueviolet solid 2px; ">
-                      <div class="carta">
-                          <div class="cont-cart-img ">
-                              <img class="img-ajustada " src="coin02.png" alt="coin02.png">
-                          </div>
-
-                      </div>
-                      <div>
-                          Título y otras cosas
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">
-                      <div class="card" style="width: 18rem;">
-                          <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                          <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
-                  <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 " style="height: 180px; background-color: blue; border: blueviolet solid 2px; ">nlnln</div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-                  <div class="card" style="width: 18rem;">
-                      <img class="card-img-top" src="coin02.png" alt="coin02.png">
-                      <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                  </div>
-              </div> -->
 
           </div>
       </div>

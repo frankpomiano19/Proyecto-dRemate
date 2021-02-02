@@ -155,7 +155,7 @@ Route::get('edson2/', function () {
 
 
 
-Route::get('/productosPopulares',[SuscripcionController::class,'productosPopulares']);
+Route::get('/productosPopulares',[SuscripcionController::class,'productosPopulares'])->name('productosPopulares');
 
 //Envío de datos del registro producto y subasta
 Route::post('/registroProducto', [RegistroProductoController::class,'formularioProducto'])->middleware('auth')->name('producto.registroe');
