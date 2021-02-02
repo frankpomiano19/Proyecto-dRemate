@@ -23,7 +23,5 @@ class CategoriaSeeder extends Seeder
         DB::table('categorias')->insert(['nombre_categoria'=>'Electrodomésticos']);
         DB::table('categorias')->insert(['nombre_categoria'=>'Joyas']);
         DB::table('categorias')->insert(['nombre_categoria'=>'Instrumento musical']);
-        DB::table('categorias')->insert(['nombre_categoria'=>'Juguetes']);
-
     }
 }

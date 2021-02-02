@@ -82,34 +82,39 @@ class SubastaRapController extends Controller
         date_default_timezone_set('America/Lima');  //Obtiene la fecha de Lima Peru
         $valorN = date('Y-m-d H:i:s');//Sale el formato 2020-10-29 15:29:12
 
-        $listaFavoritos = User::where('id','=',auth()->id())->first();
-
-        $listaUsuario = $listaFavoritos->favoritos;
-
-        $listaInicio = str_replace("[", "", $listaUsuario);
-
-        $listaFin = str_replace("]", "", $listaInicio);
-
-        $favoritos = explode(',',$listaFin);
-
-        $tamanio = sizeof($favoritos);
-
-        //Convertir a entero
-        for($i = 0; $i<$tamanio;$i++){
-
-            $temp = (int)$favoritos[$i];
-            $favoritos[$i] = $temp;
+        if(auth()->user()!=null){
+            $listaFavoritos = User::where('id','=',auth()->id())->first();
+            $listaUsuario = $listaFavoritos->favoritos;
+            $listaInicio = str_replace("[", "", $listaUsuario);
+            $listaFin = str_replace("]", "", $listaInicio);
+            $favoritos = explode(',',$listaFin);
+            $tamanio = sizeof($favoritos);
+            //Convertir a entero
+            for($i = 0; $i<$tamanio;$i++){
+    
+                $temp = (int)$favoritos[$i];
+                $favoritos[$i] = $temp;
+            }
+    
+            $i = 0;
+    
         }
-
-        $i = 0;
 
         if($request -> ajax()){
             if($request->filtro == 0){
                 $su_curso_s = Producto::where('inicio_subasta','<',$valorN)->where('final_subasta','>',$valorN)->orderBy('final_subasta','DESC')->paginate(6);
-                return view('partials.sub_rap_pro',compact('su_curso_s','favoritos'));    
+                if(auth()->user()!=null){
+                    return view('partials.sub_rap_pro',compact('su_curso_s','favoritos'));    
+                }else{
+                    return view('partials.sub_rap_pro',compact('su_curso_s'));    
+                }
             }else if($request->filtro == 1){
                 $su_curso_s = Producto::where('inicio_subasta','<',$valorN)->where('final_subasta','>',$valorN)->orderBy('final_subasta','ASC')->paginate(6);
-                return view('partials.sub_rap_pro',compact('su_curso_s','favoritos'));    
+                if(auth()->user()!=null){
+                    return view('partials.sub_rap_pro',compact('su_curso_s','favoritos'));    
+                }else{
+                    return view('partials.sub_rap_pro',compact('su_curso_s'));    
+                }
 
             }else{
                 return "ERROR";
@@ -254,42 +259,50 @@ class SubastaRapController extends Controller
 
     public function fetch_data(Request $request){
 
-
         $ab = date_default_timezone_get();  //Obtiene la fecha actual
         date_default_timezone_set('America/Lima');  //Obtiene la fecha de Lima Peru
         $valorN = date('Y-m-d H:i:s');//Sale el formato 2020-10-29 15:29:12
 
-        $listaFavoritos = User::where('id','=',auth()->id())->first();
+        if(auth()->user()!=null){
+            $listaFavoritos = User::where('id','=',auth()->id())->first();
 
-        $listaUsuario = $listaFavoritos->favoritos;
-
-        $listaInicio = str_replace("[", "", $listaUsuario);
-
-        $listaFin = str_replace("]", "", $listaInicio);
-
-        $favoritos = explode(',',$listaFin);
-
-        $tamanio = sizeof($favoritos);
-
-        //Convertir a entero
-        for($i = 0; $i<$tamanio;$i++){
-
-            $temp = (int)$favoritos[$i];
-            $favoritos[$i] = $temp;
+            $listaUsuario = $listaFavoritos->favoritos;
+    
+            $listaInicio = str_replace("[", "", $listaUsuario);
+    
+            $listaFin = str_replace("]", "", $listaInicio);
+    
+            $favoritos = explode(',',$listaFin);
+    
+            $tamanio = sizeof($favoritos);
+            //Convertir a entero
+            for($i = 0; $i<$tamanio;$i++){
+                $temp = (int)$favoritos[$i];
+                $favoritos[$i] = $temp;
+            }
+            $i = 0;
         }
-
-        $i = 0;
 
         
 
         if($request->ajax()){
             if($request->filtro == 0){
                 $su_curso_s = Producto::where('inicio_subasta','<',$valorN)->where('final_subasta','>',$valorN)->orderBy('final_subasta','ASC')->paginate(6);
-                return view('partials.sub_rap_pro',compact('su_curso_s','favoritos'));    
+                if(auth()->user()!=null){
+                    return view('partials.sub_rap_pro',compact('su_curso_s','favoritos'));    
+                }else{
+                    return view('partials.sub_rap_pro',compact('su_curso_s'));    
+
+                }
     
             }else if($request->filtro==1){
                 $su_curso_s = Producto::where('inicio_subasta','<',$valorN)->where('final_subasta','>',$valorN)->orderBy('final_subasta','DESC')->paginate(6);
-                return view('partials.sub_rap_pro',compact('su_curso_s','favoritos'));
+                if(auth()->user()!=null){
+                    return view('partials.sub_rap_pro',compact('su_curso_s','favoritos'));    
+                }else{
+                    return view('partials.sub_rap_pro',compact('su_curso_s'));    
+
+                }
         
             }
     

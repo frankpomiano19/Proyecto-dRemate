@@ -276,34 +276,7 @@
     <script src="js/jquery.countdown.package-2.1.0/js/jquery.countdown.js"></script>
     <script src="js/moment-2.29.1.js"></script>    
     <script src="{{ asset('js/producto.js') }}"></script>
-    <script>/*
-        let clase="";
-        $(document).ready(function(){    
-            $(".desplegable").click(function(){
-                $(".menu").toggleClass("showMenu");
-                $(".menu > li").click(function(){
-                    $(".desplegable > p").html($(this).html());
-                    $(".menu").removeClass("showMenu");
-                });
-            });            
-        });
-
-        let clase="";
-        $(document).ready(function(){    
-            $(".desplegable").click(function(){
-                clase=$(this);
-                (clase).find("ul").toggleClass("showMenu");
-                (clase).find("ul.menu > li").click(function(){
-                    (clase).siblings("div.desplegable > p").html($(this).html());
-                    (clase).find("ul").removeClass("showMenu");
-                });
-            });            
-        });*/
-
-        
-
-
-
+    <script>
 
         $(document).ready(function(){
             $(".desplegable").click(function(){

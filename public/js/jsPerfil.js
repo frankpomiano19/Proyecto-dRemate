@@ -142,7 +142,20 @@ $(document).on('click', '#historial_prod_sub .pagination a', function (event) {
     })
 });
 
-
+$(document).on('click', '#historial_puj .pagination a', function (event) {
+    event.preventDefault();
+    // var formId = jQuery('#hidden-id-user').val();
+    var page0 = $(this).attr('href').split('pagination-hist-puj=')[1];
+    axios.get('/producto/pagination_hist_pujas?pagination-hist-puj='+page0)
+    .then(response=>{
+        $('#historial_puj').html(response.data);
+        $('#historial_puj').removeClass('div-disabled');
+        
+    })
+    .catch(e=>{
+        alert("Error al enviar");
+    })
+});
 
 // Colocar valores en el popup form de mensajeria
 $(document).on('click','.element-td-now',function(event){

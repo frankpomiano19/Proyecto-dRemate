@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+@section('share-content')
+    <meta property="og:url" content="http://dremate.herokuapp.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="dRemate" />
+    <meta property="og:description" content="Pagina de subastasta online para cualquier tipo de persona" />
+    <meta property="og:image" content="{{ asset('img/assets/subasta4.jpg') }}" />
+@endsection
 
 @section('cont_cabe')
     <title>Home - D'REMATE</title>
@@ -8,6 +15,16 @@
 
 @section('contenidoJS')
     <!-- Colocar js-->
+    <script>
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    </script>
+  
 @endsection
 
 @section('contenidoCSS')
@@ -15,11 +32,13 @@
     <link rel="stylesheet" href="css/inicio.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/barra.css">
+    <link rel="stylesheet" href="css/cssHelp.css">
     <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 
 @section('contenido')
+
 
 <div class="c-hero" style="padding-top:21px;">
     <div class="c-hero__center">
@@ -29,22 +48,25 @@
         </h2>
         <hr style="margin-top: 25px;">
         <h5><span class="uppercase">Registrate ahora y empieza</span></h5>
-        <a class="red button register" href="/register">REGISTRARSE</a> 
+
+        @guest
+        <a class="red button register" href="/register">REGISTRARSE</a>             
+        @endguest
         
         <div class="c-hero__feats">
-            <a href="/subastaRapida" class="c-hero__feat">
+            <a href=" {{ url('subastaRapida') }}" class="c-hero__feat">
                 <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/feat1.png">
                     <h2>Subastas<br>
                         En vivo</h2>
                         <span>Conoce más</span>
             </a>
-            <a href="/subastaRapida" class="c-hero__feat">
+            <a href="{{ url('subastaRapida') }}" class="c-hero__feat">
                 <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/results-2.png">
                     <h2>Resultados<br>
                         anteriores</h2>
                     <span>Conoce más</span>
             </a>
-            <a href="/category" class="c-hero__feat">
+            <a href="{{ url('busquedaFiltro') }}" class="c-hero__feat">
                 <img src="https://auctionhouselondon.co.uk/wp-content/uploads/2015/11/valuation-2.png">
                     <h2>Categorias<br>
                         Variadas</h2>
@@ -66,11 +88,16 @@
         </span>
         <div class="c-callout__message">
             <p>
-                <strong>Entérate de los nuevos productos</strong>
+                <strong>Comparte en las redes sociales</strong>
             </p>
         </div>
-        <a href="#" class="c-callout__btn">
-                Novedades
+        <br>
+        <div class=" fb-share-button " 
+        data-href="http://dremate.herokuapp.com/" 
+        data-layout="button_count" data-size="large">
+        </div>
+        <a class="btn btn-social-icon btn-twitter" style="width:100px;font-size:10px" href="https://twitter.com/intent/tweet?text=Pagina%20de%20subasta%20online%20para%20cualquier%20tipo%20de%20persona&url=http%3A%2F%2Fdremate.herokuapp.com/&via=dRemate&hashtags=programación,html">
+            <span class="fa fa-twitter">&nbsp;Compartir</span>
         </a>
     </div>
 </section>
@@ -405,12 +432,25 @@
         </div>
     </div>
 </div> --}}
+    {{-- Configuracion de ayuda --}}
+    @auth
+        @php
+            $ayudaRuta = Auth::user()->userHelp->help_home;
+            $urlPagina = "deleteOneHelpHome";
+        @endphp
+        <script>
 
+        </script>
+    @endauth
+    @include('includes/PopupHelp/HomeHelpPopupHtml')
 
+    {{-- Fin configuracion de ayuda --}}
 @endsection
 
 @section('contenidoJSabajo')
-    <!-- Colocar js abajo-->
+    {{-- Script de ayuda popup --}}
+    @include('includes/PopupHelp/jsHelpPopupScript')    
+    {{-- Fin --}}
     <script src="https://use.fontawesome.com/c9d7a705d9.js"></script>
     <script src="https://preview.colorlib.com/theme/onetech/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 @endsection

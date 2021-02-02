@@ -2,10 +2,21 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    {{-- Data para compartir en facebook --}}
+
+    @yield('share-content')
+
+    {{-- Fin para compartir en facebook --}}
+
+
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="{{ asset('img/assets/subasta4.jpg') }}" />    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{-- Data para SEO --}}
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="img/logo4.ico" />
+    {{-- Fin Data para SEO --}}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -19,9 +30,6 @@
     @livewireStyles
     @yield('contenidoJS')
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -32,13 +40,118 @@
     <link rel="stylesheet" href="{{asset('css/barra.css')}}">
     <link rel="stylesheet" href="{{asset('animateCss/animate.css')}}">
     <link rel="stylesheet" href="{{asset('sweetalert2/dist/sweetalert2.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/cssHelp.css') }} ">
     <script src="{{asset('js/moment-2.29.1.js')}}"></script> 
     <script src="{{asset('js/app.js')}}"></script>
     @yield('contenidoCSS')
 
+<!-- Popup paginas relleno -->
+<style>
+    .nav-horizontal-simple{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;            
+        justify-content: center;
+        text-align: center;
+    }
+
+    .nav-horizontal-simple>label{
+        font-family: monospace;
+        text-align:center;
+        border-width: 2px 2px 0px 2px;
+        border-radius: 10%;
+        border-style: inset;
+        border-color: rgba(0,0,0,0.5);
+        padding: 1px;
+        cursor: pointer;
+        background: rgba(153,160,208,0.3);
+        opacity: 0.5;
+    }
+    .nav-horizontal-simple>label:hover{
+        opacity: 1;
+    }
+    
+    .nav-horizontal-simple>label:active{
+        background: rgba(153,160,208,0.6);
+    }
+
+
+    .div-1-conocenos{
+        display: none;
+    }
+    .div-1-conocenos-on{
+        display: inline;
+        background: rgba(153,160,208,0.1);
+        padding: 10px;
+    }
+    .label-1-title{
+        font-size: 18px; 
+        font-weight:bold;
+    }
+    .linea-divide{
+        border-width: 4px;
+        border-color: rgba(91,91,255,0.5);
+        border-radius: 4px;
+        width: 80%;
+        
+    }
+    .show-modal-body{
+        display: none;
+    }
+    .show-modal-body-on{
+        display: grid;
+    }
+    .responsive-modal-now{
+        width: 60%;
+    }
+    @media screen and (max-width:800px){
+        .responsive-modal-now{
+            width: 90%;
+            overflow: scroll;
+        }
+    }
+    @media screen and (max-width:1200px){
+        .responsive-navbar{
+            font-size: 0.61em;
+        }
+    }
+
+    
+</style>
+
+
+
 </head>
 
 <body class="clase-formateada">
+
+    {{-- Popup Ayuda --}}
+    <div class="modal fade" id="staticBackdropIndexHome" data-backdrop="static" data-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropIndexHomeLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropIndexHomeLabel" style="color: black">¿Deseas activar la ayuda?</h5>
+               
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        Se habilitara popup de ayuda en las diferentes paginas que entre
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cambieDeOpinionBoton" class="btn btn-danger" data-dismiss="modal">Cambie de opinion</button>
+                <form action="{{ route('addAllHelps') }}" method="POST">
+                    @csrf
+                    <button class="btn btn-success" id="addAllHelps" role="button" type="submit">OK</button>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{--Fin --}}
+
 
     <style>
             .active-2{
@@ -131,7 +244,7 @@
     </nav>-->
 <!--barra navegación-->
 <div class="navbar-sticky bg-light fixed-top">
-    <div class="navbar navbar-expand-lg navbar-light" style="background:#343a40!important;padding-top: 0px;padding-bottom: 0px;">
+    <div class="navbar navbar-expand-lg navbar-expand-sm navbar-light responsive-navbar" style="background:#343a40!important;padding-top: 0px;padding-bottom: 0px;">
         <div class="container" style="padding-left: 0px;margin-left: 25px;margin-right: 25px;"><a class="navbar-brand d-none d-sm-block mr-3 flex-shrink-0" href="{{route("welcome")}}" style="min-width: 7rem;"><img width="142" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 55px;"></a><a class="navbar-brand d-sm-none mr-2" href="/" style="min-width: 4.625rem;"><img width="74" src="{{asset('img/logo.png')}}" alt="Cartzilla" style="height: 34px;min-width: 93px;"></a>
         <ul class="navbar-nav mega-nav d-none pr-lg-2 mr-lg-2" style="margin-left: 100px;">
                 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle pl-0" href="/category" data-toggle="dropdown"><i class="fa fa-th mr-2" style="color:#dee2e6;"></i>Categorías</a>
@@ -195,6 +308,14 @@
             <ul class="navbar-nav d-none" style="align-items: center;">
                 <li class="nav-item @if($stringRuta == 'welcome') active active-2  @endif "><a class="nav-link" href="{{ route('welcome') }}">Home</a>
                 </li>
+                @auth
+                <li class="nav-item @if($stringRuta == 'registroSubasta-now') active active-2  @endif "><a class="nav-link" href="{{ route('registroSubasta-now') }}">Subastar producto</a>
+                </li>
+                @else                    
+                <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">Subastar producto</a>
+                </li>
+                @endauth
+
                 <li class="nav-item @if($stringRuta == 'subastaRapida') active active-2  @endif "><a class="nav-link" href="{{ route('subastaRapida') }}">Subasta Rápida</a>
                 </li>
                 @guest
@@ -223,6 +344,9 @@
                                 </a>
                                 <a class="dropdown-item" href="{{ route('prosubastas') }}">
                                     Proximas Subastas
+                                </a>
+                                <a class="dropdown-item" style="cursor: pointer;" data-toggle="modal" data-target="#staticBackdropIndexHome">
+                                    Necesito Ayuda
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -311,7 +435,7 @@
 
                     @endguest
             </ul>
-            <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center" style="margin-right: 50px;margin-left: 50px;">
+            <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center navbar-dark bg-dark" style="margin-right: 50px;margin-left: 50px;">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
                 <a class="navbar-tool navbar-stuck-toggler" href="#">
                     <span class="navbar-tool-tooltip">Expand menu</span>
@@ -405,31 +529,243 @@
     <!--Footer-->
 
 <footer id="footer">
+
+
+    {{-- Opciones --}}
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="wow fadeInDown" data-wow-delay="0.1s">
+                    <div class="widget">
+                        <h4>CONTENIDO</h4>
+                        <ul>
+                            <div class="copyright">
+                                
+                                <a href="#" data-toggle="modal" style="color: #dee2e6" data-target="#ventanaModalQuienes">¿Quiénes somos? (Version extendida)</a>                            
+                            </div>
+                                {{-- <li><a href="#" data-toggle="modal" data-target="#ventanaModalPolitica">Política y privacidad</a></li> --}}
+                            {{-- <li><a href="#" data-toggle="modal" data-target="#ventanaModalAtencion">Atención al cliente</a></li> --}}
+                        </ul>
+                    </div>
+                </div>
+                <div class="wow fadeInDown" data-wow-delay="0.1s">
+                    <div class="widget">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="wow fadeInDown" data-wow-delay="0.1s">
+                    <div class="widget">
+
+                        <h3>D'REMATE</h3>
+                        <div class="social-links">
+                          <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
+                          <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>
+                          <a class="btn btn-social-icon btn-instagram"><span class="fa fa-instagram"></span></a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="wow fadeInDown" data-wow-delay="0.1s">
+                    <div class="widget">
+                        <h4></h4>
+                        <div class="copyright">
+                            © Copyright <strong><span>D'REMATE</span></strong> 2020 - 3030. All Rights Reserved
+                          </div>
+                    
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>    
+    {{-- Fin opciones --}}
+
+  </footer>
+
+      <!--¿Quienes somos?-->
+      <div class="modal fade" id="ventanaModalQuienes" style="width:100%;" tabindex="-1" role="dialog" aria-labelledby="ventanaModalQuienesTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"  role="document">
+        <div class="modal-content" style="border: 4px inset rgba(153,160,208,0.9);" id="algo">
+            <div class="row">
+            <div class="col-sm-12">
+                <div class="modal-header nav-horizontal-simple">
+                    <label for="">
+                        Conocenos
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-users fa-stack-1x"></i>
+                        </span>
+                    </label>
+                    <label for="">
+                        Valores
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-newspaper-o fa-stack-1x"></i>
+                        </span>
+                    </label>
+                    <label for="">
+                        Objetivos
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-line-chart fa-stack-1x"></i>
+                        </span>
+                    </label>
+                </div>
+                <div class="modal-body" style="border-width: 0px 2px 0px 2px;border-style: inset;border-color: rgba(0,0,0,0.5);">
+                    <div class="row">
+                        <div class="col-sm-12 div-1-conocenos" style="text-align: center;">
+                            <h2>d'Remate</h2>
+                            <h4>¿Quienes somos?</h4>
+                            <p style="font-family: sans-serif;">Somos un pequeño grupo de personas en Peru que tenemos por objetivo permitir que la
+                                persona comun pueda subastar el producto que desee. 
+                                <br>
+                            </p>
+                            <h4>¿Como nacio la idea?</h4>
+                            <p style="font-family: sans-serif;">
+                                Nadie despues de multiples reuniones donde se discutia como hacer que la persona sin conocimientos tecnicos
+                                pueda subastar un producto, sin tanto tramite y directamente
+                            
+                            </p>
+
+                                {{-- <img src="/gif/gato90.gif" alt="Gato"> --}}
+                            </div>
+                        <div class="col-sm-12 div-1-conocenos" style="text-align: center;">
+                            <div class="row">
+        
+                                <div class="col-sm-4">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-recycle fa-stack-2x"></i>
+                                    </span>
+                                    <hr class="linea-divide">
+                                    <h4 class="label-1-title">Confiabilidad</h4>                                    
+                                    <p>Lo datos ingresados nunca lo revelaremos ante nadie</p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-xing fa-stack-2x"></i>
+                                    </span>
+                                    <hr class="linea-divide">
+                                    <h4 class="label-1-title">Justicia</h4>
+                                    <p>Permitimos a cualquier persona registrarse en la aplicacion web</p>                                    
+                                </div>
+                                <div class="col-sm-4">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-tree fa-stack-2x"></i>
+                                    </span>    
+                                    <hr class="linea-divide">
+                                    <h4 class="label-1-title">Transparencia</h4>                                                                        
+                                    <p>Todas nuestras intenciones son abiertas y cualquiera lo puede verificar</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-building fa-stack-2x"></i>
+                                    </span>
+                                    <hr class="linea-divide">
+                                    <h4 class="label-1-title">Solidaridad</h4>         
+                                    <p>Ayudamos a las personas comunes subastar productos</p>                                                               
+                                </div>
+                                <div class="col-sm-6">
+                                    
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-institution fa-stack-2x"></i>
+                                    </span>
+                                    <hr class="linea-divide">
+                                    <h4 class="label-1-title">Respeto</h4>
+                                    <p>Todos los comentarios y/o sugerencias seran tratados con respeto</p>                                                                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 div-1-conocenos">
+                            <ul style="list-style: none">
+                                <li style="font-family: sans-serif;;line-height : 1;">
+                                    <span class="fa-stack fa-lg" style="float: left; color:rgba(255,0,0,0.8);"><i class="fa fa-bullseye fa-stack-2x"></i></span>
+                                    Permitir a la persona comun poder subastar su producto.
+                                </li>
+                                <br>
+                                <li style="font-family: sans-serif;;line-height : 1;">
+                                    <span class="fa-stack fa-lg" style="float: left; color:rgba(255,0,0,0.5);"><i class="fa fa-bullseye fa-stack-2x"></i></span>
+                                    Permitir al usuario poder comprar un producto por medio de subastas online.
+                                </li>
+                                <br>
+                                <li>
+                                    {{-- <img src="/gif/buho27.gif" alt="buho"> --}}
+                                </li>
+                                <br>
+                                <li style="font-family: sans-serif;;line-height : 1;">
+                                    <span class="fa-stack fa-lg" style="float: left; color:rgba(255,0,0,0.5);"><i class="fa fa-bullseye fa-stack-2x"></i></span>
+                                    Darle facilidades al usuario gestionar multiples subastas en linea por medio de esta pagina.
+                                </li>
+                                <br>
+                                <li style="font-family: sans-serif;;line-height : 1;">
+                                    <span class="fa-stack fa-lg" style="float: left; color:rgba(255,0,0,0.8);"><i class="fa fa-bullseye fa-stack-2x"></i></span>
+                                    Darle seguridad y comodidad al usuario al momento de hacer una puja o comprar un productos.
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                <button class="btn btn-warning" type="button" data-dismiss="modal" >Cerrar</button>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
     @livewireScripts
 
-    <div class="container">
-      <h3>D'REMATE</h3>
-      <div class="social-links">
-        <a class="btn btn-social-icon btn-twitter"><span class="fa fa-twitter"></span></a>
-        <a class="btn btn-social-icon btn-facebook"><span class="fa fa-facebook"></span></a>
-        <a class="btn btn-social-icon btn-instagram"><span class="fa fa-instagram"></span></a>
-      </div>
-      <div class="copyright">
-        © Copyright <strong><span>D'REMATE</span></strong> 2020 - 3030. All Rights Reserved
-      </div>
-    </div>
-  </footer>
+    <script>
+        var opciones_cono=document.getElementsByClassName('div-1-conocenos');
+        var nav_cono=document.getElementsByClassName('nav-horizontal-simple');
+        var label_nav_cono=nav_cono[0].getElementsByTagName('label');
+        
+
+        opciones_cono[0].classList.add('div-1-conocenos-on');
+        label_nav_cono[0].style.opacity="1";
+        label_nav_cono[0].onclick=function(){
+            for(var i=0;i<label_nav_cono.length;i++){
+                opciones_cono[i].classList.remove('div-1-conocenos-on');
+                label_nav_cono[i].style.opacity="0.5";
+            }
+            opciones_cono[0].classList.add('div-1-conocenos-on');
+            label_nav_cono[0].style.opacity="1";
+        }
+        label_nav_cono[1].onclick=function(){
+            for(var i=0;i<label_nav_cono.length;i++){
+                opciones_cono[i].classList.remove('div-1-conocenos-on');
+                label_nav_cono[i].style.opacity="0.5";
+
+            }
+            opciones_cono[1].classList.add('div-1-conocenos-on');
+            label_nav_cono[1].style.opacity="1";
+        }
+        label_nav_cono[2].onclick=function(){
+            for(var i=0;i<label_nav_cono.length;i++){
+                opciones_cono[i].classList.remove('div-1-conocenos-on');
+                label_nav_cono[i].style.opacity="0.5";
+
+            }
+            opciones_cono[2].classList.add('div-1-conocenos-on');
+            label_nav_cono[2].style.opacity="1";
+        }
+
+        
+    </script>
 
 <!--fin Footer-->
 
 
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
-    <!--<script src="js/poper-1.16.1.js"></script>-->
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.js')}}"></script>
     <script src="{{asset('bootstrap-4.5.3-dist/js/bootstrap.bundle.js')}}"></script>
     <script src="{{asset('sweetalert2/dist/sweetalert2.js')}}"></script>
-    <script defer>
-    </script>
     @yield('contenidoJSabajo')
 
 </body>

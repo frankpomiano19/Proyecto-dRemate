@@ -1,77 +1,69 @@
 jQuery(document).ready(function($) {
 
-	var cols = {},
+    var cols = {},
 
-		messageIsOpen = false;
+        messageIsOpen = false;
 
-	cols.showOverlay = function() {
-		$('body').addClass('show-main-overlay');
-	};
-	cols.hideOverlay = function() {
-		$('body').removeClass('show-main-overlay');
-	};
-
-
-	cols.showMessage = function() {
-		$('body').addClass('show-message');
-		messageIsOpen = true;
-	};
-	cols.hideMessage = function() {
-		$('body').removeClass('show-message');
-		$('#main .message-list li').removeClass('active');
-		messageIsOpen = false;
-	};
+    cols.showOverlay = function() {
+        $('body').addClass('show-main-overlay');
+    };
+    cols.hideOverlay = function() {
+        $('body').removeClass('show-main-overlay');
+    };
 
 
-	cols.showSidebar = function() {
-		$('body').addClass('show-sidebar');
-	};
-	cols.hideSidebar = function() {
-		$('body').removeClass('show-sidebar');
-	};
+    cols.showMessage = function() {
+        $('body').addClass('show-message');
+        messageIsOpen = true;
+    };
+    cols.hideMessage = function() {
+        $('body').removeClass('show-message');
+        $('#main .message-list li').removeClass('active');
+        messageIsOpen = false;
+    };
 
 
-	// Show sidebar when trigger is clicked
-
-	$('.trigger-toggle-sidebar').on('click', function() {
-		cols.showSidebar();
-		cols.showOverlay();
-	});
-
-
-	$('.trigger-message-close').on('click', function() {
-		cols.hideMessage();
-		cols.hideOverlay();
-	});
+    cols.showSidebar = function() {
+        $('body').addClass('show-sidebar');
+    };
+    cols.hideSidebar = function() {
+        $('body').removeClass('show-sidebar');
+    };
 
 
-	// This will prevent click from triggering twice when clicking checkbox/label
+    // Show sidebar when trigger is clicked
 
-	$('input[type=checkbox]').on('click', function(e) {
-		e.stopImmediatePropagation();
-	});
+    $('.trigger-toggle-sidebar').on('click', function() {
+        cols.showSidebar();
+        cols.showOverlay();
+    });
 
 
+    $('.trigger-message-close').on('click', function() {
+        cols.hideMessage();
+        cols.hideOverlay();
+    });
 
-	// When you click the overlay, close everything
 
-	$('#main > .overlay').on('click', function() {
-		cols.hideOverlay();
-		cols.hideMessage();
-		cols.hideSidebar();
-	});
+    // This will prevent click from triggering twice when clicking checkbox/label
+
+    $('input[type=checkbox]').on('click', function(e) {
+        e.stopImmediatePropagation();
+    });
 
 
 
-	// Enable sexy scrollbars
-	$('.nano').nanoScroller();
+    // When you click the overlay, close everything
+
+    $('#main > .overlay').on('click', function() {
+        cols.hideOverlay();
+        cols.hideMessage();
+        cols.hideSidebar();
+    });
 
 
-	// Disable links
 
-	$('a').on('click', function(e) {
-		e.preventDefault();
-	});
-
+    // Enable sexy scrollbars
+    $('.nano').nanoScroller();
 
 });

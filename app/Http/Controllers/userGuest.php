@@ -9,7 +9,7 @@ use App\Models\Comentario;
 use App\Models\User;
 use App\Models\Producto;
 use App\Models\Votes;
-
+use Exception;
 
 class userGuest extends Controller
 {
@@ -49,12 +49,30 @@ class userGuest extends Controller
         return view('usuarioOpc.infoPerfil',compact('comentariosPerfil_s','comentariosGustado_s','idPerfil','usuarioPerfil','productUser_s'));        
     }
     public function calificarCreate(Request $request){
+
+        try{
+            
+        if($request->score==null){
+            return back();
+        }
         $comentariosPerfil_s = Comentario::where('use_id',$request->idUserPerfil)->orderBy('created_at','DESC')->paginate(3);
         $comentariosGustado_s = Comentario::where('use_id',$request->idUserPerfil)->where('com_like','>',5)->orderBy('com_like','DESC')->take(2)->get();
         $calificaPerfil_s =Votes::where('use_ids',$request->idUserPerfil)->orderBy('created_at','DESC')->paginate(3);
         $productUser_s = Producto::where('user_id','=',$request->idUserPerfil)->paginate(4);  
         $idPerfil = $request->idUserPerfil;
         $usuarioPerfil =  User::where('id','=',$idPerfil)->first(); 
+        // Verifica que el 1 usuario no vote en un mismo perfil 2 veces
+        // $calificaPerfilAux =Votes::where('use_ids',(int)$request->idUserPerfil);
+        // dd(Auth::user()->id,$calificaPerfilAux->user_ids,$request->idUserPerfil);
+
+        // if($calificaPerfilAux!=null){
+        //     foreach ($calificaPerfilAux->use_idc as $usuarioCalificador) {
+        //         if($usuarioCalificador==Auth::user()->id){
+        //             return back();
+        //         }
+        //     }
+        // }
+        // Fin
         $votes = new Votes();  
         $votes->score=$request->score;
         $votes->use_ids = $request->idUserPerfil;
@@ -71,6 +89,9 @@ class userGuest extends Controller
         //return view('votes.calificar')->with('votes', $votes);
         return view('usuarioOpc.infoPerfil',compact('comentariosPerfil_s','comentariosGustado_s','usuarioPerfil','productUser_s','calificaPerfil_s','idPerfil','cantidad','promedio')); 
         // view('usuarioOpc.partialsUser.calificacion',compact('calificaPerfil_s','idPerfil'));  
+        }catch(Exception $e){
+            return back();
+        }
     }
     
     public function boot()

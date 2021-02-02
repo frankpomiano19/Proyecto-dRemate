@@ -149,7 +149,8 @@ class RegistroProductoController extends Controller
         $productos = App\Models\Producto::where('user_id','=',Auth::user()->id)->paginate(4,['*'],'pagination-prod-reg');
 
         $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
-        return view('productos.index',compact('productos','productosSub_s','productosGanados','i','mensaje_s','mensajeEnviado_s'))->with('i', (request()->input('page', 1) - 1) * 5);
+        $pujas = App\Models\Puja::where('user_id', Auth::id())->orderBy('created_at','DESC')->paginate(6,['*'],'pagination-hist-puj');
+        return view('productos.index',compact('productos','productosSub_s','productosGanados','i','mensaje_s','mensajeEnviado_s','pujas'))->with('i', (request()->input('page', 1) - 1) * 5);
         
 
         
@@ -165,6 +166,11 @@ class RegistroProductoController extends Controller
         $productosSub_s = App\Models\Producto::where('user_id','=',Auth::user()->id)->where('inicio_subasta','!=',null)->paginate(4,['*'],'pagination-prod-sub');
         return view('partials.prod_sub',compact('productosSub_s'))->with('i', (request()->input('page', 1) - 1) * 5);
         
+    }
+
+    public function histPuj(){
+        $pujas = App\Models\Puja::where('user_id', Auth::id())->orderBy('created_at','DESC')->paginate(6,['*'],'pagination-hist-puj');
+        return view('partials.hist_pujas',compact('pujas'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
 
