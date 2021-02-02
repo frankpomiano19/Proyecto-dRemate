@@ -30,9 +30,10 @@ class CreateUsersTable extends Migration
             $table->string('us_twitter',30)->nullable();
             $table->text('favoritos')->nullable();
             $table->string('us_twitch')->nullable();
-
+            $table->text('notificaciones')->nullable();
             $table->string('password');
             $table->string('us_direc')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
             
