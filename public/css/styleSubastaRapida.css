@@ -500,13 +500,12 @@ input[type="text"] {
     font-weight: normal;
 }
 
-.form-wrapper button {
+.form-wrapper div {
     overflow: visible;
     position: relative;
     float: right;
     border: 0;
     padding: 0;
-    cursor: pointer;
     height: 2em;
     width: 110px;
     font: normal 1em 'lucida sans', 'trebuchet MS', 'Tahoma';
@@ -519,20 +518,15 @@ input[type="text"] {
     text-shadow: 0 -1px 0 rgba(0, 0, 0, .3);
 }
 
+.form-wrapper div:hover {
+    cursor: default;
+}
+
 .form-wrapper input {
     padding: 0 0 0 5px;
 }
 
-
-}
-.form-wrapper button:hover {
-    background: #354a5f;
-}
-.form-wrapper button:active,
-.form-wrapper button:focus {
-    background: #263646;
-}
-.form-wrapper button:before {
+.form-wrapper div:before {
     content: '';
     position: absolute;
     border-width: 8px 8px 8px 0;
@@ -541,32 +535,33 @@ input[type="text"] {
     top: 8px;
     left: -6px;
 }
-.form-wrapper button:hover:before {
-    border-right-color: #354a5f;
-}
-.form-wrapper button:focus:before {
-    border-right-color: #263646;
-}
-.form-wrapper button::-moz-focus-inner {
+
+.form-wrapper div::-moz-focus-inner {
     border: 0;
     padding: 0;
 }
 
+
 /* Ordenar por */
+
 #ordenar-por {
     float: right;
     width: 20rem;
 }
+
 #texto-ordenar-por {
     height: 2em;
     float: right;
     width: 100px;
 }
+
 #input-ordenar-por {
     float: right;
 }
 
+
 /* Select ordenar por */
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -579,12 +574,16 @@ select {
     background-image: none;
 }
 
+
 /* Remove IE arrow */
+
 select::-ms-expand {
     display: none;
 }
 
+
 /* Custom Select */
+
 .select {
     position: relative;
     display: flex;
@@ -595,6 +594,7 @@ select::-ms-expand {
     overflow: hidden;
     border-radius: .25em;
 }
+
 select {
     flex: 1;
     padding: 0 .5em;
@@ -602,7 +602,9 @@ select {
     cursor: pointer;
 }
 
+
 /* Arrow */
+
 .select::after {
     content: '\25BC';
     position: absolute;
@@ -617,16 +619,21 @@ select {
     transition: .25s all ease;
 }
 
+
 /* Transition */
+
 .select:hover::after {
     color: #f39c12;
 }
+
 #pag-sub {
     height: 60px;
 }
+
 #subastadores-superior {
     margin-bottom: 2rem;
 }
+
 @media only screen and (max-width: 766px) {
     #buscador {
         float: right;

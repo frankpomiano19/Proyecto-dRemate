@@ -154,13 +154,12 @@
                                                     @endforeach
         
                                                     @if($favoritoL == 1)
-                                                        <input type="hidden" name="fav" value="0"> 
-                                                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><img src="{{asset('img/assets/corazon.png')}}"></button>
-                                                        
-                                                    @else
-                                                        <input type="hidden" name="fav" value="1"> 
-                                                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><img src="{{asset('img/assets/corazonR.png')}}"></button>
-                                                    @endif
+                                                                
+                                            <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><div id="heart-icon-active"></div></button>
+                                            
+                                          @else
+                                            <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><div id="heart-icon-noActive"></div></button>
+                                          @endif   
                                         </form>
                                     @else
                                         <button type="" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><img src="{{asset('img/assets/corazonR.png')}}"></button>

@@ -5,6 +5,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="dRemate" />
     <meta property="og:description" content="Pagina de subasta online para cualquier tipo de persona" />
+    <link rel="stylesheet" href="css/corazon-icon.css">
 @endsection
 
 

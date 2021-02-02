@@ -215,10 +215,10 @@
             
                       @if($favoritoL == 1)
                                                                 
-                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><img src="{{asset('img/assets/corazon.png')}}"></button>
+                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Quitar de favorito"><div id="heart-icon-active"></div></button>
                         
                       @else
-                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><img src="{{asset('img/assets/corazonR.png')}}"></button>
+                        <button type="submit" class="btn" data-toggle="tooltip" data-placement="bottom" title="Agregar como favorito"><div id="heart-icon-noActive"></div></button>
                       @endif      
                       
                     </form>

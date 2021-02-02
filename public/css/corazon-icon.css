@@ -1,0 +1,25 @@
+/* Corazón */
+
+#heart-icon-active {
+    width: 24px;
+    height: 25px;
+    background-image: url(/img/assets/corazon.png);
+    transition: 0.5s;
+}
+
+#heart-icon-active:hover {
+    background-image: url(/img/assets/corazonroto.png);
+    cursor: pointer;
+}
+
+#heart-icon-noActive {
+    width: 24px;
+    height: 25px;
+    background-image: url(/img/assets/corazonR.png);
+    transition: 0.5s;
+}
+
+#heart-icon-noActive:hover {
+    background-image: url(/img/assets/corazon.png);
+    cursor: pointer;
+}
