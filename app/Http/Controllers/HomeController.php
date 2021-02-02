@@ -77,18 +77,19 @@ class HomeController extends Controller
             }
 
             $prodbloq = App\Models\BloqUserPro::where('user_id','=',auth()->id())->where('product_bloq_id','=',$idpro)->get()->isempty();
+            //Notificacion
+            $listaNotificaciones=$listaFavoritos->notificaciones;
+            $listaInicNotif=str_replace("[","",$listaNotificaciones);
+            $listaFinNotif=str_replace("]","",$listaInicNotif);
     
-        }
-        $listaNotificaciones=$listaFavoritos->notificaciones;
-        $listaInicNotif=str_replace("[","",$listaNotificaciones);
-        $listaFinNotif=str_replace("]","",$listaInicNotif);
-
-        $notificaciones=explode(',', $listaFinNotif);
-        $tam=sizeof($notificaciones);
-        //Convertir a entero
-        for($i=0; $i < $tam; $i++){
-            $temp = (int)$notificaciones[$i];
-            $notificaciones[$i] =$temp;
+            $notificaciones=explode(',', $listaFinNotif);
+            $tam=sizeof($notificaciones);
+            //Convertir a entero
+            for($i=0; $i < $tam; $i++){
+                $temp = (int)$notificaciones[$i];
+                $notificaciones[$i] =$temp;
+            }
+       
         }
 
 
