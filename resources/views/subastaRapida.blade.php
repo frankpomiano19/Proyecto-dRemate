@@ -62,7 +62,7 @@
 
     <header class="jumbotron font-popin"
         style="margin-bottom:0px;background-image:linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url('img/assets/subasta4.jpg');background-size:100% 100%;">
-        <div class="text-center text-white">
+        <div class="text-center text-white ">
             <h1 class="titulo-card-header-2">d'Remate</h1>
             <hr style="border-color: white">
             <hr style="border-color: white">
@@ -71,7 +71,7 @@
             @else
             <h1 class="titulo-card-header-2">Bienvenido a la subasta rapida</h1>
             <h2 style="font-size: 20px">Recuerda que para pujar, necesitas estar registrado</h2>
-            <div class="btn-group py-4" role="group">
+            <div class="btn-group py-4 d-flex text-center" role="group">
             @endauth
 
                 @guest
@@ -83,16 +83,19 @@
                     Bienvenido {{ auth()->user()->usuario }}
                 @endguest
             </div>
-            <h4 style="font-size: 20px" class="text-white">Puedes conocer productos por categorias</h4>
-            <div class="btn-group py-4" role="group">
-                <a href="{{ url('busquedaFiltro') }}" role="button" class="btn btn-info"><i class="fa fa-chevron-right">
-                        Buscar mas productos</i></a>
+            <br>
+            <h4 style="font-size: 20px" class="text-white text-center">Puedes conocer productos por categorias</h4>
+            <div class="d-flex justify-content-center">
+                <a href="{{ url('busquedaFiltro') }}" role="button" style=" width : 200px;" class="btn btn-info text-center"><i class="fa fa-chevron-right">
+                    Buscar mas productos</i></a>
+
             </div>
 
+                        <br>
             <hr style="border-color: white">
             <hr style="border-color: white">
 
-            <div>
+            <div class="d-flex justify-content-center">
                 {{-- <a class="btn btn-social-icon btn-twitter">
                     <span class="fa fa-instagram"></span>
                 </a> --}}

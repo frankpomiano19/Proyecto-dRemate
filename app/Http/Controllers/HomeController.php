@@ -79,6 +79,17 @@ class HomeController extends Controller
             $prodbloq = App\Models\BloqUserPro::where('user_id','=',auth()->id())->where('product_bloq_id','=',$idpro)->get()->isempty();
     
         }
+        $listaNotificaciones=$listaFavoritos->notificaciones;
+        $listaInicNotif=str_replace("[","",$listaNotificaciones);
+        $listaFinNotif=str_replace("]","",$listaInicNotif);
+
+        $notificaciones=explode(',', $listaFinNotif);
+        $tam=sizeof($notificaciones);
+        //Convertir a entero
+        for($i=0; $i < $tam; $i++){
+            $temp = (int)$notificaciones[$i];
+            $notificaciones[$i] =$temp;
+        }
 
 
         $prod = App\Models\Producto::findOrFail($idpro);
@@ -110,6 +121,7 @@ class HomeController extends Controller
             return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers','prodbloq'));
         }
         //End comentarios
+        return view('producto',compact('vendedor','prod','pujastotales','usuarios','cat','limitepuja','iniciosubasta','ultimoprecio','ultimapuja','productosRelac','favoritos','commentUsers','notificaciones'));
     }
 
     public function buscaProducto(Request $request)
@@ -264,6 +276,67 @@ class HomeController extends Controller
         $listaFavoritos->favoritos = $favoritos;
 
         $listaFavoritos->save();
+
+        return back();
+    }
+
+    public function agregarNotificacion(Request $request)
+    {
+
+        //Fila de usuario
+        $listaFavoritos = App\Models\User::where('id', '=', auth()->id())->first();
+
+        //Campo favorito del usuario
+        $listaNotificaciones = $listaFavoritos->notificaciones;
+
+        //Inicio de text
+        $listaInicNotif = str_replace("[", "", $listaNotificaciones);
+
+        //Final de text
+        $listaFinNotif = str_replace("]", "", $listaInicNotif);
+
+        //Conversion a array
+        $notificaciones = explode(',', $listaFinNotif);
+
+        //Tamanio de array
+        $tam = sizeof($notificaciones);
+
+        //Convertir a entero
+        for ($i = 0; $i < $tam; $i++) {
+
+            $temp = (int)$notificaciones[$i];
+            $notificaciones[$i] = $temp;
+        }
+
+        //Convierte a int el id que llega
+        $notNuevo = (int)$request->notificacion;
+
+
+
+        for ($i = 0; $i < $tam; $i++) {
+
+            if ($notificaciones[$i] == $notNuevo) {
+                $notificaciones[$i] = 0;
+                
+                $existe = 1;
+                break;
+            } else {
+                $existe = 0;
+            }
+        }
+
+        if ($existe == 1) {
+        } else {
+            array_push($notificaciones, $notNuevo);
+        }
+
+      
+
+        $listaFavoritos->notificaciones = $notificaciones;
+
+        $listaFavoritos->save();
+
+    
 
         return back();
     }

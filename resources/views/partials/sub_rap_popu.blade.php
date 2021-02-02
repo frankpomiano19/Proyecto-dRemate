@@ -2,7 +2,7 @@
     <div id="subastadores-superior">
         <div id="buscador">
             <form class="form-wrapper cf">
-                <input type="text" placeholder="Buscar subastadores" required>
+                <input type="text" placeholder="Nombre del subastador" required>
                 <button type="submit">Buscar</button>
             </form>
         </div>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="cont-sub-ima">
-                <img class="sub-ima" src="img/coin/coin1.png" alt="subastador-X">
+                <img class="sub-ima" src="img/avatar-hombre.png" alt="subastador-X">
             </div>
         </div> 
     </div>

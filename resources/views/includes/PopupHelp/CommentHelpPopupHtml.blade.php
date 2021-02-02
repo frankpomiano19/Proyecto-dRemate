@@ -20,7 +20,7 @@
                   </div>
                   <div class="col-md-8 d-flex flex-wrap align-content-center">
                     <p class="text-center">  
-                        Los productos que solo estan registrados (No en subasta), permiten que establescas comunicacion en tiempo real o enviarle mensajes referentes a esos productos
+                        Los productos que solo están registrados (No en subasta), permiten que establezcas comunicación en tiempo real o enviarle mensajes referentes a esos productos
                     </p>
                   </div>
                 </div>
@@ -31,7 +31,7 @@
                   </div>
                   <div class="col-md-8 d-flex flex-wrap align-content-center">
                     <p class="text-center">  
-                        Aca se puede ver los productos que tiene el usuario y que estan en subasta
+                        Acá puedes ver los productos del usuario que están en subasta
                     </p>
                   </div>
                 </div>

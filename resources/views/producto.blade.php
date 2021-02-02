@@ -178,15 +178,19 @@
  
 
 {{-- Informacion del producto --}}
-<div class="container-lg" style="margin-top: 20px;">
+<div class="container-lg" style="margin-top: 40px;">
   <div class="row">
       <div class="panel-sup col-lg-8 col-md-7 col-12">
           <div id="panel-1" class="panel">
-              <div style="width: 80%; float: left;">
+            <div style="width: 100%;">
+              <div style="width: 100%; float:left;">
+                <div style="margin-right: 160px;">
                   <h6>Categorías > <a href="{{ route($cat->nombre_categoria) }}"> {{$cat->nombre_categoria}}</a></h6>
                   <h3>{{ $prod->nombre_producto }}</h3>
+                </div>
               </div>
-              <div id="iconos" style="float: right; bottom: auto;">
+              <div style="width: 150px; float:left; margin-left:-150px;">
+                <div id="cora" style="width: 50px; height: 40px; float:right;">
                   {{-- <i class="fa fa-share"></i> <i class="fas fa-heart"></i> --}}
                   @auth
                   <form method="POST" enctype="multipart/form-data" action="{{ route('producto.favorito') }}">
@@ -222,16 +226,23 @@
                   @else
                   <a href=" {{ url('login') }}  "><img src="{{asset('img/assets/corazon.png')}}"></a>
                   @endauth
-                    <!-- Your share button code -->
-                    <div style="display: inline" class="fb-share-button" 
-                    data-href="http://dremate.herokuapp.com/producto-{{ $prod->id }}" 
-                    data-layout="button" data-size="small">
-                    </div>
+                   
+                </div>
+                <div>
+                   <!-- Your share button code -->
+                   <div style="display: inline" class="fb-share-button" 
+                   data-href="http://dremate.herokuapp.com/producto-{{ $prod->id }}" 
+                   data-layout="button" data-size="small">
+                   </div>
 
-                    <a class="btn btn-social-icon btn-sm btn-twitter" style="width:100px;font-size:10px"  href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
-                      <span class="fa fa-twitter" >&nbsp; Compartir</span>
-                    </a>
+                   <a class="btn btn-social-icon btn-sm btn-twitter" style="width:100px;font-size:10px"  href="https://twitter.com/intent/tweet?text={{ $prod->descripcion }}&url=http://dremate.herokuapp.com/producto-{{ $prod->id }}&hashtags={{ $prod->nombre_producto }},dRemate">
+                     <span class="fa fa-twitter" >&nbsp; Compartir</span>
+                   </a>
+                </div>
               </div>
+              <div style="clear: both"></div>
+            </div>
+              
 
   
 
@@ -269,37 +280,36 @@
 
 
             {{-- Historial de pujas --}}
-            <div class="tablas_pujas">
-
-              <table class="table table-sm table-bordered">
-                <thead>
-                  <tr>
-                    <td colspan="2">ULTIMAS PUJAS</td>
-                  </tr>
-                  <tr>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Puja</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach ($pujastotales as $puja)
-                  @if ($puja->producto_id==$prod->id)
-                  <tr>
-                    <td>{{$usuarios[($puja->user_id)-1]->usuario}}</td>
-                    <td>S/.{{$puja->valor_puja}}</td>
-                  </tr>
-                  @endif
-                  @endforeach
-                </tbody>
-              </table>
-  
+            <div id="cont-hitorial-pujas" class="hide">
+              <div id="regresar"><small class="ver-historial">Regresar</small></div>
+              <div id="tablas_pujas">
+                <table class="table table-sm table-bordered">
+                  <thead>
+                    <tr>
+                      <td colspan="2">ULTIMAS PUJAS</td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Usuario</th>
+                      <th scope="col">Puja</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach ($pujastotales as $puja)
+                    @if ($puja->producto_id==$prod->id)
+                    <tr>
+                      <td>{{$usuarios[($puja->user_id)-1]->usuario}}</td>
+                      <td>S/.{{$puja->valor_puja}}</td>
+                    </tr>
+                    @endif
+                    @endforeach
+                  </tbody>
+                </table>  
+              </div>
             </div>
+            
   
             {{-- Fin historial de pujas --}}
             
-              <div class="separador"></div>
-
-
 
             {{-- En caso de no haber iniciado --}}
             <div class="comienzosubasta" id="presubasta">
@@ -307,7 +317,7 @@
               <div>
                   <h6>Precio inicial</h6>
                   <h1 class="text-center">S/<span>{{$prod->precio_inicial}}</span></h1>
-                  <h6 class="text-right"><small>Ver historial de pujas</small></h6>
+                  {{-- <div class="historialClick"><h6 class="text-right"><small class="ver-historial">Ver historial de pujas</small></h6></div> --}}
               </div>
               <div class="separador"></div>
 
@@ -335,13 +345,13 @@
 
             <div id="botonpuja">
               <div class="tiempo_producto"  id="tiemposubasta">                
-                <div>
+                <div style="width: 100%;">
                     <h6>Oferta más alta</h6>
                     <h1 class="text-center">S/<span>{{$ultimoprecio}}</span></h1>
-                    <h6 class="text-right"><small id="ver-historial">Ver historial de pujas</small></h6>
+                  <div class="historialClick">
+                    <h6 class="text-right"><small class="ver-historial">Ver historial de pujas</small></h6>
+                  </div>
                 </div>
-                <div class="separador" style="width: 100%"></div>
-
                 <div>
                   <h6>Tiempo restante</h6>
                   <h1 class="text-center"><div id="tiempopuja" style="font-size: 20px"></div></h1>
@@ -352,7 +362,7 @@
 
               </div>
               
-              <div>
+              <div style="width: 100%">
                   <h6>Realizar una oferta</h6>                  
                   <div class="flex cont-coin" style="width: 100%;">
                       <div class="flex cont-coin">
@@ -367,14 +377,14 @@
                   </div>
               </div>
 
-                  <form action=" {{route('puja.crear')}} " method="POST">
+                  <form action=" {{route('puja.crear')}} " method="POST" autocomplete="off">
                     @csrf  
                     <div class="flex" class="cant_puja" id="cantpuja">
                       @auth
                       
                         @if ($prodbloq == true)
-                            <span style="font-size: 1.8rem;">S/</span>
-                            <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem; ">
+                            <span id="simbolo-soles" class="flex">S/</span>
+                            <input type="number" name="valorpuja"  class="message-input" style="width: 100%; font-size: 1.8rem;" min="{{$ultimoprecio +1}}">
 
                         @else
                             No puede ofertar este producto.
@@ -425,7 +435,6 @@
                         <button type="button" class="btn btn-outline-primary">Compra</button>
                       </div>
                   </form>
-              <div class="separador"></div>
 
             </div>
 
@@ -464,8 +473,9 @@
       {{-- Ubicacion --}}
       <div class="panel-sup col-md-4 col-sm-12">
           <div id="panel-4" class="panel">
-              <h2>Ubicación: {{$prod->ubicacion}}</h2>
-              <p><b>Referencia: </b>{{$prod->distrito}} </p>
+              <h2>Ubicación</h2>
+              <br>
+              <p style="font-weight: 600;">{{$prod->ubicacion}},&nbsp;{{$prod->distrito}} </p>
               <div id="ubicacion">
                 <div id="mapa" style="height: 390px;width:23em;" ></div>
               </div>
@@ -610,7 +620,7 @@
                             @csrf
                             <div style="float:left; width:100%; height: 48px;">
                                   <div class="flex" style="margin-right: 90px;height: 48px; padding: 0 10px;">
-                                      <input type="text" name="mensajeEnviado" class="message-input form__field" style="width: 100%; " placeholder="Hacer una pregunta...">
+                                      <input type="text" name="mensajeEnviado" class="message-input form__field" style="width: 100%; " autocomplete="off" placeholder="Hacer una pregunta..." required>
                                       <input type="hidden" name="idProducto" value="{{ $prod->id }}">
             
 
@@ -627,7 +637,7 @@
 
                               </div>
                               <div class="flex" style="float: right; width: 80px; margin-left: -80px; height: 48px;">
-                                  <button class="enviar-mensaje">Enviar</button>
+                                <button class="enviar-mensaje">Enviar</button>
                               </div>
                           </form>
                       </div>
@@ -729,7 +739,7 @@
                           </div>
                       </div>
                   </div>
-                  @endforeach
+                @endforeach
 
               </div>
 
@@ -853,7 +863,6 @@
 </script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js "></script>
-<script src="js/jsProducto.js"></script>
 {{-- Comentario javascript --}}
 
 
@@ -907,6 +916,8 @@ $("#show-responder").click(function() {
 
 });
 
+
+
 });
 </script>
 
@@ -914,7 +925,43 @@ $("#show-responder").click(function() {
 <script>
   moment.locale('es'); 
   console.log(moment("20111031", "YYYYMMDD").fromNow());
-  
+  var galleryThumbs = new Swiper('.gallery-thumbs', {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    loop: true,
+    freeMode: true,
+    loopedSlides: 5, //looped slides should be the same
+    watchSlidesVisibility: true,
+    watchSlidesProgress: true,
+});
+var galleryTop = new Swiper('.gallery-top', {
+    spaceBetween: 10,
+    loop: true,
+    loopedSlides: 5, //looped slides should be the same
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    thumbs: {
+        swiper: galleryThumbs,
+    },
+});
+
+$("#nuevo-acuerdo").click(function() {
+    $('#texto-nuevo-acuerdo').hide(1);
+    $('#inputAcuerdo').show(1);    
+
+});
+$(".historialClick").click(function() {
+    $('#cont-hitorial-pujas').show(1);    
+    $('#botonpuja').hide(1);    
+});
+
+$("#regresar").click(function() {
+    $('#cont-hitorial-pujas').hide(1);    
+    $('#botonpuja').show(1);    
+});
+
 </script>
 
 @auth

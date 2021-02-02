@@ -56,9 +56,53 @@
                             <i class="fa fa-calendar fa-sm"></i>
                         </button>
                     @endguest
-                    <button type="button" class="navbar-toggler">
+
+                  <!--  <button type="button" class="navbar-toggler">
                         <i class="fa fa-bell fa-sm"></i>
-                    </button>
+                    </button>-->
+
+
+                    <div class="view">
+
+
+
+                        @auth
+                        <form method="POST" enctype="multipart/form-data" action="{{ route('producto.notificacion') }}">
+                            {{ csrf_field() }}
+                                    @csrf
+                                    <input type="hidden" name="notificacion" value={{ $su_dispo->id }}>
+
+                                        @foreach ($notificaciones as $not)
+
+                                            @if ($not == $su_dispo->id)
+                                                <?php
+                                                    $notificacionL = 1;
+                                                ?>
+                                                @break
+                                            @else
+                                                <?php
+                                                    $notificacionL = 0;
+                                                ?>
+                                            @endif
+
+                                        @endforeach
+
+                                        @if($notificacionL == 1)
+                                            
+                                            <button type="submit" class="btn"><img src="{{asset('img/assets/campana-activada.png')}}"></button>
+                                            
+                                        @else
+                                        <button type="submit" class="btn"><img src="{{asset('img/assets/campana.png')}}"></button>
+                                        @endif
+                        </form>
+                        @else
+                        <button type="" class="btn"><img src="{{asset('img/assets/campana.png')}}"></button>
+                        @endauth
+                    </div>
+
+
+
+
                     <button type="button" class="navbar-toggler">
                         <i class="fa fa-heart fa-sm"></i>
                     </button>

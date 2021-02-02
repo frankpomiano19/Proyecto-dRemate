@@ -101,7 +101,11 @@
                 
                 <div class="row">
                     <div class="col-12">
-                        <h5>Categoria: Instrumentos > Condicion: {{ $condicion }} > Departamento: {{ $departamento }}</h5>
+                        @if(count($productos) == 1)
+                            <h5>Se encontró 1 producto</h5>                        
+                        @else
+                            <h5>Se encontraron {{ count($productos) }} productos</h5>
+                        @endif
                     </div>
                 </div>
 

@@ -153,6 +153,10 @@ Route::get('edson2/', function () {
     return view('edson2');
 });
 
+Route::get('productosPopulares/', function () {
+    return view('productosPopulares');
+});
+
 
 
 Route::get('/productosPopulares',[SuscripcionController::class,'productosPopulares'])->name('productosPopulares');
@@ -179,7 +183,7 @@ Route::post('/home', [HomeController::class,'buscaProducto'])->name('busqueda.bu
 //Controlador pago vendedor
 Route::post('/sumaVendedor', [SubastaRapController::class,'sumarVendedor'])->middleware('auth')->name('pago.vendedor');
 Route::post('/', [HomeController::class,'agregarFavorito'])->middleware('auth')->name('producto.favorito');
-
+Route::post('/a', [HomeController::class,'agregarNotificacion'])->middleware('auth')->name('producto.notificacion');
 //GET
 Route::get('/enviarCorreo',[MailController::class,'enviar']);
 
@@ -187,6 +191,7 @@ Route::get('/pagoVendedor',[SubastaRapController::class,'pagoVendedor']);
 
 Route::get('/favoritos',[SubastaRapController::class,'productosFavoritos'])->middleware('auth')->name('productos.favoritos');
 
+Route::get('/notificacion',[SubastaRapController::class,'productosNotif'])->middleware('auth')->name('productos.notificaciones');
 Route::post('/producto', [HomeController::class,'hacerpuja'])->name('puja.crear');
 ////////////////////////// +++++++++++++++++++ Medio de negociacion +++++++++++++++++++++++++++++ /////////////////////////
 //Medio de negociacion

@@ -101,7 +101,7 @@
                             </a>
                             </li>
                             <li>
-                            <a class="nav-link shadow" id="v-pills-pujas-tab" data-toggle="pill"
+                            <a class="" id="v-pills-pujas-tab" data-toggle="pill"
                                 href="#v-pills-pujas" role="tab" aria-controls="v-pills-pujas" aria-selected="false"
                                 onclick="tablasOpc = 6;">
                                 <i class="fa fa-search"></i>
